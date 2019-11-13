@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7fd1d8ab9dc10084fad9f48d4801603c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tilePrefab: {fileID: 4991417397179397828, guid: f0d4e991deeb6994d8fb8a9b6248e645,
+      type: 3}
+  - navmeshFloor: {instanceID: 0}
+  - navmeshMaskPrefabMeshFloor: {fileID: 2302550715646157062, guid: dfe51369a12eeab46bd7928e933ab938,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
