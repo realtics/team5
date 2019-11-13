@@ -15,12 +15,14 @@ public class MapEditor : Editor
 
         if (DrawDefaultInspector())
         {
+            map.ClearMap();
             map.GenerateMap();
         }
-
+        
         if (GUILayout.Button("Clear Map"))
         {
             map.ClearMap();
+            map.GenerateMap();
         }
 
         if (GUILayout.Button("Generated Map"))
@@ -37,6 +39,7 @@ public class MapEditor : Editor
         if (GUILayout.Button("Load Map"))
         {
             map.LoadMap();
+            map.GenerateMap();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class MapGenerator : MonoBehaviour
     List<Coord> allTileCoords;
     
     Map currentMap;
-
+    
     int[,] obstacleMap;
 
     //임시 값(obstacle의 설치를 시험)
@@ -30,17 +31,18 @@ public class MapGenerator : MonoBehaviour
 
     //void Awake()
     //{
-    //    currentMap.mapSize.x = 5;
-    //    currentMap.mapSize.y = 5;
-    //    maxMapSize.x = 10;
-    //    maxMapSize.y = 10;
+        //GenerateMap();
+        //    currentMap.mapSize.x = 5;
+        //    currentMap.mapSize.y = 5;
+        //    maxMapSize.x = 10;
+        //    maxMapSize.y = 10;
     //}
 
 
-    void Start()
-    {
-        GenerateMap();
-    }
+    //void Start()
+    //{
+        //GenerateMap();
+    //}
 
     public void GenerateMap()
     {
@@ -179,54 +181,84 @@ public class MapGenerator : MonoBehaviour
 
     public void SaveMap()
     {
-        using (StreamWriter outputFile = new StreamWriter(@"C:\Users\ICT03_10\Desktop\BrawlStars\Assets\01.Scenes\MapGenerator\New_TEXT_File.txt"))
+        if (maps[mapIndex].MapName != "" || maps[mapIndex].MapName == null)
         {
-            outputFile.WriteLine(currentMap.mapSize.x);
-            outputFile.WriteLine(currentMap.mapSize.y);
-
-            for (int i = 0; i < currentMap.mapSize.x; i++)
+            //using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\NextFile.txt"))
+            using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
-                for (int j = 0; j < currentMap.mapSize.y; j++)
-                {
-                    outputFile.WriteLine(obstacleMap[i, j]);
-                    //outputFile.Write(obstacleMap[i, j]);
-                    //outputFile.Write(",");
-                }
-                //outputFile.Write("\n");
-            }
+                outputFile.WriteLine(currentMap.mapSize.x);
+                outputFile.WriteLine(currentMap.mapSize.y);
 
-            //outputFile.Close();
+                for (int i = 0; i < currentMap.mapSize.x; i++)
+                {
+                    for (int j = 0; j < currentMap.mapSize.y; j++)
+                    {
+                        //outputFile.WriteLine(obstacleMap[i, j]);
+                        outputFile.Write(obstacleMap[i, j]);
+                        outputFile.Write(" ");
+                    }
+                    outputFile.Write("\n");
+                }
+
+                //using을 쓰면 자동으로 outputFile.Close()해준다.
+
+            }
         }
+
+        GenerateMap();
     }
 
     public void LoadMap()
     {
+        //txt.gameObject;
+
+        ClearMap();
+
         //string[] lines = File.ReadAllLines(@"C:\Users\ICT03_10\Desktop\BrawlStars\Assets\01.Scenes\MapGenerator\New_TEXT_File.txt");
-
-        using (StreamReader inputFile = new StreamReader(@"C:\Users\ICT03_10\Desktop\BrawlStars\Assets\01.Scenes\MapGenerator\New_TEXT_File.txt"))
+        if (maps[mapIndex].MapName != "" || maps[mapIndex] != null)
         {
-            currentMap.mapSize.x = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
-            currentMap.mapSize.y = int.Parse(inputFile.ReadLine());
-
-            obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
-
-            for (int i = 0; i < currentMap.mapSize.x; i++)
+            using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
-                for (int j = 0; j < currentMap.mapSize.y; j++)
-                {
-                    obstacleMap[i, j] = int.Parse(inputFile.ReadLine());
-                    //obstacleMap[i, j] = inputFile.Read();
-                }
-            }
+                currentMap.mapSize.x = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
+                currentMap.mapSize.y = int.Parse(inputFile.ReadLine());
 
-            inputFile.Close();
+                //obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
+
+                string str;
+
+                for (int i = 0; i < currentMap.mapSize.x; i++)
+                {
+                    str = inputFile.ReadLine();
+
+                    for (int j = 0; j < currentMap.mapSize.y; j++)
+                    {
+                        string[] data = str.Split(new char[] { ' ' });
+
+                        obstacleMap[i, j] = int.Parse(data[j]);
+                        //obstacleMap[i, j] = int.Parse(inputFile.ReadLine());
+
+                        //obstacleMap[i, j] = inputFile.Read();
+                    }
+                }
+                //using을 쓰면 자동으로 inputFile.Close()해준다.
+            }
         }
-        
+            //ClearMap();
         GenerateMap();
     }
 
-    public void ClearMap()
+
+    public void Initialize()
     {
+        currentMap = maps[mapIndex];
+
+    }
+        public void ClearMap()
+    {
+        //맵의 갯수 설정
+        currentMap = maps[mapIndex];
+
+        //if(currentMap.mapSize.x >= 0 && currentMap.mapSize.y >= 0)
         obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
         
         //GenerateMap();
@@ -242,31 +274,42 @@ public class MapGenerator : MonoBehaviour
     {
         public int x;
         public int y;
-        
+
         public Coord(int _x, int _y)
         {
             x = _x;
             y = _y;
         }
 
-        public static bool operator == (Coord c1, Coord c2)
+        public static bool operator ==(Coord c1, Coord c2)
         {
             return c1.x == c2.x && c1.y == c2.y;
         }
 
-        public static bool operator != (Coord c1, Coord c2)
+        public static bool operator !=(Coord c1, Coord c2)
         {
             return !(c1 == c2);
         }
+        public override bool Equals(object obj)
+        {
+            return true;
+            //return Mathf.Abs(ID - ((Person)obj).ID) <= 5;
+        }
+        public override int GetHashCode()
+        {
+            return 0;
+
+        }
     }
 
-    [System.Serializable]
+        [System.Serializable]
     public class Map
     {
+        public string MapName;
         public Coord mapSize;
         public float maxObstacleHeight;
         public int selectObstacleElement;
-
+       
         public Coord mapCentre
         {
             get
