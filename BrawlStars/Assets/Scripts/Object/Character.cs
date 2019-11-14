@@ -22,8 +22,8 @@ public enum State
 
 public class Character : MonoBehaviour
 {
-    Rigidbody mRigidbody;
-    CapsuleCollider mCollider;
+    protected Rigidbody mRigidbody;
+    protected CapsuleCollider mCollider;
 
     public string SpriteName;
     public SpriteIndex standingSpriteIndex;

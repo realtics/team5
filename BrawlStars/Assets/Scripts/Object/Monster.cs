@@ -6,6 +6,7 @@ public class Monster : Character
 {
     public float sight;
     public Skill[] patternArray;
+    public float attackReach;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -49,7 +50,7 @@ public class Monster : Character
             }
         }
 
-        if(target != null)
+        if(target != null && minDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
         {
             Move(target.transform.position - transform.position);
         }
