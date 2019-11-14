@@ -17,7 +17,7 @@ public enum Team
 
 public enum State
 {
-    Idle, Move, Attack
+    Idle, Attack, Dead
 }
 
 public class Character : MonoBehaviour
@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     public float attackSpriteInterval;
     public SpriteIndex moveSpriteIndex;
     public float moveSpriteInterval;
+    public SpriteIndex deathSpriteIndex;
+    public float deathSpriteInterval;
     float spriteInterval;
     List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
@@ -48,11 +50,11 @@ public class Character : MonoBehaviour
     public int hp;
     public int maxHp;
 
-    public GameObject uiCanvas;
+    GameObject uiCanvas;
     public DamageText damageText;
     public HPBar hpBar;
 
-    State state;
+    protected State state;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -76,6 +78,8 @@ public class Character : MonoBehaviour
 
         characterDirectionAngle = Mathf.Atan2(-1, -1);
 
+        uiCanvas = GameObject.Find("Canvas");
+
         hp = maxHp;
         hpBar = Instantiate(hpBar);
         hpBar.transform.SetParent(uiCanvas.transform);
@@ -88,7 +92,17 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (state == State.Attack)
+        if(state == State.Dead)
+        {
+            spriteInterval = deathSpriteInterval;
+            spriteDirectionCount = 1;
+            SpriteUpdate(deathSpriteIndex);
+            if (currentSpriteIndex >= (deathSpriteIndex.end - deathSpriteIndex.start))
+            {
+                Destroy(gameObject);
+            }
+        }
+        else if (state == State.Attack)
         {
             spriteInterval = attackSpriteInterval;
             SpriteUpdate(attackSpriteIndex);
@@ -127,9 +141,12 @@ public class Character : MonoBehaviour
             mRigidbody.constraints = mRigidbody.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
 
-        Vector3 hpBarPosition = transform.position;
-        hpBarPosition.y += mCollider.height;
-        hpBar.transform.position = Camera.main.WorldToScreenPoint(hpBarPosition);
+        if (hpBar != null)
+        {
+            Vector3 hpBarPosition = transform.position;
+            hpBarPosition.y += mCollider.height;
+            hpBar.transform.position = Camera.main.WorldToScreenPoint(hpBarPosition);
+        }
     }
 
     public void Move(Vector3 direction)
@@ -157,6 +174,12 @@ public class Character : MonoBehaviour
 
     int GetDirectionIndex()
     {
+        if (state == State.Dead)
+        {
+            transform.localScale = new Vector3(scale.x, scale.y, scale.z);
+            return Global.downFrontIndex;
+        }
+
         if (velocity.sqrMagnitude != 0)
             characterDirectionAngle = Mathf.Atan2(velocity.x, velocity.z);
 
@@ -199,17 +222,31 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        SetHp(hp - damage);
-
-        Color color = spriteRenderer.material.GetColor("_Color");
-        color.a = 0.5f;
-        spriteRenderer.material.SetColor("_Color", color);
+        if (state == State.Dead)
+            return;
 
         DamageText damageTextObject = Instantiate(damageText, transform.position, Quaternion.identity);
         damageTextObject.SetDefaultPosition(transform.position, damage);
         damageTextObject.transform.SetParent(uiCanvas.transform);
 
-        StartCoroutine(TakeDamageCoroutine());
+        SetHp(hp - damage);
+
+        if (hp > 0)
+        {
+            Color color = spriteRenderer.material.GetColor("_Color");
+            color.a = 0.5f;
+            spriteRenderer.material.SetColor("_Color", color);
+
+            StartCoroutine(TakeDamageCoroutine());
+        }
+        else
+        {
+            Stop();
+            Destroy(hpBar.gameObject);
+            currentSpriteIndex = 0;
+            state = State.Dead;
+            Destroy(GetComponent<Collider>());
+        }
     }
 
     IEnumerator TakeDamageCoroutine()
@@ -223,14 +260,13 @@ public class Character : MonoBehaviour
 
     public void AttackProcess(float time, float directionAngle)
     {
-        state = State.Attack;
-        currentSpriteIndex = 0;
+        if (state == State.Idle)
+        {
+            state = State.Attack;
+            Stop();
+            currentSpriteIndex = 0;
 
-        characterDirectionAngle = Global.AngleInRange(directionAngle * Mathf.Deg2Rad + Mathf.PI / 2, -Mathf.PI);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        mRigidbody.velocity = Vector3.zero;
+            characterDirectionAngle = Global.AngleInRange(directionAngle * Mathf.Deg2Rad + Mathf.PI / 2, -Mathf.PI);
+        }
     }
 }

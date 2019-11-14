@@ -27,12 +27,15 @@ public class MainCamera : MonoBehaviour
     //추적 카메라, 절차 애니메이션, 마지막으로 알려진 수집 정보를 이용하려면 LateUpdate를 이용하는것이 좋다.
     void LateUpdate()
     {
-        CameraPosition.x = Player.transform.position.x + foffsetX;
-        
-        CameraPosition.y = Player.transform.position.y + foffsetY;
+        if (Player != null)
+        {
+            CameraPosition.x = Player.transform.position.x + foffsetX;
 
-        CameraPosition.z = Player.transform.position.z + foffsetZ;
+            CameraPosition.y = Player.transform.position.y + foffsetY;
 
-        transform.position = CameraPosition;
+            CameraPosition.z = Player.transform.position.z + foffsetZ;
+
+            transform.position = CameraPosition;
+        }
     }
 }

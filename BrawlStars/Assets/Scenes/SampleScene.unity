@@ -812,13 +812,16 @@ MonoBehaviour:
     start: 60
     end: 99
   moveSpriteInterval: 0.15
+  deathSpriteIndex:
+    start: 160
+    end: 182
+  deathSpriteInterval: 0.1
   spriteRenderer: {fileID: 1169244230}
   spriteDirectionCount: 5
   team: 0
   speed: 4
   hp: 0
-  maxHp: 3000
-  uiCanvas: {fileID: 2146892910}
+  maxHp: 400
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
@@ -986,23 +989,27 @@ MonoBehaviour:
   attackSpriteIndex:
     start: 0
     end: 59
-  attackSpriteInterval: 0.02
+  attackSpriteInterval: 0.1
   moveSpriteIndex:
     start: 60
     end: 99
   moveSpriteInterval: 0.4
+  deathSpriteIndex:
+    start: 160
+    end: 191
+  deathSpriteInterval: 0.1
   spriteRenderer: {fileID: 285523648}
   spriteDirectionCount: 5
   team: 1
   speed: 0.2
   hp: 0
-  maxHp: 40000
-  uiCanvas: {fileID: 2146892910}
+  maxHp: 3000
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   sight: 20
-  patternArray: {fileID: 0}
+  patternArray:
+  - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}
 --- !u!1 &1528526788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,7 +1828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stick: {fileID: 1629986068}
   player: {fileID: 1137248324}
-  skill: {fileID: 7920129116037723826, guid: 4c8490e38957f83498ef85180fb6b396, type: 3}
+  skill: {fileID: 0}
   rangeObject: {fileID: 1123463082}
 --- !u!1 &2146892910
 GameObject:

@@ -16,7 +16,7 @@ public class SkillJoystick : Joystick
     public override void OnPointerDown(PointerEventData data)
     {
         base.OnPointerDown(data);
-        rangeObject.SetMesh(skill.GetMesh());
+        rangeObject.SetMesh(skill.GetTargetRange());
     }
 
     public override void OnDrag(PointerEventData data)
@@ -34,10 +34,7 @@ public class SkillJoystick : Joystick
         base.OnPointerUp(data);
         rangeObject.StopDrawing();
 
-        skill.StartCooldown();
-        Skill actionSkill = Instantiate(skill, rangeObject.transform.position, Quaternion.identity);
+        skill.StartSkill(player, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
         player.AttackProcess(1, rangeObject.transform.rotation.eulerAngles.y);
-        actionSkill.SetAngleDegree(rangeObject.transform.rotation.eulerAngles.y);
-        actionSkill.Action();
     }
 }

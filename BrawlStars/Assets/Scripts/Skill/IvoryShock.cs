@@ -8,10 +8,10 @@ public class IvoryShock : Skill
     public float angle;
     const int detail = 20;
 
-    public override void Action()
+    public override void Action(float yRotationEuler)
     {
-        transform.rotation = Quaternion.Euler(90, rotationDegree - 90, 0);
-        StartCoroutine(DamageCoroutine());
+        transform.rotation = Quaternion.Euler(90, yRotationEuler - 90, 0);
+        StartCoroutine(DamageCoroutine(yRotationEuler));
     }
 
     public override IEnumerator SpriteCoroutine()
@@ -19,7 +19,7 @@ public class IvoryShock : Skill
         yield return new WaitForSeconds(spriteInterval);
     }
 
-    IEnumerator DamageCoroutine()
+    IEnumerator DamageCoroutine(float yRotationEuler)
     {
         yield return new WaitForSeconds(startupTime);
 
@@ -29,11 +29,11 @@ public class IvoryShock : Skill
             Collider[] colliders = Physics.OverlapSphere(point, reach);
             for (int j = 0; j < colliders.Length; j++)
             {
-                if (!IsInFanwise(colliders[j].transform.position))
+                if (!IsInFanwise(yRotationEuler, colliders[j].transform.position))
                     continue;
 
                 Character target = colliders[j].GetComponent<Character>();
-                if (target != null && target.team == Team.Enemy)
+                if (target != null && target.team != owner.team)
                 {
                     target.TakeDamage(damage);
                 }
@@ -43,11 +43,11 @@ public class IvoryShock : Skill
         Destroy(gameObject);
     }
 
-    bool IsInFanwise(Vector3 targetPosition)
+    bool IsInFanwise(float yRotationEuler, Vector3 targetPosition)
     {
         Vector3 targetDirection = targetPosition - transform.position;
         float currentAngle = Mathf.Atan2(-targetDirection.z, targetDirection.x);
-        float diff = currentAngle - rotationDegree * Mathf.Deg2Rad;
+        float diff = currentAngle - yRotationEuler * Mathf.Deg2Rad;
 
         while (diff < -Mathf.PI) diff += Mathf.PI * 2;
         while (diff > Mathf.PI) diff -= Mathf.PI * 2;
@@ -55,7 +55,7 @@ public class IvoryShock : Skill
         return Mathf.Abs(diff) < angle / 2;
     }
 
-    public override Mesh GetMesh()
+    public override Mesh GetTargetRange()
     {
         Vector3[] vertices = new Vector3[detail + 2];
         vertices[0] = new Vector3(0, 0, 0);
@@ -87,7 +87,7 @@ public class IvoryShock : Skill
         return mesh;
     }
 
-    public override Vector3 GetPosition(Vector2 stickMove, float maxMoveLength)
+    public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)
     {
         return new Vector3(0, 0, 0);
     }

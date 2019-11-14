@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderStrike : Skill
+public class Shockwave : Skill
 {
-    public float reach;
     public float radius;
-
-    const int detail = 60;
-    Vector3 position;
+    const int detail = 20;
 
     public override void Action(float yRotationEuler)
     {
@@ -25,7 +22,7 @@ public class ThunderStrike : Skill
         yield return new WaitForSeconds(startupTime);
 
         Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
-        for (int i =0; i < damageCount; i++)
+        for (int i = 0; i < damageCount; i++)
         {
             Collider[] colliders = Physics.OverlapSphere(point, radius);
             for (int j = 0; j < colliders.Length; j++)
@@ -38,10 +35,8 @@ public class ThunderStrike : Skill
             }
             yield return new WaitForSeconds(damageInterval);
         }
-
         Destroy(gameObject);
     }
-
     public override Mesh GetTargetRange()
     {
         Vector3[] vertices = new Vector3[detail + 2];
@@ -74,15 +69,14 @@ public class ThunderStrike : Skill
         return mesh;
     }
 
-    public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)
+    public override Vector3 GetPosition(Vector2 stickMove, float maxMoveLength)
     {
-        position = new Vector3(reach * stickMove.x / maxStickMoveLength, 0.1f, reach * stickMove.y / maxStickMoveLength);
-        return position;
+        return new Vector3(0, 0, 0);
     }
 
     public override Quaternion GetRotation(Vector2 stickMove)
     {
-        float angleRad = Mathf.Atan2(-stickMove.y, stickMove.x);
-        return Quaternion.Euler(0, angleRad * Mathf.Rad2Deg, 0);
+        Quaternion returnValue = Quaternion.Euler(0, 0, 0);
+        return returnValue;
     }
 }

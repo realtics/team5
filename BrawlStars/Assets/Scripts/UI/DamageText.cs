@@ -8,11 +8,12 @@ public class DamageText : MonoBehaviour
     public float moveSpeed;
     public float destroyTime;
 
+    Vector3 originalPosition;
     float instantiatedTime;
 
     public void SetDefaultPosition(Vector3 position, int damage)
     {
-        transform.localPosition = Camera.main.WorldToScreenPoint(position);
+        originalPosition = position;
         GetComponent<Text>().text = "-" + damage.ToString();
 
         instantiatedTime = Time.time;
@@ -24,6 +25,7 @@ public class DamageText : MonoBehaviour
         if (Time.time - instantiatedTime > destroyTime)
             Destroy(gameObject);
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed * Time.deltaTime, transform.position.z);
+        originalPosition = new Vector3(originalPosition.x, originalPosition.y + moveSpeed * Time.deltaTime, originalPosition.z);
+        transform.position = Camera.main.WorldToScreenPoint(originalPosition);
     }
 }

@@ -20,7 +20,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     void Update()
     {
-        if(skill.GetRemainCooldown() < 0)
+        if(skill.ReadyToAction())
         {
             iconImage.color = new Color(1, 1, 1, iconImage.color.a);
             cooldownText.text = "";
@@ -34,7 +34,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (skill.GetRemainCooldown() < 0)
+        if (skill.ReadyToAction())
         {
             joystick.gameObject.SetActive(true);
             joystick.skill = skill;
@@ -48,7 +48,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (skill.GetRemainCooldown() < 0)
+        if (skill.ReadyToAction())
         {
             joystick.OnDrag(eventData);
         }
@@ -56,7 +56,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (skill.GetRemainCooldown() < 0)
+        if (skill.ReadyToAction())
         {
             joystick.OnPointerUp(eventData);
 

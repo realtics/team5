@@ -4,7 +4,10 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
+    public float castingDelay;
     public float startupTime;
+    public float recoveryTime;
+
     public int damage;
     public int damageCount;
     public float damageInterval;
@@ -14,11 +17,19 @@ public abstract class Skill : MonoBehaviour
 
     public float spriteInterval;
 
-    protected float rotationDegree;
+    protected Character owner;
 
-    public abstract void Action();
+    public void StartSkill(Character user, Vector3 position, float yRotationEuler)
+    {
+        StartCooldown();
+        Skill actionSkill = Instantiate(this, position, Quaternion.identity);
+        actionSkill.owner = user;
+        actionSkill.Action(yRotationEuler);
+    }
+
+    public abstract void Action(float yRotationEuler);
     public abstract IEnumerator SpriteCoroutine();
-    public abstract Mesh GetMesh();
+    public abstract Mesh GetTargetRange();
     public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength);
     public abstract Quaternion GetRotation(Vector2 stickMove);
     
@@ -36,9 +47,9 @@ public abstract class Skill : MonoBehaviour
     {
         return cooldown - (Time.time - lastUsedTime);
     }
-    
-    public void SetAngleDegree(float angle)
+
+    public bool ReadyToAction()
     {
-        rotationDegree = angle;
+        return GetRemainCooldown() < 0;
     }
 }

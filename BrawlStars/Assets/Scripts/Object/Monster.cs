@@ -5,19 +5,28 @@ using UnityEngine;
 public class Monster : Character
 {
     public float sight;
-    public Skill patternArray;
+    public Skill[] patternArray;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+
+        for (int i = 0; i < patternArray.Length; i++)
+        {
+            patternArray[i].StartCooldown();
+        }
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
-        ChasePlayerCharacter();
+        if (state == State.Idle)
+        {
+            ChasePlayerCharacter();
+            ActivatePattern();
+        }
     }
 
     void ChasePlayerCharacter()
@@ -32,13 +41,13 @@ public class Monster : Character
             if(moveVector.sqrMagnitude < minDistance)
             {
                 Character collider = colliders[i].GetComponent<Character>();
-                if (collider.team == Team.Player)
+                if (collider != null && collider.team == Team.Player)
                 {
                     minDistance = moveVector.sqrMagnitude;
                     target = collider;
                 }
             }
-        }        
+        }
 
         if(target != null)
         {
@@ -47,6 +56,20 @@ public class Monster : Character
         else
         {
             Stop();
+        }
+    }
+
+    void ActivatePattern()
+    {
+        for(int i = 0; i < patternArray.Length; i++)
+        {
+            if (patternArray[i].ReadyToAction())
+            {
+                Vector3 position = patternArray[i].GetPosition(new Vector2(0, 0), 1);
+                Quaternion rotation = patternArray[i].GetRotation(new Vector2(0, 0));
+                patternArray[i].StartSkill(this, transform.position + position, rotation.eulerAngles.y);
+                AttackProcess(0, transform.rotation.eulerAngles.y);
+            }
         }
     }
 }

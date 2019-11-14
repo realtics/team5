@@ -71,54 +71,61 @@
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
     <Compile Include="Assets\Scripts\Cube\MapBox.cs" />
+    <Compile Include="Assets\Scripts\Cube\MoveStage.cs" />
     <Compile Include="Assets\Scripts\MapGenerator\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
     <Compile Include="Assets\Scripts\RobbyRoom\RoomOnOff.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\IvoryShock.cs" />
+    <Compile Include="Assets\Scripts\Skill\Monster Pattern\FireDragon.cs" />
+    <Compile Include="Assets\Scripts\Skill\Monster Pattern\Shockwave.cs" />
     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Skill\ThunderStrike.cs" />
     <Compile Include="Assets\Scripts\UI\DamageText.cs" />
     <Compile Include="Assets\Scripts\UI\HPBar.cs" />
     <Compile Include="Assets\test.cs" />
+    <None Include="Assets\StageMaps\OnStage2.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\StageMaps\OnStage1.txt" />
     <None Include="Assets\Scenes\MapGenerator\New_TEXT_File.txt" />
     <None Include="Assets\Resources\ColorPalletSwapper\Sprites\Palettes\Completed\MegaWomanPalette-Original-positions.txt" />
+    <None Include="Assets\StageMaps\OnStage3.txt" />
+    <None Include="Assets\StageMaps\pre.txt" />
     <None Include="Assets\Resources\DualCorStudios\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/ICT03_09/Desktop/Neople/BrawlStars/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
