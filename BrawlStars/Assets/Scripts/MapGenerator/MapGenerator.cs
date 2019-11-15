@@ -31,10 +31,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        
         LoadMap();
-
-        
     }
 
     public void GenerateMap()
@@ -186,15 +183,14 @@ public class MapGenerator : MonoBehaviour
     {
         if (maps[mapIndex].MapName != "" || maps[mapIndex].MapName == null)
         {
-            //using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\NextFile.txt"))
             using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
                 outputFile.WriteLine(currentMap.mapSize.x);
                 outputFile.WriteLine(currentMap.mapSize.y);
 
-                for (int i = 0; i < currentMap.mapSize.x; i++)
+                for (int j = 0; j < currentMap.mapSize.y; j++)
                 {
-                    for (int j = 0; j < currentMap.mapSize.y; j++)
+                    for (int i = 0; i < currentMap.mapSize.x; i++)
                     {
                         //outputFile.WriteLine(obstacleMap[i, j]);
                         outputFile.Write(obstacleMap[i, j]);
@@ -204,7 +200,6 @@ public class MapGenerator : MonoBehaviour
                 }
 
                 //using을 쓰면 자동으로 outputFile.Close()해준다.
-
             }
         }
 
@@ -215,17 +210,19 @@ public class MapGenerator : MonoBehaviour
     {
         //txt.gameObject;
 
-        ClearMap();
+        ClearMap();//기존 맵 초기화
 
-        //string[] lines = File.ReadAllLines(@"C:\Users\ICT03_10\Desktop\BrawlStars\Assets\01.Scenes\MapGenerator\New_TEXT_File.txt");
         if (maps[mapIndex].MapName != "")
         {
             using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
-                currentMap.mapSize.y = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
-                currentMap.mapSize.x = int.Parse(inputFile.ReadLine());
+                Debug.Log(maps[mapIndex].MapName);
 
-                //obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
+                currentMap.mapSize.x = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
+                currentMap.mapSize.y = int.Parse(inputFile.ReadLine());
+
+                //currentMap.mapSize 크기로 맵을 다시 그려줌.
+                ClearMap(); 
 
                 string str;
 
