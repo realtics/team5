@@ -20,10 +20,13 @@ public class MapGenerator : MonoBehaviour
 
     public float tileSize;
     List<Coord> allTileCoords;
-    
+    //Queue<Coord> shuffledOpenTileCoord;
+
+    Transform[,] tileMap;
+
     Map currentMap;
     
-    int[,] obstacleMap;
+    public int[,] obstacleMap;
 
     //임시 값(obstacle의 설치를 시험)
     //public int randomSeed;
@@ -31,23 +34,26 @@ public class MapGenerator : MonoBehaviour
 
     //void Awake()
     //{
-        //GenerateMap();
-        //    currentMap.mapSize.x = 5;
-        //    currentMap.mapSize.y = 5;
-        //    maxMapSize.x = 10;
-        //    maxMapSize.y = 10;
+    //GenerateMap();
+    //    currentMap.mapSize.x = 5;
+    //    currentMap.mapSize.y = 5;
+    //    maxMapSize.x = 10;
+    //    maxMapSize.y = 10;
     //}
 
 
-    //void Start()
-    //{
-        //GenerateMap();
-    //}
+    void Start()
+    {
+        LoadMap();
+    }
 
     public void GenerateMap()
     {
         //맵의 갯수 설정
         currentMap = maps[mapIndex];
+        
+        //
+        tileMap = new Transform[currentMap.mapSize.x, currentMap.mapSize.y];
 
         //최대 맵은 설정한 mapSize의 값에 + 10으로 설정
         maxMapSize.x = currentMap.mapSize.x + 1;
@@ -89,6 +95,7 @@ public class MapGenerator : MonoBehaviour
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * (1 - outlinePercent) * tileSize;
                 newTile.parent = mapHolder;
+                tileMap[x, y] = newTile;
             }
         }
 
@@ -113,6 +120,8 @@ public class MapGenerator : MonoBehaviour
         //                            { 0, 1, 0, 0, 0, 0, 0, 0, 3, 0 },
         //                            { 0, 1, 2, 0, 0, 0, 0, 0, 3, 0 },
         //                            { 0, 1, 2, 3, 0, 0, 0, 0, 3, 0 } };
+
+        List<Coord> allOpenCoords = new List<Coord>(allTileCoords);
 
         for (int i = 0; i < currentMap.mapSize.x; i++)
         {
@@ -146,6 +155,8 @@ public class MapGenerator : MonoBehaviour
 
                 //해당 큐브의 위치
                 Vector3 obstaclePosition = CoordToPosition(i, j);
+
+                //allOpenCoords.Remove(Random)
 
                 //해당 위치에 큐브를 설치
                 Transform newObstacle = Instantiate(obstaclePrefabs[obstacleMap[i, j]], obstaclePosition + Vector3.up * obstacleHeight / 2, Quaternion.identity) as Transform;
@@ -215,7 +226,7 @@ public class MapGenerator : MonoBehaviour
         ClearMap();
 
         //string[] lines = File.ReadAllLines(@"C:\Users\ICT03_10\Desktop\BrawlStars\Assets\01.Scenes\MapGenerator\New_TEXT_File.txt");
-        if (maps[mapIndex].MapName != "" || maps[mapIndex] != null)
+        if (maps[mapIndex].MapName != "")
         {
             using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
@@ -248,12 +259,7 @@ public class MapGenerator : MonoBehaviour
     }
 
 
-    public void Initialize()
-    {
-        currentMap = maps[mapIndex];
-
-    }
-        public void ClearMap()
+    public void ClearMap()
     {
         //맵의 갯수 설정
         currentMap = maps[mapIndex];
@@ -267,6 +273,22 @@ public class MapGenerator : MonoBehaviour
     Vector3 CoordToPosition(int x, int y)
     {
         return new Vector3(-currentMap.mapSize.x / 2f + 0.5f + x, 0, -currentMap.mapSize.y / 2f + 0.5f + y) * tileSize;
+    }
+
+    public Transform GetTileFromPosition(Vector3 position)
+    {
+        int x = Mathf.RoundToInt(position.x / tileSize + (currentMap.mapSize.x - 1) / 2f);
+        int y = Mathf.RoundToInt(position.z / tileSize + (currentMap.mapSize.y - 1) / 2f);
+        x = Mathf.Clamp(0, 0, tileMap.GetLength(0) - 1);
+        y = Mathf.Clamp(y, 0, tileMap.GetLength(1) - 1);
+        return tileMap[x, y];
+    }
+
+    public Transform GetRandomSpawnTile()
+    {
+        //Coord randomCoord = shuffledOpenTileCoord.Dequeue();
+        //shuffledOpenTileCoord.Enqueue(randomCoord);
+        return tileMap[2, 2];
     }
 
     [System.Serializable]
@@ -309,7 +331,7 @@ public class MapGenerator : MonoBehaviour
         public Coord mapSize;
         public float maxObstacleHeight;
         public int selectObstacleElement;
-       
+
         public Coord mapCentre
         {
             get

@@ -15,8 +15,9 @@ public class MapEditor : Editor
 
         if (DrawDefaultInspector())
         {
-            map.ClearMap();
-            map.GenerateMap();
+            //map.ClearMap();
+            map.LoadMap();
+            //map.GenerateMap();
         }
         
         if (GUILayout.Button("Clear Map"))
