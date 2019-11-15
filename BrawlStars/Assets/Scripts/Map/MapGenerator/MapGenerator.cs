@@ -201,7 +201,7 @@ public class MapGenerator : MonoBehaviour
         startingObject.transform.position = currentMap.startingPosition;
 
         //지정된 좌표로 캐릭터를 찾아서 이동.
-        GameObject.Find("Character").transform.position = new Vector3(startingObject.transform.position.x, 0.5f, startingObject.transform.position.y);
+        GameObject.Find("Character").transform.position = new Vector3(startingObject.transform.position.x, 0.5f, startingObject.transform.position.z);
     }
 
     public void ClearMap()
@@ -247,7 +247,6 @@ public class MapGenerator : MonoBehaviour
         public override int GetHashCode()
         {
             return 0;
-
         }
     }
 
@@ -258,7 +257,7 @@ public class MapGenerator : MonoBehaviour
         public Coord mapSize;
         public float maxObstacleHeight;
         public int selectObstacleElement;
-        public Vector2 startingPosition;
+        public Vector3 startingPosition;
 
         public Coord mapCentre
         {
