@@ -77,12 +77,7 @@
     <Compile Include="Assets\Scripts\Map\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Portal.cs" />
-    <Compile Include="Assets\Scripts\Room\RoomOnOff.cs" />
-    <Compile Include="Assets\Scripts\Room\SceneChange.cs" />
-=======
->>>>>>> master
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\IvoryShock.cs" />
     <Compile Include="Assets\Scripts\Skill\Monster Pattern\FireDragon.cs" />
