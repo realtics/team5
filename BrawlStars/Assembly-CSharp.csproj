@@ -75,7 +75,8 @@
     <Compile Include="Assets\Scripts\MapGenerator\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
-    <Compile Include="Assets\Scripts\RobbyRoom\RoomOnOff.cs" />
+    <Compile Include="Assets\Scripts\Room\RoomOnOff.cs" />
+    <Compile Include="Assets\Scripts\Room\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\IvoryShock.cs" />
     <Compile Include="Assets\Scripts\Skill\Monster Pattern\FireDragon.cs" />

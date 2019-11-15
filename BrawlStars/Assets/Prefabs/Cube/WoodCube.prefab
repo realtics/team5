@@ -107,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604f37fda489b6642b1b0b6a7875daea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 10
-  Crash: 1
+  hp: 0
+  maxHp: 0
+  Crash: 0
+  mapGenerator: {fileID: 0}
 --- !u!208 &-3866498702547038473
 NavMeshObstacle:
   m_ObjectHideFlags: 0

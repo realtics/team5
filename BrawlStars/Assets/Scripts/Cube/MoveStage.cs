@@ -7,6 +7,7 @@ public class MoveStage : MonoBehaviour
 {
 
     public MapGenerator mapGenerator;
+    public GameObject ResultUI;
 
     public float LimitTime;
     float SelectTime;
@@ -15,13 +16,12 @@ public class MoveStage : MonoBehaviour
 
     public bool OnOff = false;
 
-
-    GameObject ResultUI;
+    string secondText;
 
     // Start is called before the first frame update
     void Start()
     {
-        ResultUI = GameObject.Find("ResultUI");
+        //ResultUI = GameObject.Find("ResultUI");
         ResultUI.SetActive(false);
         
         mapGenerator.mapIndex = 0;
@@ -39,7 +39,6 @@ public class MoveStage : MonoBehaviour
             {
                 Mathf.Round(LimitTime);
                 LimitTime -= Time.deltaTime;
-
             }
             else
             {
@@ -48,7 +47,6 @@ public class MoveStage : MonoBehaviour
                 if (nextTime > 0)
                 {
                     nextTime -= Time.deltaTime;
-                    
                 }
                 else
                     OnNextBttonClick();

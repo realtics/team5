@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
+    public GameObject startingObject;
+
     public Map[] maps;
     public Transform[] obstaclePrefabs;
     public int mapIndex;
@@ -20,38 +22,28 @@ public class MapGenerator : MonoBehaviour
 
     public float tileSize;
     List<Coord> allTileCoords;
-    //Queue<Coord> shuffledOpenTileCoord;
-
+    
     Transform[,] tileMap;
 
     Map currentMap;
     
     public int[,] obstacleMap;
 
-    //임시 값(obstacle의 설치를 시험)
-    //public int randomSeed;
-    //
-
-    //void Awake()
-    //{
-    //GenerateMap();
-    //    currentMap.mapSize.x = 5;
-    //    currentMap.mapSize.y = 5;
-    //    maxMapSize.x = 10;
-    //    maxMapSize.y = 10;
-    //}
-
-
     void Start()
     {
+        
         LoadMap();
+
+        
     }
 
     public void GenerateMap()
     {
         //맵의 갯수 설정
         currentMap = maps[mapIndex];
-        
+
+        SetCharacterPosition();
+
         //
         tileMap = new Transform[currentMap.mapSize.x, currentMap.mapSize.y];
 
@@ -258,6 +250,13 @@ public class MapGenerator : MonoBehaviour
         GenerateMap();
     }
 
+    public void SetCharacterPosition()
+    {
+        startingObject.transform.position = currentMap.startingPosition;
+        
+        GameObject.Find("Character").transform.position = new Vector3(startingObject.transform.position.x, 0.5f, startingObject.transform.position.y);
+    }
+
 
     public void ClearMap()
     {
@@ -324,13 +323,14 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-        [System.Serializable]
+    [System.Serializable]
     public class Map
     {
         public string MapName;
         public Coord mapSize;
         public float maxObstacleHeight;
         public int selectObstacleElement;
+        public Vector2 startingPosition;
 
         public Coord mapCentre
         {
