@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\UI\DamageText.cs" />
     <Compile Include="Assets\Scripts\UI\HPBar.cs" />
     <Compile Include="Assets\test.cs" />
+    <None Include="Assets\StageMaps\qwte.txt" />
     <None Include="Assets\StageMaps\OnStage2.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
