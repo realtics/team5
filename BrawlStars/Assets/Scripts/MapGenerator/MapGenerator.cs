@@ -237,7 +237,7 @@ public class MapGenerator : MonoBehaviour
                     {
                         string[] data = str.Split(new char[] { ' ' });
 
-                        obstacleMap[i, j] = int.Parse(data[j]);
+                        obstacleMap[j, i] = int.Parse(data[j]);
                         //obstacleMap[i, j] = int.Parse(inputFile.ReadLine());
 
                         //obstacleMap[i, j] = inputFile.Read();
