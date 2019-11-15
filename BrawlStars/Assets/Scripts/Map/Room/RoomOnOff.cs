@@ -13,19 +13,14 @@ public class RoomOnOff : MonoBehaviour
         RoomCanvas.SetActive(false);
         LobbyCanvas.SetActive(true);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
+    //로비 창 닫고 룸 열기
     public void ClickOnRoom()
     {
         RoomCanvas.SetActive(true);
         LobbyCanvas.SetActive(false);
     }
-
+    //룸 창 닫고 로비 열기
     public void ClickOnRobby()
     {
         RoomCanvas.SetActive(false);

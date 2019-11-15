@@ -70,14 +70,19 @@
     <Compile Include="Assets\Scripts\Contoller\SkillIcon.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
-    <Compile Include="Assets\Scripts\Cube\MapBox.cs" />
-    <Compile Include="Assets\Scripts\Cube\MoveStage.cs" />
-    <Compile Include="Assets\Scripts\MapGenerator\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\Cube\MapBox.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\MoveStage.cs" />
+    <Compile Include="Assets\Scripts\Map\Room\RoomOnOff.cs" />
+    <Compile Include="Assets\Scripts\Map\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\Scripts\Room\RoomOnOff.cs" />
     <Compile Include="Assets\Scripts\Room\SceneChange.cs" />
+=======
+>>>>>>> master
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\IvoryShock.cs" />
     <Compile Include="Assets\Scripts\Skill\Monster Pattern\FireDragon.cs" />
@@ -92,7 +97,6 @@
     <None Include="Assets\Material\CharacterShader.shader" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
-    <None Include="Assets\Scenes\MapGenerator\New_TEXT_File.txt" />
     <None Include="Assets\Resources\ColorPalletSwapper\Sprites\Palettes\Completed\MegaWomanPalette-Original-positions.txt" />
     <None Include="Assets\StageMaps\OnStage3.txt" />
     <None Include="Assets\StageMaps\pre.txt" />
