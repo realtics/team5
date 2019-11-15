@@ -17187,28 +17187,28 @@ MonoBehaviour:
       y: 10
     maxObstacleHeight: 0.2
     selectObstacleElement: 3
-    startingPosition: {x: 2, y: 2}
+    startingPosition: {x: 2, y: 2, z: 0}
   - MapName: OnStage1
     mapSize:
       x: 10
       y: 20
     maxObstacleHeight: 0.2
     selectObstacleElement: 3
-    startingPosition: {x: -2, y: 2}
+    startingPosition: {x: -2, y: 2, z: 0}
   - MapName: OnStage2
     mapSize:
       x: 3
       y: 3
     maxObstacleHeight: 0.2
     selectObstacleElement: 3
-    startingPosition: {x: 0, y: 0}
+    startingPosition: {x: 0, y: 0, z: 0}
   - MapName: OnStage3
     mapSize:
       x: 4
       y: 4
     maxObstacleHeight: 0.2
     selectObstacleElement: 3
-    startingPosition: {x: 1, y: 1}
+    startingPosition: {x: 1, y: 1, z: 0}
   obstaclePrefabs:
   - {fileID: 9141929795394059287, guid: 3a2181ddd1385cc46a6fda6838eb3b03, type: 3}
   - {fileID: 4030543472326843766, guid: 6c96ec80df35a794a9312c2b5ca99f05, type: 3}
@@ -18703,7 +18703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571964775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 2, z: 0}
+  m_LocalPosition: {x: 2, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1437797272}
