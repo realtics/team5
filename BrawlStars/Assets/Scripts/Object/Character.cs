@@ -44,7 +44,7 @@ public class Character : MonoBehaviour
     public Team team;
     Vector3 velocity;
     public float speed;
-    float characterDirectionAngle;
+    protected float characterDirectionAngle;
     Vector3 scale;
 
     public int hp;
@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
 
         prevSpriteTime = Time.time;
 
-        characterDirectionAngle = Mathf.Atan2(-1, -1);
+        characterDirectionAngle = Mathf.Atan2(1, -1);
 
         uiCanvas = GameObject.Find("Canvas");
 
@@ -181,9 +181,11 @@ public class Character : MonoBehaviour
         }
 
         if (velocity.sqrMagnitude != 0)
-            characterDirectionAngle = Mathf.Atan2(velocity.x, velocity.z);
+            characterDirectionAngle = Mathf.Atan2(-velocity.z, velocity.x);
 
-        if (characterDirectionAngle > 0)
+        float angleBasedZAxis = Global.AngleInRange(characterDirectionAngle + Mathf.PI / 2, -Mathf.PI);
+
+        if (angleBasedZAxis > 0)
         {
             transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
         }
@@ -192,19 +194,19 @@ public class Character : MonoBehaviour
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
         }
 
-        if (characterDirectionAngle < -Mathf.PI * 7 / 8 || characterDirectionAngle > Mathf.PI * 7 / 8)
+        if (angleBasedZAxis < -Mathf.PI * 7 / 8 || angleBasedZAxis > Mathf.PI * 7 / 8)
         {
             return Global.downIndex;
         }
-        else if (characterDirectionAngle < -Mathf.PI * 5 / 8 || characterDirectionAngle > Mathf.PI * 5 / 8)
+        else if (angleBasedZAxis < -Mathf.PI * 5 / 8 || angleBasedZAxis > Mathf.PI * 5 / 8)
         {
             return Global.downFrontIndex;
         }
-        else if (characterDirectionAngle < -Mathf.PI * 3 / 8 || characterDirectionAngle > Mathf.PI * 3 / 8)
+        else if (angleBasedZAxis < -Mathf.PI * 3 / 8 || angleBasedZAxis > Mathf.PI * 3 / 8)
         {
             return Global.frontIndex;
         }
-        else if (characterDirectionAngle < -Mathf.PI * 1 / 8 || characterDirectionAngle > Mathf.PI * 1 / 8)
+        else if (angleBasedZAxis < -Mathf.PI * 1 / 8 || angleBasedZAxis > Mathf.PI * 1 / 8)
         {
             return Global.upFrontIndex;
         }
@@ -258,7 +260,7 @@ public class Character : MonoBehaviour
         spriteRenderer.material.SetColor("_Color", color);
     }
 
-    public void AttackProcess(float time, float directionAngle)
+    public void AttackProcess(float time, float yRotationEuler)
     {
         if (state == State.Idle)
         {
@@ -266,7 +268,7 @@ public class Character : MonoBehaviour
             Stop();
             currentSpriteIndex = 0;
 
-            characterDirectionAngle = Global.AngleInRange(directionAngle * Mathf.Deg2Rad + Mathf.PI / 2, -Mathf.PI);
+            characterDirectionAngle = Global.AngleInRange(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
         }
     }
 }

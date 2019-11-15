@@ -36,9 +36,10 @@ public class Monster : Character
 
         Character target = null;
         float minDistance = sight * sight;
-        for(int i = 0; i < colliders.Length; i++)
+        Vector3 moveVector;
+        for (int i = 0; i < colliders.Length; i++)
         {
-            Vector3 moveVector = colliders[i].transform.position - transform.position;
+            moveVector = colliders[i].transform.position - transform.position;
             if(moveVector.sqrMagnitude < minDistance)
             {
                 Character collider = colliders[i].GetComponent<Character>();
@@ -50,12 +51,14 @@ public class Monster : Character
             }
         }
 
-        if(target != null && minDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
+        moveVector = target.transform.position - transform.position;
+        if (target != null && minDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
         {
-            Move(target.transform.position - transform.position);
+            Move(moveVector);
         }
         else
         {
+            characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
             Stop();
         }
     }
@@ -69,7 +72,8 @@ public class Monster : Character
                 Vector3 position = patternArray[i].GetPosition(new Vector2(0, 0), 1);
                 Quaternion rotation = patternArray[i].GetRotation(new Vector2(0, 0));
                 patternArray[i].StartSkill(this, transform.position + position, rotation.eulerAngles.y);
-                AttackProcess(0, transform.rotation.eulerAngles.y);
+
+                AttackProcess(0, characterDirectionAngle * Mathf.Rad2Deg);
             }
         }
     }
