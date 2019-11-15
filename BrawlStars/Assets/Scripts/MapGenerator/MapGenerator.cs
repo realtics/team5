@@ -222,22 +222,22 @@ public class MapGenerator : MonoBehaviour
         {
             using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
             {
-                currentMap.mapSize.x = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
-                currentMap.mapSize.y = int.Parse(inputFile.ReadLine());
+                currentMap.mapSize.y = int.Parse(inputFile.ReadLine());//string으로 값을 읽기 때문에 int로 컨버전 해줌.
+                currentMap.mapSize.x = int.Parse(inputFile.ReadLine());
 
                 //obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
 
                 string str;
 
-                for (int i = 0; i < currentMap.mapSize.x; i++)
+                for (int j = 0; j < currentMap.mapSize.y; j++)
                 {
                     str = inputFile.ReadLine();
 
-                    for (int j = 0; j < currentMap.mapSize.y; j++)
+                    for (int i = 0; i < currentMap.mapSize.x; i++)
                     {
                         string[] data = str.Split(new char[] { ' ' });
 
-                        obstacleMap[j, i] = int.Parse(data[j]);
+                        obstacleMap[i, j] = int.Parse(data[i]);
                         //obstacleMap[i, j] = int.Parse(inputFile.ReadLine());
 
                         //obstacleMap[i, j] = inputFile.Read();
