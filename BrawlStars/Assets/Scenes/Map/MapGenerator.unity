@@ -9186,7 +9186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &822022392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15807,7 +15807,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1437797274}
-        m_MethodName: OnNextBttonClick
+        m_MethodName: NextMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17268,8 +17268,9 @@ MonoBehaviour:
   mapGenerator: {fileID: 1437797271}
   ResultUI: {fileID: 1255335794}
   LimitTime: 3
-  nextTime: 0
+  nextTime: 5
   OnOff: 0
+  secondText: {fileID: 1026225980}
 --- !u!1 &1438540600
 GameObject:
   m_ObjectHideFlags: 0
