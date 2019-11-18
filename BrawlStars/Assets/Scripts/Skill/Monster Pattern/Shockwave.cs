@@ -12,11 +12,6 @@ public class Shockwave : Skill
         StartCoroutine(DamageCoroutine());
     }
 
-    public override IEnumerator SpriteCoroutine()
-    {
-        yield return new WaitForSeconds(spriteInterval);
-    }
-
     IEnumerator DamageCoroutine()
     {
         yield return new WaitForSeconds(startupTime);

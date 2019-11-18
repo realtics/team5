@@ -28,7 +28,6 @@ public abstract class Skill : MonoBehaviour
     }
 
     public abstract void Action(float yRotationEuler);
-    public abstract IEnumerator SpriteCoroutine();
     public abstract Mesh GetTargetRange();
     public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength);
     public abstract Quaternion GetRotation(Vector2 stickMove);

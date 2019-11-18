@@ -70,9 +70,11 @@
     <Compile Include="Assets\Scripts\Contoller\SkillIcon.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Map\Cube\MapBox.cs" />
+    <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator.cs" />
-    <Compile Include="Assets\Scripts\Map\MapManager.cs" />
+    <Compile Include="Assets\Scripts\Map\MapSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\MoveStage.cs" />
     <Compile Include="Assets\Scripts\Map\Room\RoomOnOff.cs" />
     <Compile Include="Assets\Scripts\Map\SceneChange.cs" />

@@ -14,11 +14,6 @@ public class IvoryShock : Skill
         StartCoroutine(DamageCoroutine(yRotationEuler));
     }
 
-    public override IEnumerator SpriteCoroutine()
-    {
-        yield return new WaitForSeconds(spriteInterval);
-    }
-
     IEnumerator DamageCoroutine(float yRotationEuler)
     {
         yield return new WaitForSeconds(startupTime);
