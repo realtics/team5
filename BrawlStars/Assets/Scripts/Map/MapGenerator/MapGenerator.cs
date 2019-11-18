@@ -62,7 +62,8 @@ public class MapGenerator : MonoBehaviour
         string holderName = "Generated Map";
         if (transform.Find(holderName))
         {
-            DestroyImmediate(transform.Find(holderName).gameObject);
+            //DestroyImmediate(transform.Find(holderName).gameObject);
+            Destroy(transform.Find(holderName).gameObject);
         }
 
         Transform mapHolder = new GameObject(holderName).transform;
@@ -94,7 +95,7 @@ public class MapGenerator : MonoBehaviour
                     obstacleHeight = Mathf.Lerp(0, currentMap.maxObstacleHeight, 1);
                 }
                 else
-                    obstacleHeight = 1;
+                    obstacleHeight = 0.5f;
 
                 //해당 큐브의 위치
                 Vector3 obstaclePosition = CoordToPosition(i, j);

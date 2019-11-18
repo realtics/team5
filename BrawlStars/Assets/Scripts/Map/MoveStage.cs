@@ -34,7 +34,7 @@ public class MoveStage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        secondText.text = Mathf.Round(nextTime) + " 초 뒤 자동 진행";
+        //secondText.text = Mathf.Round(nextTime) + " 초 뒤 자동 진행";
 
         if (OnOff)
         {
