@@ -14,7 +14,7 @@ public class MapBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mapGenerator = GameObject.Find("Map").GetComponent<MapGenerator>();
+        //mapGenerator = GameObject.Find("Map").GetComponent<MapGenerator>();
         hp = maxHp;
     }
 

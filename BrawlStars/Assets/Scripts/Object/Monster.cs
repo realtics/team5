@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Monster : Character
 {
     public float sight;
     public Skill[] patternArray;
     public float attackReach;
+
+    NavMeshAgent pathFinder;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -17,6 +21,8 @@ public class Monster : Character
         {
             patternArray[i].StartCooldown();
         }
+
+        pathFinder = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -51,15 +57,25 @@ public class Monster : Character
             }
         }
 
+        if (target == null)
+            return;
+
         moveVector = target.transform.position - transform.position;
-        if (target != null && minDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
+
+        if (minDistance > Mathf.Pow(mCollider.radius + attackReach, 2) && state == State.Idle)
         {
-            Move(moveVector);
+            NavMeshPath path = new NavMeshPath();
+            pathFinder.CalculatePath(target.transform.position, path);
+
+            if (path.corners.Length > 1)
+            {
+                Move(path.corners[1] - transform.position);
+            }
         }
         else
         {
             characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
-            Stop();
+            pathFinder.ResetPath();
         }
     }
 

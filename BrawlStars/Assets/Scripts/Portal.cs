@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public MapGenerator map;
+    MapManager map;
     public int targetIndex;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        map = GameObject.Find("MapManager").GetComponent<MapManager>();
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -24,8 +25,7 @@ public class Portal : MonoBehaviour
     {
         if (collider.gameObject == player)
         {
-            map.mapIndex = targetIndex;
-            map.LoadMap();
+            map.CreateNewMap(targetIndex);
         }
     }
 }

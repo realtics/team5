@@ -243,12 +243,17 @@ public class Character : MonoBehaviour
         }
         else
         {
-            Stop();
-            Destroy(hpBar.gameObject);
-            currentSpriteIndex = 0;
-            state = State.Dead;
-            Destroy(GetComponent<Collider>());
+            Death();
         }
+    }
+
+    void Death()
+    {
+        Stop();
+        Destroy(hpBar.gameObject);
+        currentSpriteIndex = 0;
+        state = State.Dead;
+        Destroy(GetComponent<Collider>());
     }
 
     IEnumerator TakeDamageCoroutine()
@@ -270,5 +275,11 @@ public class Character : MonoBehaviour
 
             characterDirectionAngle = Global.AngleInRange(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if(hpBar != null)
+            Destroy(hpBar.gameObject);
     }
 }
