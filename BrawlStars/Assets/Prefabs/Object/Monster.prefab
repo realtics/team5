@@ -165,7 +165,11 @@ MonoBehaviour:
   team: 1
   speed: 0.2
   hp: 0
+<<<<<<< Updated upstream
   maxHp: 100
+=======
+  maxHp: 200
+>>>>>>> Stashed changes
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}

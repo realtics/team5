@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Room/Open/OpenScreen.unity
+    guid: 72890251cc83e5e459e00f8530b0172b
+  - enabled: 1
+    path: Assets/Scenes/Room/PersonalRoom/PersonalRoom.unity
+    guid: 18b4ebe0d2055bc42a3c6b79754c3069
+  - enabled: 1
+    path: Assets/Scenes/Map/MapGenerator.unity
+    guid: c4c3dfcdac75fa1409b85c29d1478c31
   m_configObjects: {}

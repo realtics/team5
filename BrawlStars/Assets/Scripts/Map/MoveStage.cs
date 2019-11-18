@@ -8,19 +8,23 @@ public class MoveStage : MonoBehaviour
 
     public MapGenerator mapGenerator;
     public GameObject ResultUI;
+    public GameObject NextButton;
 
-    //지정된 시간을 지나면 종료
     public float LimitTime;
     
-    //지전된 시간을 저장
     float SelectTime;
 
-    //자동 진행 타임
     public float nextTime;
 
     public bool OnOff = false;
 
-    public Text secondText;
+    public Text resultText;
+
+    public GameObject character;
+    
+
+    int CharacterHp;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +33,31 @@ public class MoveStage : MonoBehaviour
         
         mapGenerator.mapIndex = 0;
         SelectTime = LimitTime;
+
+        CharacterHp = character.GetComponent<Character>().hp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //secondText.text = Mathf.Round(nextTime) + " 초 뒤 자동 진행";
+        //승리 패배 변환
+        if (Input.GetKey(KeyCode.F3))
+        {
+            CharacterHp = 0;
+            character.GetComponent<Character>().hp = CharacterHp;
+
+            Debug.Log(character.GetComponent<Character>().hp);
+        }
+
+        if (character != null)
+            CharacterHp = character.GetComponent<Character>().hp;
+        
+
+        if ((CharacterHp <= 0 && character != null) && OnOff == false)
+        {
+            OnOff = true;
+            Debug.Log(OnOff);
+        }
 
         if (OnOff)
         {
@@ -44,17 +67,8 @@ public class MoveStage : MonoBehaviour
             }
             else
             {
-                //결과창 켬
-                ResultUI.SetActive(true);
-
-                //자동 진행 타임
-                if (nextTime > 0)
-                {
-                    nextTime -= Time.deltaTime;
-                }
-                else
-                    NextMap();
-
+                //체력에 따른 Text출력
+                Victory(CharacterHp);
             }
         }
     }
@@ -66,20 +80,48 @@ public class MoveStage : MonoBehaviour
         else
             mapGenerator.mapIndex = 0;
 
+        //맵의 인덱스가 마지막 인덱스이면 다음 버튼을 비활성화
+        if (mapGenerator.mapIndex == mapGenerator.maps.Length - 1)
+            NextButton.SetActive(false);
+        else
+            NextButton.SetActive(true);
+
+        OnOff = false;
+
         LimitTime = SelectTime;
 
-        //결과창 끄고 다음 인덱스 로딩
         ResultUI.SetActive(false);
         mapGenerator.LoadMap();
     }
 
-    public void OnRestartBttonClick()
+    public void OnRestartButtonClick()
     {
+        OnOff = false;
+
         LimitTime = SelectTime;
         ResultUI.SetActive(false);
         mapGenerator.LoadMap();
     }
 
-    
+    public void OnExitButtonClick(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    void Victory(int hp)
+    {
+        if (hp <= 0)
+        {
+            resultText.text = "패배";
+            NextButton.SetActive(false);
+        }
+        else
+        {
+            resultText.text = "승리";
+        }
+
+        //결과창 켬
+        ResultUI.SetActive(true);
+    }
 
 }

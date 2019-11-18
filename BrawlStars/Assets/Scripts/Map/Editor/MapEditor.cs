@@ -18,7 +18,7 @@ public class MapEditor : Editor
         {
             //맵을 로딩 해준다.
             //맵을 새로 설정하고 싶으면 파일이름 칸을 지워주면 된다.
-            map.LoadMap();
+            //map.LoadMap();
         }
         
         if (GUILayout.Button("Clear Map"))

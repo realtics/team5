@@ -29,7 +29,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
-        LoadMap();
+        //LoadMap();
     }
 
     public void GenerateMap()
@@ -37,19 +37,17 @@ public class MapGenerator : MonoBehaviour
         //맵의 갯수 설정
         currentMap = maps[mapIndex];
 
-        //캐릭터는 건들면 안되니 임시로 처리하였음.
-        //캐릭터 시작 지점
         SetCharacterPosition();
 
-        //최대 맵은 설정한 mapSize의 값에 + 10으로 설정
+        //최대 맵은 설정한 mapSize의 값에 + 1으로 설정
         maxMapSize.x = currentMap.mapSize.x + 1;
         maxMapSize.y = currentMap.mapSize.y + 1;
            
-        //충돌체 크기 설정
         GetComponent<BoxCollider>().size = new Vector3(currentMap.mapSize.x * tileSize, .05f, currentMap.mapSize.y * tileSize);
 
         // 좌표 생성 Generating coords
         allTileCoords = new List<Coord>();
+
         for (int x = 0; x < currentMap.mapSize.x; x++)
         {
             for (int y = 0; y < currentMap.mapSize.y; y++)
@@ -207,7 +205,7 @@ public class MapGenerator : MonoBehaviour
 
     public void ClearMap()
     {
-        //맵의 갯수 설정
+        //설정된 맵의 인덱스
         currentMap = maps[mapIndex];
 
         //맵을 NullCube로 초기화
