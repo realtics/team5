@@ -37,7 +37,7 @@ public class MapGenerator : MonoBehaviour
         //맵의 갯수 설정
         currentMap = maps[mapIndex];
 
-        SetCharacterPosition();
+        //SetCharacterPosition();
 
         //최대 맵은 설정한 mapSize의 값에 + 1으로 설정
         maxMapSize.x = currentMap.mapSize.x + 1;
@@ -132,6 +132,8 @@ public class MapGenerator : MonoBehaviour
 
     public void SaveMap()
     {
+        ClearMap();
+
         if (maps[mapIndex].MapName != "" || maps[mapIndex].MapName == null)
         {
             using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))

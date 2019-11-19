@@ -21,7 +21,7 @@ public class MapSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(player != null)
+        if (player != null)
             hp = player.GetComponent<Character>().hp;
 
         resultUI.SetActive(false);
@@ -49,13 +49,14 @@ public class MapSpawner : MonoBehaviour
             }
 
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
+        
         if (monsters.Length == 0)
         {
             GameObject[] portals = GameObject.FindGameObjectsWithTag("Portal");
+            
             for (int i = 0; i < portals.Length; i++)
             {
                 portals[i].gameObject.SetActive(true);
-                //portals[i] = Instantiate(, new Vector3(2, 0, 2), Quaternion.identity);
             }
         }
     }
@@ -66,31 +67,18 @@ public class MapSpawner : MonoBehaviour
         {
             Destroy(currentMap);
             currentMap = Instantiate(maps[index]);
-            player.transform.position = new Vector3(0, 0, 0);
+
+            //startingPoint.transform.position = mapObject.startingPoint.transform.position GetComponent<Map>;
+
+            //if (startingPoint != null)
+            //{
+            player.transform.position = GameObject.Find("StartingObject").transform.position;//startingPoint.transform.position;
+            //}
+            //else
+            //{
+            //player.transform.position = new Vector3(0, 0, 0);
+            //}
         }
-    }
-
-    public void NextMap()
-    {
-        if (mapIndex < maps.Length - 1)
-        {
-            resultUI.SetActive(false);
-            limitTime = 5;
-            
-            Destroy(currentMap);
-            currentMap = Instantiate(maps[++mapIndex]);
-            player.transform.position = new Vector3(0, 0, 0);
-        }
-    }
-
-    public void RestartMap()
-    {
-        resultUI.SetActive(false);
-        limitTime = 5;
-        Destroy(currentMap);
-        currentMap = Instantiate(maps[mapIndex]);
-        player.transform.position = new Vector3(0, 0, 0);
-
     }
 
     public void OnExitButtonClick(string sceneName)

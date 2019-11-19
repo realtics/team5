@@ -93,8 +93,12 @@
     <None Include="Assets\StageMaps\qwte.txt" />
     <None Include="Assets\StageMaps\OnStage2.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
+    <None Include="Assets\StageMaps\4545.txt" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
+    <None Include="Assets\StageMaps\OnMaps.txt" />
+    <None Include="Assets\StageMaps\Neo.txt" />
+    <None Include="Assets\StageMaps\Maps1.txt" />
     <None Include="Assets\Resources\ColorPalletSwapper\Sprites\Palettes\Completed\MegaWomanPalette-Original-positions.txt" />
     <None Include="Assets\StageMaps\OnStage3.txt" />
     <None Include="Assets\StageMaps\pre.txt" />
