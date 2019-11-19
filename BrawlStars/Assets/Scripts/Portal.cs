@@ -25,7 +25,8 @@ public class Portal : MonoBehaviour
     {
         if (collider.gameObject == player)
         {
-            map.CreateNewMap(targetIndex);
+            //map.CreateNewMap(targetIndex);
+            map.NextMap();
         }
     }
 }

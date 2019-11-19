@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MapSpawner : MonoBehaviour
 {
@@ -14,10 +15,15 @@ public class MapSpawner : MonoBehaviour
     public GameObject resultUI;
     public Text resultText;
 
+    public float limitTime;
+    public int hp;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(player != null)
+            hp = player.GetComponent<Character>().hp;
+
         resultUI.SetActive(false);
 
         if (maps.Length > 0)
@@ -28,6 +34,20 @@ public class MapSpawner : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.F3))
+            player.GetComponent<Character>().TakeDamage(hp);
+
+        if (player == null)
+            OnResultUI(false);
+
+        if (mapIndex == maps.Length - 1)
+            if (limitTime > 0)
+                limitTime -= Time.deltaTime;
+            else
+            {
+                OnResultUI(true);
+            }
+
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
         if (monsters.Length == 0)
         {
@@ -35,6 +55,7 @@ public class MapSpawner : MonoBehaviour
             for (int i = 0; i < portals.Length; i++)
             {
                 portals[i].gameObject.SetActive(true);
+                //portals[i] = Instantiate(, new Vector3(2, 0, 2), Quaternion.identity);
             }
         }
     }
@@ -53,27 +74,38 @@ public class MapSpawner : MonoBehaviour
     {
         if (mapIndex < maps.Length - 1)
         {
+            resultUI.SetActive(false);
+            limitTime = 5;
+            
             Destroy(currentMap);
-            currentMap = Instantiate(maps[mapIndex++]);
+            currentMap = Instantiate(maps[++mapIndex]);
             player.transform.position = new Vector3(0, 0, 0);
         }
     }
 
     public void RestartMap()
     {
+        resultUI.SetActive(false);
+        limitTime = 5;
         Destroy(currentMap);
         currentMap = Instantiate(maps[mapIndex]);
         player.transform.position = new Vector3(0, 0, 0);
 
     }
 
+    public void OnExitButtonClick(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void OnResultUI(bool victory)
     {
         resultUI.SetActive(true);
 
-        if(victory)
+        if (victory)
+            resultText.text = "승리";
+        else
             resultText.text = "패배";
-
 
     }
 
