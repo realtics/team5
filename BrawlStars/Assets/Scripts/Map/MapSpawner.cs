@@ -4,42 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum StageResult
+{
+    WIN, LOSE
+}
+
 public class MapSpawner : MonoBehaviour
 {
-    public GameObject[] maps;
+    public Map[] maps;
     public int mapIndex = 0;
-    GameObject currentMap;
+    Map currentMap;
     public GameObject navMeshFloor;
-    public GameObject player;
+    public Character player;
 
     public GameObject resultUI;
     public Text resultText;
 
     public float limitTime;
-    public int hp;
 
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
         if (player != null)
             hp = player.GetComponent<Character>().hp;
 
+=======
+>>>>>>> master
         resultUI.SetActive(false);
 
         if (maps.Length > 0)
         {
-            currentMap = Instantiate(maps[0]);
+            currentMap = Instantiate(maps[0].gameObject).GetComponent<Map>();
         }
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F3))
-            player.GetComponent<Character>().TakeDamage(hp);
-
         if (player == null)
-            OnResultUI(false);
+            OnResultUI(StageResult.LOSE);
 
+<<<<<<< HEAD
         if (mapIndex == maps.Length - 1)
             if (limitTime > 0)
                 limitTime -= Time.deltaTime;
@@ -57,6 +62,13 @@ public class MapSpawner : MonoBehaviour
             for (int i = 0; i < portals.Length; i++)
             {
                 portals[i].gameObject.SetActive(true);
+=======
+        if(currentMap.IsStageFinished())
+        {
+            if(currentMap.portals.Length == 0)
+            {
+                OnResultUI(StageResult.WIN);
+>>>>>>> master
             }
         }
     }
@@ -65,6 +77,7 @@ public class MapSpawner : MonoBehaviour
     {
         if (index < maps.Length)
         {
+<<<<<<< HEAD
             Destroy(currentMap);
             currentMap = Instantiate(maps[index]);
 
@@ -78,6 +91,13 @@ public class MapSpawner : MonoBehaviour
             //{
             //player.transform.position = new Vector3(0, 0, 0);
             //}
+=======
+            resultUI.SetActive(false);
+
+            Destroy(currentMap.gameObject);
+            currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
+            player.transform.position = new Vector3(0, 0, 0);
+>>>>>>> master
         }
     }
 
@@ -86,15 +106,14 @@ public class MapSpawner : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void OnResultUI(bool victory)
+    public void OnResultUI(StageResult result)
     {
         resultUI.SetActive(true);
 
-        if (victory)
+        if (result == StageResult.WIN)
             resultText.text = "승리";
-        else
+        else if(result == StageResult.LOSE)
             resultText.text = "패배";
-
     }
 
 }

@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
     public int hp;
     public int maxHp;
 
-    GameObject uiCanvas;
+    GameObject canvas;
     public DamageText damageText;
     public HPBar hpBar;
 
@@ -78,11 +78,11 @@ public class Character : MonoBehaviour
 
         characterDirectionAngle = Mathf.Atan2(1, -1);
 
-        uiCanvas = GameObject.Find("Canvas");
+        canvas = GameManager.GetInstance().worldCanvas;
 
         hp = maxHp;
         hpBar = Instantiate(hpBar);
-        hpBar.transform.SetParent(uiCanvas.transform);
+        hpBar.transform.SetParent(canvas.transform);
         hpBar.SetMaxHp(maxHp);
         hpBar.SetHp(hp);
 
@@ -229,7 +229,7 @@ public class Character : MonoBehaviour
 
         DamageText damageTextObject = Instantiate(damageText, transform.position, Quaternion.identity);
         damageTextObject.SetDefaultPosition(transform.position, damage);
-        damageTextObject.transform.SetParent(uiCanvas.transform);
+        damageTextObject.transform.SetParent(canvas.transform);
 
         SetHp(hp - damage);
 

@@ -8,6 +8,7 @@ public class Monster : Character
 {
     public float sight;
     public Skill[] patternArray;
+    float[] lastSkillActionTime;
     public float attackReach;
 
     NavMeshAgent pathFinder;
@@ -17,9 +18,11 @@ public class Monster : Character
     {
         base.Start();
 
+        lastSkillActionTime = new float[patternArray.Length];
         for (int i = 0; i < patternArray.Length; i++)
         {
-            patternArray[i].StartCooldown();
+            lastSkillActionTime[i] = Time.time;
+            //patternArray[i].StartCooldown();
         }
 
         pathFinder = GetComponent<NavMeshAgent>();
@@ -66,7 +69,7 @@ public class Monster : Character
         {
             NavMeshPath path = new NavMeshPath();
             pathFinder.CalculatePath(target.transform.position, path);
-
+            
             if (path.corners.Length > 1)
             {
                 Move(path.corners[1] - transform.position);
@@ -75,7 +78,7 @@ public class Monster : Character
         else
         {
             characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
-            pathFinder.ResetPath();
+            Stop();
         }
     }
 
@@ -83,11 +86,12 @@ public class Monster : Character
     {
         for(int i = 0; i < patternArray.Length; i++)
         {
-            if (patternArray[i].ReadyToAction())
+            if (Time.time - lastSkillActionTime[i] > patternArray[i].cooldown)
             {
                 Vector3 position = patternArray[i].GetPosition(new Vector2(0, 0), 1);
                 Quaternion rotation = patternArray[i].GetRotation(new Vector2(0, 0));
                 patternArray[i].StartSkill(this, transform.position + position, rotation.eulerAngles.y);
+                lastSkillActionTime[i] = Time.time;
 
                 AttackProcess(0, characterDirectionAngle * Mathf.Rad2Deg);
             }

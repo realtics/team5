@@ -1834,16 +1834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps:
-<<<<<<< HEAD
-  - {fileID: 6692430677660184159, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
-  - {fileID: 6097822492686882397, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
-  - {fileID: 3195460987016157012, guid: 79347d1a069d5094d8a5349e0dbafea5, type: 3}
-  - {fileID: 2014110858272988315, guid: 91d6217323695cd4a9bd1d5b96fec306, type: 3}
-  - {fileID: 9141762457518340479, guid: 8c4b44b9270d0ff40a26774777c2644a, type: 3}
-=======
   - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
   - {fileID: 2396046339796197974, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
->>>>>>> master
   mapIndex: 0
   navMeshFloor: {fileID: 105811740}
   player: {fileID: 298645756}
