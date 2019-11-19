@@ -4,58 +4,45 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public enum StageResult
+{
+    WIN, LOSE
+}
+
 public class MapSpawner : MonoBehaviour
 {
-    public GameObject[] maps;
+    public Map[] maps;
     public int mapIndex = 0;
-    GameObject currentMap;
+    Map currentMap;
     public GameObject navMeshFloor;
-    public GameObject player;
+    public Character player;
 
     public GameObject resultUI;
     public Text resultText;
 
     public float limitTime;
-    public int hp;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(player != null)
-            hp = player.GetComponent<Character>().hp;
-
         resultUI.SetActive(false);
 
         if (maps.Length > 0)
         {
-            currentMap = Instantiate(maps[0]);
+            currentMap = Instantiate(maps[0].gameObject).GetComponent<Map>();
         }
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F3))
-            player.GetComponent<Character>().TakeDamage(hp);
-
         if (player == null)
-            OnResultUI(false);
+            OnResultUI(StageResult.LOSE);
 
-        if (mapIndex == maps.Length - 1)
-            if (limitTime > 0)
-                limitTime -= Time.deltaTime;
-            else
-            {
-                OnResultUI(true);
-            }
-
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
-        if (monsters.Length == 0)
+        if(currentMap.IsStageFinished())
         {
-            GameObject[] portals = GameObject.FindGameObjectsWithTag("Portal");
-            for (int i = 0; i < portals.Length; i++)
+            if(currentMap.portals.Length == 0)
             {
-                portals[i].gameObject.SetActive(true);
-                //portals[i] = Instantiate(, new Vector3(2, 0, 2), Quaternion.identity);
+                OnResultUI(StageResult.WIN);
             }
         }
     }
@@ -64,33 +51,12 @@ public class MapSpawner : MonoBehaviour
     {
         if (index < maps.Length)
         {
-            Destroy(currentMap);
-            currentMap = Instantiate(maps[index]);
-            player.transform.position = new Vector3(0, 0, 0);
-        }
-    }
-
-    public void NextMap()
-    {
-        if (mapIndex < maps.Length - 1)
-        {
             resultUI.SetActive(false);
-            limitTime = 5;
-            
-            Destroy(currentMap);
-            currentMap = Instantiate(maps[++mapIndex]);
+
+            Destroy(currentMap.gameObject);
+            currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
             player.transform.position = new Vector3(0, 0, 0);
         }
-    }
-
-    public void RestartMap()
-    {
-        resultUI.SetActive(false);
-        limitTime = 5;
-        Destroy(currentMap);
-        currentMap = Instantiate(maps[mapIndex]);
-        player.transform.position = new Vector3(0, 0, 0);
-
     }
 
     public void OnExitButtonClick(string sceneName)
@@ -98,15 +64,14 @@ public class MapSpawner : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void OnResultUI(bool victory)
+    public void OnResultUI(StageResult result)
     {
         resultUI.SetActive(true);
 
-        if (victory)
+        if (result == StageResult.WIN)
             resultText.text = "승리";
-        else
+        else if(result == StageResult.LOSE)
             resultText.text = "패배";
-
     }
 
 }

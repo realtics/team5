@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    MapSpawner map;
+    MapSpawner mapSpawner;
     public int targetIndex;
-    public GameObject player;
+    public Character player;
 
     // Start is called before the first frame update
     void Start()
     {
-        map = GameObject.Find("MapManager").GetComponent<MapSpawner>();
-        player = GameObject.Find("Player");
+        mapSpawner = GameManager.GetInstance().mapSpawner;
+        player = GameManager.GetInstance().player;
     }
 
     // Update is called once per frame
@@ -23,10 +24,9 @@ public class Portal : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject == player)
+        if (collider.gameObject == player.gameObject)
         {
-            //map.CreateNewMap(targetIndex);
-            map.NextMap();
+            mapSpawner.CreateNewMap(targetIndex);
         }
     }
 }

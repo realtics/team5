@@ -8,6 +8,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 {
     public SkillJoystick joystick;
     public Skill skill;
+    float lastSkillActionTime;
     public Text cooldownText;
 
     Image iconImage;
@@ -15,12 +16,18 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     void Start()
     {
         iconImage = GetComponent<Image>();
-        skill.InitCooldown();
+        lastSkillActionTime = Time.time - skill.cooldown;
+        //skill.InitCooldown();
     }
 
     void Update()
     {
-        if(skill.ReadyToAction())
+        PrintRemainCooldown();
+    }
+
+    void PrintRemainCooldown()
+    {
+        if(ReadyToAction())
         {
             iconImage.color = new Color(1, 1, 1, iconImage.color.a);
             cooldownText.text = "";
@@ -28,13 +35,14 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
         else
         {
             iconImage.color = new Color(0.3f, 0.3f, 0.3f, iconImage.color.a);
-            cooldownText.text = Mathf.Ceil(skill.GetRemainCooldown()).ToString();
+            //cooldownText.text = Mathf.Ceil(skill.GetRemainCooldown()).ToString();
+            cooldownText.text = Mathf.Ceil(skill.cooldown - (Time.time - lastSkillActionTime)).ToString();
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (skill.ReadyToAction())
+        if (ReadyToAction())
         {
             joystick.gameObject.SetActive(true);
             joystick.skill = skill;
@@ -48,7 +56,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (skill.ReadyToAction())
+        if (ReadyToAction())
         {
             joystick.OnDrag(eventData);
         }
@@ -56,7 +64,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (skill.ReadyToAction())
+        if (ReadyToAction())
         {
             joystick.OnPointerUp(eventData);
 
@@ -64,6 +72,13 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
             Color color = GetComponent<Image>().color;
             color.a = 1f;
             GetComponent<Image>().color = color;
+
+            lastSkillActionTime = Time.time;
         }
+    }
+
+    public bool ReadyToAction()
+    {
+        return Time.time - lastSkillActionTime > skill.cooldown;
     }
 }
