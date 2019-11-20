@@ -26,12 +26,7 @@ public class Portal : MonoBehaviour
     {
         if (collider.gameObject == player.gameObject)
         {
-<<<<<<< HEAD
-            map.CreateNewMap(targetIndex);
-            //map.NextMap();
-=======
             mapSpawner.CreateNewMap(targetIndex);
->>>>>>> master
         }
     }
 }
