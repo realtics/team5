@@ -25,6 +25,10 @@ public class Character : MonoBehaviour
     protected Rigidbody mRigidbody;
     protected CapsuleCollider mCollider;
 
+    public Team team;
+    public float speed;
+    public int maxHp;
+
     public string SpriteName;
     public SpriteIndex standingSpriteIndex;
     public float standingSpriteInterval;
@@ -41,14 +45,11 @@ public class Character : MonoBehaviour
     int currentSpriteIndex;
     float prevSpriteTime;
 
-    public Team team;
     Vector3 velocity;
-    public float speed;
     protected float characterDirectionAngle;
     Vector3 scale;
 
-    public int hp;
-    public int maxHp;
+    int currentHp;
 
     GameObject canvas;
     public DamageText damageText;
@@ -80,11 +81,11 @@ public class Character : MonoBehaviour
 
         canvas = GameManager.GetInstance().worldCanvas;
 
-        hp = maxHp;
+        currentHp = maxHp;
         hpBar = Instantiate(hpBar);
         hpBar.transform.SetParent(canvas.transform);
         hpBar.SetMaxHp(maxHp);
-        hpBar.SetHp(hp);
+        hpBar.SetHp(currentHp);
 
         state = State.Idle;
     }
@@ -218,8 +219,8 @@ public class Character : MonoBehaviour
 
     public void SetHp(int _hp)
     {
-        hp = _hp;
-        hpBar.SetHp(hp);
+        currentHp = _hp;
+        hpBar.SetHp(currentHp);
     }
 
     public void TakeDamage(int damage)
@@ -231,9 +232,9 @@ public class Character : MonoBehaviour
         damageTextObject.SetDefaultPosition(transform.position, damage);
         damageTextObject.transform.SetParent(canvas.transform);
 
-        SetHp(hp - damage);
+        SetHp(currentHp - damage);
 
-        if (hp > 0)
+        if (currentHp > 0)
         {
             Color color = spriteRenderer.material.GetColor("_Color");
             color.a = 0.5f;
