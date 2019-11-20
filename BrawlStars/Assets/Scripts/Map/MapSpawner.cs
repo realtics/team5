@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,10 +25,6 @@ public class MapSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         resultUI.SetActive(false);
 
         if (maps.Length > 0)
@@ -42,10 +38,6 @@ public class MapSpawner : MonoBehaviour
         if (player == null)
             OnResultUI(StageResult.LOSE);
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         if(currentMap.IsStageFinished())
         {
             if(currentMap.portals.Length == 0)
@@ -59,31 +51,11 @@ public class MapSpawner : MonoBehaviour
     {
         if (index < maps.Length)
         {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
             resultUI.SetActive(false);
 
             Destroy(currentMap.gameObject);
             currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
-<<<<<<< Updated upstream
-
-
-            Vector3 startingVecter = currentMap.startingPoint.transform.position;
-
-            if (startingVecter == null)
-            {
-                player.transform.position = new Vector3(0, 0, 0);
-            }
-            else
-            {
-                player.transform.position = startingVecter;
-            }
-
-=======
             player.transform.position = new Vector3(0, 0, 0);
->>>>>>> Stashed changes
         }
     }
 
