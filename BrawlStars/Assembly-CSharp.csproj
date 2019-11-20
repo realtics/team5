@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\Map\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
+    <Compile Include="Assets\Scripts\ObjectClicker.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\IvoryShock.cs" />
@@ -92,7 +93,7 @@
     <None Include="Assets\StageMaps\qwte.txt" />
     <None Include="Assets\StageMaps\OnStage2.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
-    <None Include="Assets\StageMaps\4545.txt" />
+    <None Include="Assets\StageMaps\Simple.txt" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
     <None Include="Assets\StageMaps\OnMaps.txt" />
@@ -101,6 +102,7 @@
     <None Include="Assets\Resources\ColorPalletSwapper\Sprites\Palettes\Completed\MegaWomanPalette-Original-positions.txt" />
     <None Include="Assets\StageMaps\OnStage3.txt" />
     <None Include="Assets\StageMaps\pre.txt" />
+    <None Include="Assets\StageMaps\Maze.txt" />
     <None Include="Assets\Resources\DualCorStudios\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/ICT03_10/Desktop/Project/team5/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

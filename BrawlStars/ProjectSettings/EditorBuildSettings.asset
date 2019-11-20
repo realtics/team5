@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Room/PersonalRoom/PersonalRoom.unity
     guid: 18b4ebe0d2055bc42a3c6b79754c3069
   - enabled: 1
-    path: Assets/Scenes/Map/MapGenerator.unity
-    guid: c4c3dfcdac75fa1409b85c29d1478c31
+    path: Assets/Scenes/Battle.unity
+    guid: aa386d154095c6b429a6310174c0ae47
   m_configObjects: {}
