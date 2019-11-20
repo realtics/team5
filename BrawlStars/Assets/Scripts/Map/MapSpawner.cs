@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,7 +25,6 @@ public class MapSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         resultUI.SetActive(false);
 
         if (maps.Length > 0)
@@ -38,7 +37,6 @@ public class MapSpawner : MonoBehaviour
     {
         if (player == null)
             OnResultUI(StageResult.LOSE);
-
 
         if(currentMap.IsStageFinished())
         {
@@ -59,8 +57,12 @@ public class MapSpawner : MonoBehaviour
 
             Destroy(currentMap.gameObject);
             currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
+<<<<<<< HEAD
 
             SetCharacterPosition();
+=======
+            player.transform.position = new Vector3(0, 0, 0);
+>>>>>>> master
         }
     }
 
