@@ -169,6 +169,14 @@ MonoBehaviour:
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
+  DropObject:
+  - {fileID: 1219596462109755153, guid: e6557c72ab605e741be90b82cdce6e29, type: 3}
+  - {fileID: 57690681431140142, guid: c083cc8ff50a1fb42ac3749a5a32721a, type: 3}
+  - {fileID: 8081074438770886072, guid: ba2c1bfe0dc739e4e95d86597aafdd9e, type: 3}
+  - {fileID: 987043600451687814, guid: 22c6e4a8a7ad2b948a22352442e8aca6, type: 3}
+  - {fileID: 1543921796684007190, guid: 1d82cf549b08ae64985fa0abbfea0ae0, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   sight: 20
   patternArray:
   - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}

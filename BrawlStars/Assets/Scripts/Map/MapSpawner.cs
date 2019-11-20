@@ -49,13 +49,20 @@ public class MapSpawner : MonoBehaviour
 
     public void CreateNewMap(int index)
     {
+        DestroyItem();
+
         if (index < maps.Length)
         {
             resultUI.SetActive(false);
 
             Destroy(currentMap.gameObject);
             currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
+<<<<<<< HEAD
+
+            SetCharacterPosition();
+=======
             player.transform.position = new Vector3(0, 0, 0);
+>>>>>>> master
         }
     }
 
@@ -72,6 +79,30 @@ public class MapSpawner : MonoBehaviour
             resultText.text = "승리";
         else if(result == StageResult.LOSE)
             resultText.text = "패배";
+    }
+
+    public void SetCharacterPosition()
+    {
+        Vector3 startingVector = currentMap.startingPoint.transform.position;
+
+        if (startingVector == null)
+        {
+            player.transform.position = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            player.transform.position = startingVector;
+        }
+    }
+
+    public void DestroyItem()
+    {
+        GameObject[] DropItems = GameObject.FindGameObjectsWithTag("Item");
+
+        foreach (GameObject DeleteItem in DropItems)
+        {
+            Destroy(DeleteItem);
+        }
     }
 
 }
