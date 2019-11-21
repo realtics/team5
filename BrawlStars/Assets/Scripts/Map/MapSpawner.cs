@@ -57,12 +57,8 @@ public class MapSpawner : MonoBehaviour
 
             Destroy(currentMap.gameObject);
             currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
-<<<<<<< HEAD
-
+            
             SetCharacterPosition();
-=======
-            player.transform.position = new Vector3(0, 0, 0);
->>>>>>> master
         }
     }
 

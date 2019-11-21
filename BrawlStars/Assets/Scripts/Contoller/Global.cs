@@ -20,3 +20,12 @@ public static class Global
         return result;
     }
 }
+
+public struct Stat
+{
+    public int attackDamage;
+    public int armor;
+    public int hp;
+    public float hpRecovery;
+    public int moveSpeed;
+}

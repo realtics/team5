@@ -12,8 +12,8 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mapSpawner = GameManager.GetInstance().mapSpawner;
-        player = GameManager.GetInstance().player;
+        mapSpawner = BattleManager.GetInstance().mapSpawner;
+        player = BattleManager.GetInstance().player;
     }
 
     // Update is called once per frame

@@ -9,28 +9,28 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image dragedImagePrefab;
     Image dragedImage;
 
-    public Item[] itemList;
+    public Item[] itemArray;
     public int slotIndex;
 
     bool isEmptySlot;
+
+    public Type type;
 
     void Start()
     {
         Init();
     }
 
-    public void Init()
+    void Init()
     {
-        isEmptySlot = slotIndex < 0 || slotIndex >= itemList.Length;
+        isEmptySlot = slotIndex < 0 || slotIndex >= itemArray.Length;
+        if(dragedImage != null)
+            Destroy(dragedImage.gameObject);
         if (!isEmptySlot)
         {
             dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
             dragedImage.transform.SetParent(transform);
-            dragedImage.sprite = itemList[slotIndex].icon;
-        } else
-        {
-            if(dragedImage != null)
-                Destroy(dragedImage.gameObject);
+            dragedImage.sprite = itemArray[slotIndex].icon;
         }
     }
 
@@ -51,34 +51,34 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!isEmptySlot)
+        if (dragedImage != null)
         {
-            dragedImage.transform.SetParent(transform.parent);
+            dragedImage.transform.SetParent(transform.parent.parent);
             dragedImage.transform.position = eventData.position;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        dragedImage.transform.SetParent(transform);
-        dragedImage.transform.position = transform.position;
-
-        if(Inventory.GetInventory().moveItemTargetSlot != null)
+        ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
+        if (targetSlot != null && (targetSlot.type == Type.ETC || targetSlot.type == itemArray[slotIndex].type))
         {
             int temp = Inventory.GetInventory().moveItemTargetSlot.slotIndex;
             Inventory.GetInventory().moveItemTargetSlot.slotIndex = slotIndex;
             slotIndex = temp;
 
-            Debug.Log(slotIndex);
             Inventory.GetInventory().moveItemTargetSlot.Init();
             Init();
+        } else
+        {
+            dragedImage.transform.SetParent(transform);
+            dragedImage.transform.position = transform.position;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 }

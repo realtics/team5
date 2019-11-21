@@ -32,7 +32,8 @@ public class Shockwave : Skill
         }
         Destroy(gameObject);
     }
-    public override Mesh GetTargetRange()
+
+    public override void MakeTargetRangeMesh()
     {
         Vector3[] vertices = new Vector3[detail + 2];
         vertices[0] = new Vector3(0, 0, 0);
@@ -56,12 +57,10 @@ public class Shockwave : Skill
             uvs[i] = new Vector2(1.0f / detail * (i - 1) / 2 + 0.5f, 1);
         }
 
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.uv = uvs;
-
-        return mesh;
+        rangeMesh = new Mesh();
+        rangeMesh.vertices = vertices;
+        rangeMesh.triangles = triangles;
+        rangeMesh.uv = uvs;
     }
 
     public override Vector3 GetPosition(Vector2 stickMove, float maxMoveLength)

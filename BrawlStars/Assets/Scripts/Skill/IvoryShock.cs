@@ -50,7 +50,7 @@ public class IvoryShock : Skill
         return Mathf.Abs(diff) < angle / 2;
     }
 
-    public override Mesh GetTargetRange()
+    public override void MakeTargetRangeMesh()
     {
         Vector3[] vertices = new Vector3[detail + 2];
         vertices[0] = new Vector3(0, 0, 0);
@@ -74,12 +74,10 @@ public class IvoryShock : Skill
             uvs[i + 1] = new Vector2(1.0f / detail * i, 1);
         }
 
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.uv = uvs;
-
-        return mesh;
+        rangeMesh = new Mesh();
+        rangeMesh.vertices = vertices;
+        rangeMesh.triangles = triangles;
+        rangeMesh.uv = uvs;
     }
 
     public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)

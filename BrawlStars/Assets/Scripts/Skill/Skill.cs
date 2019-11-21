@@ -18,7 +18,8 @@ public abstract class Skill : MonoBehaviour
     public float spriteInterval;
 
     protected Character owner;
-
+    protected Mesh rangeMesh;
+    
     public void StartSkill(Character user, Vector3 position, float yRotationEuler)
     {
         StartCooldown();
@@ -28,10 +29,15 @@ public abstract class Skill : MonoBehaviour
     }
 
     public abstract void Action(float yRotationEuler);
-    public abstract Mesh GetTargetRange();
+    public abstract void MakeTargetRangeMesh();
     public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength);
     public abstract Quaternion GetRotation(Vector2 stickMove);
     
+    public Mesh GetTargetRangeMesh()
+    {
+        return rangeMesh;
+    }
+
     public void InitCooldown()
     {
         lastUsedTime = Time.time - cooldown;

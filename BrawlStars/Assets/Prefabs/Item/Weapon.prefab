@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8422071991114960154}
   - component: {fileID: 7739674423032970513}
   - component: {fileID: 7727268691360596431}
-  - component: {fileID: 7941625020701452885}
+  - component: {fileID: 5215785645586748109}
   m_Layer: 5
-  m_Name: ItemSlot
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7941625020701452885
+--- !u!114 &5215785645586748109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,16 +83,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7458936668222018366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea13305d2e7e3c6419116bb8af171cfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fd24fcc5ff64b644b872622161300ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragedImagePrefab: {fileID: 7727268691360596431, guid: 5eb3d84e5c3e15d439ede863cb3e1914,
-    type: 3}
-  itemArray:
-  - {fileID: 5215785645586748109, guid: 8d45244c51bba474992b5c8a16fe63a9, type: 3}
-  - {fileID: 5215785645586748109, guid: 09e6ce311f12dd64f9677b528945bd38, type: 3}
-  - {fileID: 5215785645586748109, guid: 6337a62b9fd92514e8a7f66205b2261d, type: 3}
-  - {fileID: 5215785645586748109, guid: de914652082eaef4f98b0d74244b0569, type: 3}
-  - {fileID: 5215785645586748109, guid: 896e4c8509ad2ee4888d17f5f7bb5d84, type: 3}
-  slotIndex: 0
-  type: 4
+  icon: {fileID: 21300000, guid: 2a48140ba1c976647b8fba009de2a165, type: 3}
+  type: 0

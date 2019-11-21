@@ -16,7 +16,7 @@ public class SkillJoystick : Joystick
     public override void OnPointerDown(PointerEventData data)
     {
         base.OnPointerDown(data);
-        rangeObject.SetMesh(skill.GetTargetRange());
+        rangeObject.SetMesh(skill.GetTargetRangeMesh());
         rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
         rangeObject.DrawRange();
     }

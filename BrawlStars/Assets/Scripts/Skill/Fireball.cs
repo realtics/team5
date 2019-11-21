@@ -50,7 +50,7 @@ public class Fireball : Skill
         Destroy(gameObject);
     }
 
-    public override Mesh GetTargetRange()
+    public override void MakeTargetRangeMesh()
     {
         Vector3[] vertices = {
             new Vector3(0, 0, -width / 2), new Vector3(0, 0, width / 2),
@@ -59,12 +59,10 @@ public class Fireball : Skill
         int[] triangles = { 0, 1, 2, 2, 1, 3 };
         Vector2[] uvs = { new Vector2(1, 0), new Vector2(0, 0), new Vector2(1, 1), new Vector2(0, 1) };
 
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
-        mesh.uv = uvs;
-
-        return mesh;
+        rangeMesh = new Mesh();
+        rangeMesh.vertices = vertices;
+        rangeMesh.triangles = triangles;
+        rangeMesh.uv = uvs;
     }
 
     public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)

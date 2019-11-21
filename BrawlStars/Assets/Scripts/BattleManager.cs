@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class BattleManager : MonoBehaviour
 {
-    static GameManager instance = null;
+    static BattleManager instance = null;
 
     public GameObject mainCanvas;
     public GameObject worldCanvas;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public static GameManager GetInstance()
+    public static BattleManager GetInstance()
     {
         return instance;
     }

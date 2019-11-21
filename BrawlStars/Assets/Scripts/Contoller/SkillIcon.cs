@@ -17,7 +17,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     {
         iconImage = GetComponent<Image>();
         lastSkillActionTime = Time.time - skill.cooldown;
-        //skill.InitCooldown();
+        skill.MakeTargetRangeMesh();
     }
 
     void Update()

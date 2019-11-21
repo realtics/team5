@@ -81,7 +81,7 @@ public class Character : MonoBehaviour
 
         characterDirectionAngle = Mathf.Atan2(1, -1);
 
-        canvas = GameManager.GetInstance().worldCanvas;
+        canvas = BattleManager.GetInstance().worldCanvas;
 
         currentHp = maxHp;
         hpBar = Instantiate(hpBar);
@@ -102,7 +102,6 @@ public class Character : MonoBehaviour
             SpriteUpdate(deathSpriteIndex);
             if (currentSpriteIndex >= (deathSpriteIndex.end - deathSpriteIndex.start))
             {
-                
                 Destroy(gameObject);
             }
         }
