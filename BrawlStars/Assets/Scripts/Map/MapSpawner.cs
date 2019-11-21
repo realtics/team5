@@ -57,8 +57,14 @@ public class MapSpawner : MonoBehaviour
 
             Destroy(currentMap.gameObject);
             currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
+<<<<<<< Updated upstream
             
             SetCharacterPosition();
+=======
+
+            SetCharacterPosition();
+
+>>>>>>> Stashed changes
         }
     }
 

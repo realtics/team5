@@ -37,6 +37,14 @@ public class Monster : Character
             ChasePlayerCharacter();
             ActivatePattern();
         }
+
+    }
+
+    protected override void Death()
+    {
+        base.Death();
+
+         OnDropObject();
     }
 
     void ChasePlayerCharacter()
@@ -94,6 +102,36 @@ public class Monster : Character
                 lastSkillActionTime[i] = Time.time;
 
                 AttackProcess(0, characterDirectionAngle * Mathf.Rad2Deg);
+            }
+        }
+    }
+
+    void OnDropObject()
+    {
+        if (team == Team.Enemy)
+        {
+            //Max를 몇개까지 할지는 아직 안정해서 DropObject.Length로 했음.
+            int DropCount = Random.Range(0, DropObject.Length);
+
+            Vector3 itemPosition = transform.position;
+
+            for (int i = 0; i < DropCount; i++)
+            {
+                int itemTable = Random.Range(0, DropObject.Length);
+
+                if (DropObject[itemTable] != null)
+                {
+                    if ((i % 3) == 0)
+                    {
+                        itemPosition.x = transform.position.x;
+                        itemPosition.z += 0.5f;
+                    }
+
+                    Instantiate(DropObject[itemTable], itemPosition, Quaternion.identity);
+
+                    itemPosition.x += 0.2f;
+                    itemPosition.y -= 0.001f;
+                }
             }
         }
     }

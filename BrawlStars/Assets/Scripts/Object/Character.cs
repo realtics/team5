@@ -250,10 +250,9 @@ public class Character : MonoBehaviour
         }
     }
 
-    void Death()
+    protected virtual void Death()
     {
         Stop();
-        OnDropObject();
         Destroy(hpBar.gameObject);
         currentSpriteIndex = 0;
         state = State.Dead;
@@ -280,27 +279,12 @@ public class Character : MonoBehaviour
             characterDirectionAngle = Global.AngleInRange(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
         }
     }
-
-    void OnDropObject()
-    {
-        if (team == Team.Enemy)
-        {
-            //Max를 몇개까지 할지는 아직 안정해서 DropObject.Length로 했음.
-            int DropCount = Random.Range(0, DropObject.Length);
-
-            for (int i = 0; i < DropCount; i++)
-            {
-                int itemTable = Random.Range(0, DropObject.Length);
-
-                if (DropObject[itemTable] != null)
-                    Instantiate(DropObject[itemTable], transform.position, Quaternion.identity);
-            }
-        }
-    }
-
+    
     private void OnDestroy()
     {
         if(hpBar != null)
             Destroy(hpBar.gameObject);
     }
+
+   
 }

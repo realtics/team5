@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
 
     public Portal[] portals;
     public Character[] monsters;
+    //public Monster
 
     private void Awake()
     {

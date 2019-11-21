@@ -143,6 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485df76eb1ee1f7419b04c0bfce41d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 1
+  speed: 0.2
+  maxHp: 200
   SpriteName: INDRA/INDRA
   standingSpriteIndex:
     start: 100
@@ -162,10 +165,6 @@ MonoBehaviour:
   deathSpriteInterval: 0.1
   spriteRenderer: {fileID: 6751649024528159897}
   spriteDirectionCount: 5
-  team: 1
-  speed: 0.2
-  hp: 0
-  maxHp: 200
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}

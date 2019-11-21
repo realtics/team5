@@ -241,11 +241,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps:
-  - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
+  - {fileID: 7391144076574649398, guid: 7e06fe5748375be4693019c924318ec2, type: 3}
   - {fileID: 2396046339796197974, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
   - {fileID: 1202294474515543109, guid: 79347d1a069d5094d8a5349e0dbafea5, type: 3}
-  - {fileID: 5720808329568479055, guid: 91d6217323695cd4a9bd1d5b96fec306, type: 3}
-  - {fileID: 1007227791153859771, guid: de94d6f082f52e146a7c9af0b0dab203, type: 3}
+  - {fileID: 1758765592945083186, guid: 058f20a50b32eea48bfe50dd9e65aa7e, type: 3}
   mapIndex: 0
   navMeshFloor: {fileID: 1957631890}
   player: {fileID: 557503163}
@@ -265,7 +264,7 @@ Transform:
   m_Children:
   - {fileID: 1957631893}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226243299
 GameObject:
@@ -703,7 +702,7 @@ RectTransform:
   m_GameObject: {fileID: 382275200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.384, y: 4.5242, z: 2.4299}
+  m_LocalScale: {x: 4.7675996, y: 4.9060426, z: 2.4299}
   m_Children:
   - {fileID: 785102871}
   - {fileID: 1127887907}
@@ -957,7 +956,7 @@ PrefabInstance:
     - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
         type: 3}
@@ -1948,7 +1947,7 @@ Transform:
   m_Children:
   - {fileID: 310596427}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1655567795
 MonoBehaviour:
@@ -2203,7 +2202,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2377,7 +2376,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1884149721
 GameObject:

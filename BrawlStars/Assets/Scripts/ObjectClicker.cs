@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectClicker : MonoBehaviour
 {
-    private Camera camera;
+    new Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +17,21 @@ public class ObjectClicker : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            //일괄 습득
+            //RaycastHit[] hits;
+            //hits = Physics.RaycastAll(ray, 100.0f);
+
+            //for (int i = 0; i < hits.Length; i++)
+            //{
+            //    if (hits[i].collider.gameObject.tag == "Item")
+            //    {
+            //        Debug.Log(hits[i].collider.gameObject.name);
+            //        Destroy(hits[i].collider.gameObject);
+            //    }
+            //}
+
+            //1개씩
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
