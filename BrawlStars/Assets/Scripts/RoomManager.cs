@@ -18,6 +18,8 @@ public class RoomManager : MonoBehaviour
     int menuIndex;
     public Text menuText;
 
+    public GameObject StageSelecter;
+
     private void Awake()
     {
         instance = this;
@@ -33,6 +35,7 @@ public class RoomManager : MonoBehaviour
     {
         menuIndex = 0;
         SetMenuActive();
+        StageSelecter.SetActive(false);
     }
 
     // Update is called once per frame
@@ -66,4 +69,15 @@ public class RoomManager : MonoBehaviour
                 menuArray[i].content.SetActive(false);
         }
     }
+
+    public void SelectStartBtn()
+    {
+        StageSelecter.SetActive(true);
+    }
+
+    public void SelectCloseBtn()
+    {
+        StageSelecter.SetActive(false);
+    }
+
 }
