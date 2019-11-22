@@ -10,18 +10,16 @@ public enum Type
 public class Item : MonoBehaviour
 {
     public Sprite icon;
-<<<<<<< Updated upstream
+
     public Type type;
 
     public Stat stat;
-=======
-    public Character player;
->>>>>>> Stashed changes
+
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameManager.GetInstance().player;
+        
     }
 
     // Update is called once per frame
@@ -30,12 +28,5 @@ public class Item : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject == player.gameObject)
-        {
-            Debug.Log(this.gameObject.name);
-            Destroy(this.gameObject);
-        }
-    }
+    
 }
