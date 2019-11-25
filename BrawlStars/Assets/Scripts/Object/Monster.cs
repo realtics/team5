@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Monster : Character
+public class Monster : Actor
 {
+    public GameObject[] DropObject;
+
     public float sight;
-    public Skill[] patternArray;
-    float[] lastSkillActionTime;
     public float attackReach;
 
     NavMeshAgent pathFinder;
@@ -20,8 +20,8 @@ public class Monster : Character
     {
         base.Start();
 
-        lastSkillActionTime = new float[patternArray.Length];
-        for (int i = 0; i < patternArray.Length; i++)
+        lastSkillActionTime = new float[skillArray.Length];
+        for (int i = 0; i < skillArray.Length; i++)
         {
             lastSkillActionTime[i] = Time.time;
             //patternArray[i].StartCooldown();
@@ -94,16 +94,14 @@ public class Monster : Character
 
     void ActivatePattern()
     {
-        for(int i = 0; i < patternArray.Length; i++)
+        for(int i = 0; i < skillArray.Length; i++)
         {
-            if (Time.time - lastSkillActionTime[i] > patternArray[i].cooldown)
+            if (Time.time - lastSkillActionTime[i] > skillArray[i].cooldown)
             {
-                Vector3 position = patternArray[i].GetPosition(new Vector2(0, 0), 1);
-                Quaternion rotation = patternArray[i].GetRotation(new Vector2(0, 0));
-                patternArray[i].StartSkill(this, transform.position + position, rotation.eulerAngles.y);
                 lastSkillActionTime[i] = Time.time;
-
-                AttackProcess(0, characterDirectionAngle * Mathf.Rad2Deg);
+                Vector3 activatePosition = transform.position + skillArray[i].GetPosition(new Vector2(0, 0), 1);
+                float rotationAngle = characterDirectionAngle * Mathf.Rad2Deg;
+                AttackProcess(i, activatePosition, rotationAngle);
             }
         }
     }

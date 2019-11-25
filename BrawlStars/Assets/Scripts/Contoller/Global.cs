@@ -21,7 +21,8 @@ public static class Global
     }
 }
 
-public struct Stat
+[System.Serializable]
+public struct Status
 {
     public int attackDamage;
     public int armor;

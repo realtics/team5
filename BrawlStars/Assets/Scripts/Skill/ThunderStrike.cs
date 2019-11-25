@@ -25,7 +25,7 @@ public class ThunderStrike : Skill
             Collider[] colliders = Physics.OverlapSphere(point, radius);
             for (int j = 0; j < colliders.Length; j++)
             {
-                Character target = colliders[j].GetComponent<Character>();
+                Actor target = colliders[j].GetComponent<Actor>();
                 if (target != null && target.team != owner.team)
                 {
                     target.TakeDamage(damage);

@@ -17,6 +17,9 @@ public class Inventory : MonoBehaviour
     public int verticalPadding;
     public int gap;
 
+    public Image itemWindow;
+    public Text itemText;
+
     private void Awake()
     {
         instance = this;
@@ -45,7 +48,10 @@ public class Inventory : MonoBehaviour
 
                 slot.rectTransform.anchoredPosition = position;
 
-                slot.GetComponent<ItemSlot>().slotIndex = i * column + j;
+                ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
+                slotComponent.itemIndex = i * column + j;
+                slotComponent.itemWindow = itemWindow;
+                slotComponent.itemText = itemText;
             }
         }
     }

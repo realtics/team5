@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Contoller\SkillIcon.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Item\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Item\ItemSlot.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\Map\MapSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\Room\RoomOnOff.cs" />
     <Compile Include="Assets\Scripts\Map\SceneChange.cs" />
+    <Compile Include="Assets\Scripts\Object\Actor.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
     <Compile Include="Assets\Scripts\ObjectClicker.cs" />
@@ -91,7 +93,9 @@
     <Compile Include="Assets\Scripts\Skill\Monster Pattern\Shockwave.cs" />
     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
     <Compile Include="Assets\Scripts\Skill\ThunderStrike.cs" />
+    <Compile Include="Assets\Scripts\UI\CharaterInfo.cs" />
     <Compile Include="Assets\Scripts\UI\DamageText.cs" />
+    <Compile Include="Assets\Scripts\UI\ExitButton.cs" />
     <Compile Include="Assets\Scripts\UI\HPBar.cs" />
     <Compile Include="Assets\Scripts\UI\ScrollRect_Snap.cs" />
     <Compile Include="Assets\Scripts\UI\SkillScrollRect.cs" />
@@ -110,6 +114,39 @@
     <None Include="Assets\StageMaps\Maze.txt" />
     <None Include="Assets\Resources\DualCorStudios\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
+<<<<<<< HEAD
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VSCode.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Rider.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+=======
       <HintPath>C:/Users/ICT03_04/Desktop/team5/team5/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
@@ -141,6 +178,7 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:/Users/ICT03_04/Desktop/team5/team5/BrawlStars/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+>>>>>>> master
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.11f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

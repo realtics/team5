@@ -14,13 +14,16 @@ public class Fireball : Skill
         Quaternion rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
         Vector3 normalVector = rotation * new Vector3(1, 0, 0);
 
-        for(int i = 1; i <= reach; i++)
+        if (fireballList.Count == 0)
         {
-            GameObject effect = Instantiate(fireballObject, transform.position + normalVector * i, Quaternion.identity);
-            fireballList.Add(effect);
-        }
+            for (int i = 1; i <= reach; i++)
+            {
+                GameObject effect = Instantiate(fireballObject, transform.position + normalVector * i, Quaternion.identity);
+                fireballList.Add(effect);
+            }
 
-        StartCoroutine(DamageCoroutine(yRotationEuler));
+            StartCoroutine(DamageCoroutine(yRotationEuler));
+        }
     }
 
     IEnumerator DamageCoroutine(float yRotationEuler)
@@ -34,7 +37,7 @@ public class Fireball : Skill
             Collider[] colliders = Physics.OverlapBox(center, new Vector3(reach / 2, 0, width / 2), Quaternion.Euler(0, yRotationEuler, 0));
             for (int j = 0; j < colliders.Length; j++)
             {
-                Character target = colliders[j].GetComponent<Character>();
+                Actor target = colliders[j].GetComponent<Actor>();
                 if (target != null && target.team != owner.team)
                 {
                     target.TakeDamage(damage);

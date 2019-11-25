@@ -7,7 +7,7 @@ public class Portal : MonoBehaviour
 {
     MapSpawner mapSpawner;
     public int targetIndex;
-    public Character player;
+    Character player;
 
     // Start is called before the first frame update
     void Start()
