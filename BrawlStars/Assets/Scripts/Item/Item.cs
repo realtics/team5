@@ -11,14 +11,26 @@ public class Item : MonoBehaviour
 {
     public string itemName;
     public Sprite icon;
+<<<<<<< HEAD
     public Type type;
     public Status status;
     public string etc;
+=======
+
+    public Type type;
+
+    public Stat stat;
+
+>>>>>>> master
 
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> master
     }
 
     // Update is called once per frame
@@ -27,6 +39,7 @@ public class Item : MonoBehaviour
         
     }
 
+<<<<<<< HEAD
     public string GetItemExplanation()
     {
         string result = itemName + "\n\n";
@@ -63,4 +76,7 @@ public class Item : MonoBehaviour
 
         return result;
     }
+=======
+    
+>>>>>>> master
 }
