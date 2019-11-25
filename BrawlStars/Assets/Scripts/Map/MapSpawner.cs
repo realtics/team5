@@ -72,25 +72,12 @@ public class MapSpawner : MonoBehaviour
                 {
                     resultUI.SetActive(false);
 
-<<<<<<< HEAD
                     Destroy(currentMap.gameObject);
                     currentMap = Instantiate(stages[stageIndex].maps[index].gameObject).GetComponent<Map>();
 
                     SetCharacterPosition();
                 }
             }
-=======
-            Destroy(currentMap.gameObject);
-            currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
-<<<<<<< HEAD
-            
-            SetCharacterPosition();
-=======
-           
-            SetCharacterPosition();
-
->>>>>>> master
->>>>>>> master
         }
     }
 
