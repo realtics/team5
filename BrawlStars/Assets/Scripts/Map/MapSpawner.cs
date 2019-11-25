@@ -11,8 +11,10 @@ public enum StageResult
 
 public class MapSpawner : MonoBehaviour
 {
-    public Map[] maps;
-    public int mapIndex = 0;
+    public stage[] stages;
+
+    public static int stageIndex = 0;
+    public static int mapIndex;
     Map currentMap;
     public GameObject navMeshFloor;
     public Character player;
@@ -27,10 +29,16 @@ public class MapSpawner : MonoBehaviour
     {
         resultUI.SetActive(false);
 
-        if (maps.Length > 0)
+        if (stages.Length > 0)
         {
-            currentMap = Instantiate(maps[0].gameObject).GetComponent<Map>();
+            if (stages[stageIndex].maps.Length > 0)
+            {
+                currentMap = Instantiate(stages[stageIndex].maps[mapIndex].gameObject).GetComponent<Map>();
+            }
         }
+
+        SetCharacterPosition();
+
     }
 
     private void Update()
@@ -43,6 +51,7 @@ public class MapSpawner : MonoBehaviour
             if(currentMap.portals.Length == 0)
             {
                 OnResultUI(StageResult.WIN);
+                mapIndex = 0;
             }
         }
     }
@@ -51,15 +60,24 @@ public class MapSpawner : MonoBehaviour
     {
         DestroyItem();
 
-        if (index < maps.Length)
+        if (player == null)
         {
-            resultUI.SetActive(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            if (stageIndex < stages.Length)
+            {
+                if (index < stages[stageIndex].maps.Length)
+                {
+                    resultUI.SetActive(false);
 
-            Destroy(currentMap.gameObject);
-            currentMap = Instantiate(maps[index].gameObject).GetComponent<Map>();
-           
-            SetCharacterPosition();
+                    Destroy(currentMap.gameObject);
+                    currentMap = Instantiate(stages[stageIndex].maps[index].gameObject).GetComponent<Map>();
 
+                    SetCharacterPosition();
+                }
+            }
         }
     }
 
@@ -84,7 +102,7 @@ public class MapSpawner : MonoBehaviour
 
         if (startingVector == null)
         {
-            player.transform.position = new Vector3(0, 0, 0);
+            player.transform.position = new Vector3(0f, 0.5f, 0f);
         }
         else
         {
@@ -100,6 +118,12 @@ public class MapSpawner : MonoBehaviour
         {
             Destroy(DeleteItem);
         }
+    }
+
+    [System.Serializable]
+    public class stage
+    {
+        public Map[] maps;
     }
 
 }

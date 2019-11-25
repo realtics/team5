@@ -13,6 +13,8 @@ public class Monster : Character
 
     NavMeshAgent pathFinder;
 
+    public GameObject[] DropObject;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -44,7 +46,7 @@ public class Monster : Character
     {
         base.Death();
 
-         OnDropObject();
+        OnDropObject();
     }
 
     void ChasePlayerCharacter()
@@ -108,30 +110,27 @@ public class Monster : Character
 
     void OnDropObject()
     {
-        if (team == Team.Enemy)
+        //Max를 몇개까지 할지는 아직 안정해서 DropObject.Length로 했음.
+        int DropCount = Random.Range(0, DropObject.Length);
+
+        Vector3 itemPosition = transform.position;
+
+        for (int i = 0; i < DropCount; i++)
         {
-            //Max를 몇개까지 할지는 아직 안정해서 DropObject.Length로 했음.
-            int DropCount = Random.Range(0, DropObject.Length);
+            int itemTable = Random.Range(0, DropObject.Length);
 
-            Vector3 itemPosition = transform.position;
-
-            for (int i = 0; i < DropCount; i++)
+            if (DropObject[itemTable] != null)
             {
-                int itemTable = Random.Range(0, DropObject.Length);
-
-                if (DropObject[itemTable] != null)
+                if ((i % 3) == 0)
                 {
-                    if ((i % 3) == 0)
-                    {
-                        itemPosition.x = transform.position.x;
-                        itemPosition.z += 0.5f;
-                    }
-
-                    Instantiate(DropObject[itemTable], itemPosition, Quaternion.identity);
-
-                    itemPosition.x += 0.2f;
-                    itemPosition.y -= 0.001f;
+                    itemPosition.x = transform.position.x;
+                    itemPosition.z += 0.5f;
                 }
+
+                Instantiate(DropObject[itemTable], itemPosition, Quaternion.identity);
+
+                itemPosition.x += 0.2f;
+                itemPosition.y -= 0.001f;
             }
         }
     }

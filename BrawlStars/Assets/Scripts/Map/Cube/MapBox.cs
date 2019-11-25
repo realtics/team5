@@ -34,10 +34,10 @@ public class MapBox : MonoBehaviour
                 {
                     Destroy(gameObject);
 
-                    if (mapGenerator.mapIndex < mapGenerator.maps.Length - 1)
-                        mapGenerator.mapIndex++;
-                    else
-                        mapGenerator.mapIndex = 0;
+                    //if (mapGenerator.mapIndex < mapGenerator.maps.Length - 1)
+                    //    mapGenerator.mapIndex++;
+                    //else
+                    //    mapGenerator.mapIndex = 0;
 
                     Debug.Log("Destroy!!");
 

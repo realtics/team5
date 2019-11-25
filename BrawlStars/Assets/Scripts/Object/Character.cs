@@ -57,7 +57,7 @@ public class Character : MonoBehaviour
 
     protected State state;
 
-    public GameObject[] DropObject;
+    
 
     // Start is called before the first frame update
     protected virtual void Start()

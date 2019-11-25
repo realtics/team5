@@ -6,12 +6,20 @@ using UnityEngine.UI;
 
 public class MapGenerator : MonoBehaviour
 {
+    [System.Serializable]
+    public class MapArray
+    {
+        public Map[] maps;
+    }
+
+    public MapArray[] stage;
+
     public GameObject startingObject;
-
-    public Map[] maps;
+        
     public Transform[] obstaclePrefabs;
+    public int stageIndex;
     public int mapIndex;
-
+    
     public Transform tilePrefab;
     public Transform navmeshFloor;
     public Transform navmeshMaskPrefabMeshFloor;
@@ -35,7 +43,7 @@ public class MapGenerator : MonoBehaviour
     public void GenerateMap()
     {
         //맵의 갯수 설정
-        currentMap = maps[mapIndex];
+        currentMap = stage[stageIndex].maps[mapIndex];
 
         //SetCharacterPosition();
 
@@ -60,8 +68,8 @@ public class MapGenerator : MonoBehaviour
         string holderName = "Generated Map";
         if (transform.Find(holderName))
         {
-            //DestroyImmediate(transform.Find(holderName).gameObject);
-            Destroy(transform.Find(holderName).gameObject);
+            DestroyImmediate(transform.Find(holderName).gameObject);
+            //Destroy(transform.Find(holderName).gameObject);
         }
 
         Transform mapHolder = new GameObject(holderName).transform;
@@ -134,9 +142,9 @@ public class MapGenerator : MonoBehaviour
     {
         ClearMap();
 
-        if (maps[mapIndex].MapName != "" || maps[mapIndex].MapName == null)
+        if (stage[stageIndex].maps[mapIndex].MapName != "" || stage[stageIndex].maps[mapIndex].MapName == null)
         {
-            using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
+            using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + stage[stageIndex].maps[mapIndex].MapName + ".txt"))
             {
                 outputFile.WriteLine(currentMap.mapSize.x);
                 outputFile.WriteLine(currentMap.mapSize.y);
@@ -161,11 +169,11 @@ public class MapGenerator : MonoBehaviour
     {
         ClearMap();//기존 맵 초기화
 
-        if (maps[mapIndex].MapName != "")
+        if (stage[stageIndex].maps[mapIndex].MapName != "")
         {
-            using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps[mapIndex].MapName + ".txt"))
+            using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + stage[stageIndex].maps[mapIndex].MapName + ".txt"))
             {
-                Debug.Log(maps[mapIndex].MapName);
+                Debug.Log(stage[stageIndex].maps[mapIndex].MapName);
 
                 //string으로 값을 읽기 때문에 int로 컨버전 해줌.
                 currentMap.mapSize.x = int.Parse(inputFile.ReadLine());
@@ -208,7 +216,7 @@ public class MapGenerator : MonoBehaviour
     public void ClearMap()
     {
         //설정된 맵의 인덱스
-        currentMap = maps[mapIndex];
+        currentMap = stage[stageIndex].maps[mapIndex];
 
         //맵을 NullCube로 초기화
         obstacleMap = new int[(int)currentMap.mapSize.x, (int)currentMap.mapSize.y];
@@ -236,11 +244,11 @@ public class MapGenerator : MonoBehaviour
         {
             return c1.x == c2.x && c1.y == c2.y;
         }
-        //아래는 경고문 제거
         public static bool operator !=(Coord c1, Coord c2)
         {
             return !(c1 == c2);
         }
+        //아래는 경고문 제거
         public override bool Equals(object obj)
         {
             return true;

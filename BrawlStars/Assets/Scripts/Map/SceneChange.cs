@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneChange : MonoBehaviour
 {
-
     public string sceneName;
 
     void Update()
@@ -16,5 +15,10 @@ public class SceneChange : MonoBehaviour
     public void SceneChanger(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void StageIndex(int index)
+    {
+        MapSpawner.stageIndex = index;
     }
 }

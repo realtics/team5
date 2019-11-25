@@ -28,7 +28,9 @@ public class Portal : MonoBehaviour
         {
             mapSpawner.DestroyItem();
 
-            mapSpawner.CreateNewMap(targetIndex);
+            MapSpawner.mapIndex = targetIndex;
+
+            mapSpawner.CreateNewMap(MapSpawner.mapIndex);
         }
     }
 }

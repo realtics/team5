@@ -240,11 +240,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d8d3da006d58c4aabc9ecb45a0ad5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maps:
-  - {fileID: 7391144076574649398, guid: 7e06fe5748375be4693019c924318ec2, type: 3}
-  - {fileID: 2396046339796197974, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
-  - {fileID: 1202294474515543109, guid: 79347d1a069d5094d8a5349e0dbafea5, type: 3}
-  - {fileID: 1758765592945083186, guid: 058f20a50b32eea48bfe50dd9e65aa7e, type: 3}
+  stages:
+  - maps:
+    - {fileID: 7391144076574649398, guid: 7e06fe5748375be4693019c924318ec2, type: 3}
+    - {fileID: 2396046339796197974, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
+    - {fileID: 1202294474515543109, guid: 79347d1a069d5094d8a5349e0dbafea5, type: 3}
+    - {fileID: 1758765592945083186, guid: 058f20a50b32eea48bfe50dd9e65aa7e, type: 3}
+  - maps:
+    - {fileID: 8039428069317739390, guid: 49e7e49ee197a5c469fa49c0b000b016, type: 3}
+    - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
   mapIndex: 0
   navMeshFloor: {fileID: 1957631890}
   player: {fileID: 557503163}
@@ -976,7 +980,7 @@ PrefabInstance:
     - target: {fileID: 4858412950500547585, guid: dc93099675fbbed488f19c8f6934574f,
         type: 3}
       propertyPath: maxHp
-      value: 5555
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc93099675fbbed488f19c8f6934574f, type: 3}

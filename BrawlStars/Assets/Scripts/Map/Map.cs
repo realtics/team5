@@ -6,6 +6,7 @@ public class Map : MonoBehaviour
 {
     public GameObject[] portals;
     public GameObject[] monsters;
+    public GameObject[] items;
     public GameObject startingPoint;
 
     bool isAllMonsterDestoyed;

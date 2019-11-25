@@ -34,16 +34,16 @@ public class SkillScrollRect : MonoBehaviour
             distReposition[i] = center.GetComponent<RectTransform>().position.y - bttn[i].GetComponent<RectTransform>().position.y;
             distance[i] = Mathf.Abs(distReposition[i]);
 
-            if (distReposition[i] > 120)
+            if (distReposition[i] > 100)
             {
                 float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
                 float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
 
-                Vector2 newAnchoredPos = new Vector2(curX , curY+ (bttnLenght * bttnDistance));
+                Vector2 newAnchoredPos = new Vector2(curX , curY + (bttnLenght * bttnDistance));
                 bttn[i].GetComponent<RectTransform>().anchoredPosition = newAnchoredPos;
                 bttn[i].gameObject.SetActive(false);
             }
-            else if (distReposition[i] < -120)
+            else if (distReposition[i] < -100)
             {
                 float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
                 float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
