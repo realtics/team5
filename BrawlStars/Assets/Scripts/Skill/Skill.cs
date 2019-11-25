@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
+    public Sprite icon;
+
     public float castingDelay;
     public float startupTime;
     public float recoveryTime;
@@ -17,13 +19,16 @@ public abstract class Skill : MonoBehaviour
 
     public float spriteInterval;
 
-    protected Character owner;
+    protected Actor owner;
     protected Mesh rangeMesh;
-    
-    public void StartSkill(Character user, Vector3 position, float yRotationEuler)
+
+    Skill actionSkill;
+    protected Animator animator;
+
+    public void StartSkill(Actor user, Vector3 position, float yRotationEuler)
     {
-        StartCooldown();
-        Skill actionSkill = Instantiate(this, position, Quaternion.identity);
+        actionSkill = Instantiate(this, position, Quaternion.identity);
+        actionSkill.StartCooldown();
         actionSkill.owner = user;
         actionSkill.Action(yRotationEuler);
     }

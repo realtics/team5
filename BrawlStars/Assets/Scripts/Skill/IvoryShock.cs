@@ -27,7 +27,7 @@ public class IvoryShock : Skill
                 if (!IsInFanwise(yRotationEuler, colliders[j].transform.position))
                     continue;
 
-                Character target = colliders[j].GetComponent<Character>();
+                Actor target = colliders[j].GetComponent<Actor>();
                 if (target != null && target.team != owner.team)
                 {
                     target.TakeDamage(damage);

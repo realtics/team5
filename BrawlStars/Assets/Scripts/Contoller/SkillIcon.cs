@@ -7,27 +7,35 @@ using UnityEngine.EventSystems;
 public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public SkillJoystick joystick;
-    public Skill skill;
-    float lastSkillActionTime;
+    public int skillIndex;
     public Text cooldownText;
+    public Character player;
 
     Image iconImage;
 
     void Start()
     {
-        iconImage = GetComponent<Image>();
-        lastSkillActionTime = Time.time - skill.cooldown;
-        skill.MakeTargetRangeMesh();
+        if (skillIndex < player.skillArray.Length)
+        {
+            iconImage = GetComponent<Image>();
+            iconImage.sprite = player.skillArray[skillIndex].icon;
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
     {
-        PrintRemainCooldown();
+        if (skillIndex < player.skillArray.Length)
+        {
+            PrintRemainCooldown();
+        }
     }
 
     void PrintRemainCooldown()
     {
-        if(ReadyToAction())
+        if (ReadyToAction())
         {
             iconImage.color = new Color(1, 1, 1, iconImage.color.a);
             cooldownText.text = "";
@@ -35,17 +43,16 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
         else
         {
             iconImage.color = new Color(0.3f, 0.3f, 0.3f, iconImage.color.a);
-            //cooldownText.text = Mathf.Ceil(skill.GetRemainCooldown()).ToString();
-            cooldownText.text = Mathf.Ceil(skill.cooldown - (Time.time - lastSkillActionTime)).ToString();
+            cooldownText.text = Mathf.Ceil(player.GetRemainSkillCooldown(skillIndex)).ToString();
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (ReadyToAction())
+        if (skillIndex < player.skillArray.Length && ReadyToAction())
         {
             joystick.gameObject.SetActive(true);
-            joystick.skill = skill;
+            joystick.skillIndex = skillIndex;
             joystick.OnPointerDown(eventData);
 
             Color color = GetComponent<Image>().color;
@@ -56,7 +63,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (ReadyToAction())
+        if (joystick.gameObject.activeSelf == true)
         {
             joystick.OnDrag(eventData);
         }
@@ -64,7 +71,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (ReadyToAction())
+        if (joystick.gameObject.activeSelf == true)
         {
             joystick.OnPointerUp(eventData);
 
@@ -72,13 +79,11 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
             Color color = GetComponent<Image>().color;
             color.a = 1f;
             GetComponent<Image>().color = color;
-
-            lastSkillActionTime = Time.time;
         }
     }
 
     public bool ReadyToAction()
     {
-        return Time.time - lastSkillActionTime > skill.cooldown;
+        return player.GetRemainSkillCooldown(skillIndex) < 0;
     }
 }

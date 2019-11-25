@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 
 public class SkillJoystick : Joystick
 {
-    public Skill skill;
+    public int skillIndex;
     public SkillRange rangeObject;
+
+    Skill skill;
 
     protected override void Start()
     {
@@ -16,6 +18,7 @@ public class SkillJoystick : Joystick
     public override void OnPointerDown(PointerEventData data)
     {
         base.OnPointerDown(data);
+        skill = player.skillArray[skillIndex];
         rangeObject.SetMesh(skill.GetTargetRangeMesh());
         rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
         rangeObject.DrawRange();
@@ -36,7 +39,6 @@ public class SkillJoystick : Joystick
         base.OnPointerUp(data);
         rangeObject.StopDrawing();
 
-        skill.StartSkill(player, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
-        player.AttackProcess(1, rangeObject.transform.rotation.eulerAngles.y);
+        player.AttackProcess(skillIndex, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
     }
 }

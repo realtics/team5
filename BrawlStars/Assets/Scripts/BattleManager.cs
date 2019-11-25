@@ -15,8 +15,7 @@ public class BattleManager : MonoBehaviour
     public Joystick skillJoystick;
 
     public Portal[] portals;
-    public Character[] monsters;
-    //public Monster
+    public Monster[] monsters;
 
     private void Awake()
     {
@@ -26,7 +25,6 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
