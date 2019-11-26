@@ -78,12 +78,6 @@ public class MapSpawner : MonoBehaviour
                     SetCharacterPosition();
                 }
             }
-<<<<<<< HEAD
-=======
-            
-            SetCharacterPosition();
-
->>>>>>> master
         }
     }
 
