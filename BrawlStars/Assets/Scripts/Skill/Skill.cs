@@ -10,7 +10,8 @@ public abstract class Skill : MonoBehaviour
     public float startupTime;
     public float recoveryTime;
 
-    public int damage;
+    public int attackPercentage;
+    protected int damage;
     public int damageCount;
     public float damageInterval;
 
@@ -24,12 +25,14 @@ public abstract class Skill : MonoBehaviour
 
     Skill actionSkill;
     protected Animator animator;
+    protected Status status;
 
     public void StartSkill(Actor user, Vector3 position, float yRotationEuler)
     {
         actionSkill = Instantiate(this, position, Quaternion.identity);
         actionSkill.StartCooldown();
         actionSkill.owner = user;
+        actionSkill.status = user.GetFinalStatus();
         actionSkill.Action(yRotationEuler);
     }
 

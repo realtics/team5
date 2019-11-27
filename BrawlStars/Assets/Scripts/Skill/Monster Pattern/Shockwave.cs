@@ -9,6 +9,7 @@ public class Shockwave : Skill
 
     public override void Action(float yRotationEuler)
     {
+        damage = attackPercentage * status.attackDamage / 100;
         StartCoroutine(DamageCoroutine());
     }
 

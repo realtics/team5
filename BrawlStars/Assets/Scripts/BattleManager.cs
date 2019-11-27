@@ -25,10 +25,6 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = Instantiate(player);
-
-        moveJoystick.player = player;
-        skillJoystick.player = player;
     }
 
     // Update is called once per frame

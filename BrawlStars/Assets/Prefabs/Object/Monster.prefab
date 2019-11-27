@@ -144,8 +144,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 1
-  speed: 0.2
-  maxHp: 200
+  status:
+    attackDamage: 400
+    armor: 10
+    hp: 200
+    hpRecovery: 0
+    moveSpeed: 0.5
   SpriteName: INDRA/INDRA
   standingSpriteIndex:
     start: 100

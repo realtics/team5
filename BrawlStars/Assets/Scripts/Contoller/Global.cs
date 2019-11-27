@@ -28,5 +28,16 @@ public struct Status
     public int armor;
     public int hp;
     public float hpRecovery;
-    public int moveSpeed;
+    public float moveSpeed;
+
+    public static Status operator+(Status a, Status b)
+    {
+        Status result;
+        result.attackDamage = a.attackDamage + b.attackDamage;
+        result.armor = a.armor + b.armor;
+        result.hp = a.hp + b.hp;
+        result.hpRecovery = a.hpRecovery + b.hpRecovery;
+        result.moveSpeed = a.moveSpeed + b.moveSpeed;
+        return result;
+    }
 }

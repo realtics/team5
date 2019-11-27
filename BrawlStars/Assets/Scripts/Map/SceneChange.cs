@@ -9,12 +9,12 @@ public class SceneChange : MonoBehaviour
     void Update()
     {
         if(Input.GetMouseButton(0) && sceneName != "")
-            SceneManager.LoadScene(sceneName);
+            LoadingManager.LoadScene(sceneName);
     }
 
     public void SceneChanger(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        LoadingManager.LoadScene(sceneName);
     }
 
     public void StageIndex(int index)

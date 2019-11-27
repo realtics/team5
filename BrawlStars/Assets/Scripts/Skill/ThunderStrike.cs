@@ -12,6 +12,7 @@ public class ThunderStrike : Skill
 
     public override void Action(float yRotationEuler)
     {
+        damage = attackPercentage * status.attackDamage / 100;
         StartCoroutine(DamageCoroutine());
     }
 

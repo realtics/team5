@@ -27,8 +27,6 @@ public class MapSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player = GetComponent<Character>();
-
         resultUI.SetActive(false);
 
         if (stages.Length > 0)
