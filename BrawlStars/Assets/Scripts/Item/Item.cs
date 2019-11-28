@@ -9,6 +9,7 @@ public enum Type
 
 public class Item : MonoBehaviour
 {
+    public string itemCode;
     public string itemName;
     public Sprite icon;
     public Type type;

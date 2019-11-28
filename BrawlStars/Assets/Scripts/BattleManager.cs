@@ -27,6 +27,7 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
         player = GameManager.GetInstance().player;
 
         player = Instantiate(player, mapSpawner.currentMap.startingPoint.transform.position, Quaternion.identity);
@@ -37,6 +38,8 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < skillIcon.Length; i++)
             skillIcon[i].player = player;//얘만 왜 null인가.
+=======
+>>>>>>> master
     }
 
     // Update is called once per frame

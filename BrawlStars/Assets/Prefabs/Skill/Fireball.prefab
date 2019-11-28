@@ -47,7 +47,7 @@ MonoBehaviour:
   castingDelay: 0
   startupTime: 0.2
   recoveryTime: 0
-  damage: 12
+  attackPercentage: 15
   damageCount: 10
   damageInterval: 0.1
   cooldown: 5

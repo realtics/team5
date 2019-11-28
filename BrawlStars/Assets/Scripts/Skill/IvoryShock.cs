@@ -10,6 +10,7 @@ public class IvoryShock : Skill
 
     public override void Action(float yRotationEuler)
     {
+        damage = attackPercentage * status.attackDamage / 100;
         transform.rotation = Quaternion.Euler(90, yRotationEuler - 90, 0);
         StartCoroutine(DamageCoroutine(yRotationEuler));
     }

@@ -9,15 +9,12 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image dragedImagePrefab;
     Image dragedImage;
 
-    public Item[] itemArray;
-    public int itemIndex;
-
     public Type type;
-
+    public Item item;
+    public int itemIndex;
     public Image itemWindow;
     public Text itemText;
 
-    bool isEmptySlot;
     int equippedSlotIndex = -1;
     bool isDragged;
 
@@ -28,24 +25,30 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Refresh()
     {
-        isEmptySlot = itemIndex < 0 || itemIndex >= itemArray.Length;
         if(dragedImage != null)
             Destroy(dragedImage.gameObject);
 
-        if (!isEmptySlot)
+        if(equippedSlotIndex >= 0)
+            item = GameManager.GetInstance().GetEquippedItem(equippedSlotIndex);
+        else 
+            item = GameManager.GetInstance().GetItemInInventory(itemIndex);
+
+        if (item != null)
         {
             dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
             dragedImage.transform.SetParent(transform);
-            dragedImage.sprite = itemArray[itemIndex].icon;
-
-            if(equippedSlotIndex >= 0)
-                GameManager.GetInstance().SetEquippedItem(equippedSlotIndex, itemArray[itemIndex]);
+            dragedImage.sprite = item.icon;
         }
     }
 
     public void SetSlotIndex(int index)
     {
         equippedSlotIndex = index;
+    }
+
+    public bool IsEquipSlot()
+    {
+        return equippedSlotIndex >= 0;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -75,22 +78,24 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isEmptySlot)
+        if (item == null)
             return;
 
         if (isDragged)
         {
-            ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
-            if (targetSlot != null && (targetSlot.type == Type.ETC || targetSlot.type == itemArray[itemIndex].type))
+            ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;            
+            if(targetSlot != null && targetSlot != this)
             {
-                int temp = Inventory.GetInventory().moveItemTargetSlot.itemIndex;
-                Inventory.GetInventory().moveItemTargetSlot.itemIndex = itemIndex;
-                itemIndex = temp;
+                if (targetSlot.equippedSlotIndex < 0 && equippedSlotIndex < 0)
+                    GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
+                else if(targetSlot.equippedSlotIndex >= 0 && targetSlot.type == item.type)
+                    GameManager.GetInstance().EquipItem(targetSlot.equippedSlotIndex, itemIndex);
+                else if(equippedSlotIndex >= 0 && (targetSlot.item == null || type == targetSlot.item.type))
+                    GameManager.GetInstance().EquipItem(equippedSlotIndex, targetSlot.itemIndex);
 
-                Inventory.GetInventory().moveItemTargetSlot.Refresh();
                 Refresh();
-            }
-            else
+                targetSlot.Refresh();
+            } else if (dragedImage != null)
             {
                 dragedImage.transform.SetParent(transform);
                 dragedImage.transform.position = transform.position;
@@ -98,7 +103,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         } else if(itemWindow != null)
         {
             itemWindow.gameObject.SetActive(true);
-            itemText.text = itemArray[itemIndex].GetItemExplanation();
+            itemText.text = item.GetItemExplanation();
         }
     }
 }

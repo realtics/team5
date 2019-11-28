@@ -11,6 +11,8 @@ public class Fireball : Skill
     
     public override void Action(float yRotationEuler)
     {
+        damage = attackPercentage * status.attackDamage / 100;
+
         Quaternion rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
         Vector3 normalVector = rotation * new Vector3(1, 0, 0);
 

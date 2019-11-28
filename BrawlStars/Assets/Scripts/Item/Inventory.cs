@@ -36,6 +36,8 @@ public class Inventory : MonoBehaviour
         Vector2 position;
         moveItemTargetSlot = null;
 
+        GameManager.GetInstance().InitInventory(row, column);
+
         for (int i = 0; i < row; i++)
         {
             for(int j = 0; j < column; j++)

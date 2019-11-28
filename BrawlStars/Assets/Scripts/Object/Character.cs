@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : Actor
-{
-    public Status status;
-    Status statusWithItem;
+{    
     protected override void Start()
     {
         base.Start();
@@ -16,7 +14,9 @@ public class Character : Actor
             lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
         }
 
-        EquipItem();
+        finalStatus = GameManager.GetInstance().GetFinalStatus();
+        hpBar.SetMaxHp(finalStatus.hp);
+        hpBar.SetHp(finalStatus.hp);
     }
 
     protected override void Update()
@@ -31,6 +31,7 @@ public class Character : Actor
         else
             return skillArray[index];
     }
+<<<<<<< HEAD
 
     public void Revival()
     {
@@ -64,4 +65,6 @@ public class Character : Actor
             Destroy(collider.gameObject);
         }
     }
+=======
+>>>>>>> master
 }

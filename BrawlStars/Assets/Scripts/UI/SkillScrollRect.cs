@@ -6,13 +6,12 @@ using UnityEngine.UI;
 public class SkillScrollRect : MonoBehaviour
 {
     public RectTransform panel;
-    public Image[] bttn;
+    public Button[] bttn;
     public RectTransform center;
     public int startButton = 1;
+
     public float[] distance;
     public float[] distReposition;
-    public float limitActive;
-
     private bool dragging = false;
     private int bttnDistance;
     private int minButtnNum;
@@ -35,7 +34,7 @@ public class SkillScrollRect : MonoBehaviour
             distReposition[i] = center.GetComponent<RectTransform>().position.y - bttn[i].GetComponent<RectTransform>().position.y;
             distance[i] = Mathf.Abs(distReposition[i]);
 
-            if (distReposition[i] > limitActive)
+            if (distReposition[i] > 100)
             {
                 float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
                 float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
@@ -44,7 +43,7 @@ public class SkillScrollRect : MonoBehaviour
                 bttn[i].GetComponent<RectTransform>().anchoredPosition = newAnchoredPos;
                 bttn[i].gameObject.SetActive(false);
             }
-            else if (distReposition[i] < -limitActive)
+            else if (distReposition[i] < -100)
             {
                 float curX = bttn[i].GetComponent<RectTransform>().anchoredPosition.x;
                 float curY = bttn[i].GetComponent<RectTransform>().anchoredPosition.y;
@@ -70,6 +69,7 @@ public class SkillScrollRect : MonoBehaviour
 
         if (!dragging)
         {
+            //LerpToBttn(minButtnNum * bttnDistance);
             LerpToBttn(-bttn[minButtnNum].GetComponent<RectTransform>().anchoredPosition.y);
         }
     }

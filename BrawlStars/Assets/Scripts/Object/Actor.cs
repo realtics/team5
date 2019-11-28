@@ -26,8 +26,9 @@ public class Actor : MonoBehaviour
     protected CapsuleCollider mCollider;
 
     public Team team;
-    public float speed;
-    public int maxHp;
+    public Status status;
+    protected Status finalStatus;
+    int currentHp;
 
     public string SpriteName;
     public SpriteIndex standingSpriteIndex;
@@ -48,9 +49,13 @@ public class Actor : MonoBehaviour
     Vector3 velocity;
     protected float characterDirectionAngle;
     Vector3 scale;
+<<<<<<< HEAD
 
     public int currentHp;
 
+=======
+    
+>>>>>>> master
     GameObject canvas;
     public DamageText damageText;
     public HPBar hpBar;
@@ -63,6 +68,18 @@ public class Actor : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        prevSpriteTime = Time.time;
+        characterDirectionAngle = Mathf.Atan2(1, -1);
+        canvas = BattleManager.GetInstance().worldCanvas;
+        finalStatus = status;
+        state = State.Idle;
+
+        currentHp = status.hp;
+        hpBar = Instantiate(hpBar);
+        hpBar.transform.SetParent(canvas.transform);
+        hpBar.SetMaxHp(status.hp);
+        hpBar.SetHp(currentHp);
+
         mRigidbody = GetComponent<Rigidbody>();
         mCollider = GetComponent<CapsuleCollider>();
         scale = transform.localScale;
@@ -78,19 +95,6 @@ public class Actor : MonoBehaviour
             sprites.Add(sprite);
         }
 
-        prevSpriteTime = Time.time;
-
-        characterDirectionAngle = Mathf.Atan2(1, -1);
-
-        canvas = BattleManager.GetInstance().worldCanvas;
-
-        currentHp = maxHp;
-        hpBar = Instantiate(hpBar);
-        hpBar.transform.SetParent(canvas.transform);
-        hpBar.SetMaxHp(maxHp);
-        hpBar.SetHp(currentHp);
-
-        state = State.Idle;
 
         lastSkillActionTime = new float[skillArray.Length];
     }
@@ -159,7 +163,7 @@ public class Actor : MonoBehaviour
     public void Move(Vector3 direction)
     {
         if (state == State.Idle)
-            velocity = direction.normalized * speed;
+            velocity = direction.normalized * status.moveSpeed;
     }
 
     public void Stop()
@@ -281,8 +285,6 @@ public class Actor : MonoBehaviour
 
             characterDirectionAngle = Global.AngleInRange(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
 
-            Vector3 position = skillArray[index].GetPosition(new Vector2(0, 0), 1);
-            Quaternion rotation = skillArray[index].GetRotation(new Vector2(0, 0));
             skillArray[index].StartSkill(this, targetPosition, yRotationEuler);
             lastSkillActionTime[index] = Time.time;
         }
@@ -297,5 +299,10 @@ public class Actor : MonoBehaviour
     public float GetRemainSkillCooldown(int index)
     {
         return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
+    }
+
+    public Status GetFinalStatus()
+    {
+        return finalStatus;
     }
 }
