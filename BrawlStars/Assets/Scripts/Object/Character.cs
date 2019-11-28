@@ -32,19 +32,6 @@ public class Character : Actor
             return skillArray[index];
     }
 
-    public void Revival()
-    {
-        this.gameObject.SetActive(true);
-
-        hpBar.gameObject.SetActive(true);
-        currentHp = status.hp;
-        hpBar.SetMaxHp(status.hp);
-        hpBar.SetHp(currentHp);
-
-        this.state = State.Idle;
-
-        spriteDirectionCount = 5;
-    }
 
     void OnTriggerEnter(Collider collider)
     {

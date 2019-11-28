@@ -43,7 +43,7 @@ public class Actor : MonoBehaviour
     List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
     public int spriteDirectionCount;
-    int currentSpriteIndex;
+    protected int currentSpriteIndex;
     float prevSpriteTime;
 
     Vector3 velocity;
@@ -63,16 +63,13 @@ public class Actor : MonoBehaviour
     protected virtual void Start()
     {
         prevSpriteTime = Time.time;
-        characterDirectionAngle = Mathf.Atan2(1, -1);
         canvas = BattleManager.GetInstance().worldCanvas;
         finalStatus = status;
-        state = State.Idle;
 
-        currentHp = status.hp;
         hpBar = Instantiate(hpBar);
         hpBar.transform.SetParent(canvas.transform);
-        hpBar.SetMaxHp(status.hp);
-        hpBar.SetHp(currentHp);
+
+        lastSkillActionTime = new float[skillArray.Length];
 
         mRigidbody = GetComponent<Rigidbody>();
         mCollider = GetComponent<CapsuleCollider>();
@@ -88,8 +85,8 @@ public class Actor : MonoBehaviour
                 break;
             sprites.Add(sprite);
         }
-
-        lastSkillActionTime = new float[skillArray.Length];
+        
+        Alive();
     }
 
     // Update is called once per frame
@@ -103,7 +100,6 @@ public class Actor : MonoBehaviour
             if (currentSpriteIndex >= (deathSpriteIndex.end - deathSpriteIndex.start))
             {
                 gameObject.SetActive(false);
-                //Destroy(gameObject);
             }
         }
         else if (state == State.Attack)
@@ -251,12 +247,30 @@ public class Actor : MonoBehaviour
         }
     }
 
+    public void Alive()
+    {
+        gameObject.SetActive(true);
+
+        hpBar.gameObject.SetActive(true);
+        currentHp = status.hp;
+        hpBar.SetMaxHp(status.hp);
+        hpBar.SetHp(currentHp);
+
+        mCollider.enabled = true;
+
+        characterDirectionAngle = Mathf.Atan2(1, -1);
+        state = State.Idle;
+        currentSpriteIndex = 0;
+        spriteDirectionCount = 5;
+    }
+
     protected virtual void Death()
     {
         Stop();
         hpBar.gameObject.SetActive(false);
         currentSpriteIndex = 0;
         state = State.Dead;
+        mCollider.enabled = false;
     }
 
     IEnumerator TakeDamageCoroutine()

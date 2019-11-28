@@ -17,6 +17,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        player = BattleManager.GetInstance().player;
     }
 
     // Update is called once per frame

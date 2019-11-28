@@ -13,6 +13,7 @@ public class SkillJoystick : Joystick
     protected override void Start()
     {
         base.Start();
+        gameObject.SetActive(false);
     }
 
     public override void OnPointerDown(PointerEventData data)

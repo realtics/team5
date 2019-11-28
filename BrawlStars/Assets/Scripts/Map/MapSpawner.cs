@@ -29,35 +29,27 @@ public class MapSpawner : MonoBehaviour
     {
         resultUI.SetActive(false);
 
-        if (stages.Length > 0)
+        player = BattleManager.GetInstance().player;
+        if (stages.Length > 0 && stages[stageIndex].maps.Length > 0)
         {
-            if (stages[stageIndex].maps.Length > 0)
-            {
-                currentMap = Instantiate(stages[stageIndex].maps[mapIndex].gameObject).GetComponent<Map>();
-                BattleManager.GetInstance().player.transform.position = currentMap.startingPoint.transform.position;
-            }
+            currentMap = Instantiate(stages[stageIndex].maps[mapIndex]);
+            player.transform.position = currentMap.startingPoint.transform.position;
         }
     }
 
     private void Update()
     {
-        if (player.gameObject.activeSelf == false &&
-            currentMap.isAllMonsterDestoyed == false)
-            OnResultUI(StageResult.LOSE);
-        else if (player.gameObject.activeSelf == false &&
-            currentMap.isAllMonsterDestoyed == true)
-            OnResultUI(StageResult.WIN);
-        else
-            resultUI.SetActive(false);
-
-        if(currentMap.IsStageFinished())
+        if (currentMap.IsStageFinished())
         {
-            if(currentMap.portals.Length == 0)
+            if (currentMap.portals.Length == 0)
             {
                 OnResultUI(StageResult.WIN);
                 mapIndex = 0;
             }
         }
+
+        if (player.gameObject.activeSelf == false)
+            OnResultUI(StageResult.LOSE);
     }
 
     public void CreateNewMap(int index)
@@ -77,7 +69,7 @@ public class MapSpawner : MonoBehaviour
                     resultUI.SetActive(false);
 
                     Destroy(currentMap.gameObject);
-                    currentMap = Instantiate(stages[stageIndex].maps[index].gameObject).GetComponent<Map>();
+                    currentMap = Instantiate(stages[stageIndex].maps[index]);
 
                     SetCharacterPosition();
                 }
@@ -126,8 +118,7 @@ public class MapSpawner : MonoBehaviour
 
     public void ResetState()
     {
-        player.Revival();
-        
+        player.Alive();        
     }
 
     [System.Serializable]
