@@ -44,7 +44,7 @@ public class Monster : Actor
     {
         base.Death();
 
-        OnDropObject();
+        DropItem();
     }
 
     void ChasePlayerCharacter()
@@ -104,29 +104,24 @@ public class Monster : Actor
         }
     }
 
-    void OnDropObject()
+    void DropItem()
     {
-        //Max를 몇개까지 할지는 아직 안정해서 DropObject.Length로 했음.
-        int DropCount = Random.Range(0, DropObject.Length);
+        //Max를 몇개까지 할지는 아직 안정해서 items.Length로 했음.
+        int DropCount = Random.Range(0, BattleManager.GetInstance().items.Length);
 
         Vector3 itemPosition = transform.position;
 
         for (int i = 0; i < DropCount; i++)
         {
-            int itemTable = Random.Range(0, DropObject.Length);
+            int itemTable = Random.Range(0, BattleManager.GetInstance().items.Length);
 
-            if (DropObject[itemTable] != null)
+            if (BattleManager.GetInstance().items[itemTable] != null)
             {
-                if ((i % 3) == 0)
-                {
-                    itemPosition.x = transform.position.x;
-                    itemPosition.z += 0.5f;
-                }
+                
+                itemPosition.x += Random.Range(-1f, 1f);
+                itemPosition.z += Random.Range(-1f, 1f);
 
-                Instantiate(DropObject[itemTable], itemPosition, Quaternion.identity);
-
-                itemPosition.x += 0.2f;
-                itemPosition.y -= 0.001f;
+                Instantiate(BattleManager.GetInstance().items[itemTable], itemPosition, Quaternion.identity);
             }
         }
     }

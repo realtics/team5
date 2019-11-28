@@ -50066,6 +50066,7 @@ MonoBehaviour:
   monsters:
   - {fileID: 2074809121770880573}
   - {fileID: 5366058974257493908}
+  items: []
   startingPoint: {fileID: 6258830117845508531}
 --- !u!1 &6258830117845508531
 GameObject:
@@ -50093,7 +50094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6258830117845508531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.47, y: 0.5, z: 1.02}
+  m_LocalPosition: {x: 7.8, y: 0.5, z: 1.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6258830117711375692}

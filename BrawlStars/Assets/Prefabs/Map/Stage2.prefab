@@ -28925,6 +28925,7 @@ MonoBehaviour:
   - {fileID: 8371144970792973022}
   - {fileID: 8696607105416557524}
   - {fileID: 8686621947357794289}
+  items: []
   startingPoint: {fileID: 4317017779631561308}
 --- !u!1 &6097822492692031501
 GameObject:

@@ -15,7 +15,7 @@ public class MapSpawner : MonoBehaviour
 
     public static int stageIndex = 0;
     public static int mapIndex;
-    Map currentMap;
+    public Map currentMap;
     public GameObject navMeshFloor;
     public Character player;
 
@@ -27,8 +27,6 @@ public class MapSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //player = GetComponent<Character>();
-
         resultUI.SetActive(false);
 
         if (stages.Length > 0)
@@ -38,15 +36,18 @@ public class MapSpawner : MonoBehaviour
                 currentMap = Instantiate(stages[stageIndex].maps[mapIndex].gameObject).GetComponent<Map>();
             }
         }
-
-        SetCharacterPosition();
-
     }
 
     private void Update()
     {
-        if (player == null)
+        if (player.gameObject.activeSelf == false &&
+            currentMap.isAllMonsterDestoyed == false)
             OnResultUI(StageResult.LOSE);
+        else if (player.gameObject.activeSelf == false &&
+            currentMap.isAllMonsterDestoyed == true)
+            OnResultUI(StageResult.WIN);
+        else
+            resultUI.SetActive(false);
 
         if(currentMap.IsStageFinished())
         {
@@ -120,6 +121,12 @@ public class MapSpawner : MonoBehaviour
         {
             Destroy(DeleteItem);
         }
+    }
+
+    public void ResetState()
+    {
+        player.Revival();
+        
     }
 
     [System.Serializable]

@@ -9,7 +9,7 @@ public class Map : MonoBehaviour
     public GameObject[] items;
     public GameObject startingPoint;
 
-    bool isAllMonsterDestoyed;
+    public bool isAllMonsterDestoyed;
 
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Map : MonoBehaviour
         isAllMonsterDestoyed = true;
         for (int i = 0; i < monsters.Length; i++)
         {
-            if (monsters[i] != null)
+            if (monsters[i].activeSelf == true)
             {
                 isAllMonsterDestoyed = false;
                 break;

@@ -11,22 +11,32 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
     public Text cooldownText;
     public Character player;
 
+    bool onSet = false;
+
     Image iconImage;
 
     void Start()
     {
-        if (skillIndex < player.skillArray.Length)
-        {
-            iconImage = GetComponent<Image>();
-            iconImage.sprite = player.skillArray[skillIndex].icon;
-        } else
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     void Update()
     {
+        if (!onSet)
+        {
+            if (skillIndex < player.skillArray.Length)
+            {
+                iconImage = GetComponent<Image>();
+                iconImage.sprite = player.skillArray[skillIndex].icon;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            onSet = !onSet;
+        }
+        
         if (skillIndex < player.skillArray.Length)
         {
             PrintRemainCooldown();

@@ -326,8 +326,9 @@ MonoBehaviour:
   - maps:
     - {fileID: 8039428069317739390, guid: 49e7e49ee197a5c469fa49c0b000b016, type: 3}
     - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
+  currentMap: {fileID: 0}
   navMeshFloor: {fileID: 1957631890}
-  player: {fileID: 557503163}
+  player: {fileID: 0}
   resultUI: {fileID: 887063528}
   resultText: {fileID: 785102872}
   limitTime: 5
@@ -344,7 +345,7 @@ Transform:
   m_Children:
   - {fileID: 1957631893}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226243299
 GameObject:
@@ -642,7 +643,7 @@ MonoBehaviour:
   joystick: {fileID: 130133366}
   skillIndex: 2
   cooldownText: {fileID: 459818263}
-  player: {fileID: 557503163}
+  player: {fileID: 0}
 --- !u!114 &325189346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,97 +988,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459818261}
   m_CullTransparentMesh: 0
---- !u!1001 &557503162
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4858412950500547589, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547589, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547585, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: maxHp
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858412950500547591, guid: dc93099675fbbed488f19c8f6934574f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dc93099675fbbed488f19c8f6934574f, type: 3}
---- !u!114 &557503163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4858412950500547585, guid: dc93099675fbbed488f19c8f6934574f,
-    type: 3}
-  m_PrefabInstance: {fileID: 557503162}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cba79c1757e919340a3a0c689c651f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &560515770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1070,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 223903604}
+        m_MethodName: ResetState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 223903604}
         m_MethodName: CreateNewMap
         m_Mode: 3
@@ -1447,7 +1368,7 @@ RectTransform:
   - {fileID: 325189344}
   - {fileID: 1315265829}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1836,7 +1757,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1315265828
 GameObject:
@@ -1892,7 +1813,7 @@ MonoBehaviour:
   joystick: {fileID: 130133366}
   skillIndex: 3
   cooldownText: {fileID: 185831553}
-  player: {fileID: 557503163}
+  player: {fileID: 0}
 --- !u!114 &1315265831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1929,12 +1850,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315265828}
   m_CullTransparentMesh: 0
---- !u!1 &1435849006 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4858412950400422913, guid: dc93099675fbbed488f19c8f6934574f,
-    type: 3}
-  m_PrefabInstance: {fileID: 557503162}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1482771154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +1904,7 @@ MonoBehaviour:
   joystick: {fileID: 130133366}
   skillIndex: 1
   cooldownText: {fileID: 1802877186}
-  player: {fileID: 557503163}
+  player: {fileID: 0}
 --- !u!114 &1482771157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2101,7 +2016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a82e2a39f885674b93edb2bb4fa72c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1435849006}
+  Player: {fileID: 0}
   foffsetX: 0
   foffsetY: 30
   foffsetZ: -30
@@ -2126,7 +2041,7 @@ Transform:
   m_Children:
   - {fileID: 310596427}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1655567795
 MonoBehaviour:
@@ -2381,7 +2296,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2477,7 +2392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881324867
 GameObject:
@@ -2555,7 +2470,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1884149721
 GameObject:
@@ -2611,7 +2526,7 @@ MonoBehaviour:
   joystick: {fileID: 130133366}
   skillIndex: 0
   cooldownText: {fileID: 226243301}
-  player: {fileID: 557503163}
+  player: {fileID: 0}
 --- !u!114 &1884149724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2907,12 +2822,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCanvas: {fileID: 948602109}
   worldCanvas: {fileID: 1818287125}
-  player: {fileID: 4858412950500547585, guid: dc93099675fbbed488f19c8f6934574f, type: 3}
+  player: {fileID: 0}
   mapSpawner: {fileID: 223903604}
   moveJoystick: {fileID: 609389477}
   skillJoystick: {fileID: 130133366}
+  skillIcon:
+  - {fileID: 1884149723}
+  - {fileID: 1482771156}
+  - {fileID: 325189345}
+  - {fileID: 1315265830}
   portals: []
   monsters: []
+  items:
+  - {fileID: -9161373365206343026, guid: c083cc8ff50a1fb42ac3749a5a32721a, type: 3}
+  - {fileID: -3483068393401143673, guid: ba2c1bfe0dc739e4e95d86597aafdd9e, type: 3}
+  - {fileID: 318756731799253533, guid: 22c6e4a8a7ad2b948a22352442e8aca6, type: 3}
+  - {fileID: -6097225624778318727, guid: e6557c72ab605e741be90b82cdce6e29, type: 3}
+  - {fileID: 3296414032547136171, guid: 1d82cf549b08ae64985fa0abbfea0ae0, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2021314205
 Transform:
   m_ObjectHideFlags: 0
@@ -2925,5 +2853,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

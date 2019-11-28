@@ -38,7 +38,7 @@ public class Actor : MonoBehaviour
     public float moveSpriteInterval;
     public SpriteIndex deathSpriteIndex;
     public float deathSpriteInterval;
-    float spriteInterval;
+    protected float spriteInterval;
     List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
     public int spriteDirectionCount;
@@ -49,13 +49,13 @@ public class Actor : MonoBehaviour
     protected float characterDirectionAngle;
     Vector3 scale;
 
-    int currentHp;
+    public int currentHp;
 
     GameObject canvas;
     public DamageText damageText;
     public HPBar hpBar;
 
-    protected State state;
+    public State state;
 
     public Skill[] skillArray;
     protected float[] lastSkillActionTime;
@@ -105,7 +105,8 @@ public class Actor : MonoBehaviour
             SpriteUpdate(deathSpriteIndex);
             if (currentSpriteIndex >= (deathSpriteIndex.end - deathSpriteIndex.start))
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
             }
         }
         else if (state == State.Attack)
@@ -256,10 +257,9 @@ public class Actor : MonoBehaviour
     protected virtual void Death()
     {
         Stop();
-        Destroy(hpBar.gameObject);
+        hpBar.gameObject.SetActive(false);
         currentSpriteIndex = 0;
         state = State.Dead;
-        Destroy(GetComponent<Collider>());
     }
 
     IEnumerator TakeDamageCoroutine()

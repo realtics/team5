@@ -32,6 +32,20 @@ public class Character : Actor
             return skillArray[index];
     }
 
+    public void Revival()
+    {
+        this.gameObject.SetActive(true);
+
+        hpBar.gameObject.SetActive(true);
+        this.currentHp = this.maxHp;
+        hpBar.SetMaxHp(this.maxHp);
+        hpBar.SetHp(this.currentHp);
+        
+        this.state = State.Idle;
+
+        spriteDirectionCount = 5;
+    }
+
     public void EquipItem()
     {
         statusWithItem = status;
@@ -40,5 +54,14 @@ public class Character : Actor
         statusWithItem.hp += GameManager.GetInstance().itemStatus.hp;
         statusWithItem.hpRecovery += GameManager.GetInstance().itemStatus.hpRecovery;
         statusWithItem.moveSpeed += GameManager.GetInstance().itemStatus.moveSpeed;
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Item")
+        {
+            Debug.Log(collider.gameObject.name);
+            Destroy(collider.gameObject);
+        }
     }
 }
