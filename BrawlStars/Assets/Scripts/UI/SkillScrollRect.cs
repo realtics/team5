@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SkillScrollRect : MonoBehaviour
 {
     public RectTransform panel;
-    public Button[] bttn;
+    public Image[] bttn;
     public RectTransform center;
     public int startButton = 1;
 
