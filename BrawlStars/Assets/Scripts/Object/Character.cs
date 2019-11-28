@@ -31,30 +31,19 @@ public class Character : Actor
         else
             return skillArray[index];
     }
-<<<<<<< HEAD
 
     public void Revival()
     {
         this.gameObject.SetActive(true);
 
         hpBar.gameObject.SetActive(true);
-        this.currentHp = this.maxHp;
-        hpBar.SetMaxHp(this.maxHp);
-        hpBar.SetHp(this.currentHp);
-        
+        currentHp = status.hp;
+        hpBar.SetMaxHp(status.hp);
+        hpBar.SetHp(currentHp);
+
         this.state = State.Idle;
 
         spriteDirectionCount = 5;
-    }
-
-    public void EquipItem()
-    {
-        statusWithItem = status;
-        statusWithItem.attackDamage += GameManager.GetInstance().itemStatus.attackDamage;
-        statusWithItem.armor += GameManager.GetInstance().itemStatus.armor;
-        statusWithItem.hp += GameManager.GetInstance().itemStatus.hp;
-        statusWithItem.hpRecovery += GameManager.GetInstance().itemStatus.hpRecovery;
-        statusWithItem.moveSpeed += GameManager.GetInstance().itemStatus.moveSpeed;
     }
 
     void OnTriggerEnter(Collider collider)
@@ -65,6 +54,4 @@ public class Character : Actor
             Destroy(collider.gameObject);
         }
     }
-=======
->>>>>>> master
 }

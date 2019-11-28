@@ -17,7 +17,7 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
 
     void Start()
     {
-
+        player = BattleManager.GetInstance().player;
     }
 
     void Update()

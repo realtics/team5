@@ -34,6 +34,7 @@ public class MapSpawner : MonoBehaviour
             if (stages[stageIndex].maps.Length > 0)
             {
                 currentMap = Instantiate(stages[stageIndex].maps[mapIndex].gameObject).GetComponent<Map>();
+                BattleManager.GetInstance().player.transform.position = currentMap.startingPoint.transform.position;
             }
         }
     }

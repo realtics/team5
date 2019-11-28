@@ -495,8 +495,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 898029047}
-  skill: {fileID: 6212605451729664309, guid: a96432d459491b3419cdd5d0b37eac87, type: 3}
+  skillIndex: 0
   cooldownText: {fileID: 1629298061}
+  player: {fileID: 0}
 --- !u!114 &208920053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,12 +744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba79c1757e919340a3a0c689c651f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &298645757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4858412950400422913, guid: dc93099675fbbed488f19c8f6934574f,
-    type: 3}
-  m_PrefabInstance: {fileID: 298645755}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &308111763
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a82e2a39f885674b93edb2bb4fa72c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 298645757}
+  Player: {fileID: 0}
   foffsetX: 0
   foffsetY: 30
   foffsetZ: -30
@@ -1104,8 +1099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 898029047}
-  skill: {fileID: 3916294330767920508, guid: b550efe8306983140a5e12475d8447b5, type: 3}
+  skillIndex: 0
   cooldownText: {fileID: 2033918159}
+  player: {fileID: 0}
 --- !u!114 &503033294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stick: {fileID: 649085028}
   player: {fileID: 298645756}
-  skill: {fileID: 0}
+  skillIndex: 0
   rangeObject: {fileID: 137231212}
 --- !u!114 &898029048
 MonoBehaviour:
@@ -1673,7 +1669,7 @@ GameObject:
   - component: {fileID: 1062425968}
   - component: {fileID: 1062425967}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: BattleManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1697,8 +1693,10 @@ MonoBehaviour:
   mapSpawner: {fileID: 1173353336}
   moveJoystick: {fileID: 2005284004}
   skillJoystick: {fileID: 898029047}
+  skillIcon: []
   portals: []
   monsters: []
+  items: []
 --- !u!4 &1062425968
 Transform:
   m_ObjectHideFlags: 0
@@ -1833,10 +1831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d8d3da006d58c4aabc9ecb45a0ad5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maps:
-  - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
-  - {fileID: 2396046339796197974, guid: 42b9c8467baa19548a14a914a54965b9, type: 3}
-  mapIndex: 0
+  stages: []
+  currentMap: {fileID: 0}
   navMeshFloor: {fileID: 105811740}
   player: {fileID: 298645756}
   resultUI: {fileID: 1843329456}
@@ -2038,8 +2034,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 898029047}
-  skill: {fileID: 7920129116037723826, guid: 4c8490e38957f83498ef85180fb6b396, type: 3}
+  skillIndex: 0
   cooldownText: {fileID: 116631977}
+  player: {fileID: 0}
 --- !u!114 &1467116758
 MonoBehaviour:
   m_ObjectHideFlags: 0

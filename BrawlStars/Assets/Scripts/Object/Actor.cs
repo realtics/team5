@@ -28,7 +28,7 @@ public class Actor : MonoBehaviour
     public Team team;
     public Status status;
     protected Status finalStatus;
-    int currentHp;
+    protected int currentHp;
 
     public string SpriteName;
     public SpriteIndex standingSpriteIndex;
@@ -49,13 +49,7 @@ public class Actor : MonoBehaviour
     Vector3 velocity;
     protected float characterDirectionAngle;
     Vector3 scale;
-<<<<<<< HEAD
 
-    public int currentHp;
-
-=======
-    
->>>>>>> master
     GameObject canvas;
     public DamageText damageText;
     public HPBar hpBar;
@@ -94,7 +88,6 @@ public class Actor : MonoBehaviour
                 break;
             sprites.Add(sprite);
         }
-
 
         lastSkillActionTime = new float[skillArray.Length];
     }

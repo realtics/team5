@@ -4731,12 +4731,6 @@ MonoBehaviour:
   bttn:
   - {fileID: 991706612}
   - {fileID: 1885490053}
-  - {fileID: 1728683718}
-  - {fileID: 459136001}
-  - {fileID: 1634219429}
-  - {fileID: 343726446}
-  - {fileID: 1118530822}
-  - {fileID: 108315112}
   center: {fileID: 771198662}
   distance: []
 --- !u!1 &761121076
