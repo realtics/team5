@@ -305,7 +305,9 @@ public class Actor : MonoBehaviour
 
     public float GetRemainSkillCooldown(int index)
     {
-        return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
+		Debug.Log(skillArray[index]);
+		Debug.Log(lastSkillActionTime[index]);
+		return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
     }
 
     public Status GetFinalStatus()

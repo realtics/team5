@@ -15,7 +15,6 @@ public class BattleManager : MonoBehaviour
     public Joystick skillJoystick;
     public SkillIcon[] skillIcon;
     
-    public Portal[] portals;
     public Monster[] monsters;
     public Item[] items;
 
@@ -28,6 +27,12 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         player = Instantiate(GameManager.GetInstance().player, transform.position, Quaternion.identity);
+
+        moveJoystick.player = player;
+        skillJoystick.player = player;
+		for(int i = 0; i < skillIcon.Length; i++)
+			skillIcon[i].player = player;
+		mapSpawner.SetPlayer(player);
     }
 
     // Update is called once per frame

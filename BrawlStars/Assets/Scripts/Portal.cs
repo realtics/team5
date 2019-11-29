@@ -5,32 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    MapSpawner mapSpawner;
     public int targetIndex;
-    Character player;
+	[HideInInspector]
+	public MapSpawner mapSpawner;
+	[HideInInspector]
+	public Character player;
+
+	bool isWaitingCollision;
 
     // Start is called before the first frame update
     void Start()
     {
-        mapSpawner = BattleManager.GetInstance().mapSpawner;
-        player = BattleManager.GetInstance().player;
-    }
+		isWaitingCollision = false;
+	}
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
+	{
+		isWaitingCollision = true;
+	}
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject == player.gameObject)
-        {
-            mapSpawner.DestroyItem();
-
-            MapSpawner.mapIndex = targetIndex;
-
-            mapSpawner.CreateNewMap(MapSpawner.mapIndex);
-        }
+		if (isWaitingCollision && collider.gameObject == player.gameObject)
+		{
+			mapSpawner.DestroyItem();
+			MapSpawner.mapIndex = targetIndex;
+			mapSpawner.CreateNewMap(MapSpawner.mapIndex);
+		}
+		else
+			isWaitingCollision = true;
     }
 }

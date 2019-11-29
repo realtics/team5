@@ -28,12 +28,20 @@ public class MapSpawner : MonoBehaviour
     void Start()
     {
         resultUI.SetActive(false);
+    }
 
-        player = BattleManager.GetInstance().player;
+    public void SetPlayer(Character player)
+    {
+        this.player = player;
         if (stages.Length > 0 && stages[stageIndex].maps.Length > 0)
         {
             currentMap = Instantiate(stages[stageIndex].maps[mapIndex]);
             player.transform.position = currentMap.startingPoint.transform.position;
+			for (int i = 0; i < currentMap.portals.Length; i++)
+			{
+				currentMap.portals[i].mapSpawner = this;
+				currentMap.portals[i].player = player;
+			}
         }
     }
 

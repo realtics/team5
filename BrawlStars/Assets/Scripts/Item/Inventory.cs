@@ -23,7 +23,9 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
+
+		GameManager.GetInstance().InitInventory(row, column);
+	}
 
     public static Inventory GetInventory()
     {
@@ -35,8 +37,6 @@ public class Inventory : MonoBehaviour
     {
         Vector2 position;
         moveItemTargetSlot = null;
-
-        GameManager.GetInstance().InitInventory(row, column);
 
         for (int i = 0; i < row; i++)
         {

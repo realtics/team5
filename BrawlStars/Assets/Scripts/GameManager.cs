@@ -7,23 +7,16 @@ public class GameManager : MonoBehaviour
     static GameManager instance = null;
 
     public Character player;
-    public ItemSlot[] equippedSlot;
-
     Dictionary<string, Item> itemTable;
     public Item[] itemTableElements;
     public string[] InventoryItemNameArray;
-    string[] equippedItemNameArray;
+    public string[] equippedItemNameArray;
     Status itemStatus;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
         instance = this;
-
-        for(int i = 0; i < equippedSlot.Length; i++)
-        {
-            equippedSlot[i].SetSlotIndex(i);
-        }
     }
 
     public static GameManager GetInstance()
@@ -34,7 +27,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        equippedItemNameArray = new string[equippedSlot.Length];
         itemTable = new Dictionary<string, Item>();
         for(int i = 0; i < itemTableElements.Length; i++)
         {
@@ -50,25 +42,23 @@ public class GameManager : MonoBehaviour
 
     public void InitInventory(int row, int column)
     {
-        InventoryItemNameArray = new string[row * column];
-        for (int i = 0; i < InventoryItemNameArray.Length; i++)
+        if (InventoryItemNameArray.Length == 0)
         {
-            InventoryItemNameArray[i] = null;
+            InventoryItemNameArray = new string[row * column];
+            for (int i = 0; i < InventoryItemNameArray.Length; i++)
+            {
+                InventoryItemNameArray[i] = null;
+            }
         }
-
-        InventoryItemNameArray[0] = "weapon1";
-        InventoryItemNameArray[1] = "weapon2";
-        InventoryItemNameArray[2] = "armor1";
     }
 
     public bool AddNewItemInInventory(Item item)
     {
-        int emptySlotIndex = 0;
+        int emptySlotIndex;
         for (emptySlotIndex = 0; emptySlotIndex < InventoryItemNameArray.Length; emptySlotIndex++)
         {
             if (InventoryItemNameArray[emptySlotIndex] == null)
                 break;
-            emptySlotIndex++;
         }
 
         if(emptySlotIndex < InventoryItemNameArray.Length)

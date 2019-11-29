@@ -28920,13 +28920,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portals:
-  - {fileID: 3226783332960721905}
+  - {fileID: 3226783332960721907}
   monsters:
   - {fileID: 8371144970792973022}
   - {fileID: 8696607105416557524}
   - {fileID: 8686621947357794289}
   items: []
   startingPoint: {fileID: 4317017779631561308}
+  isAllMonsterDestoyed: 0
 --- !u!1 &6097822492692031501
 GameObject:
   m_ObjectHideFlags: 0
@@ -40779,15 +40780,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77029dcc3359e80479b7dda2b31ec37e, type: 3}
---- !u!1 &3226783332960721905 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1489704820151841583, guid: 77029dcc3359e80479b7dda2b31ec37e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4065528890948331742}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3226783332960721906 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1489704820151841580, guid: 77029dcc3359e80479b7dda2b31ec37e,
     type: 3}
   m_PrefabInstance: {fileID: 4065528890948331742}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3226783332960721907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1489704820151841581, guid: 77029dcc3359e80479b7dda2b31ec37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4065528890948331742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a7acf39a366de4b839f831199ddfb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

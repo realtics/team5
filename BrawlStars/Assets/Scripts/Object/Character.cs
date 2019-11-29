@@ -37,8 +37,13 @@ public class Character : Actor
     {
         if (collider.gameObject.tag == "Item")
         {
-            Debug.Log(collider.gameObject.name);
-            Destroy(collider.gameObject);
+            Item contactItem = collider.GetComponent<Item>();
+            bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
+            if (canAddNewItem)
+            {
+                Debug.Log(collider.name);
+                Destroy(collider.gameObject);
+            }
         }
     }
 }
