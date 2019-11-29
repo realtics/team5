@@ -605,7 +605,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 937293672}
+        - m_Target: {fileID: 937293671}
           m_MethodName: StartDrag
           m_Mode: 1
           m_Arguments:
@@ -620,7 +620,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 937293672}
+        - m_Target: {fileID: 937293671}
           m_MethodName: EndDrag
           m_Mode: 1
           m_Arguments:
@@ -2054,13 +2054,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 884853093}
   bttn:
-  - {fileID: 938280762}
-  - {fileID: 1392189263}
-  - {fileID: 1446052411}
-  - {fileID: 398608966}
-  - {fileID: 232378828}
-  - {fileID: 633770159}
-  - {fileID: 167322430}
+  - {fileID: 938280763}
+  - {fileID: 1392189264}
+  - {fileID: 1446052412}
+  - {fileID: 398608967}
+  - {fileID: 232378829}
+  - {fileID: 633770160}
+  - {fileID: 167322431}
   center: {fileID: 496269510}
   startButton: 1
   distance: []
@@ -4246,7 +4246,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683634065}
-  - component: {fileID: 683634067}
   - component: {fileID: 683634066}
   m_Layer: 5
   m_Name: SkillSelecter
@@ -4288,35 +4287,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1950999500}
   bttn:
-  - {fileID: 424028903}
-  - {fileID: 706546290}
-  - {fileID: 358786347}
-  - {fileID: 1102853576}
-  - {fileID: 321488226}
-  - {fileID: 1730741378}
-  - {fileID: 1246101200}
+  - {fileID: 424028904}
+  - {fileID: 706546291}
+  - {fileID: 358786348}
+  - {fileID: 1102853577}
+  - {fileID: 321488227}
+  - {fileID: 1730741379}
+  - {fileID: 1246101201}
   center: {fileID: 699401409}
   startButton: 1
   distance: []
   distReposition: []
---- !u!114 &683634067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683634064}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e02214d76f5f5d40a2f2bbc68ade923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1950999500}
-  bttn:
-  - {fileID: 424028903}
-  - {fileID: 706546290}
-  center: {fileID: 699401409}
-  distance: []
 --- !u!1 &699401408
 GameObject:
   m_ObjectHideFlags: 0
@@ -5287,7 +5268,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937293670}
-  - component: {fileID: 937293672}
   - component: {fileID: 937293671}
   m_Layer: 5
   m_Name: SkillSelecter
@@ -5329,35 +5309,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 751090978}
   bttn:
-  - {fileID: 145302690}
-  - {fileID: 2061482922}
-  - {fileID: 1947001929}
-  - {fileID: 953967350}
-  - {fileID: 358997229}
-  - {fileID: 1072540822}
-  - {fileID: 995150462}
+  - {fileID: 145302691}
+  - {fileID: 2061482923}
+  - {fileID: 1947001930}
+  - {fileID: 953967351}
+  - {fileID: 358997230}
+  - {fileID: 1072540823}
+  - {fileID: 995150463}
   center: {fileID: 1397400079}
   startButton: 1
   distance: []
   distReposition: []
---- !u!114 &937293672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 937293669}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e02214d76f5f5d40a2f2bbc68ade923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 751090978}
-  bttn:
-  - {fileID: 145302690}
-  - {fileID: 2061482922}
-  center: {fileID: 1397400079}
-  distance: []
 --- !u!1 &938280761
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,7 +6095,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1379515488}
+        - m_Target: {fileID: 1379515487}
           m_MethodName: StartDrag
           m_Mode: 1
           m_Arguments:
@@ -6148,7 +6110,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1379515488}
+        - m_Target: {fileID: 1379515487}
           m_MethodName: EndDrag
           m_Mode: 1
           m_Arguments:
@@ -8295,7 +8257,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 683634067}
+        - m_Target: {fileID: 683634066}
           m_MethodName: StartDrag
           m_Mode: 1
           m_Arguments:
@@ -8310,7 +8272,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 683634067}
+        - m_Target: {fileID: 683634066}
           m_MethodName: EndDrag
           m_Mode: 1
           m_Arguments:
@@ -8513,7 +8475,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1379515486}
-  - component: {fileID: 1379515488}
   - component: {fileID: 1379515487}
   m_Layer: 5
   m_Name: SkillSelecter
@@ -8555,35 +8516,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1333910280}
   bttn:
-  - {fileID: 1620304454}
-  - {fileID: 162354069}
-  - {fileID: 773637843}
-  - {fileID: 1822017080}
-  - {fileID: 1459675898}
-  - {fileID: 26070374}
-  - {fileID: 490988849}
+  - {fileID: 1620304455}
+  - {fileID: 162354070}
+  - {fileID: 773637844}
+  - {fileID: 1822017081}
+  - {fileID: 1459675899}
+  - {fileID: 26070375}
+  - {fileID: 490988850}
   center: {fileID: 351553718}
   startButton: 1
   distance: []
   distReposition: []
---- !u!114 &1379515488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379515485}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e02214d76f5f5d40a2f2bbc68ade923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1333910280}
-  bttn:
-  - {fileID: 1620304454}
-  - {fileID: 162354069}
-  center: {fileID: 351553718}
-  distance: []
 --- !u!1 &1381184577
 GameObject:
   m_ObjectHideFlags: 0
@@ -8643,7 +8586,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1483867475}
+        - m_Target: {fileID: 1483867474}
           m_MethodName: StartDrag
           m_Mode: 1
           m_Arguments:
@@ -8658,7 +8601,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1483867475}
+        - m_Target: {fileID: 1483867474}
           m_MethodName: EndDrag
           m_Mode: 1
           m_Arguments:
@@ -9902,7 +9845,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1483867473}
-  - component: {fileID: 1483867475}
   - component: {fileID: 1483867474}
   m_Layer: 5
   m_Name: SkillSelecter
@@ -9944,35 +9886,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 2007312681}
   bttn:
-  - {fileID: 255111881}
-  - {fileID: 1508557326}
-  - {fileID: 227993101}
-  - {fileID: 205101218}
-  - {fileID: 1119070640}
-  - {fileID: 1913152704}
-  - {fileID: 220393831}
+  - {fileID: 255111882}
+  - {fileID: 1508557327}
+  - {fileID: 227993102}
+  - {fileID: 205101219}
+  - {fileID: 1119070641}
+  - {fileID: 1913152705}
+  - {fileID: 220393832}
   center: {fileID: 752047335}
   startButton: 1
   distance: []
   distReposition: []
---- !u!114 &1483867475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483867472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e02214d76f5f5d40a2f2bbc68ade923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 2007312681}
-  bttn:
-  - {fileID: 255111881}
-  - {fileID: 1508557326}
-  center: {fileID: 752047335}
-  distance: []
 --- !u!1 &1508557325
 GameObject:
   m_ObjectHideFlags: 0
