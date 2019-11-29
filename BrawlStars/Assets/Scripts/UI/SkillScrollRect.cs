@@ -78,7 +78,7 @@ public class SkillScrollRect : MonoBehaviour
     {
         float newY = Mathf.Lerp(panel.anchoredPosition.y, position, Time.deltaTime * lerpSpeed);
 
-        if (Mathf.Abs(position - newY) < 3f)
+        if (Mathf.Abs(position - newY) < 1f)
             newY = position;
 
         Vector2 newPosition = new Vector2(panel.anchoredPosition.x, newY);
