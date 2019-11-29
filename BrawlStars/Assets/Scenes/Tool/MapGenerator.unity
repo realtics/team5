@@ -41671,7 +41671,7 @@ MonoBehaviour:
     - MapName: 00
       mapSize:
         x: 30
-        y: 10
+        y: 20
       maxObstacleHeight: 1
       selectObstacleElement: 3
       startingPosition: {x: 0, y: 0, z: 0}
