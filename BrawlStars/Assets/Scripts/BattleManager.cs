@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
         skillJoystick.player = player;
 		for(int i = 0; i < skillIcon.Length; i++)
 			skillIcon[i].player = player;
-		mapSpawner.SetPlayer(player);
+		mapSpawner.Init(player);
     }
 
     // Update is called once per frame

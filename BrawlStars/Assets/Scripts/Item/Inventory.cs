@@ -44,6 +44,7 @@ public class Inventory : MonoBehaviour
             {
                 Image slot = Instantiate(slotPrefab);
                 slot.transform.SetParent(transform);
+				slot.transform.localScale = new Vector3(1, 1, 1);
 
                 position.x = verticalPadding + (slotPrefab.rectTransform.sizeDelta.x + gap) * j + slotPrefab.rectTransform.sizeDelta.x / 2;
                 position.y = -(horizontalPadding + (slotPrefab.rectTransform.sizeDelta.y + gap) * i + slotPrefab.rectTransform.sizeDelta.y / 2);

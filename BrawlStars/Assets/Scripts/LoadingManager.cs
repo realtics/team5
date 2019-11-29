@@ -29,11 +29,11 @@ public class LoadingManager : MonoBehaviour
         float timer = 0.0f;
 
         while (!asyncOperator.isDone)
-        {
-            yield return null;
+		{
+			yield return null;
             timer += Time.deltaTime;
 
-            progressText.text = ((int)Mathf.Round(progressBar.fillAmount * 100)).ToString() + "%";
+			progressText.text = ((int)Mathf.Round(progressBar.fillAmount * 100)).ToString() + "%";
             if (asyncOperator.progress < 0.9f)
             {
                 progressBar.fillAmount = Mathf.Lerp(progressBar.fillAmount, asyncOperator.progress, timer);

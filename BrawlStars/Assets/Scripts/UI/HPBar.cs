@@ -12,7 +12,12 @@ public class HPBar : MonoBehaviour
     int hp;
     int maxHp;
 
-    public void SetMaxHp(int hp)
+	private void Start()
+	{
+		transform.localScale = new Vector3(1, 1, 1);
+	}
+
+	public void SetMaxHp(int hp)
     {
         maxHp = hp;
     }

@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/1. OpenScreen.unity
     guid: 72890251cc83e5e459e00f8530b0172b
   - enabled: 1
-    path: Assets/Scenes/2. Personal2.unity
-    guid: 8d2ecbea24548b147a5a635db1d25d81
+    path: Assets/Scenes/2. Personal.unity
+    guid: 18b4ebe0d2055bc42a3c6b79754c3069
   - enabled: 1
-    path: Assets/Scenes/3. Battle2.unity
-    guid: 5cb2856bbcb14f44fa332a96c226b8bf
+    path: Assets/Scenes/3. Battle.unity
+    guid: aa386d154095c6b429a6310174c0ae47
   - enabled: 1
     path: Assets/Scenes/Tool/LoadingScene.unity
     guid: 4c785e5ad5103e24480414ddc284dbf7

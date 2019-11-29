@@ -37,7 +37,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
             dragedImage.transform.SetParent(transform);
-            dragedImage.sprite = item.icon;
+			dragedImage.transform.localScale = new Vector3(1, 1, 1);
+			dragedImage.sprite = item.icon;
         }
     }
 

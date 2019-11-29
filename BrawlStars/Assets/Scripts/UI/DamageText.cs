@@ -14,6 +14,7 @@ public class DamageText : MonoBehaviour
     public void SetDefaultPosition(Vector3 position, int damage)
     {
         originalPosition = position;
+		transform.localScale = new Vector3(1, 1, 1);
         GetComponent<Text>().text = "-" + damage.ToString();
 
         instantiatedTime = Time.time;

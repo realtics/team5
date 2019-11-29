@@ -115,7 +115,7 @@ public class Monster : Actor
             int itemTable = Random.Range(0, GameManager.GetInstance().itemTableElements.Length);
 
             if (GameManager.GetInstance().itemTableElements[itemTable] != null)
-            {                
+            {
                 itemPosition.x += Random.Range(-1f, 1f);
                 itemPosition.z += Random.Range(-1f, 1f);
 
