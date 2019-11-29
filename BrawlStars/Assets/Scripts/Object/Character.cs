@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : Actor
-{    
-    protected override void Start()
+{
+	protected override void Awake()
+	{
+		base.Awake();
+
+		for (int i = 0; i < skillArray.Length; i++)
+		{
+			skillArray[i].MakeTargetRangeMesh();
+			lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
+		}
+	}
+
+	protected override void Start()
     {
         base.Start();
 
-        for (int i = 0; i < skillArray.Length; i++)
-        {
-            skillArray[i].MakeTargetRangeMesh();
-            lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
-        }
-
-        finalStatus = GameManager.GetInstance().GetFinalStatus();
+		finalStatus = GameManager.GetInstance().GetFinalStatus();
         hpBar.SetMaxHp(finalStatus.hp);
         hpBar.SetHp(finalStatus.hp);
     }
@@ -37,8 +42,12 @@ public class Character : Actor
     {
         if (collider.gameObject.tag == "Item")
         {
-            Debug.Log(collider.gameObject.name);
-            Destroy(collider.gameObject);
+            Item contactItem = collider.GetComponent<Item>();
+            bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
+            if (canAddNewItem)
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
 }

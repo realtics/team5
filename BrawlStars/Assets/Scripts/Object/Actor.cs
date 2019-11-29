@@ -59,8 +59,13 @@ public class Actor : MonoBehaviour
     public Skill[] skillArray;
     protected float[] lastSkillActionTime;
 
-    // Start is called before the first frame update
-    protected virtual void Start()
+	protected virtual void Awake()
+	{
+		lastSkillActionTime = new float[skillArray.Length];
+	}
+
+	// Start is called before the first frame update
+	protected virtual void Start()
     {
         prevSpriteTime = Time.time;
         canvas = BattleManager.GetInstance().worldCanvas;
@@ -68,8 +73,6 @@ public class Actor : MonoBehaviour
 
         hpBar = Instantiate(hpBar);
         hpBar.transform.SetParent(canvas.transform);
-
-        lastSkillActionTime = new float[skillArray.Length];
 
         mRigidbody = GetComponent<Rigidbody>();
         mCollider = GetComponent<CapsuleCollider>();
@@ -305,7 +308,7 @@ public class Actor : MonoBehaviour
 
     public float GetRemainSkillCooldown(int index)
     {
-        return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
+		return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
     }
 
     public Status GetFinalStatus()

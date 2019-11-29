@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public GameObject[] portals;
+    public Portal[] portals;
     public GameObject[] monsters;
     public GameObject[] items;
     public GameObject startingPoint;
@@ -41,7 +41,7 @@ public class Map : MonoBehaviour
         {
             for (int i = 0; i < portals.Length; i++)
             {
-                portals[i].SetActive(true);
+                portals[i].gameObject.SetActive(true);
             }
         }
     }

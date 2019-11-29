@@ -560,7 +560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC885\uB8CC\n"
+  m_Text: "\uC885\uB8CC"
 --- !u!222 &637887796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1608,16 +1608,9 @@ MonoBehaviour:
   - {fileID: 17304690}
   - {fileID: 1146288585}
   - {fileID: 617037413}
-  portals: []
   monsters: []
   items:
-  - {fileID: -9161373365206343026, guid: c083cc8ff50a1fb42ac3749a5a32721a, type: 3}
-  - {fileID: -3483068393401143673, guid: ba2c1bfe0dc739e4e95d86597aafdd9e, type: 3}
-  - {fileID: 318756731799253533, guid: 22c6e4a8a7ad2b948a22352442e8aca6, type: 3}
-  - {fileID: -6097225624778318727, guid: e6557c72ab605e741be90b82cdce6e29, type: 3}
-  - {fileID: 3296414032547136171, guid: 1d82cf549b08ae64985fa0abbfea0ae0, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -3162664654240143926, guid: 0b6d250296196864da7ff39d8d8e30c5, type: 3}
 --- !u!4 &1460514555
 Transform:
   m_ObjectHideFlags: 0
@@ -2064,7 +2057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2592,7 +2585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

@@ -106,21 +106,20 @@ public class Monster : Actor
 
     void DropItem()
     {
-        //Max를 몇개까지 할지는 아직 안정해서 items.Length로 했음.
-        int DropCount = Random.Range(0, BattleManager.GetInstance().items.Length);
+        int DropCount = Random.Range(0, GameManager.GetInstance().itemTableElements.Length);
 
         Vector3 itemPosition = transform.position;
 
-        for (int i = 0; i < DropCount; i++)
+        for (int i = 0; i < DropCount+1; i++)
         {
-            int itemTable = Random.Range(0, BattleManager.GetInstance().items.Length);
+            int itemTable = Random.Range(0, GameManager.GetInstance().itemTableElements.Length);
 
-            if (BattleManager.GetInstance().items[itemTable] != null)
+            if (GameManager.GetInstance().itemTableElements[itemTable] != null)
             {
                 itemPosition.x += Random.Range(-1f, 1f);
                 itemPosition.z += Random.Range(-1f, 1f);
 
-                Instantiate(BattleManager.GetInstance().items[itemTable], itemPosition, Quaternion.identity);
+                Instantiate(GameManager.GetInstance().itemTableElements[itemTable], itemPosition, Quaternion.identity);
             }
         }
     }

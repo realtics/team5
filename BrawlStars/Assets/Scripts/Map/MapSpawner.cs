@@ -28,13 +28,12 @@ public class MapSpawner : MonoBehaviour
     void Start()
     {
         resultUI.SetActive(false);
+    }
 
-        player = BattleManager.GetInstance().player;
-        if (stages.Length > 0 && stages[stageIndex].maps.Length > 0)
-        {
-            currentMap = Instantiate(stages[stageIndex].maps[mapIndex]);
-            player.transform.position = currentMap.startingPoint.transform.position;
-        }
+    public void Init(Character player)
+    {
+        this.player = player;
+		CreateNewMap(0);
     }
 
     private void Update()
@@ -56,25 +55,23 @@ public class MapSpawner : MonoBehaviour
     {
         DestroyItem();
 
-        if (player == null)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-        else
-        {
-            if (stageIndex < stages.Length)
-            {
-                if (index < stages[stageIndex].maps.Length)
-                {
-                    resultUI.SetActive(false);
+		if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
+		{
+			resultUI.SetActive(false);
 
-                    Destroy(currentMap.gameObject);
-                    currentMap = Instantiate(stages[stageIndex].maps[index]);
+			if (currentMap != null)
+				Destroy(currentMap.gameObject);
 
-                    SetCharacterPosition();
-                }
-            }
-        }
+			currentMap = Instantiate(stages[stageIndex].maps[mapIndex]);
+			player.transform.position = currentMap.startingPoint.transform.position;
+			for (int i = 0; i < currentMap.portals.Length; i++)
+			{
+				currentMap.portals[i].mapSpawner = this;
+				currentMap.portals[i].player = player;
+			}
+
+			SetCharacterPosition();
+		}
     }
 
     public void OnExitButtonClick(string sceneName)

@@ -23,7 +23,9 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
+
+		GameManager.GetInstance().InitInventory(row, column);
+	}
 
     public static Inventory GetInventory()
     {
@@ -36,14 +38,13 @@ public class Inventory : MonoBehaviour
         Vector2 position;
         moveItemTargetSlot = null;
 
-        GameManager.GetInstance().InitInventory(row, column);
-
         for (int i = 0; i < row; i++)
         {
             for(int j = 0; j < column; j++)
             {
                 Image slot = Instantiate(slotPrefab);
                 slot.transform.SetParent(transform);
+				slot.transform.localScale = new Vector3(1, 1, 1);
 
                 position.x = verticalPadding + (slotPrefab.rectTransform.sizeDelta.x + gap) * j + slotPrefab.rectTransform.sizeDelta.x / 2;
                 position.y = -(horizontalPadding + (slotPrefab.rectTransform.sizeDelta.y + gap) * i + slotPrefab.rectTransform.sizeDelta.y / 2);

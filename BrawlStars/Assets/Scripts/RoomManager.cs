@@ -18,6 +18,8 @@ public class RoomManager : MonoBehaviour
     int menuIndex;
     public Text menuText;
 
+    public ItemSlot[] equippedSlot;
+
     public GameObject StageSelecter;
 
     private void Awake()
@@ -36,6 +38,13 @@ public class RoomManager : MonoBehaviour
         menuIndex = 0;
         SetMenuActive();
         StageSelecter.SetActive(false);
+
+        for (int i = 0; i < equippedSlot.Length; i++)
+        {
+            equippedSlot[i].SetSlotIndex(i);
+        }
+
+        GameManager.GetInstance().equippedItemNameArray = new string[equippedSlot.Length];
     }
 
     // Update is called once per frame
