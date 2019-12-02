@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : Actor
 {
+	public InGameLog inGameLog;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -22,6 +24,7 @@ public class Character : Actor
 		finalStatus = GameManager.GetInstance().GetFinalStatus();
         hpBar.SetMaxHp(finalStatus.hp);
         hpBar.SetHp(finalStatus.hp);
+		inGameLog = GetComponent<InGameLog>();
     }
 
     protected override void Update()
@@ -46,6 +49,8 @@ public class Character : Actor
             bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
             if (canAddNewItem)
             {
+				inGameLog.GameLog(collider.gameObject.name);
+				Debug.Log(collider.gameObject.name);
                 Destroy(collider.gameObject);
             }
         }

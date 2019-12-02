@@ -10,8 +10,9 @@ public class BattleManager : MonoBehaviour
     public GameObject worldCanvas;
     public Character player;
     public MapSpawner mapSpawner;
-    
-    public Joystick moveJoystick;
+	public UpperHPBar upperHPBar;
+
+	public Joystick moveJoystick;
     public Joystick skillJoystick;
     public SkillIcon[] skillIcon;
     
@@ -33,6 +34,7 @@ public class BattleManager : MonoBehaviour
 		for(int i = 0; i < skillIcon.Length; i++)
 			skillIcon[i].player = player;
 		mapSpawner.Init(player);
+		upperHPBar.player = player;
     }
 
     // Update is called once per frame

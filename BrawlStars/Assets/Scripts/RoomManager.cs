@@ -36,7 +36,7 @@ public class RoomManager : MonoBehaviour
     void Start()
     {
         menuIndex = 0;
-        SetMenuActive();
+        SetMenuActive(0);
         StageSelecter.SetActive(false);
 
         for (int i = 0; i < equippedSlot.Length; i++)
@@ -56,23 +56,22 @@ public class RoomManager : MonoBehaviour
     public void OpenNextMenu()
     {
         menuIndex = (menuIndex + 1) % menuArray.Length;
-        SetMenuActive();
+        //SetMenuActive();
     }
 
     public void OpenPrevMenu()
     {
         menuIndex = (menuIndex - 1 + menuArray.Length) % menuArray.Length;
-        SetMenuActive();
+        //SetMenuActive();
     }
 
-    void SetMenuActive()
+    public void SetMenuActive(int menuIndex)
     {
         for (int i = 0; i < menuArray.Length; i++)
         {
             if (i == menuIndex)
             {
                 menuArray[i].content.SetActive(true);
-                menuText.text = menuArray[i].name;
             }
             else
                 menuArray[i].content.SetActive(false);
