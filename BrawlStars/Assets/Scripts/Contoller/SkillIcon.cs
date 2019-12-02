@@ -4,39 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class SkillIcon : ControlUI
 {
     public SkillJoystick joystick;
     public int skillIndex;
     public Text cooldownText;
     public Character player;
 
-    bool onSet = false;
+    bool onSkillActivate;
 
     Image iconImage;
 
     void Start()
     {
+		onSkillActivate = false;
+	}
 
-    }
+	public void Init(Character player)
+	{
+		this.player = player;
+
+		if (skillIndex < player.skillArray.Length)
+		{
+			iconImage = GetComponent<Image>();
+			iconImage.sprite = player.skillArray[skillIndex].icon;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 
     void Update()
-    {
-        if (!onSet)
-        {
-            if (skillIndex < player.skillArray.Length)
-            {
-                iconImage = GetComponent<Image>();
-                iconImage.sprite = player.skillArray[skillIndex].icon;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-
-            onSet = !onSet;
-        }
-        
+    {        
         if (skillIndex < player.skillArray.Length)
         {
             PrintRemainCooldown();
@@ -57,39 +57,43 @@ public class SkillIcon : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoin
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public override void PointerDown(PointerEventData eventData)
     {
-        if (skillIndex < player.skillArray.Length && ReadyToAction())
+        if (ReadyToAction() && joystick.gameObject.activeSelf == false)
         {
             joystick.gameObject.SetActive(true);
             joystick.skillIndex = skillIndex;
-            joystick.OnPointerDown(eventData);
+            joystick.PointerDown(eventData);
 
             Color color = GetComponent<Image>().color;
             color.a = 0f;
             GetComponent<Image>().color = color;
+
+			onSkillActivate = true;
+		}
+    }
+
+    public override void Drag(PointerEventData eventData)
+    {
+        if (onSkillActivate)
+        {
+            joystick.Drag(eventData);
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
+	public override void PointerUp(PointerEventData eventData)
     {
-        if (joystick.gameObject.activeSelf == true)
+        if (onSkillActivate)
         {
-            joystick.OnDrag(eventData);
-        }
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (joystick.gameObject.activeSelf == true)
-        {
-            joystick.OnPointerUp(eventData);
+            joystick.PointerUp(eventData);
 
             joystick.gameObject.SetActive(false);
             Color color = GetComponent<Image>().color;
             color.a = 1f;
             GetComponent<Image>().color = color;
-        }
+
+			onSkillActivate = false;
+		}
     }
 
     public bool ReadyToAction()

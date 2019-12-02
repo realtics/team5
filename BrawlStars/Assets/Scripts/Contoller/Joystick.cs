@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
+public class Joystick : ControlUI
 {
     protected RectTransform mTransform;
     Vector2 originalPosition;
@@ -24,7 +24,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
     }
     
-    public virtual void OnPointerDown(PointerEventData data)
+    public override void PointerDown(PointerEventData data)
     {
         mTransform = GetComponent<RectTransform>();
         originalPosition = mTransform.position;
@@ -32,7 +32,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         stick.anchoredPosition = new Vector2(0, 0);
     }
 
-    public virtual void OnDrag(PointerEventData data)
+    public override void Drag(PointerEventData data)
     {
         stickMove = data.position - new Vector2(mTransform.position.x, mTransform.position.y);
         if (Vector2.SqrMagnitude(stickMove) > Mathf.Pow(mTransform.sizeDelta.x / 2, 2))
@@ -42,7 +42,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         stick.anchoredPosition = stickMove;
     }
 
-    public virtual void OnPointerUp(PointerEventData data)
+    public override void PointerUp(PointerEventData data)
     {
         mTransform.position = originalPosition;
         stick.anchoredPosition = new Vector2(0, 0);

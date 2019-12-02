@@ -5,16 +5,16 @@ using UnityEngine.EventSystems;
 
 public class MoveJoystick : Joystick
 {
-    public override void OnDrag(PointerEventData data)
+    public override void Drag(PointerEventData data)
     {
-        base.OnDrag(data);
+        base.Drag(data);
         Vector3 playerMove = new Vector3(stickMove.x, 0, stickMove.y);
         player.Move(playerMove);
     }
 
-    public override void OnPointerUp(PointerEventData data)
+    public override void PointerUp(PointerEventData data)
     {
-        base.OnPointerUp(data);
+        base.PointerUp(data);
         player.Stop();
     }
 }

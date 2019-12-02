@@ -32,7 +32,7 @@ public class BattleManager : MonoBehaviour
         moveJoystick.player = player;
         skillJoystick.player = player;
 		for(int i = 0; i < skillIcon.Length; i++)
-			skillIcon[i].player = player;
+			skillIcon[i].Init(player);
 		mapSpawner.Init(player);
 		upperHPBar.player = player;
     }

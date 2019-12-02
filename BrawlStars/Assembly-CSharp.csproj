@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\Contoller\ControlUI.cs" />
     <Compile Include="Assets\Scripts\Contoller\Global.cs" />
     <Compile Include="Assets\Scripts\Contoller\Joystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\MainCamera.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Item\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Item\ItemSlot.cs" />
