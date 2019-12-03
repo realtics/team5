@@ -219,9 +219,11 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void SetHp(int _hp)
+    public virtual void SetHp(int _hp)
     {
         currentHp = _hp;
+		if (currentHp < 0)
+			currentHp = 0;
         hpBar.SetHp(currentHp);
     }
 
@@ -250,7 +252,7 @@ public class Actor : MonoBehaviour
         }
     }
 
-    public void Alive()
+    public virtual void Alive()
     {
         gameObject.SetActive(true);
 

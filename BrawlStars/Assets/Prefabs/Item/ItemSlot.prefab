@@ -88,11 +88,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragedImagePrefab: {fileID: 7727268691360596431, guid: 5eb3d84e5c3e15d439ede863cb3e1914,
     type: 3}
-  itemArray:
-  - {fileID: 5215785645586748109, guid: 8d45244c51bba474992b5c8a16fe63a9, type: 3}
-  - {fileID: 5215785645586748109, guid: 09e6ce311f12dd64f9677b528945bd38, type: 3}
-  - {fileID: 5215785645586748109, guid: 6337a62b9fd92514e8a7f66205b2261d, type: 3}
-  - {fileID: 5215785645586748109, guid: de914652082eaef4f98b0d74244b0569, type: 3}
-  - {fileID: 5215785645586748109, guid: 896e4c8509ad2ee4888d17f5f7bb5d84, type: 3}
-  slotIndex: 0
   type: 4
+  item: {fileID: 0}
+  itemIndex: 0
+  itemWindow: {fileID: 0}
+  itemText: {fileID: 0}
+  isEquippedSlot: 0

@@ -15,7 +15,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image itemWindow;
     public Text itemText;
 
-    int equippedSlotIndex = -1;
+    public bool isEquippedSlot;
     bool isDragged;
 
     void Start()
@@ -28,9 +28,9 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if(dragedImage != null)
             Destroy(dragedImage.gameObject);
 
-        if(equippedSlotIndex >= 0)
-            item = GameManager.GetInstance().GetEquippedItem(equippedSlotIndex);
-        else 
+        if(isEquippedSlot)
+            item = GameManager.GetInstance().GetEquippedItem(itemIndex);
+        else
             item = GameManager.GetInstance().GetItemInInventory(itemIndex);
 
         if (item != null)
@@ -40,16 +40,6 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			dragedImage.transform.localScale = new Vector3(1, 1, 1);
 			dragedImage.sprite = item.icon;
         }
-    }
-
-    public void SetSlotIndex(int index)
-    {
-        equippedSlotIndex = index;
-    }
-
-    public bool IsEquipSlot()
-    {
-        return equippedSlotIndex >= 0;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -87,12 +77,12 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;            
             if(targetSlot != null && targetSlot != this)
             {
-                if (targetSlot.equippedSlotIndex < 0 && equippedSlotIndex < 0)
+                if (!targetSlot.isEquippedSlot && !isEquippedSlot)
                     GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
-                else if(targetSlot.equippedSlotIndex >= 0 && targetSlot.type == item.type)
-                    GameManager.GetInstance().EquipItem(targetSlot.equippedSlotIndex, itemIndex);
-                else if(equippedSlotIndex >= 0 && (targetSlot.item == null || type == targetSlot.item.type))
-                    GameManager.GetInstance().EquipItem(equippedSlotIndex, targetSlot.itemIndex);
+                else if(targetSlot.isEquippedSlot && targetSlot.type == item.type)
+                    GameManager.GetInstance().EquipItem(targetSlot.itemIndex, itemIndex);
+                else if(isEquippedSlot && (targetSlot.item == null || type == targetSlot.item.type))
+                    GameManager.GetInstance().EquipItem(itemIndex, targetSlot.itemIndex);
 
                 Refresh();
                 targetSlot.Refresh();

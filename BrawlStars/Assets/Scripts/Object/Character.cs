@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Character : Actor
 {
-	public InGameLog inGameLog;
-
 	protected override void Awake()
 	{
 		base.Awake();
@@ -20,11 +18,6 @@ public class Character : Actor
 	protected override void Start()
     {
         base.Start();
-
-		finalStatus = GameManager.GetInstance().GetFinalStatus();
-        hpBar.SetMaxHp(finalStatus.hp);
-        hpBar.SetHp(finalStatus.hp);
-		inGameLog = GetComponent<InGameLog>();
     }
 
     protected override void Update()
@@ -40,8 +33,26 @@ public class Character : Actor
             return skillArray[index];
     }
 
+	public override void Alive()
+	{
+		base.Alive();
 
-    void OnTriggerEnter(Collider collider)
+		finalStatus = GameManager.GetInstance().GetFinalStatus();
+		hpBar.SetMaxHp(finalStatus.hp);
+		hpBar.SetHp(finalStatus.hp);
+		currentHp = finalStatus.hp;
+
+		BattleManager.GetInstance().upperHPBar.SetMaxHp(finalStatus.hp);
+		BattleManager.GetInstance().upperHPBar.SetHp(finalStatus.hp);
+	}
+
+	public override void SetHp(int _hp)
+	{
+		base.SetHp(_hp);
+		BattleManager.GetInstance().upperHPBar.SetHp(currentHp);
+	}
+
+	void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Item")
         {
@@ -49,10 +60,9 @@ public class Character : Actor
             bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
             if (canAddNewItem)
             {
-				inGameLog.GameLog(collider.gameObject.name);
 				Debug.Log(collider.gameObject.name);
                 Destroy(collider.gameObject);
             }
         }
-    }
+	}
 }

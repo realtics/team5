@@ -25,7 +25,9 @@ public class RoomManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
+
+		GameManager.GetInstance().equippedItemNameArray = new string[equippedSlot.Length];
+	}
 
     public RoomManager Getinstance()
     {
@@ -34,17 +36,10 @@ public class RoomManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        menuIndex = 0;
+	{
+		menuIndex = 0;
         SetMenuActive(0);
         StageSelecter.SetActive(false);
-
-        for (int i = 0; i < equippedSlot.Length; i++)
-        {
-            equippedSlot[i].SetSlotIndex(i);
-        }
-
-        GameManager.GetInstance().equippedItemNameArray = new string[equippedSlot.Length];
     }
 
     // Update is called once per frame

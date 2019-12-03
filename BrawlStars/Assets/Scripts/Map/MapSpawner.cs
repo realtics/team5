@@ -14,7 +14,6 @@ public class MapSpawner : MonoBehaviour
     public stage[] stages;
 
     public static int stageIndex = 0;
-    public static int mapIndex;
     public Map currentMap;
     public GameObject navMeshFloor;
     public Character player;
@@ -43,7 +42,6 @@ public class MapSpawner : MonoBehaviour
             if (currentMap.portals.Length == 0)
             {
                 OnResultUI(StageResult.WIN);
-                mapIndex = 0;
             }
         }
 
@@ -53,7 +51,7 @@ public class MapSpawner : MonoBehaviour
 
     public void CreateNewMap(int index)
     {
-        DestroyItem();
+        DestroyItem();  
 
 		if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
 		{
@@ -62,7 +60,7 @@ public class MapSpawner : MonoBehaviour
 			if (currentMap != null)
 				Destroy(currentMap.gameObject);
 
-			currentMap = Instantiate(stages[stageIndex].maps[mapIndex]);
+			currentMap = Instantiate(stages[stageIndex].maps[index]);
 			player.transform.position = currentMap.startingPoint.transform.position;
 			for (int i = 0; i < currentMap.portals.Length; i++)
 			{

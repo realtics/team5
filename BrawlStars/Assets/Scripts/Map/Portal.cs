@@ -30,8 +30,7 @@ public class Portal : MonoBehaviour
 		if (isWaitingCollision && collider.gameObject == player.gameObject)
 		{
 			mapSpawner.DestroyItem();
-			MapSpawner.mapIndex = targetIndex;
-			mapSpawner.CreateNewMap(MapSpawner.mapIndex);
+			mapSpawner.CreateNewMap(targetIndex);
 		}
 		else
 			isWaitingCollision = true;

@@ -35,7 +35,6 @@ public class Monster : Actor
         if (state == State.Idle)
         {
             ChasePlayerCharacter();
-            ActivatePattern();
         }
 
     }
@@ -68,8 +67,11 @@ public class Monster : Actor
             }
         }
 
-        if (target == null)
-            return;
+		if (target == null)
+		{
+			Stop();
+			return;
+		}
 
         moveVector = target.transform.position - transform.position;
 
@@ -87,7 +89,8 @@ public class Monster : Actor
         {
             characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
             Stop();
-        }
+			ActivatePattern();
+		}
     }
 
     void ActivatePattern()
