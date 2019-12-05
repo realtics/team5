@@ -20,26 +20,28 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Start()
     {
-        Refresh();
+		dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
+		dragedImage.transform.SetParent(transform);
+
+		Refresh();
     }
 
     void Refresh()
     {
-        if(dragedImage != null)
-            Destroy(dragedImage.gameObject);
-
         if(isEquippedSlot)
             item = GameManager.GetInstance().GetEquippedItem(itemIndex);
         else
             item = GameManager.GetInstance().GetItemInInventory(itemIndex);
 
         if (item != null)
-        {
-            dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
-            dragedImage.transform.SetParent(transform);
-			dragedImage.transform.localScale = new Vector3(1, 1, 1);
+		{
 			dragedImage.sprite = item.icon;
-        }
+			dragedImage.transform.localScale = new Vector3(1, 1, 1);
+		} else
+		{
+			dragedImage.sprite = null;
+			dragedImage.transform.localScale = new Vector3(0, 0, 0);
+		}
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -60,7 +62,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnDrag(PointerEventData eventData)
     {
         isDragged = true;
-        if (dragedImage != null)
+        if (item != null)
         {
             dragedImage.transform.SetParent(transform.parent.parent);
             dragedImage.transform.position = eventData.position;
@@ -74,24 +76,23 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         if (isDragged)
         {
-            ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;            
-            if(targetSlot != null && targetSlot != this)
-            {
-                if (!targetSlot.isEquippedSlot && !isEquippedSlot)
-                    GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
-                else if(targetSlot.isEquippedSlot && targetSlot.type == item.type)
-                    GameManager.GetInstance().EquipItem(targetSlot.itemIndex, itemIndex);
-                else if(isEquippedSlot && (targetSlot.item == null || type == targetSlot.item.type))
-                    GameManager.GetInstance().EquipItem(itemIndex, targetSlot.itemIndex);
+            ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
+			if (targetSlot != null && targetSlot != this)
+			{
+				if (!targetSlot.isEquippedSlot && !isEquippedSlot)
+					GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
+				else if (targetSlot.isEquippedSlot && targetSlot.type == item.type)
+					GameManager.GetInstance().EquipItem(targetSlot.itemIndex, itemIndex);
+				else if (isEquippedSlot && (targetSlot.item == null || type == targetSlot.item.type))
+					GameManager.GetInstance().EquipItem(itemIndex, targetSlot.itemIndex);
 
-                Refresh();
-                targetSlot.Refresh();
-            } else if (dragedImage != null)
-            {
-                dragedImage.transform.SetParent(transform);
-                dragedImage.transform.position = transform.position;
-            }
-        } else if(itemWindow != null)
+				targetSlot.Refresh();
+			}
+
+			dragedImage.transform.SetParent(transform);
+			dragedImage.transform.position = transform.position;
+			Refresh();
+		} else if(itemWindow != null)
         {
             itemWindow.gameObject.SetActive(true);
             itemText.text = item.GetItemExplanation();

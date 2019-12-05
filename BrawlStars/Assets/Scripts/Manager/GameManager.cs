@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             itemTable.Add(itemTableElements[i].itemCode, itemTableElements[i]);
         }
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
             {
                 InventoryItemNameArray[i] = null;
             }
-        }
-    }
+		}
+
+		InventoryItemNameArray[0] = "weapon1";
+	}
 
     public bool AddNewItemInInventory(Item item)
     {

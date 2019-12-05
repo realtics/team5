@@ -7,26 +7,32 @@ public class Fireball : Skill
     public float reach;
     public float width;
     public GameObject fireballObject;
-    public List<GameObject> fireballList;
-    
-    public override void Action(float yRotationEuler)
-    {
-        damage = attackPercentage * status.attackDamage / 100;
+    List<GameObject> fireballList = new List<GameObject>();
 
-        Quaternion rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
-        Vector3 normalVector = rotation * new Vector3(1, 0, 0);
+	public override void Action(float yRotationEuler)
+	{
+		damage = attackPercentage * status.attackDamage / 100;
 
-        if (fireballList.Count == 0)
-        {
-            for (int i = 1; i <= reach; i++)
-            {
-                GameObject effect = Instantiate(fireballObject, transform.position + normalVector * i, Quaternion.identity);
-                fireballList.Add(effect);
-            }
+		Quaternion rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
+		Vector3 normalVector = rotation * new Vector3(1, 0, 0);
 
-            StartCoroutine(DamageCoroutine(yRotationEuler));
-        }
-    }
+		for (int i = 1; i <= reach; i++)
+		{
+			GameObject effect = ObjectPoolManager.GetInstance().GetObject(skillCode + "Effect");
+			if (effect == null)
+			{
+				effect = Instantiate(fireballObject, transform.position + normalVector * i, Quaternion.identity);
+			}
+			else
+			{
+				effect.SetActive(true);
+				effect.transform.position = transform.position + normalVector * i;
+			}
+			fireballList.Add(effect);
+		}
+
+		StartCoroutine(DamageCoroutine(yRotationEuler));
+	}
 
     IEnumerator DamageCoroutine(float yRotationEuler)
     {
@@ -49,11 +55,14 @@ public class Fireball : Skill
         }
 
         for (int i = 0; i < fireballList.Count; i++)
-        {
-            Destroy(fireballList[i]);
-        }
-        Destroy(gameObject);
-    }
+		{
+			ObjectPoolManager.GetInstance().AddNewObject(skillCode + "Effect", fireballList[i].gameObject);
+			fireballList[i].gameObject.SetActive(false);
+		}
+
+		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
+		gameObject.SetActive(false);
+	}
 
     public override void MakeTargetRangeMesh()
     {

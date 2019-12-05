@@ -12,7 +12,7 @@ public class ThunderStrike : Skill
 
     public override void Action(float yRotationEuler)
     {
-        damage = attackPercentage * status.attackDamage / 100;
+		damage = attackPercentage * status.attackDamage / 100;
         StartCoroutine(DamageCoroutine());
     }
 
@@ -35,7 +35,8 @@ public class ThunderStrike : Skill
             yield return new WaitForSeconds(damageInterval);
         }
 
-        Destroy(gameObject);
+		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
+		gameObject.SetActive(false);
     }
 
     public override void MakeTargetRangeMesh()

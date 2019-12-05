@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1feb0a4fc2ef42bd02951e35f7c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCode: ThunderStrike
+  skillName: "\uBC88\uAC1C \uD3ED\uACA9"
   icon: {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
   castingDelay: 0
   startupTime: 0.2

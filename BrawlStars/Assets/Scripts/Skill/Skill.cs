@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
+	public string skillCode;
+	public string skillName;
     public Sprite icon;
 
     public float castingDelay;
@@ -23,13 +25,24 @@ public abstract class Skill : MonoBehaviour
     protected Actor owner;
     protected Mesh rangeMesh;
 
-    Skill actionSkill;
     protected Animator animator;
     protected Status status;
 
     public void StartSkill(Actor user, Vector3 position, float yRotationEuler)
     {
-        actionSkill = Instantiate(this, position, Quaternion.identity);
+		GameObject pooledObject = ObjectPoolManager.GetInstance().GetObject(skillCode);
+		Skill actionSkill;
+		if (pooledObject == null)
+		{
+			actionSkill = Instantiate(this, position, Quaternion.identity);
+		}
+		else
+		{
+			pooledObject.SetActive(true);
+			actionSkill = pooledObject.GetComponent<Skill>();
+			actionSkill.transform.position = position;
+		}
+
         actionSkill.StartCooldown();
         actionSkill.owner = user;
         actionSkill.status = user.GetFinalStatus();

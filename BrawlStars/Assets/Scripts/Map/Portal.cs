@@ -11,12 +11,11 @@ public class Portal : MonoBehaviour
 	[HideInInspector]
 	public Character player;
 
-	bool isWaitingCollision;
+	bool isWaitingCollision = false;
 
     // Start is called before the first frame update
     void Start()
     {
-		isWaitingCollision = false;
 	}
 
     // Update is called once per frame
