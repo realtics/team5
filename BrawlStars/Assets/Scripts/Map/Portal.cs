@@ -27,6 +27,9 @@ public class Portal : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+		if (player == null)
+			return;
+
 		if (isWaitingCollision && collider.gameObject == player.gameObject)
 		{
 			mapSpawner.DestroyItem();

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4641939745128975598}
   m_Layer: 0
   m_Name: MossCube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

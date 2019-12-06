@@ -52,7 +52,8 @@ public class ButtonScrollRect : MonoBehaviour
 		}
 		else 
 		{
-			scrollRect.verticalNormalizedPosition -= 0.01f;
+			if(scrollRect.verticalNormalizedPosition >= 0)
+				scrollRect.verticalNormalizedPosition -= 0.01f;
 		}
 	}
 
@@ -65,7 +66,8 @@ public class ButtonScrollRect : MonoBehaviour
 		}
 		else
 		{
-			scrollRect.verticalNormalizedPosition += 0.01f;
+			if (scrollRect.verticalNormalizedPosition <= 1)
+				scrollRect.verticalNormalizedPosition += 0.01f;
 		}
 	}
 }

@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: -464107169184784531}
   - component: {fileID: -8435447602651415313}
   m_Layer: 0
-  m_Name: darkBrickCube
-  m_TagString: Untagged
+  m_Name: DarkBrickCube
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
