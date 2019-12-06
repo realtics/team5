@@ -82,6 +82,8 @@
     <Compile Include="Assets\Scripts\Map\Cube\MapBox.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\OnSpawner.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\UIOnOff.cs" />
     <Compile Include="Assets\Scripts\Map\MapSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\MonsterSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\Portal.cs" />
