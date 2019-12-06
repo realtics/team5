@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IvoryShock : Skill
+public class LeafCyclone : Skill
 {
     public float reach;
     public float angle;
@@ -35,9 +35,11 @@ public class IvoryShock : Skill
                 }
             }
             yield return new WaitForSeconds(damageInterval);
-        }
-        Destroy(gameObject);
-    }
+		}
+
+		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
+		gameObject.SetActive(false);
+	}
 
     bool IsInFanwise(float yRotationEuler, Vector3 targetPosition)
     {

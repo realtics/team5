@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 554003018535485233}
   - component: {fileID: -1117598392396190065}
   m_Layer: 0
-  m_Name: IvoryShock
+  m_Name: LeafCyclone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 415922bccf703e342a6aaa248108db80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCode: LeafCyclone
+  skillName: "\uB098\uBB47\uC78E \uC120\uD48D"
   icon: {fileID: 21300000, guid: 372657e9e34e45a45884b33870ac45e0, type: 3}
   castingDelay: 0
   startupTime: 0.2
