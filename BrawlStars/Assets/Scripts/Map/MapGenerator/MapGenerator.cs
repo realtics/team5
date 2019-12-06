@@ -147,9 +147,12 @@ public class MapGenerator : MonoBehaviour
 						GameObject newObstacle = Instantiate(obstaclePrefabs[cubeIndex], new Vector3(hit.transform.gameObject.transform.position.x,	setYPosition,
 							hit.transform.gameObject.transform.position.z), Quaternion.identity);
 
-						obstacleMap[(int)hit.transform.gameObject.transform.position.x, (int)hit.transform.gameObject.transform.position.z] = cubeIndex;
+						obstacleMap[(int)hit.transform.gameObject.transform.position.x, 
+							(int)hit.transform.gameObject.transform.position.z] = cubeIndex;
 
 						newObstacle.gameObject.transform.parent = mapHolder;
+
+						//Debug.Log( obstacleMap[1, 1].ToString());
 					}
 				}
 			}
