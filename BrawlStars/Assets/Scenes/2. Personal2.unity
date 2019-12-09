@@ -11740,7 +11740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 733053953}
   m_Horizontal: 0
-  m_Vertical: 1
+  m_Vertical: 0
   m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -12216,7 +12216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 130383062}
   m_Horizontal: 0
-  m_Vertical: 1
+  m_Vertical: 0
   m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 0
@@ -13010,7 +13010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1840918806}
   m_Horizontal: 0
-  m_Vertical: 1
+  m_Vertical: 0
   m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 0

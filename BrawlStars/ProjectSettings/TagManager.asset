@@ -8,6 +8,7 @@ TagManager:
   - Portal
   - StartingPoint
   - Item
+  - Obstacle
   layers:
   - Default
   - TransparentFX
