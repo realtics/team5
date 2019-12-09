@@ -11,7 +11,7 @@ public class DamageText : MonoBehaviour
     Vector3 originalPosition;
     float instantiatedTime;
 
-    public void SetDefaultPosition(Vector3 position, int damage)
+    public void Init(Vector3 position, int damage)
     {
         originalPosition = position;
 		transform.localScale = new Vector3(1, 1, 1);

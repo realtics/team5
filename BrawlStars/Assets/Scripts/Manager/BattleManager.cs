@@ -11,13 +11,11 @@ public class BattleManager : MonoBehaviour
     public Character player;
     public MapSpawner mapSpawner;
 	public HPBar upperHPBar;
+	public InGameLog logView;
 
 	public Joystick moveJoystick;
     public Joystick skillJoystick;
     public SkillIcon[] skillIcon;
-    
-    public Monster[] monsters;
-    public Item[] items;
 
     private void Awake()
     {

@@ -113,6 +113,7 @@ public class MapSpawner : MonoBehaviour
 
     public void ResetState()
     {
+		BattleManager.GetInstance().logView.Init();
         player.Alive();        
     }
 

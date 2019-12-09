@@ -2226,6 +2226,7 @@ MonoBehaviour:
   player: {fileID: 0}
   mapSpawner: {fileID: 826836904}
   upperHPBar: {fileID: 988481586}
+  logView: {fileID: 0}
   moveJoystick: {fileID: 1401493726}
   skillJoystick: {fileID: 1632766974}
   skillIcon:
@@ -2233,9 +2234,6 @@ MonoBehaviour:
   - {fileID: 17304690}
   - {fileID: 1146288585}
   - {fileID: 617037413}
-  monsters: []
-  items:
-  - {fileID: -3162664654240143926, guid: 0b6d250296196864da7ff39d8d8e30c5, type: 3}
 --- !u!4 &1460514555
 Transform:
   m_ObjectHideFlags: 0
@@ -3250,6 +3248,7 @@ MonoBehaviour:
   - {fileID: 17304690}
   - {fileID: 1146288585}
   - {fileID: 617037413}
+  maxMultiTouchCount: 2
 --- !u!1 &2118893346
 GameObject:
   m_ObjectHideFlags: 0

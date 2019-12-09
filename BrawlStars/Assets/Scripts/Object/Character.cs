@@ -60,7 +60,7 @@ public class Character : Actor
             bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
             if (canAddNewItem)
             {
-				Debug.Log(collider.gameObject.name);
+				BattleManager.GetInstance().logView.AddItemGetLog(contactItem.itemName);
                 Destroy(collider.gameObject);
             }
         }

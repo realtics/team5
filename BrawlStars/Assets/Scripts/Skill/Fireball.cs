@@ -18,16 +18,8 @@ public class Fireball : Skill
 
 		for (int i = 1; i <= reach; i++)
 		{
-			GameObject effect = ObjectPoolManager.GetInstance().GetObject(skillCode + "Effect");
-			if (effect == null)
-			{
-				effect = Instantiate(fireballObject, transform.position + normalVector * i, Quaternion.identity);
-			}
-			else
-			{
-				effect.SetActive(true);
-				effect.transform.position = transform.position + normalVector * i;
-			}
+			GameObject effect = ObjectPool.GetInstance().GetObject(fireballObject);
+			effect.transform.position = transform.position + normalVector * i;
 			fireballList.Add(effect);
 		}
 
@@ -56,12 +48,10 @@ public class Fireball : Skill
 
         for (int i = 0; i < fireballList.Count; i++)
 		{
-			ObjectPoolManager.GetInstance().AddNewObject(skillCode + "Effect", fireballList[i].gameObject);
-			fireballList[i].gameObject.SetActive(false);
+			ObjectPool.GetInstance().AddNewObject(fireballList[i]);
 		}
 
-		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
-		gameObject.SetActive(false);
+		ObjectPool.GetInstance().AddNewObject(gameObject);
 	}
 
     public override void MakeTargetRangeMesh()

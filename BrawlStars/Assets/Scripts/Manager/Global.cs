@@ -10,7 +10,7 @@ public static class Global
     public static int downFrontIndex = 0;
     public static int upFrontIndex = 2;
 
-    public static float AngleInRange(float value, float min)
+    public static float ConvertIn2PI(float value, float min)
     {
         float result = value;
         while (result < min)
