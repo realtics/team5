@@ -15,24 +15,23 @@ public class MapGenerator : MonoBehaviour
 
 	public GameObject saveUI;
 	public GameObject loadUI;
+	public GameObject infoUI;
 
 
 	//맵 만드는 거
 	public Map maps;
-
-    public GameObject startingObject;
         
     public GameObject[] obstaclePrefabs;
     
     public Transform tilePrefab;
     public Transform navmeshFloor;
     public Transform navmeshMaskPrefabMeshFloor;
-    public Vector3 maxMapSize;
+    Vector3 maxMapSize;
 
 	Transform mapHolder;
 	string holderName;
 
-    public float tileSize;
+    float tileSize = 1;
     List<Coord> allTileCoords;
     
     public int[,] obstacleMap;
@@ -51,9 +50,10 @@ public class MapGenerator : MonoBehaviour
     {
 		saveUI.SetActive(false);
 		loadUI.SetActive(false);
+		infoUI.SetActive(false);
 
 		camera.transform.position = Camera.main.transform.position;
-		//LoadMap();
+
 	}
 
 	void Update()
@@ -151,8 +151,6 @@ public class MapGenerator : MonoBehaviour
 							(int)hit.transform.gameObject.transform.position.z] = cubeIndex;
 
 						newObstacle.gameObject.transform.parent = mapHolder;
-
-						//Debug.Log( obstacleMap[1, 1].ToString());
 					}
 				}
 			}
@@ -185,11 +183,11 @@ public class MapGenerator : MonoBehaviour
 		// 좌표 생성 Generating coords
 		allTileCoords = new List<Coord>();
 
-        for (int x = 0; x < maps.mapSize.x; x++)
+        for (int y = 0; y < maps.mapSize.y; y++)
         {
-            for (int y = 0; y < maps.mapSize.y; y++)
+            for (int x = 0; x < maps.mapSize.x; x++)
             {
-                allTileCoords.Add(new Coord(x, y));
+                allTileCoords.Add(new Coord(y, x));
             }
         }
 
@@ -205,9 +203,9 @@ public class MapGenerator : MonoBehaviour
         mapHolder.parent = transform;
 
         // 타일 스폰 Spawning tiles
-        for (int x = 0; x < maps.mapSize.x; x++)
+        for (int y = 0; y < maps.mapSize.y; y++)
         {
-            for (int y = 0; y < maps.mapSize.y; y++)
+            for (int x = 0; x < maps.mapSize.x; x++)
             {
                 Vector3 tilePosition = CoordToPosition(x, y);
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
@@ -229,17 +227,17 @@ public class MapGenerator : MonoBehaviour
 
 		List<Coord> allOpenCoords = new List<Coord>(allTileCoords);
 
-        for (int i = 0; i < maps.mapSize.x; i++)
+        for (int i = 0; i < maps.mapSize.y; i++)
         {
-            for (int j = 0; j < maps.mapSize.y; j++)
+            for (int j = 0; j < maps.mapSize.x; j++)
             {
                 float obstacleHeight = 0.5f;
 
                 //해당 큐브의 위치
-                Vector3 obstaclePosition = CoordToPosition(i, j);
+                Vector3 obstaclePosition = CoordToPosition(j, i);
 
                 //해당 위치에 큐브를 설치
-                GameObject newObstacle = Instantiate(obstaclePrefabs[obstacleMap[i, j]], obstaclePosition + Vector3.up * obstacleHeight / 2, Quaternion.identity) as GameObject;
+                GameObject newObstacle = Instantiate(obstaclePrefabs[obstacleMap[j, i]], obstaclePosition + Vector3.up * obstacleHeight / 2, Quaternion.identity) as GameObject;
                 newObstacle.gameObject.transform.parent = mapHolder;
                 newObstacle.gameObject.transform.localScale = new Vector3(1, obstacleHeight, 1);
             }
@@ -275,7 +273,7 @@ public class MapGenerator : MonoBehaviour
 		if (inputSaveText.text != null && inputSaveText.text != "")
 			maps.MapName = inputSaveText.text;
 
-		if (maps.MapName != "" ||maps.MapName == null)
+		if (maps.MapName != "" || maps.MapName == null)
         {
             using (StreamWriter outputFile = new StreamWriter(@"Assets\StageMaps\" + maps.MapName + ".txt"))
             {
@@ -286,44 +284,17 @@ public class MapGenerator : MonoBehaviour
                 {
                     for (int i = 0; i < maps.mapSize.x; i++)
                     {
-                        outputFile.Write(obstacleMap[i, j]);
+                        outputFile.Write(obstacleMap[j, i]);
                         outputFile.Write(" ");
                     }
                     outputFile.Write("\n");
                 }
 
-				GameObject startingpoint = GameObject.Find("StartingObject");
-
-				if (startingpoint != null)
-				{
-					outputFile.Write(startingpoint.gameObject.transform.position.x);
-					outputFile.Write(" ");
-					outputFile.Write(0.5f);
-					outputFile.Write(" ");
-					outputFile.Write(startingpoint.gameObject.transform.position.z);
-					outputFile.Write(" ");
-					outputFile.Write("\n");
-				}
-
-				GameObject portalpoint = GameObject.Find("Portal");
-
-				if (portalpoint != null)
-				{
-					outputFile.Write(portalpoint.gameObject.transform.position.x);
-					outputFile.Write(" ");
-					outputFile.Write(0.5f);
-					outputFile.Write(" ");
-					outputFile.Write(portalpoint.gameObject.transform.position.z);
-					outputFile.Write(" ");
-					outputFile.Write("\n");
-				}
-
+				infoUI.SetActive(true);
 				//using을 쓰면 자동으로 outputFile.Close()해준다.
 			}
         }
-
-        GenerateMap();
-    }
+	}
 
     public void LoadMap()
     {
@@ -361,31 +332,10 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
 
-				GameObject startingpoint = GameObject.Find("StartingObject");
-
-				if (startingpoint != null)
-				{
-					str = inputFile.ReadLine();
-					string[] startData = str.Split(new char[] { ' ' });
-
-					startingpoint.gameObject.transform.position = new Vector3(float.Parse(startData[0]), float.Parse(startData[1]), float.Parse(startData[2]));
-				}
-
-				GameObject portalpoint = GameObject.Find("Portal");
-
-				if (portalpoint != null)
-				{
-					str = inputFile.ReadLine();
-					string[] portalData = str.Split(new char[] { ' ' });
-
-					portalpoint.gameObject.transform.position = new Vector3(float.Parse(portalData[0]), float.Parse(portalData[1]), float.Parse(portalData[2]));
-				}
-
+				infoUI.SetActive(true);
 			}
         }
-
-        GenerateMap();
-    }
+	}
 
     public void ClearMap()
     {
@@ -398,6 +348,12 @@ public class MapGenerator : MonoBehaviour
 		{
 			maps.mapSize.y = int.Parse(inputY.text);
 			inputY.text = null;
+		}
+
+		GameObject[] DeleteMonster = GameObject.FindGameObjectsWithTag("Monster");
+		for (int i = 0; i < DeleteMonster.Length; i++)
+		{
+			Destroy(DeleteMonster[i]);
 		}
 
 		//맵을 NullCube로 초기화
@@ -440,6 +396,19 @@ public class MapGenerator : MonoBehaviour
             return 0;
         }
     }
+
+	public void OkButton()
+	{
+		infoUI.SetActive(false);
+
+		if (saveUI.activeSelf == true)
+			saveUI.SetActive(false);
+
+		if (loadUI.activeSelf == true)
+			loadUI.SetActive(false);
+
+		GenerateMap();
+	}
 
     [System.Serializable]
     public class Map
