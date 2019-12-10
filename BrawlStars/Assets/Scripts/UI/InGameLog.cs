@@ -5,48 +5,61 @@ using UnityEngine.UI;
 
 public class InGameLog : MonoBehaviour
 {
-	public ScrollRect scrollRect;
-
-	public Text logText = null;
-
+	Text logText;
 	float limitTime = 0;
+	List<string> logList;
+	public int maxLogCount;
+	public string getItemString;
 
     // Start is called before the first frame update
     void Start()
     {
-		scrollRect.gameObject.SetActive(false);
-    }
+		logText = GetComponent<Text>();
+		logList = new List<string>();
+
+		gameObject.SetActive(false);
+	}
 
     // Update is called once per frame
     void Update()
     {
-		//if (Input.GetMouseButtonDown(0))
-		//{
-		//	scrollRect.gameObject.SetActive(true);
-
-		//	logText.text += " " + "Mouse Down" + "\n";
-
-		//	scrollRect.verticalNormalizedPosition = 0.0f;
-		//}
-
-		if (limitTime >= 3.0f)
+		if (logList.Count == 0)
 		{
-			scrollRect.gameObject.SetActive(false);
-			limitTime = 0f;
-		}
-		else
+			gameObject.SetActive(false);
+		} else
 		{
-			limitTime += Time.deltaTime;
+			if (limitTime >= 3.0f)
+			{
+				limitTime = 0f;
+				logList.RemoveAt(0);
+				PrintLog();
+			}
 		}
 
+		limitTime += Time.deltaTime;
     }
 
-	public void GameLog(string ItemName)
+	public void Init()
 	{
-		scrollRect.gameObject.SetActive(true);
+		logList.Clear();
+	}
 
-		logText.text += " " + ItemName + "\n";
+	public void AddItemGetLog(string ItemName)
+	{
+		gameObject.SetActive(true);
+		logList.Add(getItemString.Replace("[ITEM]", ItemName));
+		if(logList.Count > maxLogCount)
+			logList.RemoveAt(0);
+		limitTime = 0f;
+		PrintLog();
+	}
 
-		scrollRect.verticalNormalizedPosition = 0.0f;
+	void PrintLog()
+	{
+		logText.text = "";
+		for(int i = 0; i < logList.Count; i++)
+		{
+			logText.text += logList[i] + "\n";
+		}
 	}
 }

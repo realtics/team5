@@ -94,7 +94,7 @@
     <Compile Include="Assets\Scripts\Object\Loading.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
-    <Compile Include="Assets\Scripts\ObjectPool\ObjectPoolManager.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\PooledObject.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\LeafCyclone.cs" />
     <Compile Include="Assets\Scripts\Skill\Monster Pattern\FireDragon.cs" />

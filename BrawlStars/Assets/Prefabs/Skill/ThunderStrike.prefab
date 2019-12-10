@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923743176299164839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3120668, y: 0.8979209, z: 1.0241771}
+  m_LocalPosition: {x: 1.1952403, y: 0.2, z: -0.017113669}
   m_LocalScale: {x: 2.4, y: 4.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d1feb0a4fc2ef42bd02951e35f7c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCode: ThunderStrike
   skillName: "\uBC88\uAC1C \uD3ED\uACA9"
   icon: {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
   castingDelay: 0

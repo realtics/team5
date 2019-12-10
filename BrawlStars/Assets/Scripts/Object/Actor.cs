@@ -137,8 +137,8 @@ public class Actor : MonoBehaviour
         if (velocity.sqrMagnitude > 0)
         {
             mRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-            mRigidbody.MovePosition(mRigidbody.position + velocity * Time.fixedDeltaTime);
-        }
+			mRigidbody.MovePosition(mRigidbody.position + velocity * Time.fixedDeltaTime);
+		}
         else
         {
             mRigidbody.constraints = mRigidbody.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
@@ -186,7 +186,7 @@ public class Actor : MonoBehaviour
         if (velocity.sqrMagnitude != 0)
             characterDirectionAngle = Mathf.Atan2(-velocity.z, velocity.x);
 
-        float angleBasedZAxis = Global.AngleInRange(characterDirectionAngle + Mathf.PI / 2, -Mathf.PI);
+        float angleBasedZAxis = Global.ConvertIn2PI(characterDirectionAngle + Mathf.PI / 2, -Mathf.PI);
 
         if (angleBasedZAxis > 0)
         {
@@ -233,7 +233,7 @@ public class Actor : MonoBehaviour
             return;
 
         DamageText damageTextObject = Instantiate(damageText, transform.position, Quaternion.identity);
-        damageTextObject.SetDefaultPosition(transform.position, damage);
+        damageTextObject.Init(transform.position, damage);
         damageTextObject.transform.SetParent(canvas.transform);
 
         SetHp(currentHp - damage);
@@ -295,7 +295,7 @@ public class Actor : MonoBehaviour
             Stop();
             currentSpriteIndex = 0;
 
-            characterDirectionAngle = Global.AngleInRange(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
+            characterDirectionAngle = Global.ConvertIn2PI(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
 
             skillArray[index].StartSkill(this, targetPosition, yRotationEuler);
             lastSkillActionTime[index] = Time.time;

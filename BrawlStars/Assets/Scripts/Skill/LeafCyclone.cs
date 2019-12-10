@@ -37,8 +37,7 @@ public class LeafCyclone : Skill
             yield return new WaitForSeconds(damageInterval);
 		}
 
-		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
-		gameObject.SetActive(false);
+		ObjectPool.GetInstance().AddNewObject(gameObject);
 	}
 
     bool IsInFanwise(float yRotationEuler, Vector3 targetPosition)
@@ -47,8 +46,10 @@ public class LeafCyclone : Skill
         float currentAngle = Mathf.Atan2(-targetDirection.z, targetDirection.x);
         float diff = currentAngle - yRotationEuler * Mathf.Deg2Rad;
 
-        while (diff < -Mathf.PI) diff += Mathf.PI * 2;
-        while (diff > Mathf.PI) diff -= Mathf.PI * 2;
+        while (diff < -Mathf.PI) 
+			diff += Mathf.PI * 2;
+        while (diff > Mathf.PI) 
+			diff -= Mathf.PI * 2;
 
         return Mathf.Abs(diff) < angle / 2;
     }

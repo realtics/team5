@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public abstract class ControlUI : MonoBehaviour
 {
-	public abstract void PointerDown(PointerEventData eventData);
-	public abstract void Drag(PointerEventData eventData);
-	public abstract void PointerUp(PointerEventData eventData);
+	public abstract void PointerDown(Vector2 position);
+	public abstract void Drag(Vector2 position);
+	public abstract void PointerUp(Vector2 position);
+	public abstract void Cancel();
 }

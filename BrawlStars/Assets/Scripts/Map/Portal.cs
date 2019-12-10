@@ -32,6 +32,7 @@ public class Portal : MonoBehaviour
 		if (isWaitingCollision && collider.gameObject == player.gameObject)
 		{
 			mapSpawner.DestroyItem();
+			BattleManager.GetInstance().mainCanvas.GetComponent<InputHandler>().Cancel();
 			mapSpawner.CreateNewMap(targetIndex);
 		}
 		else

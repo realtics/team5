@@ -16,18 +16,18 @@ public class SkillJoystick : Joystick
         gameObject.SetActive(false);
     }
 
-    public override void PointerDown(PointerEventData data)
+    public override void PointerDown(Vector2 position)
     {
-        base.PointerDown(data);
+        base.PointerDown(position);
         skill = player.skillArray[skillIndex];
         rangeObject.SetMesh(skill.GetTargetRangeMesh());
         rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
         rangeObject.DrawRange();
     }
 
-    public override void Drag(PointerEventData data)
+    public override void Drag(Vector2 position)
     {
-        base.Drag(data);
+        base.Drag(position);
 
         rangeObject.transform.position = skill.GetPosition(stickMove, mTransform.sizeDelta.x) + new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
         rangeObject.transform.rotation = skill.GetRotation(stickMove);
@@ -35,11 +35,17 @@ public class SkillJoystick : Joystick
         rangeObject.DrawRange();
     }
 
-    public override void PointerUp(PointerEventData data)
+    public override void PointerUp(Vector2 position)
     {
-        base.PointerUp(data);
+        base.PointerUp(position);
         rangeObject.StopDrawing();
 
         player.AttackProcess(skillIndex, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
     }
+
+	public override void Cancel()
+	{
+		base.Cancel();
+		rangeObject.StopDrawing();
+	}
 }

@@ -57,46 +57,52 @@ public class SkillIcon : ControlUI
         }
     }
 
-    public override void PointerDown(PointerEventData eventData)
+    public override void PointerDown(Vector2 position)
     {
         if (ReadyToAction() && joystick.gameObject.activeSelf == false)
         {
             joystick.gameObject.SetActive(true);
             joystick.skillIndex = skillIndex;
-            joystick.PointerDown(eventData);
+            joystick.PointerDown(position);
 
-            Color color = GetComponent<Image>().color;
+            Color color = iconImage.color;
             color.a = 0f;
-            GetComponent<Image>().color = color;
+			iconImage.color = color;
 
 			onSkillActivate = true;
 		}
     }
 
-    public override void Drag(PointerEventData eventData)
+    public override void Drag(Vector2 position)
     {
         if (onSkillActivate)
         {
-            joystick.Drag(eventData);
+            joystick.Drag(position);
         }
     }
 
-	public override void PointerUp(PointerEventData eventData)
+	public override void PointerUp(Vector2 position)
     {
         if (onSkillActivate)
         {
-            joystick.PointerUp(eventData);
-
-            joystick.gameObject.SetActive(false);
-            Color color = GetComponent<Image>().color;
-            color.a = 1f;
-            GetComponent<Image>().color = color;
-
-			onSkillActivate = false;
+            joystick.PointerUp(position);
+			Cancel();
 		}
     }
 
-    public bool ReadyToAction()
+	public override void Cancel()
+	{
+		joystick.Cancel();
+
+		joystick.gameObject.SetActive(false);
+		Color color = iconImage.color;
+		color.a = 1f;
+		iconImage.color = color;
+
+		onSkillActivate = false;
+	}
+
+	public bool ReadyToAction()
     {
         return player.GetRemainSkillCooldown(skillIndex) < 0;
     }

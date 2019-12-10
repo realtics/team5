@@ -35,8 +35,7 @@ public class ThunderStrike : Skill
             yield return new WaitForSeconds(damageInterval);
         }
 
-		ObjectPoolManager.GetInstance().AddNewObject(skillCode, gameObject);
-		gameObject.SetActive(false);
+		ObjectPool.GetInstance().AddNewObject(gameObject);
     }
 
     public override void MakeTargetRangeMesh()

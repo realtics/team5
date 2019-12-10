@@ -2,30 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool
+[System.Serializable]
+public struct preInstantiatedPrefab
 {
-	public string objectName;
-	List<GameObject> objectList = new List<GameObject>();
+	public GameObject gameObject;
+	public int count;
+}
 
-	public ObjectPool(string name)
+public class ObjectPool : MonoBehaviour
+{
+	static ObjectPool instance;
+	List<PooledObject> poolList;
+	public preInstantiatedPrefab[] prefabList;
+
+	private void Awake()
 	{
-		objectName = name;
+		instance = this;
+
+		poolList = new List<PooledObject>();
+		for(int i = 0; i < prefabList.Length; i++)
+		{
+			poolList.Add(gameObject.AddComponent<PooledObject>());
+			poolList[i].Init(prefabList[i].gameObject, prefabList[i].count);
+		}
+	}
+
+	public static ObjectPool GetInstance()
+	{
+		return instance;
 	}
 
 	public void AddNewObject(GameObject newObject)
 	{
-		objectList.Add(newObject);
+		PooledObject poolForAdd = GetPool(newObject.name);
+		if (poolForAdd == null)
+		{
+			poolList.Add(gameObject.AddComponent<PooledObject>());
+			poolList[poolList.Count - 1].Init(newObject, 10);
+		}
+		newObject.SetActive(false);
+		poolForAdd.AddNewObject(newObject);
 	}
 
-	public GameObject GetObject()
+	public GameObject GetObject(GameObject gameObject)
 	{
-		if (objectList.Count > 0)
-		{
-			GameObject returnValue = objectList[0];
-			objectList.RemoveAt(0);
-			return returnValue;
-		}
+		PooledObject poolForAdd = GetPool(gameObject.name);
+		GameObject result;
+		if (poolForAdd != null)
+			result = poolForAdd.GetObject();
 		else
-			return null;
+			result = Instantiate(gameObject);
+		result.SetActive(true);
+		result.name = gameObject.name;
+		return result;
+	}
+
+	public PooledObject GetPool(string name)
+	{
+		for (int i = 0; i < poolList.Count; i++)
+		{
+			if (poolList[i].objectName == name)
+				return poolList[i];
+		}
+		return null;
 	}
 }

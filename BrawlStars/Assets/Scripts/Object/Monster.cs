@@ -42,8 +42,7 @@ public class Monster : Actor
     protected override void Death()
     {
         base.Death();
-
-        DropItem();
+		DropItem();
     }
 
     void ChasePlayerCharacter()
@@ -51,17 +50,17 @@ public class Monster : Actor
         Collider[] colliders = Physics.OverlapSphere(transform.position, sight);
 
         Character target = null;
-        float minDistance = sight * sight;
+        float minSqrDistance = sight * sight;
         Vector3 moveVector;
         for (int i = 0; i < colliders.Length; i++)
         {
             moveVector = colliders[i].transform.position - transform.position;
-            if(moveVector.sqrMagnitude < minDistance)
+            if(moveVector.sqrMagnitude < minSqrDistance)
             {
                 Character collider = colliders[i].GetComponent<Character>();
                 if (collider != null && collider.team == Team.Player)
                 {
-                    minDistance = moveVector.sqrMagnitude;
+					minSqrDistance = moveVector.sqrMagnitude;
                     target = collider;
                 }
             }
@@ -75,7 +74,7 @@ public class Monster : Actor
 
         moveVector = target.transform.position - transform.position;
 
-        if (minDistance > Mathf.Pow(mCollider.radius + attackReach, 2) && state == State.Idle)
+        if (minSqrDistance > Mathf.Pow(mCollider.radius + attackReach, 2) && state == State.Idle)
         {
             NavMeshPath path = new NavMeshPath();
             pathFinder.CalculatePath(target.transform.position, path);

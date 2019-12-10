@@ -24,17 +24,17 @@ public class Joystick : ControlUI
     {
     }
     
-    public override void PointerDown(PointerEventData data)
+    public override void PointerDown(Vector2 position)
     {
         mTransform = GetComponent<RectTransform>();
         originalPosition = mTransform.position;
-        mTransform.position = data.position;
+        mTransform.position = position;
         stick.anchoredPosition = new Vector2(0, 0);
     }
 
-    public override void Drag(PointerEventData data)
+    public override void Drag(Vector2 position)
     {
-        stickMove = data.position - new Vector2(mTransform.position.x, mTransform.position.y);
+        stickMove = position - new Vector2(mTransform.position.x, mTransform.position.y);
         if (Vector2.SqrMagnitude(stickMove) > Mathf.Pow(mTransform.sizeDelta.x / 2, 2))
         {
             stickMove = stickMove / stickMove.magnitude * mTransform.sizeDelta.x / 2;
@@ -42,9 +42,15 @@ public class Joystick : ControlUI
         stick.anchoredPosition = stickMove;
     }
 
-    public override void PointerUp(PointerEventData data)
+    public override void PointerUp(Vector2 position)
     {
         mTransform.position = originalPosition;
         stick.anchoredPosition = new Vector2(0, 0);
     }
+
+	public override void Cancel()
+	{
+		mTransform.position = originalPosition;
+		stick.anchoredPosition = new Vector2(0, 0);
+	}
 }
