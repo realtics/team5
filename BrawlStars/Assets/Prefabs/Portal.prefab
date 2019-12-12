@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 1489704820151841582}
   m_Layer: 0
   m_Name: Portal
-  m_TagString: Obstacle
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a7acf39a366de4b839f831199ddfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetIndex: 2
+  targetIndex: 0
   mapSpawner: {fileID: 0}
   player: {fileID: 0}
 --- !u!65 &1489704820151841582
