@@ -28,7 +28,7 @@
 				float4 frag(v2f_img i) : COLOR {
 					float4 input_color = tex2D(_MainTex, i.uv);
 
-					if (input_color.r == 212.0 / 255.0 && input_color.g == 192.0 / 255.0 && input_color.b == 212.0 / 255.0)
+					if (input_color.r * 255.0 == 212.0 && input_color.g * 255.0 == 192.0  && input_color.b * 255.0 == 212.0)
 						input_color.a = 0;
 					return input_color * _Color;
 				}

@@ -157,9 +157,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
-  speed: 4
-  maxHp: 5555
-  SpriteName: Warrior/FIRE_DOCHUL_S_
+  status:
+    attackDamage: 70
+    armor: 30
+    hp: 600
+    hpRecovery: 0.8
+    moveSpeed: 4
+  SpriteName: FIRE_DOCHUL_S_
   standingSpriteIndex:
     start: 100
     end: 159
@@ -176,9 +180,9 @@ MonoBehaviour:
     start: 160
     end: 182
   deathSpriteInterval: 0.1
+  atlas: {fileID: 4343727234628468602, guid: ebf8426c7ee494242912265dceaed549, type: 2}
   spriteRenderer: {fileID: 4858412950400422915}
   spriteDirectionCount: 5
-  currentHp: 0
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
@@ -187,9 +191,3 @@ MonoBehaviour:
   - {fileID: 3916294330767920508, guid: b550efe8306983140a5e12475d8447b5, type: 3}
   - {fileID: 6212605451729664309, guid: a96432d459491b3419cdd5d0b37eac87, type: 3}
   - {fileID: 7920129116037723826, guid: 4c8490e38957f83498ef85180fb6b396, type: 3}
-  status:
-    attackDamage: 70
-    armor: 30
-    hp: 600
-    hpRecovery: 0.8
-    moveSpeed: 4

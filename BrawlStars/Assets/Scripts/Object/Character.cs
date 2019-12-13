@@ -7,12 +7,6 @@ public class Character : Actor
 	protected override void Awake()
 	{
 		base.Awake();
-
-		for (int i = 0; i < skillArray.Length; i++)
-		{
-			skillArray[i].MakeTargetRangeMesh();
-			lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
-		}
 	}
 
 	protected override void Start()
@@ -44,6 +38,12 @@ public class Character : Actor
 
 		BattleManager.GetInstance().upperHPBar.SetMaxHp(finalStatus.hp);
 		BattleManager.GetInstance().upperHPBar.SetHp(finalStatus.hp);
+
+		for (int i = 0; i < skillArray.Length; i++)
+		{
+			skillArray[i].MakeTargetRangeMesh();
+			lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
+		}
 	}
 
 	public override void SetHp(int _hp)
@@ -56,13 +56,7 @@ public class Character : Actor
     {
         if (collider.gameObject.tag == "Item")
         {
-            Item contactItem = collider.GetComponent<Item>();
-            bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(contactItem);
-            if (canAddNewItem)
-            {
-				BattleManager.GetInstance().logView.AddItemGetLog(contactItem.itemName);
-                Destroy(collider.gameObject);
-            }
+            BattleManager.GetInstance().PickUpItem(collider.GetComponent<Item>());
         }
 	}
 }

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : Actor
 {
-    public GameObject[] DropObject;
+	public string monsterName;
 
     public float sight;
     public float attackReach;
@@ -108,21 +108,14 @@ public class Monster : Actor
 
     void DropItem()
     {
-        int DropCount = Random.Range(0, GameManager.GetInstance().itemTableElements.Length);
+		DropItem[] dropItemList = GameManager.GetInstance().GetDropItemList(monsterName);
 
-        Vector3 itemPosition = transform.position;
-
-        for (int i = 0; i < DropCount+1; i++)
+        for (int i = 0; i < dropItemList.Length; i++)
         {
-            int itemTable = Random.Range(0, GameManager.GetInstance().itemTableElements.Length);
-
-            if (GameManager.GetInstance().itemTableElements[itemTable] != null)
-            {
-                itemPosition.x += Random.Range(-1f, 1f);
-                itemPosition.z += Random.Range(-1f, 1f);
-
-                Instantiate(GameManager.GetInstance().itemTableElements[itemTable], itemPosition, Quaternion.identity);
-            }
+			if (Random.Range(0, 100) < dropItemList[i].percentage)
+			{
+				BattleManager.GetInstance().DropItem(dropItemList[i].itemName, transform.position);
+			}
         }
     }
 }

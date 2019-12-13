@@ -39,7 +39,7 @@ public class MapGenerator : MonoBehaviour
 	int cubeIndex = 0;
 	
 	//카메라
-	public Camera camera;
+	public Camera mCamera;
 
 	public float xSensitivity = 20.0f;
 	public float ySensitivity = 20.0f;
@@ -52,7 +52,7 @@ public class MapGenerator : MonoBehaviour
 		saveUI.SetActive(false);
 		loadUI.SetActive(false);
 
-		camera.transform.position = Camera.main.transform.position;
+		mCamera.transform.position = Camera.main.transform.position;
 		//LoadMap();
 	}
 
@@ -72,23 +72,23 @@ public class MapGenerator : MonoBehaviour
 		if (!EventSystem.current.IsPointerOverGameObject())
 		{
 			if (Input.GetKeyDown(KeyCode.A))
-				camera.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);
+				mCamera.transform.position -= new Vector3(1.0f, 0.0f, 0.0f);
 			if (Input.GetKeyDown(KeyCode.D))
-				camera.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+				mCamera.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
 			if (Input.GetKeyDown(KeyCode.S))
-				camera.transform.position -= new Vector3(0.0f, 0.0f, 1.0f);
+				mCamera.transform.position -= new Vector3(0.0f, 0.0f, 1.0f);
 			if (Input.GetKeyDown(KeyCode.W))
-				camera.transform.position += new Vector3(0.0f, 0.0f, 1.0f);
+				mCamera.transform.position += new Vector3(0.0f, 0.0f, 1.0f);
 			if (Input.GetKeyDown(KeyCode.Q))
-				camera.fieldOfView -= 1.0f;
+				mCamera.fieldOfView -= 1.0f;
 			if (Input.GetKeyDown(KeyCode.E))
-				camera.fieldOfView += 1.0f;
+				mCamera.fieldOfView += 1.0f;
 
 			float distance = Input.GetAxis("Mouse ScrollWheel") * -1 * 10.0f;
 
 			if (distance != 0)
 			{
-				camera.fieldOfView += distance;
+				mCamera.fieldOfView += distance;
 			}
 
 			if (Input.GetMouseButton(2))
@@ -96,7 +96,7 @@ public class MapGenerator : MonoBehaviour
 				xPos += Input.GetAxis("Mouse X") * xSensitivity * Time.deltaTime;
 				yPos += Input.GetAxis("Mouse Y") * ySensitivity * Time.deltaTime;
 
-				camera.transform.position = new Vector3(-xPos, camera.transform.position.y, -yPos);
+				mCamera.transform.position = new Vector3(-xPos, mCamera.transform.position.y, -yPos);
 			}
 		}
 	}
@@ -132,7 +132,7 @@ public class MapGenerator : MonoBehaviour
 			{
 				RaycastHit hit = new RaycastHit();
 
-				Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+				Ray ray = mCamera.ScreenPointToRay(Input.mousePosition);
 
 				if (Physics.Raycast(ray.origin, ray.direction, out hit))
 				{

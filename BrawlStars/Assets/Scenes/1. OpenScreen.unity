@@ -615,6 +615,8 @@ MonoBehaviour:
   - {fileID: -3162664654240143926, guid: 647eb7de6e85e1c4b83b9437e7aa89ad, type: 3}
   InventoryItemNameArray: []
   equippedItemNameArray: []
+  dropTable: {fileID: 11400000, guid: cbc621582763fe14194f1fc031664bad, type: 2}
+  stageIndex: 0
 --- !u!4 &2122110616
 Transform:
   m_ObjectHideFlags: 0

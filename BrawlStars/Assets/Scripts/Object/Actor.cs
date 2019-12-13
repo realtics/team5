@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 [System.Serializable]
 public struct SpriteIndex
@@ -40,6 +41,8 @@ public class Actor : MonoBehaviour
     public SpriteIndex deathSpriteIndex;
     public float deathSpriteInterval;
     protected float spriteInterval;
+
+	public SpriteAtlas atlas;
     List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
     public int spriteDirectionCount;
@@ -83,7 +86,7 @@ public class Actor : MonoBehaviour
         int i = 0;
         while (true)
         {
-            Sprite sprite = Resources.Load<Sprite>("Texture/Character/" + SpriteName + "" + i++);
+            Sprite sprite = atlas.GetSprite(SpriteName + "" + i++);
             if (sprite == null)
                 break;
             sprites.Add(sprite);

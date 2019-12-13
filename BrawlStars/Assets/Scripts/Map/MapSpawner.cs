@@ -4,16 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public enum StageResult
-{
-    WIN, LOSE
-}
-
 public class MapSpawner : MonoBehaviour
 {
     public stage[] stages;
 
-    public static int stageIndex = 0;
+    public int stageIndex;
     public Map currentMap;
     public GameObject navMeshFloor;
     public Character player;
@@ -27,23 +22,29 @@ public class MapSpawner : MonoBehaviour
     void Start()
     {
         resultUI.SetActive(false);
-    }
+	}
 
     public void Init(Character player)
-    {
-        this.player = player;
+	{
+		this.player = player;
+		stageIndex = GameManager.GetInstance().stageIndex;
 		CreateNewMap(0);
     }
 
     private void Update()
     {
-        if (currentMap.IsStageFinished())
-        {
-            if (currentMap.portals.Length == 0)
-            {
-                OnResultUI(StageResult.WIN);
-            }
-        }
+		if (currentMap.IsStageFinished())
+		{
+			if (currentMap.portals.Length == 0)
+			{
+				if (!BattleManager.GetInstance().IsAnyItemOnMap())
+					OnResultUI(StageResult.WIN);
+			}
+			else
+			{
+				currentMap.ActivatePortals();
+			}
+		}
 
         if (player.gameObject.activeSelf == false)
             OnResultUI(StageResult.LOSE);
@@ -51,7 +52,7 @@ public class MapSpawner : MonoBehaviour
 
     public void CreateNewMap(int index)
     {
-        DestroyItem();  
+		BattleManager.GetInstance().ClearAllItem();
 
 		if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
 		{
@@ -80,6 +81,7 @@ public class MapSpawner : MonoBehaviour
     public void OnResultUI(StageResult result)
     {
         resultUI.SetActive(true);
+		BattleManager.GetInstance().DeActivateInputHandler();
 
         if (result == StageResult.WIN)
             resultText.text = "승리";
@@ -101,26 +103,20 @@ public class MapSpawner : MonoBehaviour
         }
     }
 
-    public void DestroyItem()
-    {
-        GameObject[] DropItems = GameObject.FindGameObjectsWithTag("Item");
-
-        foreach (GameObject DeleteItem in DropItems)
-        {
-            Destroy(DeleteItem);
-        }
-    }
-
     public void ResetState()
     {
 		BattleManager.GetInstance().logView.Init();
         player.Alive();        
     }
+}
 
-    [System.Serializable]
-    public class stage
-    {
-        public Map[] maps;
-    }
+[System.Serializable]
+public struct stage
+{
+	public Map[] maps;
+}
 
+public enum StageResult
+{
+	WIN, LOSE
 }

@@ -5,12 +5,12 @@ using UnityEngine;
 public static class Global
 {
     public static int upIndex = 3;
-    public static int downIndex = 4;
-    public static int frontIndex = 1;
+	public static int upFrontIndex = 2;
+	public static int frontIndex = 1;
     public static int downFrontIndex = 0;
-    public static int upFrontIndex = 2;
+	public static int downIndex = 4;
 
-    public static float ConvertIn2PI(float value, float min)
+	public static float ConvertIn2PI(float value, float min)
     {
         float result = value;
         while (result < min)
@@ -40,4 +40,25 @@ public struct Status
         result.moveSpeed = a.moveSpeed + b.moveSpeed;
         return result;
     }
+}
+
+[System.Serializable]
+public struct Menu
+{
+	public string name;
+	public GameObject content;
+}
+
+[System.Serializable]
+public struct DropItem
+{
+	public float percentage;
+	public string itemName;
+}
+
+[System.Serializable]
+public struct DropItemList
+{
+	public string monsterName;
+	public DropItem[] itemList;
 }

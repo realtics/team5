@@ -24,7 +24,9 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		dragedImage.transform.SetParent(transform);
 
 		Refresh();
-    }
+
+		GameManager.GetInstance().RefreshSlots += Refresh;
+	}
 
     void Refresh()
     {
@@ -98,4 +100,9 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             itemText.text = item.GetItemExplanation();
         }
     }
+
+	void OnDestroy()
+	{
+		GameManager.GetInstance().RefreshSlots -= Refresh;
+	}
 }
