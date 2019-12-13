@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7794540712511777760}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 8114015931164955527}
@@ -106,8 +106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8370367506311761753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1980075683422274830}
   m_Father: {fileID: 0}
@@ -125,9 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b40a1ec3151bdd4da833db7ac659567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnedMonster: {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08,
+  EnemyState: 3
+  Monster1: {fileID: 412889789564026841, guid: 0d3add451394c454f9514aa00312717f, type: 3}
+  Monster2: {fileID: 7724979333546914174, guid: d28d7de3437c07b4e83a12c5c34ee7bb,
     type: 3}
-  bOnOff: 0
+  Monster3: {fileID: 3793338551321226100, guid: f35d046ced5b7014f9d4f20723c6a151,
+    type: 3}
+  BossEnemy: {fileID: 8768990605677607867, guid: 0dbfdb3a99e84a04c9b80ceee0436044,
+    type: 3}
+  totalEnemy: 1
+  Spawn: 0
+  spawnType: 1
+  waveTimer: 5
+  totalWave: 3
 --- !u!65 &2960840493192178507
 BoxCollider:
   m_ObjectHideFlags: 0

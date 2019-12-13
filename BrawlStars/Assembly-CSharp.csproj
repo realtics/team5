@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Manager\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Map\Cube\MapBox.cs" />
     <Compile Include="Assets\Scripts\Map\Map.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\ButtonAction.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\OnSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\UIOnOff.cs" />
@@ -113,17 +114,25 @@
     <Compile Include="Assets\Scripts\UI\SkillScrollRect.cs" />
     <Compile Include="Assets\Scripts\UI\StageSelector.cs" />
     <Compile Include="Assets\test.cs" />
+    <None Include="Assets\StageMaps\4.txt" />
+    <None Include="Assets\StageMaps\1234.txt" />
     <None Include="Assets\StageMaps\qwewqe.txt" />
+    <None Include="Assets\StageMaps\a.txt" />
+    <None Include="Assets\StageMaps\1-1.txt" />
+    <None Include="Assets\StageMaps\3.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
     <None Include="Assets\StageMaps\Simple.txt" />
-    <None Include="Assets\StageMaps\13.txt" />
     <None Include="Assets\StageMaps\qq.txt" />
+    <None Include="Assets\StageMaps\1.txt" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
     <None Include="Assets\StageMaps\OnMaps.txt" />
     <None Include="Assets\StageMaps\Neo.txt" />
     <None Include="Assets\StageMaps\Maps1.txt" />
+    <None Include="Assets\StageMaps\sdsd.txt" />
+    <None Include="Assets\StageMaps\1-5.txt" />
     <None Include="Assets\StageMaps\Maze.txt" />
+    <None Include="Assets\StageMaps\2.txt" />
     <None Include="Assets\Resources\DualCorStudios\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/ICT03_09/Desktop/forGit/BrawlStars/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
