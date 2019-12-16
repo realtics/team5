@@ -45,14 +45,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uD654\uC5FC\uAD6C"
   icon: {fileID: 21300000, guid: 5a306bd791673e34fa19bd6be81afd5a, type: 3}
-  castingDelay: 0
+  castingDelay: 0.2
   startupTime: 0.2
-  recoveryTime: 0
+  recoveryTime: 0.2
   attackPercentage: 15
   damageCount: 10
   damageInterval: 0.1
   cooldown: 5
-  spriteInterval: 0
   reach: 6
   width: 1
   fireballObject: {fileID: 2046875378689174803, guid: e4d09d010ce0262429c8b9ec38a7afcf,

@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9119778691467509924}
-  - component: {fileID: 7920129116037723826}
-  - component: {fileID: 1632022245160118215}
-  - component: {fileID: -14056779172501905}
+  - component: {fileID: -3261230489283482389}
+  - component: {fileID: 554003018535485233}
+  - component: {fileID: -1117598392396190065}
   m_Layer: 0
-  m_Name: ThunderStrike
+  m_Name: FireDragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923743176299164839}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1952403, y: 0.2, z: -0.017113669}
-  m_LocalScale: {x: 2.4, y: 4.8, z: 1}
+  m_LocalRotation: {x: 0.49183577, y: 0.50803304, z: -0.50803304, w: 0.49183577}
+  m_LocalPosition: {x: 7.8, y: 0.1, z: 1.02}
+  m_LocalScale: {x: 3, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7920129116037723826
+--- !u!114 &-3261230489283482389
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,40 +42,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 923743176299164839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d1feb0a4fc2ef42bd02951e35f7c8d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d59dd0e50fbbac47a7ea1735c90f85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: "\uBC88\uAC1C \uD3ED\uACA9"
-  icon: {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
+  skillName: "\uC6A9\uC758 \uBD84\uB178"
+  icon: {fileID: 21300000, guid: c38827639bff22b4cbfd46a56a6611a0, type: 3}
   castingDelay: 0.3
-  startupTime: 0.2
+  startupTime: 0
   recoveryTime: 0.1
-  attackPercentage: 120
-  damageCount: 5
-  damageInterval: 0.5
-  cooldown: 15
-  reach: 8
-  radius: 3
---- !u!95 &1632022245160118215
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923743176299164839}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 077afcd923eb53a499de77d6c1220299, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!212 &-14056779172501905
+  attackPercentage: 230
+  damageCount: 1
+  damageInterval: 0
+  cooldown: 1
+  reach: 5
+  width: 1.2
+  speed: 2.5
+  spriteDirectionCount: 0
+--- !u!212 &554003018535485233
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,14 +96,33 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 376059c2c1774ee48ab2c3778a159516, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b63a5f1455a7db9418dbe43020ff564e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.8, y: 6.4}
+  m_Size: {x: 6.4, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-1117598392396190065
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923743176299164839}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b249d795b58a0794395e83ba7f4922f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

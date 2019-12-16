@@ -56,12 +56,7 @@ public class MapGenerator : MonoBehaviour
 		loadUI.SetActive(false);
 		infoUI.SetActive(false);
 
-<<<<<<< HEAD
 		mCamera.transform.position = Camera.main.transform.position;
-		//LoadMap();
-=======
-		camera.transform.position = Camera.main.transform.position;
->>>>>>> master
 	}
 
 	void Update()

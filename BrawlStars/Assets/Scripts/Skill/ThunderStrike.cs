@@ -12,7 +12,6 @@ public class ThunderStrike : Skill
 
     public override void Action(float yRotationEuler)
     {
-		damage = attackPercentage * status.attackDamage / 100;
         StartCoroutine(DamageCoroutine());
     }
 
@@ -21,7 +20,7 @@ public class ThunderStrike : Skill
         yield return new WaitForSeconds(startupTime);
 
         Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
-        for (int i =0; i < damageCount; i++)
+        for (int i = 0; i < damageCount; i++)
         {
             Collider[] colliders = Physics.OverlapSphere(point, radius);
             for (int j = 0; j < colliders.Length; j++)

@@ -19,8 +19,6 @@ public abstract class Skill : MonoBehaviour
     public float cooldown;
     protected float lastUsedTime;
 
-    public float spriteInterval;
-
     protected Actor owner;
     protected Mesh rangeMesh;
 
@@ -31,10 +29,7 @@ public abstract class Skill : MonoBehaviour
     {
 		Skill actionSkill = ObjectPool.GetInstance().GetObject(gameObject).GetComponent<Skill>();
 		actionSkill.gameObject.SetActive(true);
-		actionSkill.transform.position = position;
-        actionSkill.StartCooldown();
-        actionSkill.owner = user;
-        actionSkill.status = user.GetFinalStatus();
+        actionSkill.Init(user, position);
         actionSkill.Action(yRotationEuler);
     }
 
@@ -43,28 +38,16 @@ public abstract class Skill : MonoBehaviour
     public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength);
     public abstract Quaternion GetRotation(Vector2 stickMove);
     
+    public void Init(Actor user, Vector3 position)
+    {
+        transform.position = position;
+        owner = user;
+        status = user.GetFinalStatus();
+        damage = attackPercentage * status.attackDamage / 100;
+    }
+
     public Mesh GetTargetRangeMesh()
     {
         return rangeMesh;
-    }
-
-    public void InitCooldown()
-    {
-        lastUsedTime = Time.time - cooldown;
-    }
-
-    public void StartCooldown()
-    {
-        lastUsedTime = Time.time;
-    }
-
-    public float GetRemainCooldown()
-    {
-        return cooldown - (Time.time - lastUsedTime);
-    }
-
-    public bool ReadyToAction()
-    {
-        return GetRemainCooldown() < 0;
     }
 }

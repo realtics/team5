@@ -62,3 +62,21 @@ public struct DropItemList
 	public string monsterName;
 	public DropItem[] itemList;
 }
+
+[System.Serializable]
+public struct SpriteIndex
+{
+    public int start;
+    public int end;
+}
+
+[System.Serializable]
+public enum Team
+{
+    Player, Enemy
+}
+
+public enum State
+{
+    Idle, Attack, Dead
+}
