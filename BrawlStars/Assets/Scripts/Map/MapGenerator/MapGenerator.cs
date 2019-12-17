@@ -10,6 +10,8 @@ public class MapGenerator : MonoBehaviour
 	public InputField inputX; //X 크기
 	public InputField inputY; //Y 크기
 
+	public InputField inputPortalIndex;
+
 	public InputField inputSaveText;	//SaveText
 	public InputField inputLoadText;	//LoadText
 
@@ -18,7 +20,7 @@ public class MapGenerator : MonoBehaviour
 	public GameObject infoUI;
 
 	public Text CubeName;
-
+	public Text MapName;
 
 	//맵 만드는 거
 	public Map maps;
@@ -48,13 +50,22 @@ public class MapGenerator : MonoBehaviour
 	float yPos = 0.0f;
 	float xPos = 0.0f;
 
-	int index = 0;
+	int index = 1;
 
 	void Start()
     {
+		UIInitialized();
+	}
+
+	private void UIInitialized()
+	{
 		saveUI.SetActive(false);
 		loadUI.SetActive(false);
 		infoUI.SetActive(false);
+
+		inputPortalIndex.text = index.ToString();
+
+		MapName.text = null;
 
 		camera.transform.position = Camera.main.transform.position;
 	}
@@ -63,7 +74,7 @@ public class MapGenerator : MonoBehaviour
 	{
 		CameraControl();
 		OnChangeCube();
-		NowCube();
+		NowCubeString();
 	}
 
 	public void SwithcingCube(int cube)
@@ -71,7 +82,7 @@ public class MapGenerator : MonoBehaviour
 		cubeIndex = cube;
 	}
 
-	public void NowCube()
+	public void NowCubeString()
 	{
 		switch (cubeIndex)
 		{
@@ -103,7 +114,7 @@ public class MapGenerator : MonoBehaviour
 				CubeName.text = "DarkCube";
 				break;
 			case 19:
-				CubeName.text = "StartinPoint";
+				CubeName.text = "StartingPoint";
 				break;
 			case 20:
 				CubeName.text = "Portal";
@@ -121,14 +132,14 @@ public class MapGenerator : MonoBehaviour
 				CubeName.text = "Monster4";
 				break;
 			default:
-				CubeName.text = "NullCube";
+				CubeName.text = "Not Select";
 				break;
 		}
-		
 	}
 
 	void CameraControl()
 	{
+		//마우스로 안쓸 때 카메라 이동
 		if (!EventSystem.current.IsPointerOverGameObject())
 		{
 			if (Input.GetKeyDown(KeyCode.A))
@@ -164,6 +175,9 @@ public class MapGenerator : MonoBehaviour
 
 	public void onOffSaveUI()
 	{
+		if (loadUI.activeSelf == true)
+			loadUI.SetActive(false);
+		
 		if (saveUI.activeSelf == false)
 		{
 			saveUI.SetActive(true);
@@ -175,6 +189,9 @@ public class MapGenerator : MonoBehaviour
 
 	public void onOffLoadUI()
 	{
+		if (saveUI.activeSelf == true)
+			saveUI.SetActive(false);
+		
 		if (loadUI.activeSelf == false)
 		{
 			loadUI.SetActive(true);
@@ -201,32 +218,20 @@ public class MapGenerator : MonoBehaviour
 						hit.collider.gameObject.tag == "Portal" || 
 						hit.collider.gameObject.tag == "StartingPoint")
 					{
-						GameObject newObstacle;
-
-						float setYPosition = 0.25f;
-
 						Destroy(hit.collider.gameObject);
 
 						mapHolder = transform.Find("Generated Map Cube").gameObject.transform;
 
-						GameObject starting = GameObject.FindGameObjectWithTag("StartingPoint");
+						OnlyOneObjectTagName("StartingPoint");
+						OnlyOneObjectTagName("Portal");
 
-						if (starting != null)
-						{
-							newObstacle = Instantiate(obstaclePrefabs[0], new Vector3(starting.transform.position.x, setYPosition,
-							starting.transform.position.z), Quaternion.identity);
-
-							obstacleMap[(int)starting.transform.position.x,
-								(int)starting.transform.position.z] = 0;
-
-							newObstacle.gameObject.transform.parent = mapHolder;
-
-							Destroy(starting);
-						}
-						
-
-						newObstacle = Instantiate(obstaclePrefabs[cubeIndex], new Vector3(hit.transform.gameObject.transform.position.x, setYPosition,
+						GameObject newObstacle = Instantiate(obstaclePrefabs[cubeIndex], 
+							new Vector3(hit.transform.gameObject.transform.position.x,
+							obstaclePrefabs[cubeIndex].transform.localScale.y * 0.5f,
 								hit.transform.gameObject.transform.position.z), Quaternion.identity);
+
+						//Debug.Log("x : " + hit.transform.gameObject.transform.position.x + " " +
+						//	"y: " + hit.transform.gameObject.transform.position.z);
 
 						obstacleMap[(int)hit.transform.gameObject.transform.position.x,
 							(int)hit.transform.gameObject.transform.position.z] = cubeIndex;
@@ -238,8 +243,29 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
+	void OnlyOneObjectTagName(string onlyOneName)
+	{
+		GameObject[] onlyOneObj = GameObject.FindGameObjectsWithTag(onlyOneName);
+
+		if (onlyOneObj.Length > 1)
+		{
+			GameObject newObstacle = Instantiate(obstaclePrefabs[0], new Vector3(
+			onlyOneObj[0].transform.position.x,
+			obstaclePrefabs[0].transform.localScale.y * 0.5f,
+			onlyOneObj[0].transform.position.z), Quaternion.identity);
+
+			obstacleMap[(int)onlyOneObj[0].transform.position.x,
+				(int)onlyOneObj[0].transform.position.z] = 0;
+
+			newObstacle.gameObject.transform.parent = mapHolder;
+
+			Destroy(onlyOneObj[0]);
+		}
+	}
+
 	public void ClearNGenerate()
 	{
+		maps.MapName = null;
 		ClearMap();
 		GenerateMap();
 	}
@@ -260,7 +286,10 @@ public class MapGenerator : MonoBehaviour
 		//최대 맵은 설정한 mapSize의 값에 + 1으로 설정
 		maxMapSize.x = maps.mapSize.x + 1;
         maxMapSize.y = maps.mapSize.y + 1;
-           
+
+
+		MapName.text = maps.MapName;
+
 		// 좌표 생성 Generating coords
 		allTileCoords = new List<Coord>();
 
@@ -312,8 +341,6 @@ public class MapGenerator : MonoBehaviour
         {
             for (int i = 0; i < maps.mapSize.x; i++)
             {
-				float obstacleHeight = 0.5f;
-
 				//해당 큐브의 위치
 				Vector3 obstaclePosition = CoordToPosition(j, i);
 				
@@ -326,35 +353,42 @@ public class MapGenerator : MonoBehaviour
 				}
 
 				//해당 위치에 큐브를 설치
-				GameObject newObstacle = Instantiate(obstaclePrefabs[obstacleMap[j, i]], obstaclePosition + Vector3.up * obstaclePrefabs[obstacleMap[j, i]].transform.localScale.y / 2, Quaternion.identity) as GameObject;
+				GameObject newObstacle = Instantiate(obstaclePrefabs[obstacleMap[j, i]],
+					obstaclePosition + Vector3.up * obstaclePrefabs[obstacleMap[j, i]].transform.localScale.y * 0.5f,
+					Quaternion.identity) as GameObject;
                 
 				newObstacle.gameObject.transform.parent = mapHolder;
-                newObstacle.gameObject.transform.localScale = new Vector3(1, obstaclePrefabs[obstacleMap[j, i]].transform.localScale.y, 1);
+                newObstacle.gameObject.transform.localScale = new Vector3(obstaclePrefabs[obstacleMap[j, i]].transform.localScale.x,
+					obstaclePrefabs[obstacleMap[j, i]].transform.localScale.y, obstaclePrefabs[obstacleMap[j, i]].transform.localScale.z);
             }
         }
 
-        // 네비매쉬 마스크 생성 Creating navmesh mask
-        //필드의 좌측
-        Transform maskLeft = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3( -0.75f , 0, (maps.mapSize.x / 2f)-0.5f) , Quaternion.identity) as Transform;
+		// 네비매쉬 마스크 생성 Creating navmesh mask
+		//필드의 좌측
+		Transform maskLeft = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3(-0.75f, 0, (maps.mapSize.y * 0.5f) - 0.5f), Quaternion.identity) as Transform;
+		maskLeft.name = "Left";
         maskLeft.parent = mapHolder;
-        maskLeft.localScale = new Vector3((maxMapSize.y - maps.mapSize.y)/2f, 1, maps.mapSize.x) * tileSize;
+        maskLeft.localScale = new Vector3((maxMapSize.x - maps.mapSize.x) * 0.5f, 1, maps.mapSize.y) * tileSize;
 
 		//필드의 우측
-		Transform maskRight = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3(maps.mapSize.y - 0.25f, 0, (maps.mapSize.x / 2f) - 0.5f), Quaternion.identity) as Transform;
+		Transform maskRight = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3(maps.mapSize.x - 0.25f, 0, (maps.mapSize.y * 0.5f) - 0.5f), Quaternion.identity) as Transform;
+		maskRight.name = "Right";
 		maskRight.parent = mapHolder;
-		maskRight.localScale = new Vector3((maxMapSize.y - maps.mapSize.y) / 2f, 1, maps.mapSize.x) * tileSize;
+		maskRight.localScale = new Vector3((maxMapSize.x - maps.mapSize.x) * 0.5f, 1, maps.mapSize.y) * tileSize;
 
 		//필드의 앞
-		Transform maskTop = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.y / 2f) - 0.5f, 0, maps.mapSize.x - 0.25f), Quaternion.identity) as Transform;
+		Transform maskTop = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, maps.mapSize.y - 0.25f), Quaternion.identity) as Transform;
+		maskTop.name = "Top";
 		maskTop.parent = mapHolder;
-		maskTop.localScale = new Vector3(maxMapSize.y, 1, (maxMapSize.x - maps.mapSize.x) / 2f) * tileSize;
+		maskTop.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
 		//필드의 뒤
-		Transform maskBottom = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.y / 2f) - 0.5f, 0, -0.75f), Quaternion.identity) as Transform;
+		Transform maskBottom = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, -0.75f), Quaternion.identity) as Transform;
+		maskBottom.name = "Bottom";
 		maskBottom.parent = mapHolder;
-		maskBottom.localScale = new Vector3(maxMapSize.y, 1, (maxMapSize.x - maps.mapSize.x) / 2f) * tileSize;
+		maskBottom.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
-		navmeshFloor.transform.position = new Vector3(maps.mapSize.x / 2f - 0.5f, 0, maps.mapSize.y / 2f - 0.5f);
+		navmeshFloor.transform.position = new Vector3(maps.mapSize.x * 0.5f - 0.5f, 0, maps.mapSize.y * 0.5f - 0.5f);
 		navmeshFloor.localScale = new Vector3(maxMapSize.x, maxMapSize.y) * tileSize;
     }
 
@@ -374,16 +408,8 @@ public class MapGenerator : MonoBehaviour
                 {
                     for (int i = 0; i < maps.mapSize.x; i++)
                     {
-
 						if (obstacleMap[j, i] >= 20 && obstacleMap[j, i] < 30)
 						{
-							/*GameObject[] games = GameObject.FindGameObjectsWithTag("Portal");
-
-							obstacleMap[j, i] += games[portalIndex].GetComponent<Portal>().targetIndex;
-
-							if (portalIndex < games.Length)
-								portalIndex++;*/
-
 							GameObject games = GameObject.FindGameObjectWithTag("Portal");
 
 							obstacleMap[j, i] += games.GetComponent<Portal>().targetIndex;
@@ -412,7 +438,7 @@ public class MapGenerator : MonoBehaviour
         {
             using (StreamReader inputFile = new StreamReader(@"Assets\StageMaps\" + maps.MapName + ".txt"))
             {
-                Debug.Log(maps.MapName);
+				Debug.Log(maps.MapName);
 
                 //string으로 값을 읽기 때문에 int로 컨버전 해줌.
                 maps.mapSize.y = int.Parse(inputFile.ReadLine());
@@ -470,16 +496,16 @@ public class MapGenerator : MonoBehaviour
     Vector3 CoordToPosition(int y, int x)
     {
         //큐브와 타일의 위치를 지정
-        return new Vector3(y, 0, x) * tileSize;
+        return new Vector3(x, 0, y) * tileSize;
     }
 
     [System.Serializable]
     public struct Coord
     {
-        public int x;
-        public int y;
+        public float x;
+        public float y;
 
-        public Coord(int _x, int _y)
+        public Coord(float _y, float _x)
         {
             x = _x;
             y = _y;
@@ -504,7 +530,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-	public void OkButton()
+	public void SubmitButton()
 	{
 		infoUI.SetActive(false);
 
@@ -517,7 +543,27 @@ public class MapGenerator : MonoBehaviour
 		GenerateMap();
 	}
 
-    [System.Serializable]
+	public void PlusPortalIndex()
+	{
+		if(index < 9)
+			index++;
+
+		obstaclePrefabs[20].GetComponent<Portal>().targetIndex = index;
+
+		inputPortalIndex.text = index.ToString();
+	}
+
+	public void MinusPortalIndex()
+	{
+		if (index > 1)
+			index--;
+
+		obstaclePrefabs[20].GetComponent<Portal>().targetIndex = index;
+
+		inputPortalIndex.text = index.ToString();
+	}
+
+	[System.Serializable]
     public class Map
     {
         public string MapName;
@@ -527,7 +573,7 @@ public class MapGenerator : MonoBehaviour
         {
             get
             {
-                return new Coord(mapSize.x / 2, mapSize.y / 2);
+                return new Coord(mapSize.x * 0.5f, mapSize.y * 0.5f);
             }
         }
     }

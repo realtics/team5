@@ -5,16 +5,27 @@ using UnityEngine.UI;
 
 public class ButtonAction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-	
-    }
+	public Button btn;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public InputField load;
 
+	// Start is called before the first frame update
+	void Start()
+	{
+		btn = this.transform.GetComponent<Button>();
+		btn.onClick.AddListener(SendText);
+		load = GameObject.Find("Map").GetComponent<MapGenerator>().inputLoadText;
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
+
+
+	void SendText()
+	{
+		load.text = this.transform.Find("Text").GetComponent<Text>().text;
+	}
 }
