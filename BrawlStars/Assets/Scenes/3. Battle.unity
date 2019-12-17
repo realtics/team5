@@ -2020,6 +2020,7 @@ MonoBehaviour:
   - {fileID: 17304690}
   - {fileID: 1146288585}
   - {fileID: 617037413}
+  droppedItemList: []
 --- !u!4 &1460514555
 Transform:
   m_ObjectHideFlags: 0

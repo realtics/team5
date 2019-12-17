@@ -178,7 +178,7 @@ public class Actor : MonoBehaviour
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
         }
 
-        if (angleBasedZAxis < -Mathf.PI * 7 / 8 || angleBasedZAxis > Mathf.PI * 7 / 8)
+		if (angleBasedZAxis < -Mathf.PI * 7 / 8 || angleBasedZAxis > Mathf.PI * 7 / 8)
         {
             return Global.downIndex;
         }
@@ -247,6 +247,8 @@ public class Actor : MonoBehaviour
         characterDirectionAngle = Mathf.Atan2(1, -1);
         state = State.Idle;
         currentSpriteIndex = 0;
+
+		BattleManager.GetInstance().AddActorOnManager(this);
     }
 
     protected virtual void Death()
@@ -256,7 +258,8 @@ public class Actor : MonoBehaviour
         currentSpriteIndex = 0;
         state = State.Dead;
         mCollider.enabled = false;
-    }
+		BattleManager.GetInstance().DeleteActorFromManager(this);
+	}
 
     IEnumerator TakeDamageCoroutine()
     {
@@ -305,4 +308,9 @@ public class Actor : MonoBehaviour
     {
         return finalStatus;
     }
+
+	public float GetCollisionRadius()
+	{
+		return mCollider.radius;
+	}
 }

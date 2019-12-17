@@ -81,7 +81,7 @@ public class MapSpawner : MonoBehaviour
     public void OnResultUI(StageResult result)
     {
         resultUI.SetActive(true);
-		BattleManager.GetInstance().DeActivateInputHandler();
+		BattleManager.GetInstance().SetActiveInputHandler(false);
 
         if (result == StageResult.WIN)
             resultText.text = "승리";
@@ -106,7 +106,9 @@ public class MapSpawner : MonoBehaviour
     public void ResetState()
     {
 		BattleManager.GetInstance().logView.Init();
-        player.Alive();        
+		BattleManager.GetInstance().SetActiveInputHandler(true);
+
+		player.Alive();        
     }
 }
 

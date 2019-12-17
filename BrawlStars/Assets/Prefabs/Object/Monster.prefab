@@ -147,7 +147,7 @@ MonoBehaviour:
   status:
     attackDamage: 400
     armor: 10
-    hp: 200
+    hp: 200000
     hpRecovery: 0
     moveSpeed: 0.5
   SpriteName: INDRA

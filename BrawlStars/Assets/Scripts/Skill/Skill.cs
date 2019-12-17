@@ -22,7 +22,6 @@ public abstract class Skill : MonoBehaviour
     protected Actor owner;
     protected Mesh rangeMesh;
 
-    protected Animator animator;
     protected Status status;
 
     public void StartSkill(Actor user, Vector3 position, float yRotationEuler)

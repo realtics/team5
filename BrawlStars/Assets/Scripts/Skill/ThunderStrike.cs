@@ -19,20 +19,15 @@ public class ThunderStrike : Skill
     {
         yield return new WaitForSeconds(startupTime);
 
-        Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
-        for (int i = 0; i < damageCount; i++)
-        {
-            Collider[] colliders = Physics.OverlapSphere(point, radius);
-            for (int j = 0; j < colliders.Length; j++)
-            {
-                Actor target = colliders[j].GetComponent<Actor>();
-                if (target != null && target.team != owner.team)
-                {
-                    target.TakeDamage(damage);
-                }
-            }
-            yield return new WaitForSeconds(damageInterval);
-        }
+		for (int i = 0; i < damageCount; i++)
+		{
+			List<Actor> targets = BattleManager.GetInstance().FindActorsInCircle(transform.position, radius);
+			for (int j = 0; j < targets.Count; j++)
+				if (targets[j] != null && targets[j].team != owner.team)
+					targets[j].TakeDamage(damage);
+
+			yield return new WaitForSeconds(damageInterval);
+		}
 
 		ObjectPool.GetInstance().AddNewObject(gameObject);
     }

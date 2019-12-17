@@ -19,15 +19,11 @@ public class Shockwave : Skill
         Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
         for (int i = 0; i < damageCount; i++)
         {
-            Collider[] colliders = Physics.OverlapSphere(point, radius);
-            for (int j = 0; j < colliders.Length; j++)
-            {
-                Character target = colliders[j].GetComponent<Character>();
-                if (target != null && target.team != owner.team)
-                {
-                    target.TakeDamage(damage);
-                }
-            }
+			List<Actor> targets = BattleManager.GetInstance().FindActorsInCircle(transform.position, radius);
+            for (int j = 0; j < targets.Count; j++)
+                if (targets[i] != null && targets[i].team != owner.team)
+                    targets[i].TakeDamage(damage);
+
             yield return new WaitForSeconds(damageInterval);
         }
         Destroy(gameObject);

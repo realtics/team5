@@ -613,8 +613,6 @@ MonoBehaviour:
   - {fileID: -3162664654240143926, guid: 1086af85e5608bb41bd4bb39f0da36a2, type: 3}
   - {fileID: -3162664654240143926, guid: ba1b640ec3561424295afc2dd238f8c5, type: 3}
   - {fileID: -3162664654240143926, guid: 647eb7de6e85e1c4b83b9437e7aa89ad, type: 3}
-  InventoryItemNameArray: []
-  equippedItemNameArray: []
   dropTable: {fileID: 11400000, guid: cbc621582763fe14194f1fc031664bad, type: 2}
   stageIndex: 0
 --- !u!4 &2122110616

@@ -75,7 +75,7 @@ public class SkillIcon : ControlUI
 
     public override void Drag(Vector2 position)
     {
-        if (onSkillActivate)
+        if (joystick.gameObject.activeSelf)
         {
             joystick.Drag(position);
         }

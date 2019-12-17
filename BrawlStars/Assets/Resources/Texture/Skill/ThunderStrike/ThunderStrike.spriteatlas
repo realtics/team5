@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ThunderStrike
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 376059c2c1774ee48ab2c3778a159516, type: 3}
+    - {fileID: 2800000, guid: 13406ddb321cc874fa4686872478c3ff, type: 3}
+    - {fileID: 2800000, guid: e6081acc866fa144cbec68d2dd709c89, type: 3}
+    - {fileID: 2800000, guid: 502a9b74c68f45c4b808bc1aba7d27e8, type: 3}
+    - {fileID: 2800000, guid: f1783988efedcec4daa8fb28b15a148a, type: 3}
+    - {fileID: 2800000, guid: 5d6074da54e34cb43947b48c0d6f431d, type: 3}
+    - {fileID: 2800000, guid: b55adb79f62ded24abf1f0ccf7b6a430, type: 3}
+    - {fileID: 2800000, guid: ae209485e98726d4c9598fb099f24c2c, type: 3}
+    - {fileID: 2800000, guid: 4e5898e552619be418da1e929a5080d3, type: 3}
+    - {fileID: 2800000, guid: 1ab873c9c0b206942a98ddc0dac9e302, type: 3}
+    - {fileID: 2800000, guid: a0511edd8cffa784cb9b9bd0735786b9, type: 3}
+    - {fileID: 2800000, guid: fa0d26a2bbe401747b1df3e3abd84616, type: 3}
+    - {fileID: 2800000, guid: 8079fee13a0bdbd44b459ebde30c0ac6, type: 3}
+    - {fileID: 2800000, guid: 64c0fa3ff9df0e84f8515ca1cd75fbfb, type: 3}
+    - {fileID: 2800000, guid: 36b18eb416c4d664b8da44c98c28a02b, type: 3}
+    - {fileID: 2800000, guid: 54bb2fa77f15c794ab4422ff080c1467, type: 3}
+    - {fileID: 2800000, guid: a2a2f88aad5055144aeb8d991baa769a, type: 3}
+    - {fileID: 2800000, guid: 2b8398f625c1dc24a96d863cc7a9df51, type: 3}
+    totalSpriteSurfaceArea: 5529600
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8079fee13a0bdbd44b459ebde30c0ac6, type: 3}
+  - {fileID: 21300000, guid: fa0d26a2bbe401747b1df3e3abd84616, type: 3}
+  - {fileID: 21300000, guid: 376059c2c1774ee48ab2c3778a159516, type: 3}
+  - {fileID: 21300000, guid: 502a9b74c68f45c4b808bc1aba7d27e8, type: 3}
+  - {fileID: 21300000, guid: 36b18eb416c4d664b8da44c98c28a02b, type: 3}
+  - {fileID: 21300000, guid: ae209485e98726d4c9598fb099f24c2c, type: 3}
+  - {fileID: 21300000, guid: 4e5898e552619be418da1e929a5080d3, type: 3}
+  - {fileID: 21300000, guid: 2b8398f625c1dc24a96d863cc7a9df51, type: 3}
+  - {fileID: 21300000, guid: 54bb2fa77f15c794ab4422ff080c1467, type: 3}
+  - {fileID: 21300000, guid: f1783988efedcec4daa8fb28b15a148a, type: 3}
+  - {fileID: 21300000, guid: b55adb79f62ded24abf1f0ccf7b6a430, type: 3}
+  - {fileID: 21300000, guid: 1ab873c9c0b206942a98ddc0dac9e302, type: 3}
+  - {fileID: 21300000, guid: a2a2f88aad5055144aeb8d991baa769a, type: 3}
+  - {fileID: 21300000, guid: 5d6074da54e34cb43947b48c0d6f431d, type: 3}
+  - {fileID: 21300000, guid: 13406ddb321cc874fa4686872478c3ff, type: 3}
+  - {fileID: 21300000, guid: e6081acc866fa144cbec68d2dd709c89, type: 3}
+  - {fileID: 21300000, guid: a0511edd8cffa784cb9b9bd0735786b9, type: 3}
+  - {fileID: 21300000, guid: 64c0fa3ff9df0e84f8515ca1cd75fbfb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ThunderBomb_Bottom_13
+  - ThunderBomb_Bottom_12
+  - ThunderBomb_Bottom_1
+  - ThunderBomb_Bottom_4
+  - ThunderBomb_Bottom_15
+  - ThunderBomb_Bottom_8
+  - ThunderBomb_Bottom_9
+  - ThunderBomb_Bottom_0
+  - ThunderBomb_Bottom_16
+  - ThunderBomb_Bottom_5
+  - ThunderBomb_Bottom_7
+  - ThunderBomb_Bottom_10
+  - ThunderBomb_Bottom_17
+  - ThunderBomb_Bottom_6
+  - ThunderBomb_Bottom_2
+  - ThunderBomb_Bottom_3
+  - ThunderBomb_Bottom_11
+  - ThunderBomb_Bottom_14
+  m_Tag: ThunderStrike
+  m_IsVariant: 0

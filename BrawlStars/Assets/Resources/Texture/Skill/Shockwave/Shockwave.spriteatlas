@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shockwave
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 3a9518c27da0fb240be0d79159cbe2c4, type: 3}
+    - {fileID: 2800000, guid: bff5bd88a33bd5d40972c7369a948b16, type: 3}
+    - {fileID: 2800000, guid: 1fecb869398343c4c99048937d66448e, type: 3}
+    - {fileID: 2800000, guid: 9d4e665ebf0ea36448f38e95677d4d04, type: 3}
+    - {fileID: 2800000, guid: 76de290691cff9a489fe5524ba51305d, type: 3}
+    - {fileID: 2800000, guid: a46baa6f3cc50e945b8cbdf112240d07, type: 3}
+    - {fileID: 2800000, guid: 5d4add8a41f840340a582015582b9a47, type: 3}
+    - {fileID: 2800000, guid: b1733d91a313c3b4cb6f9aba3cafdc72, type: 3}
+    - {fileID: 2800000, guid: 82f6139af7508bb4a9bccf748526bafe, type: 3}
+    - {fileID: 2800000, guid: c78ae6c9282f5634daa9adaf59a71afa, type: 3}
+    - {fileID: 2800000, guid: 0f16e187b154b694a89024fe6874e338, type: 3}
+    - {fileID: 2800000, guid: f6882982548071d428cd8bfa91103a37, type: 3}
+    - {fileID: 2800000, guid: 4e27f21841a7b1742a6c7d214834f4a2, type: 3}
+    - {fileID: 2800000, guid: 7c1b1c7d3badbf54d9da213f0767bc1a, type: 3}
+    - {fileID: 2800000, guid: 47b422518ccabac419503df2914ef53f, type: 3}
+    - {fileID: 2800000, guid: 3b60056a6dd8db345bb620d200c25b7b, type: 3}
+    - {fileID: 2800000, guid: 5b3504c727031514e8d3a6639fd0ae7b, type: 3}
+    - {fileID: 2800000, guid: b66909da699a9144991ba71c84c5b616, type: 3}
+    - {fileID: 2800000, guid: a42b2f5eff3ef784e9d9657e0ba66e02, type: 3}
+    - {fileID: 2800000, guid: 1e499607682746e40b83e40844a516e3, type: 3}
+    totalSpriteSurfaceArea: 6693140
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 47b422518ccabac419503df2914ef53f, type: 3}
+  - {fileID: 21300000, guid: b1733d91a313c3b4cb6f9aba3cafdc72, type: 3}
+  - {fileID: 21300000, guid: f6882982548071d428cd8bfa91103a37, type: 3}
+  - {fileID: 21300000, guid: 3a9518c27da0fb240be0d79159cbe2c4, type: 3}
+  - {fileID: 21300000, guid: 76de290691cff9a489fe5524ba51305d, type: 3}
+  - {fileID: 21300000, guid: 1e499607682746e40b83e40844a516e3, type: 3}
+  - {fileID: 21300000, guid: 0f16e187b154b694a89024fe6874e338, type: 3}
+  - {fileID: 21300000, guid: 5b3504c727031514e8d3a6639fd0ae7b, type: 3}
+  - {fileID: 21300000, guid: 4e27f21841a7b1742a6c7d214834f4a2, type: 3}
+  - {fileID: 21300000, guid: bff5bd88a33bd5d40972c7369a948b16, type: 3}
+  - {fileID: 21300000, guid: 1fecb869398343c4c99048937d66448e, type: 3}
+  - {fileID: 21300000, guid: c78ae6c9282f5634daa9adaf59a71afa, type: 3}
+  - {fileID: 21300000, guid: 3b60056a6dd8db345bb620d200c25b7b, type: 3}
+  - {fileID: 21300000, guid: 5d4add8a41f840340a582015582b9a47, type: 3}
+  - {fileID: 21300000, guid: 82f6139af7508bb4a9bccf748526bafe, type: 3}
+  - {fileID: 21300000, guid: b66909da699a9144991ba71c84c5b616, type: 3}
+  - {fileID: 21300000, guid: 7c1b1c7d3badbf54d9da213f0767bc1a, type: 3}
+  - {fileID: 21300000, guid: 9d4e665ebf0ea36448f38e95677d4d04, type: 3}
+  - {fileID: 21300000, guid: a42b2f5eff3ef784e9d9657e0ba66e02, type: 3}
+  - {fileID: 21300000, guid: a46baa6f3cc50e945b8cbdf112240d07, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - CircularWave_14
+  - CircularWave_7
+  - CircularWave_11
+  - CircularWave_0
+  - CircularWave_4
+  - CircularWave_19
+  - CircularWave_10
+  - CircularWave_16
+  - CircularWave_12
+  - CircularWave_1
+  - CircularWave_2
+  - CircularWave_9
+  - CircularWave_15
+  - CircularWave_6
+  - CircularWave_8
+  - CircularWave_17
+  - CircularWave_13
+  - CircularWave_3
+  - CircularWave_18
+  - CircularWave_5
+  m_Tag: Shockwave
+  m_IsVariant: 0

@@ -45,17 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c23a1a9294833499af83c688cd6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCode: Shockwave
   skillName: "\uCDA9\uACA9 \uD30C\uB3D9"
   icon: {fileID: 0}
   castingDelay: 1
-  startupTime: 0.5
+  startupTime: 0.2
   recoveryTime: 0
   attackPercentage: 50
   damageCount: 1
   damageInterval: 1.4
   cooldown: 3
-  spriteInterval: 0.1
   radius: 4
 --- !u!95 &1632022245160118215
 Animator:
