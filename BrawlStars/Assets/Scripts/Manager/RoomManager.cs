@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct Menu
-{
-    public string name;
-    public GameObject content;
-}
 
 public class RoomManager : MonoBehaviour
 {
@@ -21,15 +15,16 @@ public class RoomManager : MonoBehaviour
     public ItemSlot[] equippedSlot;
 
     public GameObject StageSelecter;
+	public StageSelector[] stageArray;
 
     private void Awake()
     {
         instance = this;
 
-		GameManager.GetInstance().equippedItemNameArray = new string[equippedSlot.Length];
+		GameManager.GetInstance().InitEquipSlot(equippedSlot.Length);
 	}
 
-    public RoomManager Getinstance()
+    public static RoomManager GetInstance()
     {
         return instance;
     }
@@ -40,7 +35,9 @@ public class RoomManager : MonoBehaviour
 		menuIndex = 0;
         SetMenuActive(0);
         StageSelecter.SetActive(false);
-    }
+
+		stageArray[0].Select();
+	}
 
     // Update is called once per frame
     void Update()
@@ -83,4 +80,16 @@ public class RoomManager : MonoBehaviour
         StageSelecter.SetActive(false);
     }
 
+	public void SelectStage(int index)
+	{
+		GameManager.GetInstance().stageIndex = index;
+	}
+
+	public void SizeDownAllStageSelector()
+	{
+		for(int i = 0; i < stageArray.Length; i++)
+		{
+			stageArray[i].SizeDown();
+		}
+	}
 }

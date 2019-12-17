@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fireball
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 9dc506578082e4f48bf4eb1c3b36521f, type: 3}
+    - {fileID: 2800000, guid: a676f2306e0484e4985438fed389ee99, type: 3}
+    - {fileID: 2800000, guid: e36cff44d5bcfa64da07374feaf79e9b, type: 3}
+    - {fileID: 2800000, guid: 73836aa74ab33e04296950017b7f5c3a, type: 3}
+    - {fileID: 2800000, guid: b82aa34bd07ea2041952f5de99fd9015, type: 3}
+    - {fileID: 2800000, guid: e5f62b5f3e346554a9eb1c2c3b1bbf22, type: 3}
+    - {fileID: 2800000, guid: 28f2d1fd680433d49830495bb4be0e85, type: 3}
+    - {fileID: 2800000, guid: 2a0fd6313dcf59942af34713ca900f0e, type: 3}
+    - {fileID: 2800000, guid: 1b843cbf0501b9541aad3d9cfcf5f252, type: 3}
+    - {fileID: 2800000, guid: 6476d3592d656a14994342aece133570, type: 3}
+    - {fileID: 2800000, guid: 215629c9f66db084890e99d3ccc880e5, type: 3}
+    - {fileID: 2800000, guid: 11d5ae7c6f2c61c429c03457a2a8417c, type: 3}
+    - {fileID: 2800000, guid: 1f566c075ca868842ab3c69aa0a28993, type: 3}
+    - {fileID: 2800000, guid: e5ca63968e205a042b68c5ab9c707b6b, type: 3}
+    - {fileID: 2800000, guid: dde5d7e2a7f0fa9489e73272e38d8f32, type: 3}
+    - {fileID: 2800000, guid: 398b90b2b8bf0d544bed8f499c285b99, type: 3}
+    totalSpriteSurfaceArea: 232128
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a676f2306e0484e4985438fed389ee99, type: 3}
+  - {fileID: 21300000, guid: 2a0fd6313dcf59942af34713ca900f0e, type: 3}
+  - {fileID: 21300000, guid: 398b90b2b8bf0d544bed8f499c285b99, type: 3}
+  - {fileID: 21300000, guid: dde5d7e2a7f0fa9489e73272e38d8f32, type: 3}
+  - {fileID: 21300000, guid: e36cff44d5bcfa64da07374feaf79e9b, type: 3}
+  - {fileID: 21300000, guid: e5ca63968e205a042b68c5ab9c707b6b, type: 3}
+  - {fileID: 21300000, guid: 1f566c075ca868842ab3c69aa0a28993, type: 3}
+  - {fileID: 21300000, guid: 9dc506578082e4f48bf4eb1c3b36521f, type: 3}
+  - {fileID: 21300000, guid: 73836aa74ab33e04296950017b7f5c3a, type: 3}
+  - {fileID: 21300000, guid: 6476d3592d656a14994342aece133570, type: 3}
+  - {fileID: 21300000, guid: 215629c9f66db084890e99d3ccc880e5, type: 3}
+  - {fileID: 21300000, guid: b82aa34bd07ea2041952f5de99fd9015, type: 3}
+  - {fileID: 21300000, guid: 11d5ae7c6f2c61c429c03457a2a8417c, type: 3}
+  - {fileID: 21300000, guid: 28f2d1fd680433d49830495bb4be0e85, type: 3}
+  - {fileID: 21300000, guid: e5f62b5f3e346554a9eb1c2c3b1bbf22, type: 3}
+  - {fileID: 21300000, guid: 1b843cbf0501b9541aad3d9cfcf5f252, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - fire1
+  - fire7
+  - fire15
+  - fire14
+  - fire2
+  - fire13
+  - fire12
+  - fire0
+  - fire3
+  - fire9
+  - fire10
+  - fire4
+  - fire11
+  - fire6
+  - fire5
+  - fire8
+  m_Tag: Fireball
+  m_IsVariant: 0

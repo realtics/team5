@@ -16,6 +16,7 @@ public class Portal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		isWaitingCollision = false;
 	}
 
     // Update is called once per frame
@@ -31,7 +32,6 @@ public class Portal : MonoBehaviour
 
 		if (isWaitingCollision && collider.gameObject == player.gameObject)
 		{
-			mapSpawner.DestroyItem();
 			BattleManager.GetInstance().mainCanvas.GetComponent<InputHandler>().Cancel();
 			mapSpawner.CreateNewMap(targetIndex);
 		}

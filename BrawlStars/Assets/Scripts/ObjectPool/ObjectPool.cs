@@ -37,8 +37,9 @@ public class ObjectPool : MonoBehaviour
 		PooledObject poolForAdd = GetPool(newObject.name);
 		if (poolForAdd == null)
 		{
-			poolList.Add(gameObject.AddComponent<PooledObject>());
-			poolList[poolList.Count - 1].Init(newObject, 10);
+			poolForAdd = gameObject.AddComponent<PooledObject>();
+			poolForAdd.Init(newObject, 10);
+			poolList.Add(poolForAdd);
 		}
 		newObject.SetActive(false);
 		poolForAdd.AddNewObject(newObject);

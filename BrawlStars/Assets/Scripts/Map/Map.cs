@@ -19,8 +19,7 @@ public class Map : MonoBehaviour
     private void Update()
     {
         CheckMonsterDestroyed();
-        ActivatePortals();
-    }
+	}
 
     void CheckMonsterDestroyed()
     {
@@ -35,15 +34,12 @@ public class Map : MonoBehaviour
         }
     }
 
-    void ActivatePortals()
+    public void ActivatePortals()
     {
-        if (isAllMonsterDestoyed)
-        {
-            for (int i = 0; i < portals.Length; i++)
-            {
-                portals[i].gameObject.SetActive(true);
-            }
-        }
+		for (int i = 0; i < portals.Length; i++)
+		{
+			portals[i].gameObject.SetActive(true);
+		}
     }
 
     public bool IsStageFinished()

@@ -147,10 +147,10 @@ MonoBehaviour:
   status:
     attackDamage: 400
     armor: 10
-    hp: 200
+    hp: 200000
     hpRecovery: 0
     moveSpeed: 0.5
-  SpriteName: INDRA/INDRA
+  SpriteName: INDRA
   standingSpriteIndex:
     start: 100
     end: 159
@@ -167,14 +167,16 @@ MonoBehaviour:
     start: 160
     end: 191
   deathSpriteInterval: 0.1
+  atlas: {fileID: 4343727234628468602, guid: 4613520845607624fbbefd39877c37de, type: 2}
   spriteRenderer: {fileID: 6751649024528159897}
   spriteDirectionCount: 5
   damageText: {fileID: 5448468221270774418, guid: 7e7a4787fb7f9ff489e5a109a0c38bc5,
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
+  state: 0
   skillArray:
   - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}
-  DropObject: []
+  monsterName: Indra
   sight: 20
   attackReach: 3
 --- !u!136 &6751649025187402710

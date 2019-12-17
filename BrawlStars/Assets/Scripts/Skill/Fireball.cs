@@ -7,21 +7,24 @@ public class Fireball : Skill
     public float reach;
     public float width;
     public GameObject fireballObject;
-    List<GameObject> fireballList = new List<GameObject>();
+    GameObject[] fireballList;
 
 	public override void Action(float yRotationEuler)
 	{
-		damage = attackPercentage * status.attackDamage / 100;
+		transform.rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
+		Vector3 normalVector = transform.rotation * new Vector3(1, 0, 0);
 
-		Quaternion rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
-		Vector3 normalVector = rotation * new Vector3(1, 0, 0);
+		if(fireballList == null)
+			fireballList = new GameObject[(int)reach];
 
-		for (int i = 1; i <= reach; i++)
+		for (int i = 1; i <= fireballList.Length; i++)
 		{
 			GameObject effect = ObjectPool.GetInstance().GetObject(fireballObject);
 			effect.transform.position = transform.position + normalVector * i;
-			fireballList.Add(effect);
+			fireballList[i-1] = effect;
 		}
+
+		transform.position += normalVector * reach / 2;
 
 		StartCoroutine(DamageCoroutine(yRotationEuler));
 	}
@@ -30,23 +33,20 @@ public class Fireball : Skill
     {
         yield return new WaitForSeconds(startupTime);
         
-        Vector3 targetPosition = new Vector3(reach / 2 * Mathf.Cos(-yRotationEuler * Mathf.Deg2Rad), 0, reach / 2 * Mathf.Sin(-yRotationEuler * Mathf.Deg2Rad));
-        Vector3 center = new Vector3(transform.position.x + targetPosition.x, 0, transform.position.z + targetPosition.z);
         for (int i = 0; i < damageCount; i++)
         {
-            Collider[] colliders = Physics.OverlapBox(center, new Vector3(reach / 2, 0, width / 2), Quaternion.Euler(0, yRotationEuler, 0));
-            for (int j = 0; j < colliders.Length; j++)
-            {
-                Actor target = colliders[j].GetComponent<Actor>();
-                if (target != null && target.team != owner.team)
-                {
-                    target.TakeDamage(damage);
-                }
-            }
+			Vector3 halfExtents = new Vector3(reach, 0, width) / 2;
+			Quaternion rotation = Quaternion.Euler(0, yRotationEuler, 0);
+
+			List<Actor> targets = BattleManager.GetInstance().FindActorsInRectangle(transform.position, halfExtents, rotation);
+            for (int j = 0; j < targets.Count; j++)
+                if (targets[j] != null && targets[j].team != owner.team)
+                    targets[j].TakeDamage(damage);
+
             yield return new WaitForSeconds(damageInterval);
         }
 
-        for (int i = 0; i < fireballList.Count; i++)
+        for (int i = 0; i < fireballList.Length; i++)
 		{
 			ObjectPool.GetInstance().AddNewObject(fireballList[i]);
 		}

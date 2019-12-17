@@ -1,24 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public struct SpriteIndex
-{
-    public int start;
-    public int end;
-}
-
-[System.Serializable]
-public enum Team
-{
-    Player, Enemy
-}
-
-public enum State
-{
-    Idle, Attack, Dead
-}
+using UnityEngine.U2D;
 
 public class Actor : MonoBehaviour
 {
@@ -40,6 +23,8 @@ public class Actor : MonoBehaviour
     public SpriteIndex deathSpriteIndex;
     public float deathSpriteInterval;
     protected float spriteInterval;
+
+	public SpriteAtlas atlas;
     List<Sprite> sprites;
     public SpriteRenderer spriteRenderer;
     public int spriteDirectionCount;
@@ -83,7 +68,7 @@ public class Actor : MonoBehaviour
         int i = 0;
         while (true)
         {
-            Sprite sprite = Resources.Load<Sprite>("Texture/Character/" + SpriteName + "" + i++);
+            Sprite sprite = atlas.GetSprite(SpriteName + "" + i++);
             if (sprite == null)
                 break;
             sprites.Add(sprite);
@@ -98,8 +83,7 @@ public class Actor : MonoBehaviour
         if (state == State.Dead)
         {
             spriteInterval = deathSpriteInterval;
-            spriteDirectionCount = 1;
-            SpriteUpdate(deathSpriteIndex);
+            SpriteUpdate(deathSpriteIndex, true, true);
             if (currentSpriteIndex >= (deathSpriteIndex.end - deathSpriteIndex.start))
             {
                 gameObject.SetActive(false);
@@ -108,21 +92,17 @@ public class Actor : MonoBehaviour
         else if (state == State.Attack)
         {
             spriteInterval = attackSpriteInterval;
-            SpriteUpdate(attackSpriteIndex);
-            if (currentSpriteIndex >= (attackSpriteIndex.end - attackSpriteIndex.start) / spriteDirectionCount)
-            {
-                state = State.Idle;
-            }
+            SpriteUpdate(attackSpriteIndex, false, false);
         }
         else if (velocity.sqrMagnitude != 0)
         {
             spriteInterval = moveSpriteInterval;
-            SpriteUpdate(moveSpriteIndex);
+            SpriteUpdate(moveSpriteIndex, true, false);
         }
         else
         {
             spriteInterval = standingSpriteInterval;
-            SpriteUpdate(standingSpriteIndex);
+            SpriteUpdate(standingSpriteIndex, true, false);
         }
 
         if (Time.time > prevSpriteTime + spriteInterval)
@@ -163,15 +143,16 @@ public class Actor : MonoBehaviour
         velocity = new Vector3(0, 0, 0);
     }
 
-    void SpriteUpdate(SpriteIndex index)
+    void SpriteUpdate(SpriteIndex index, bool isLoop, bool isDirectionFixed)
     {
-        int spriteLength = (index.end - index.start + 1) / spriteDirectionCount;
-        if (currentSpriteIndex >= spriteLength)
-        {
-            currentSpriteIndex = 0;
-        }
+        int spriteLength = (index.end - index.start + 1);
+        if (!isDirectionFixed)
+            spriteLength /= spriteDirectionCount;
 
-        int spriteIndex = currentSpriteIndex + index.start + GetDirectionIndex() * spriteLength;
+        if (currentSpriteIndex >= spriteLength)
+            currentSpriteIndex = 0;
+
+        int spriteIndex = index.start + GetDirectionIndex() * spriteLength + currentSpriteIndex;
         spriteRenderer.sprite = sprites[spriteIndex];
     }
 
@@ -197,7 +178,7 @@ public class Actor : MonoBehaviour
             transform.localScale = new Vector3(scale.x, scale.y, scale.z);
         }
 
-        if (angleBasedZAxis < -Mathf.PI * 7 / 8 || angleBasedZAxis > Mathf.PI * 7 / 8)
+		if (angleBasedZAxis < -Mathf.PI * 7 / 8 || angleBasedZAxis > Mathf.PI * 7 / 8)
         {
             return Global.downIndex;
         }
@@ -266,7 +247,8 @@ public class Actor : MonoBehaviour
         characterDirectionAngle = Mathf.Atan2(1, -1);
         state = State.Idle;
         currentSpriteIndex = 0;
-        spriteDirectionCount = 5;
+
+		BattleManager.GetInstance().AddActorOnManager(this);
     }
 
     protected virtual void Death()
@@ -276,7 +258,8 @@ public class Actor : MonoBehaviour
         currentSpriteIndex = 0;
         state = State.Dead;
         mCollider.enabled = false;
-    }
+		BattleManager.GetInstance().DeleteActorFromManager(this);
+	}
 
     IEnumerator TakeDamageCoroutine()
     {
@@ -297,9 +280,17 @@ public class Actor : MonoBehaviour
 
             characterDirectionAngle = Global.ConvertIn2PI(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
 
-            skillArray[index].StartSkill(this, targetPosition, yRotationEuler);
+            StartCoroutine(WaitCastingDelay(index, targetPosition, yRotationEuler));
             lastSkillActionTime[index] = Time.time;
         }
+    }
+
+    IEnumerator WaitCastingDelay(int index, Vector3 targetPosition, float yRotationEuler)
+    {
+        yield return new WaitForSeconds(skillArray[index].castingDelay);
+        skillArray[index].StartSkill(this, targetPosition, yRotationEuler);
+        yield return new WaitForSeconds(skillArray[index].recoveryTime);
+        state = State.Idle;
     }
 
     private void OnDestroy()
@@ -317,4 +308,9 @@ public class Actor : MonoBehaviour
     {
         return finalStatus;
     }
+
+	public float GetCollisionRadius()
+	{
+		return mCollider.radius;
+	}
 }

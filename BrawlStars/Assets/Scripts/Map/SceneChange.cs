@@ -16,9 +16,4 @@ public class SceneChange : MonoBehaviour
     {
         LoadingManager.LoadScene(sceneName);
     }
-
-    public void StageIndex(int index)
-    {
-        MapSpawner.stageIndex = index;
-    }
 }

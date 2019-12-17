@@ -47,14 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uBC88\uAC1C \uD3ED\uACA9"
   icon: {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
-  castingDelay: 0
+  castingDelay: 0.3
   startupTime: 0.2
-  recoveryTime: 0
+  recoveryTime: 0.1
   attackPercentage: 120
   damageCount: 5
   damageInterval: 0.5
   cooldown: 15
-  spriteInterval: 0
   reach: 8
   radius: 3
 --- !u!95 &1632022245160118215

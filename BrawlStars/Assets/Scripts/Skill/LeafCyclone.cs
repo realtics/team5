@@ -10,7 +10,6 @@ public class LeafCyclone : Skill
 
     public override void Action(float yRotationEuler)
     {
-        damage = attackPercentage * status.attackDamage / 100;
         transform.rotation = Quaternion.Euler(90, yRotationEuler - 90, 0);
         StartCoroutine(DamageCoroutine(yRotationEuler));
     }
@@ -22,37 +21,16 @@ public class LeafCyclone : Skill
         Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
         for (int i = 0; i < damageCount; i++)
         {
-            Collider[] colliders = Physics.OverlapSphere(point, reach);
-            for (int j = 0; j < colliders.Length; j++)
-            {
-                if (!IsInFanwise(yRotationEuler, colliders[j].transform.position))
-                    continue;
+            List<Actor> targets = BattleManager.GetInstance().FindActorsInFanwise(transform.position, reach, angle, yRotationEuler);
+            for (int j = 0; j < targets.Count; j++)
+				if (targets[j] != null && targets[j].team != owner.team)
+					targets[j].TakeDamage(damage);
 
-                Actor target = colliders[j].GetComponent<Actor>();
-                if (target != null && target.team != owner.team)
-                {
-                    target.TakeDamage(damage);
-                }
-            }
             yield return new WaitForSeconds(damageInterval);
 		}
 
 		ObjectPool.GetInstance().AddNewObject(gameObject);
 	}
-
-    bool IsInFanwise(float yRotationEuler, Vector3 targetPosition)
-    {
-        Vector3 targetDirection = targetPosition - transform.position;
-        float currentAngle = Mathf.Atan2(-targetDirection.z, targetDirection.x);
-        float diff = currentAngle - yRotationEuler * Mathf.Deg2Rad;
-
-        while (diff < -Mathf.PI) 
-			diff += Mathf.PI * 2;
-        while (diff > Mathf.PI) 
-			diff -= Mathf.PI * 2;
-
-        return Mathf.Abs(diff) < angle / 2;
-    }
 
     public override void MakeTargetRangeMesh()
     {
