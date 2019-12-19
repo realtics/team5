@@ -56,18 +56,8 @@ public class OnSpawner : MonoBehaviour
 			Destroy(this.transform.Find(holderName).gameObject);
 		}
 
-		//GameObject mapHolder = Instantiate(SpawnerUI, new Vector3(SpawnerUI.GetComponent<RectTransform>().localPosition.x,
-		//	SpawnerUI.GetComponent<RectTransform>().localPosition.y, 
-		//	0), Quaternion.identity);
-
-		//GameObject mapHolder = Instantiate(SpawnerUI, new Vector3(SpawnerUI.GetComponent<RectTransform>().anchoredPosition.x + 100,
-		//	SpawnerUI.GetComponent<RectTransform>().anchoredPosition.y + 300,
-		//	0), Quaternion.identity);
-
 		GameObject mapHolder = Instantiate(SpawnerUI, new Vector3(this.transform.position.x,
 			this.transform.position.y + SpawnerUI.GetComponent<RectTransform>().anchoredPosition.y -(count * count), 0), Quaternion.identity);
-
-		//GameObject mapHolder = Instantiate(SpawnerUI, new Vector3(0, 0, 0), Quaternion.identity);
 
 		mapHolder.transform.localScale = new Vector3(1, (float)count / 2, 1);
 
