@@ -53,7 +53,7 @@ MonoBehaviour:
   attackPercentage: 100
   damageCount: 2
   damageInterval: 0.25
-  cooldown: 7
+  cooldown: 1
   reach: 4
   angle: 1.5
 --- !u!212 &554003018535485233
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b63a5f1455a7db9418dbe43020ff564e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &-1117598392396190065

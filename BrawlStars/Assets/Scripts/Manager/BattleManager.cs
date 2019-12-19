@@ -110,6 +110,11 @@ public class BattleManager : MonoBehaviour
 		actorListOnMap.Remove(actor);
 	}
 
+	public void ClearActorList()
+	{
+		actorListOnMap.Clear();
+	}
+
 	public List<Actor> FindActorsInRectangle(Vector3 center, Vector3 halfExtents, Quaternion rotation)
 	{
 		List<Actor> result = new List<Actor>();
@@ -131,6 +136,7 @@ public class BattleManager : MonoBehaviour
 
 		return result;
 	}
+
 	public List<Actor> FindActorsInCircle(Vector3 center, float radius)
 	{
 		List<Actor> result = new List<Actor>();
@@ -140,11 +146,25 @@ public class BattleManager : MonoBehaviour
 			Vector3 targetDirection = actorListOnMap[i].transform.position - center;
 			targetDirection.y = 0;
 			float sqrDistance = Mathf.Abs(targetDirection.sqrMagnitude);
-			if (sqrDistance < radius * radius)
+			float sqrRadius = Mathf.Pow(radius + actorListOnMap[i].GetCollisionRadius(), 2);
+			if (sqrDistance < sqrRadius)
 				result.Add(actorListOnMap[i]);
 		}
 
 		return result;
+	}
+	public bool IsEnemyInCircle(Vector3 center, float radius, Team team)
+	{
+		for (int i = 0; i < actorListOnMap.Count; i++)
+		{
+			Vector3 targetDirection = actorListOnMap[i].transform.position - center;
+			targetDirection.y = 0;
+			float sqrDistance = Mathf.Abs(targetDirection.sqrMagnitude);
+			float sqrRadius = Mathf.Pow(radius + actorListOnMap[i].GetCollisionRadius(), 2);
+			if (sqrDistance < sqrRadius && actorListOnMap[i].team != team)
+				return true;
+		}
+		return false;
 	}
 
 	public List<Actor> FindActorsInFanwise(Vector3 center, float radius, float angle, float yRotationEuler)
@@ -156,7 +176,7 @@ public class BattleManager : MonoBehaviour
 			Vector3 targetDirection = actorListOnMap[i].transform.position - center;
 			targetDirection.y = 0;
 			float sqrDistance = Mathf.Abs(targetDirection.sqrMagnitude);
-			if (sqrDistance < radius * radius)
+			if (sqrDistance < Mathf.Pow(radius + actorListOnMap[i].GetCollisionRadius(), 2))
 			{
 				float currentAngle = Mathf.Atan2(-targetDirection.z, targetDirection.x);
 				float diff = currentAngle - yRotationEuler * Mathf.Deg2Rad;

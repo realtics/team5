@@ -111,11 +111,7 @@ public class Monster : Actor
 		DropItem[] dropItemList = GameManager.GetInstance().GetDropItemList(monsterName);
 
         for (int i = 0; i < dropItemList.Length; i++)
-        {
 			if (Random.Range(0, 100) < dropItemList[i].percentage)
-			{
 				BattleManager.GetInstance().DropItem(dropItemList[i].itemName, transform.position);
-			}
-        }
     }
 }

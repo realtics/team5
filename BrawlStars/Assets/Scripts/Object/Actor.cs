@@ -259,6 +259,7 @@ public class Actor : MonoBehaviour
         state = State.Dead;
         mCollider.enabled = false;
 		BattleManager.GetInstance().DeleteActorFromManager(this);
+		StopAllCoroutines();
 	}
 
     IEnumerator TakeDamageCoroutine()

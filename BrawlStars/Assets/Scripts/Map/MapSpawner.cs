@@ -107,8 +107,9 @@ public class MapSpawner : MonoBehaviour
     {
 		BattleManager.GetInstance().logView.Init();
 		BattleManager.GetInstance().SetActiveInputHandler(true);
+		BattleManager.GetInstance().ClearActorList();
 
-		player.Alive();        
+		player.Alive();
     }
 }
 

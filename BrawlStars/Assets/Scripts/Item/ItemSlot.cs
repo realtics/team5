@@ -6,22 +6,31 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public Image dragedImagePrefab;
-    Image dragedImage;
+    public Image iconPrefab;
+    Image icon;
 
     public Type type;
     public Item item;
-    public int itemIndex;
-    public Image itemWindow;
-    public Text itemText;
+
+    int itemIndex;
+    Image itemWindow;
+    Text itemText;
 
     public bool isEquippedSlot;
+	public int equippedIndex;
     bool isDragged;
+
+	public void Init(int index, Image window, Text text)
+	{
+		itemIndex = index;
+		itemWindow = window;
+		itemText = text;
+	}
 
     void Start()
     {
-		dragedImage = Instantiate(dragedImagePrefab, transform.position, transform.rotation);
-		dragedImage.transform.SetParent(transform);
+		icon = Instantiate(iconPrefab, transform.position, transform.rotation);
+		icon.transform.SetParent(transform);
 
 		Refresh();
 
@@ -31,18 +40,18 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Refresh()
     {
         if(isEquippedSlot)
-            item = GameManager.GetInstance().GetEquippedItem(itemIndex);
+            item = GameManager.GetInstance().GetEquippedItem(equippedIndex);
         else
             item = GameManager.GetInstance().GetItemInInventory(itemIndex);
 
         if (item != null)
 		{
-			dragedImage.sprite = item.icon;
-			dragedImage.transform.localScale = new Vector3(1, 1, 1);
+			icon.sprite = item.icon;
+			icon.transform.localScale = new Vector3(1, 1, 1);
 		} else
 		{
-			dragedImage.sprite = null;
-			dragedImage.transform.localScale = new Vector3(0, 0, 0);
+			icon.sprite = null;
+			icon.transform.localScale = new Vector3(0, 0, 0);
 		}
     }
 
@@ -66,8 +75,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isDragged = true;
         if (item != null)
         {
-            dragedImage.transform.SetParent(transform.parent.parent);
-            dragedImage.transform.position = eventData.position;
+			icon.transform.SetParent(transform.parent.parent);
+			icon.transform.position = eventData.position;
         }
     }
 
@@ -84,15 +93,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 				if (!targetSlot.isEquippedSlot && !isEquippedSlot)
 					GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
 				else if (targetSlot.isEquippedSlot && targetSlot.type == item.type)
-					GameManager.GetInstance().EquipItem(targetSlot.itemIndex, itemIndex);
+					GameManager.GetInstance().EquipItem(targetSlot.equippedIndex, itemIndex);
 				else if (isEquippedSlot && (targetSlot.item == null || type == targetSlot.item.type))
-					GameManager.GetInstance().EquipItem(itemIndex, targetSlot.itemIndex);
+					GameManager.GetInstance().EquipItem(equippedIndex, targetSlot.itemIndex);
 
 				targetSlot.Refresh();
 			}
 
-			dragedImage.transform.SetParent(transform);
-			dragedImage.transform.position = transform.position;
+			icon.transform.SetParent(transform);
+			icon.transform.position = transform.position;
 			Refresh();
 		} else if(itemWindow != null)
         {

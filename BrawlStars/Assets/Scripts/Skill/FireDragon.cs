@@ -11,12 +11,14 @@ public class FireDragon : Skill
 
     Vector3 direction;
 	Animator animator;
+	List<Actor> damagedTargetList;
 
     public override void Action(float yRotationEuler)
     {
         direction = Quaternion.Euler(0, yRotationEuler, 0) * new Vector3(1, 0, 0);
 		animator = GetComponent<Animator>();
 		animator.SetInteger("direction", GetDirectionIndex(yRotationEuler * Mathf.Deg2Rad));
+		damagedTargetList = new List<Actor>();
 		StartCoroutine(DamageCoroutine());
 	}
 
@@ -26,8 +28,16 @@ public class FireDragon : Skill
         float actionTime = Time.time;
         
         while(Time.time - actionTime < duration)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
+		{
+			List<Actor> targets = BattleManager.GetInstance().FindActorsInCircle(transform.position, width);
+			for (int j = 0; j < targets.Count; j++)
+				if (!damagedTargetList.Contains(targets[j]) && targets[j].team != owner.team)
+				{
+					targets[j].TakeDamage(damage);
+					damagedTargetList.Add(targets[j]);
+				}
+
+			transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 			yield return null;
         }
 

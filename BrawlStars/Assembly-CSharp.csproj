@@ -98,10 +98,13 @@
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\PooledObject.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
+    <Compile Include="Assets\Scripts\Skill\FireBird.cs" />
     <Compile Include="Assets\Scripts\Skill\FireDragon.cs" />
     <Compile Include="Assets\Scripts\Skill\LeafCyclone.cs" />
-    <Compile Include="Assets\Scripts\Skill\Monster Pattern\Shockwave.cs" />
+    <Compile Include="Assets\Scripts\Skill\Shockwave.cs" />
     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
+    <Compile Include="Assets\Scripts\Skill\SkillSetter.cs" />
+    <Compile Include="Assets\Scripts\Skill\SkillSlot.cs" />
     <Compile Include="Assets\Scripts\Skill\ThunderStrike.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonScroll.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonScrollRect.cs" />
@@ -124,6 +127,7 @@
     <None Include="Assets\StageMaps\Simple.txt" />
     <None Include="Assets\StageMaps\qq.txt" />
     <None Include="Assets\StageMaps\1.txt" />
+    <None Include="Assets\Material\SkillShader.shader" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
     <None Include="Assets\StageMaps\OnMaps.txt" />

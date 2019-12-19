@@ -52,9 +52,7 @@ public class Inventory : MonoBehaviour
                 slot.rectTransform.anchoredPosition = position;
 
                 ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
-                slotComponent.itemIndex = i * column + j;
-                slotComponent.itemWindow = itemWindow;
-                slotComponent.itemText = itemText;
+				slotComponent.Init(i * column + j, itemWindow, itemText);
             }
         }
     }

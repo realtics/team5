@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     string[] equippedItemNameArray;
 	[SerializeField]
 	DropTable dropTable = null;
-
 	Status itemStatus;
+
 	[HideInInspector]
 	public int stageIndex;
 	public Action RefreshSlots;

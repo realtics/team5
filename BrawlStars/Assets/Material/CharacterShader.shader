@@ -1,4 +1,4 @@
-﻿Shader "Custom / ChromaKey" {
+﻿Shader "Custom / Character" {
 
 	Properties {
 		_MainTex("_MainTex", 2D) = "white" {}
