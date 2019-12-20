@@ -174,8 +174,8 @@ MonoBehaviour:
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   state: 0
-  skillArray:
-  - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}
+  skillCodeArray:
+  - ShockWave_Monster
   monsterName: Indra
   sight: 20
   attackReach: 3

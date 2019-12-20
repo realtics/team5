@@ -41,12 +41,12 @@ public class Actor : MonoBehaviour
 
     public State state;
 
-    public Skill[] skillArray;
+    public string[] skillCodeArray;
     protected float[] lastSkillActionTime;
 
 	protected virtual void Awake()
 	{
-		lastSkillActionTime = new float[skillArray.Length];
+		lastSkillActionTime = new float[skillCodeArray.Length];
 	}
 
 	// Start is called before the first frame update
@@ -288,9 +288,10 @@ public class Actor : MonoBehaviour
 
     IEnumerator WaitCastingDelay(int index, Vector3 targetPosition, float yRotationEuler)
     {
-        yield return new WaitForSeconds(skillArray[index].castingDelay);
-        skillArray[index].StartSkill(this, targetPosition, yRotationEuler);
-        yield return new WaitForSeconds(skillArray[index].recoveryTime);
+		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);
+        yield return new WaitForSeconds(skill.castingDelay);
+		skill.StartSkill(this, targetPosition, yRotationEuler);
+        yield return new WaitForSeconds(skill.recoveryTime);
         state = State.Idle;
     }
 
@@ -301,8 +302,9 @@ public class Actor : MonoBehaviour
     }
 
     public float GetRemainSkillCooldown(int index)
-    {
-		return skillArray[index].cooldown - (Time.time - lastSkillActionTime[index]);
+	{
+		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);
+		return skill.cooldown - (Time.time - lastSkillActionTime[index]);
     }
 
     public Status GetFinalStatus()

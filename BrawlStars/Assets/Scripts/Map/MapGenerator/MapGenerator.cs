@@ -63,15 +63,11 @@ public class MapGenerator : MonoBehaviour
 		loadUI.SetActive(false);
 		infoUI.SetActive(false);
 
-<<<<<<< HEAD
 		inputPortalIndex.text = index.ToString();
 
 		MapName.text = null;
 
-		camera.transform.position = Camera.main.transform.position;
-=======
 		mCamera.transform.position = Camera.main.transform.position;
->>>>>>> master
 	}
 
 	void Update()

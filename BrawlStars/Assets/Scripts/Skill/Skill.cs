@@ -4,8 +4,10 @@ using UnityEngine;
 
 public abstract class Skill : MonoBehaviour
 {
+	public string skillCode;
 	public string skillName;
     public Sprite icon;
+	public SkillType type;
 
     public float castingDelay;
     public float startupTime;

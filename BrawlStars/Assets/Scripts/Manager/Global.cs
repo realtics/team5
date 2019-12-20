@@ -80,3 +80,18 @@ public enum State
 {
     Idle, Attack, Dead
 }
+
+[System.Serializable]
+public enum SkillType
+{
+	Passive, Active, Ultimate
+}
+
+[System.Serializable]
+public struct SkillListElement
+{
+	public SkillType type;
+	public GameObject scrollRectContent;
+	public int skillCountPerLine;
+	public int skillIndex;
+}

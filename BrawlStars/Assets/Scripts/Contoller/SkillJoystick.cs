@@ -19,7 +19,7 @@ public class SkillJoystick : Joystick
     public override void PointerDown(Vector2 position)
     {
         base.PointerDown(position);
-        skill = player.skillArray[skillIndex];
+        skill = GameManager.GetInstance().GetSkill(player.skillCodeArray[skillIndex]);
         rangeObject.SetMesh(skill.GetTargetRangeMesh());
         rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
         rangeObject.DrawRange();
@@ -29,9 +29,10 @@ public class SkillJoystick : Joystick
     {
         base.Drag(position);
 
-        rangeObject.transform.position = skill.GetPosition(stickMove, mTransform.sizeDelta.x) + new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
+		Vector3 positionXZ = player.transform.position;
+		positionXZ.y = 0.1f;
+        rangeObject.transform.position = skill.GetPosition(stickMove, mTransform.sizeDelta.x) + positionXZ;
         rangeObject.transform.rotation = skill.GetRotation(stickMove);
-
         rangeObject.DrawRange();
     }
 

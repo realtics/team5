@@ -18,11 +18,10 @@ public class Monster : Actor
     {
         base.Start();
 
-        lastSkillActionTime = new float[skillArray.Length];
-        for (int i = 0; i < skillArray.Length; i++)
+        lastSkillActionTime = new float[skillCodeArray.Length];
+        for (int i = 0; i < skillCodeArray.Length; i++)
         {
             lastSkillActionTime[i] = Time.time;
-            //patternArray[i].StartCooldown();
         }
 
         pathFinder = GetComponent<NavMeshAgent>();
@@ -94,12 +93,13 @@ public class Monster : Actor
 
     void ActivatePattern()
     {
-        for(int i = 0; i < skillArray.Length; i++)
+        for(int i = 0; i < skillCodeArray.Length; i++)
         {
-            if (Time.time - lastSkillActionTime[i] > skillArray[i].cooldown)
+			Skill pattern = GameManager.GetInstance().GetSkill(skillCodeArray[i]);
+            if (Time.time - lastSkillActionTime[i] > pattern.cooldown)
             {
                 lastSkillActionTime[i] = Time.time;
-                Vector3 activatePosition = transform.position + skillArray[i].GetPosition(new Vector2(0, 0), 1);
+                Vector3 activatePosition = transform.position + pattern.GetPosition(new Vector2(0, 0), 1);
                 float rotationAngle = characterDirectionAngle * Mathf.Rad2Deg;
                 AttackProcess(i, activatePosition, rotationAngle);
             }

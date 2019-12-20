@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c23a1a9294833499af83c688cd6f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCode: ShockWave
   skillName: "\uCDA9\uACA9 \uD30C\uB3D9"
   icon: {fileID: 21300000, guid: fb5855704c6588348bf724138aace458, type: 3}
+  type: 1
   castingDelay: 0.3
   startupTime: 0.2
   recoveryTime: 0.1

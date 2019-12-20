@@ -24,20 +24,23 @@ public class SkillIcon : ControlUI
 	{
 		this.player = player;
 
-		if (skillIndex < player.skillArray.Length)
+		if (skillIndex < player.skillCodeArray.Length)
 		{
-			iconImage = GetComponent<Image>();
-			iconImage.sprite = player.skillArray[skillIndex].icon;
+			Skill skill = GameManager.GetInstance().GetSkill(player.skillCodeArray[skillIndex]);
+			if (skill != null)
+			{
+				iconImage = GetComponent<Image>();
+				iconImage.sprite = skill.icon;
+			}
 		}
-		else
-		{
+
+		if(iconImage == null)
 			Destroy(gameObject);
-		}
 	}
 
     void Update()
     {        
-        if (skillIndex < player.skillArray.Length)
+        if (skillIndex < player.skillCodeArray.Length)
         {
             PrintRemainCooldown();
         }

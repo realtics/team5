@@ -187,8 +187,8 @@ MonoBehaviour:
     type: 3}
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   state: 0
-  skillArray:
-  - {fileID: 3916294330767920508, guid: b550efe8306983140a5e12475d8447b5, type: 3}
-  - {fileID: 6212605451729664309, guid: a96432d459491b3419cdd5d0b37eac87, type: 3}
-  - {fileID: -5336368102184885936, guid: 703221cb8ff38354793199eea8163443, type: 3}
-  - {fileID: -989231443152205155, guid: 7d47ff2fb52362a42947bec0ed5db83b, type: 3}
+  skillCodeArray:
+  - 
+  - 
+  - 
+  - 

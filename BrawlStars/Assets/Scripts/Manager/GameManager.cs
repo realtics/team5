@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public Item[] itemTableElements;
     string[] InventoryItemNameArray;
     string[] equippedItemNameArray;
-	[SerializeField]
-	DropTable dropTable = null;
 	Status itemStatus;
+	public DropTable dropTable = null;
+
+	Dictionary<string, Skill> skillTable;
+	public Skill[] skillTableElements;
 
 	[HideInInspector]
 	public int stageIndex;
@@ -40,6 +42,19 @@ public class GameManager : MonoBehaviour
             itemTable.Add(itemTableElements[i].itemCode, itemTableElements[i]);
 		}
 		dropTable.Init();
+
+		skillTable = new Dictionary<string, Skill>();
+		for (int i = 0; i < skillTableElements.Length; i++)
+		{
+			skillTableElements[i].MakeTargetRangeMesh();
+			skillTable.Add(skillTableElements[i].skillCode, skillTableElements[i]);
+		}
+
+		for (int i = 0; i < player.skillCodeArray.Length; i++)
+		{
+			string skillCode = PlayerPrefs.GetString("Skill" + i, "");
+			player.skillCodeArray[i] = skillCode;
+		}
 	}
 
     // Update is called once per frame
@@ -56,7 +71,6 @@ public class GameManager : MonoBehaviour
 		{
 			InventoryItemNameArray[i] = PlayerPrefs.GetString("inventory" + i, "");
 		}
-
 	}
 
 	public void InitEquipSlot(int count)
@@ -190,5 +204,29 @@ public class GameManager : MonoBehaviour
 	public Item GetItem(string itemName)
 	{
 		return itemTable[itemName];
+	}
+
+	public void SetPlayerSkill(int index, string skillCode)
+	{
+		PlayerPrefs.SetString("Skill" + index, skillCode);
+		player.skillCodeArray[index] = skillCode;
+	}
+
+	public Skill GetSkill(string skillCode)
+	{
+		if (skillCode != "")
+			return skillTable[skillCode];
+		else
+			return null;
+	}
+
+	public string GetPlayerSkillCode(int index)
+	{
+		return player.skillCodeArray[index];
+	}
+
+	public Skill[] GetSkillArray()
+	{
+		return skillTableElements;
 	}
 }
