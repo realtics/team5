@@ -6,17 +6,23 @@ public class Shockwave : Skill
 {
     public float radius;
     const int detail = 20;
+	public bool traceOwner;
 
     public override void Action(float yRotationEuler)
     {
         StartCoroutine(DamageCoroutine());
     }
 
-    IEnumerator DamageCoroutine()
+	private void Update()
+	{
+		if (traceOwner)
+			transform.position = owner.transform.position;
+	}
+
+	IEnumerator DamageCoroutine()
     {
         yield return new WaitForSeconds(startupTime);
 
-        Vector3 point = new Vector3(transform.position.x, 0, transform.position.z);
         for (int i = 0; i < damageCount; i++)
         {
 			List<Actor> targets = BattleManager.GetInstance().FindActorsInCircle(transform.position, radius);

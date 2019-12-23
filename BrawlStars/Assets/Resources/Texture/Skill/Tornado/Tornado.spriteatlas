@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tornado
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 81ec5f33cfb4c774699ae82e431d2573, type: 3}
+    - {fileID: 2800000, guid: 8d70e6077e9ad2d4e9dfd35b100809ab, type: 3}
+    - {fileID: 2800000, guid: 0a932718950cc7f46a6b7a9b9d50c514, type: 3}
+    - {fileID: 2800000, guid: 6feb7b5e38d670741825709b39e0627f, type: 3}
+    - {fileID: 2800000, guid: 622a8019b30d3dd44a3c6e69288d138f, type: 3}
+    - {fileID: 2800000, guid: c548629d466406146bfedb874686d7b1, type: 3}
+    - {fileID: 2800000, guid: 9203591983465bf48bed7aeaaa5461ed, type: 3}
+    - {fileID: 2800000, guid: a327dc2e140c1ad48b4fa32667ae6789, type: 3}
+    - {fileID: 2800000, guid: 11aca6db451e04f4983cfbf742120658, type: 3}
+    - {fileID: 2800000, guid: b82e685f0f6460041b23046e578b802f, type: 3}
+    - {fileID: 2800000, guid: cf3812a9d02414e43aaa48d2de21a6e6, type: 3}
+    - {fileID: 2800000, guid: 6e508cecd0fd8884aaed8e62866a21e3, type: 3}
+    - {fileID: 2800000, guid: 43c24c97997158b47b9429e8a03ea1c2, type: 3}
+    - {fileID: 2800000, guid: b20f3e261e8d6c5458147d50e987e734, type: 3}
+    - {fileID: 2800000, guid: 799ae141e8ab7ae439fe60dcd3dff42a, type: 3}
+    - {fileID: 2800000, guid: 689ba8890db90ce46b81e068f5ad265e, type: 3}
+    - {fileID: 2800000, guid: 94977339c696bf444aa1790c750a28b7, type: 3}
+    - {fileID: 2800000, guid: 1507d2c65e1a3864b800bc74cafba37d, type: 3}
+    - {fileID: 2800000, guid: 666d42dab97d9344ea9763665fb61de8, type: 3}
+    - {fileID: 2800000, guid: 9b18d9cd1cf1cb643b621cb71398aaf2, type: 3}
+    - {fileID: 2800000, guid: 5937270b02421a440ab03e81d7805f2b, type: 3}
+    - {fileID: 2800000, guid: 614334bf10268984f81573ff1f269237, type: 3}
+    - {fileID: 2800000, guid: 5e4777c530af4424a833d8459b5616ae, type: 3}
+    - {fileID: 2800000, guid: bce435f0340cd9a49a35d0be9d2d2e7a, type: 3}
+    - {fileID: 2800000, guid: e9691a9ff2335464e816f175a60f13ec, type: 3}
+    totalSpriteSurfaceArea: 8334800
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: bce435f0340cd9a49a35d0be9d2d2e7a, type: 3}
+  - {fileID: 21300000, guid: 799ae141e8ab7ae439fe60dcd3dff42a, type: 3}
+  - {fileID: 21300000, guid: 81ec5f33cfb4c774699ae82e431d2573, type: 3}
+  - {fileID: 21300000, guid: 5e4777c530af4424a833d8459b5616ae, type: 3}
+  - {fileID: 21300000, guid: b20f3e261e8d6c5458147d50e987e734, type: 3}
+  - {fileID: 21300000, guid: 1507d2c65e1a3864b800bc74cafba37d, type: 3}
+  - {fileID: 21300000, guid: 8d70e6077e9ad2d4e9dfd35b100809ab, type: 3}
+  - {fileID: 21300000, guid: 43c24c97997158b47b9429e8a03ea1c2, type: 3}
+  - {fileID: 21300000, guid: 0a932718950cc7f46a6b7a9b9d50c514, type: 3}
+  - {fileID: 21300000, guid: 622a8019b30d3dd44a3c6e69288d138f, type: 3}
+  - {fileID: 21300000, guid: 9203591983465bf48bed7aeaaa5461ed, type: 3}
+  - {fileID: 21300000, guid: 94977339c696bf444aa1790c750a28b7, type: 3}
+  - {fileID: 21300000, guid: 689ba8890db90ce46b81e068f5ad265e, type: 3}
+  - {fileID: 21300000, guid: cf3812a9d02414e43aaa48d2de21a6e6, type: 3}
+  - {fileID: 21300000, guid: 666d42dab97d9344ea9763665fb61de8, type: 3}
+  - {fileID: 21300000, guid: 5937270b02421a440ab03e81d7805f2b, type: 3}
+  - {fileID: 21300000, guid: 11aca6db451e04f4983cfbf742120658, type: 3}
+  - {fileID: 21300000, guid: 6e508cecd0fd8884aaed8e62866a21e3, type: 3}
+  - {fileID: 21300000, guid: c548629d466406146bfedb874686d7b1, type: 3}
+  - {fileID: 21300000, guid: 9b18d9cd1cf1cb643b621cb71398aaf2, type: 3}
+  - {fileID: 21300000, guid: a327dc2e140c1ad48b4fa32667ae6789, type: 3}
+  - {fileID: 21300000, guid: 6feb7b5e38d670741825709b39e0627f, type: 3}
+  - {fileID: 21300000, guid: b82e685f0f6460041b23046e578b802f, type: 3}
+  - {fileID: 21300000, guid: e9691a9ff2335464e816f175a60f13ec, type: 3}
+  - {fileID: 21300000, guid: 614334bf10268984f81573ff1f269237, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - HeavyStorm_Tornado_23
+  - HeavyStorm_Tornado_14
+  - HeavyStorm_Tornado_0
+  - HeavyStorm_Tornado_22
+  - HeavyStorm_Tornado_13
+  - HeavyStorm_Tornado_17
+  - HeavyStorm_Tornado_1
+  - HeavyStorm_Tornado_12
+  - HeavyStorm_Tornado_2
+  - HeavyStorm_Tornado_4
+  - HeavyStorm_Tornado_6
+  - HeavyStorm_Tornado_16
+  - HeavyStorm_Tornado_15
+  - HeavyStorm_Tornado_10
+  - HeavyStorm_Tornado_18
+  - HeavyStorm_Tornado_20
+  - HeavyStorm_Tornado_8
+  - HeavyStorm_Tornado_11
+  - HeavyStorm_Tornado_5
+  - HeavyStorm_Tornado_19
+  - HeavyStorm_Tornado_7
+  - HeavyStorm_Tornado_3
+  - HeavyStorm_Tornado_9
+  - HeavyStorm_Tornado_24
+  - HeavyStorm_Tornado_21
+  m_Tag: Tornado
+  m_IsVariant: 0

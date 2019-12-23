@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 923743176299164839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1952403, y: 0.2, z: -0.017113669}
-  m_LocalScale: {x: 2.4, y: 4.8, z: 1}
+  m_LocalScale: {x: 1.2, y: 2.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,16 +48,16 @@ MonoBehaviour:
   skillCode: ThunderStrike
   skillName: "\uBC88\uAC1C \uD3ED\uACA9"
   icon: {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
-  type: 2
+  type: 1
   castingDelay: 0.3
   startupTime: 0.2
   recoveryTime: 0.1
-  attackPercentage: 120
+  attackPercentage: 70
   damageCount: 5
   damageInterval: 0.5
   cooldown: 1
-  reach: 8
-  radius: 3
+  reach: 7
+  radius: 1.5
 --- !u!95 &1632022245160118215
 Animator:
   serializedVersion: 3

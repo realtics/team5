@@ -94,10 +94,12 @@
     <Compile Include="Assets\Scripts\Map\SceneChange.cs" />
     <Compile Include="Assets\Scripts\Object\Actor.cs" />
     <Compile Include="Assets\Scripts\Object\Character.cs" />
+    <Compile Include="Assets\Scripts\Object\DestroyAfterAnimation.cs" />
     <Compile Include="Assets\Scripts\Object\Loading.cs" />
     <Compile Include="Assets\Scripts\Object\Monster.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\ObjectPool\PooledObject.cs" />
+    <Compile Include="Assets\Scripts\Skill\BlackThunder.cs" />
     <Compile Include="Assets\Scripts\Skill\Fireball.cs" />
     <Compile Include="Assets\Scripts\Skill\FireBird.cs" />
     <Compile Include="Assets\Scripts\Skill\FireDragon.cs" />
@@ -120,6 +122,7 @@
     <Compile Include="Assets\test.cs" />
     <None Include="Assets\StageMaps\3-3.txt" />
     <None Include="Assets\StageMaps\3-2.txt" />
+    <None Include="Assets\Resources\Texture\Skill\BlackThunder\Strike.txt" />
     <None Include="Assets\StageMaps\qwewqe.txt" />
     <None Include="Assets\StageMaps\1-1.txt" />
     <None Include="Assets\StageMaps\1-3.txt" />
@@ -127,6 +130,7 @@
     <None Include="Assets\StageMaps\2-3.txt" />
     <None Include="Assets\Material\CharacterShader.shader" />
     <None Include="Assets\StageMaps\Simple.txt" />
+    <None Include="Assets\Resources\Texture\Skill\Tornado\HeavyStorm_Tornado.txt" />
     <None Include="Assets\StageMaps\1-2.txt" />
     <None Include="Assets\StageMaps\qq.txt" />
     <None Include="Assets\StageMaps\2-1.txt" />
@@ -134,10 +138,12 @@
     <None Include="Assets\StageMaps\3-1.txt" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\StageMaps\OnStage1.txt" />
+    <None Include="Assets\Resources\Texture\Skill\WaterGodFury\WaterGodFury.txt" />
     <None Include="Assets\StageMaps\OnMaps.txt" />
     <None Include="Assets\StageMaps\Neo.txt" />
     <None Include="Assets\StageMaps\Maps1.txt" />
     <None Include="Assets\StageMaps\sdsd.txt" />
+    <None Include="Assets\Resources\Texture\Skill\SwordDance\Bayu_Active.txt" />
     <None Include="Assets\StageMaps\1-5.txt" />
     <None Include="Assets\StageMaps\4-1.txt" />
     <None Include="Assets\StageMaps\1-4.txt" />

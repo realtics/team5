@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillCode: ShockWave
   skillName: "\uCDA9\uACA9 \uD30C\uB3D9"
-  icon: {fileID: 21300000, guid: fb5855704c6588348bf724138aace458, type: 3}
+  icon: {fileID: 21300000, guid: f98ae069b25dc2243b7b6e936fee41be, type: 3}
   type: 1
   castingDelay: 0.3
   startupTime: 0.2

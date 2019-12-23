@@ -17,7 +17,7 @@ public class SkillSetter : MonoBehaviour
 			skillList[i].skillIndex = 0;
 		}
 	}
-	// Start is called before the first frame update
+
 	void Start()
 	{
 		Skill[] skillArray = GameManager.GetInstance().GetSkillArray();
@@ -40,10 +40,4 @@ public class SkillSetter : MonoBehaviour
 			newSlot.transform.localScale = new Vector3(1, 1, 1);
 		}
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

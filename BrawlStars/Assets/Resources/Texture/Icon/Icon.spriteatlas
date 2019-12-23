@@ -33,46 +33,58 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 789a2ca6974f93c4991975f378089a16, type: 3}
     - {fileID: 2800000, guid: 2a48140ba1c976647b8fba009de2a165, type: 3}
     - {fileID: 2800000, guid: cbfe759839cab844d905c40326f56119, type: 3}
-    - {fileID: 2800000, guid: f7d78b384a9d2e24b94148b5731f3916, type: 3}
-    - {fileID: 2800000, guid: bed65e86a691eca4b9ef656c35793023, type: 3}
+    - {fileID: 2800000, guid: 8c2ea1efd688a1a44aef421ccb853052, type: 3}
+    - {fileID: 2800000, guid: 57cb768c4875f534eb74153e0e0f371f, type: 3}
     - {fileID: 2800000, guid: 372657e9e34e45a45884b33870ac45e0, type: 3}
     - {fileID: 2800000, guid: c38827639bff22b4cbfd46a56a6611a0, type: 3}
     - {fileID: 2800000, guid: 5a306bd791673e34fa19bd6be81afd5a, type: 3}
     - {fileID: 2800000, guid: b241a7117c8698a4bb2492f62bd047fc, type: 3}
     - {fileID: 2800000, guid: 41d9055e43d7da442847694884a7d1b5, type: 3}
     - {fileID: 2800000, guid: 2488a872636d71a489fa2025f3ac6140, type: 3}
-    - {fileID: 2800000, guid: fb5855704c6588348bf724138aace458, type: 3}
-    totalSpriteSurfaceArea: 1485056
+    - {fileID: 2800000, guid: f98ae069b25dc2243b7b6e936fee41be, type: 3}
+    - {fileID: 2800000, guid: bb9342838aba0fa418f0c48d8f3ec865, type: 3}
+    - {fileID: 2800000, guid: 3afdbed2fc680b94d9c096f861043979, type: 3}
+    - {fileID: 2800000, guid: 3ac8f26ac341e3f46a11238c06f20bff, type: 3}
+    - {fileID: 2800000, guid: bed65e86a691eca4b9ef656c35793023, type: 3}
+    totalSpriteSurfaceArea: 65536
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
       Hash: 746dd6a7d5d86de7a3e372902bd28170
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: fb5855704c6588348bf724138aace458, type: 3}
   - {fileID: 21300000, guid: b241a7117c8698a4bb2492f62bd047fc, type: 3}
   - {fileID: 21300000, guid: 2488a872636d71a489fa2025f3ac6140, type: 3}
+  - {fileID: 21300000, guid: 3afdbed2fc680b94d9c096f861043979, type: 3}
   - {fileID: 21300000, guid: c38827639bff22b4cbfd46a56a6611a0, type: 3}
+  - {fileID: 21300000, guid: bb9342838aba0fa418f0c48d8f3ec865, type: 3}
   - {fileID: 21300000, guid: bed65e86a691eca4b9ef656c35793023, type: 3}
   - {fileID: 21300000, guid: 789a2ca6974f93c4991975f378089a16, type: 3}
   - {fileID: 21300000, guid: 5a306bd791673e34fa19bd6be81afd5a, type: 3}
-  - {fileID: 21300000, guid: f7d78b384a9d2e24b94148b5731f3916, type: 3}
   - {fileID: 21300000, guid: cbfe759839cab844d905c40326f56119, type: 3}
+  - {fileID: 21300000, guid: f98ae069b25dc2243b7b6e936fee41be, type: 3}
   - {fileID: 21300000, guid: 372657e9e34e45a45884b33870ac45e0, type: 3}
+  - {fileID: 21300000, guid: 3ac8f26ac341e3f46a11238c06f20bff, type: 3}
   - {fileID: 21300000, guid: 2a48140ba1c976647b8fba009de2a165, type: 3}
+  - {fileID: 21300000, guid: 57cb768c4875f534eb74153e0e0f371f, type: 3}
   - {fileID: 21300000, guid: 41d9055e43d7da442847694884a7d1b5, type: 3}
+  - {fileID: 21300000, guid: 8c2ea1efd688a1a44aef421ccb853052, type: 3}
   m_PackedSpriteNamesToIndex:
-  - ShockWave
   - Armor
   - FireBird
+  - BlackThunder
   - FireDragon
+  - Cresent
   - Sub
   - Weapon2
   - fireball
-  - tempitem
   - thunderstrike
+  - ShockWave
   - LeafCyclone
+  - SwordDance
   - Weapon
+  - WaterGodFury
   - Accessory
+  - potion
   m_Tag: Icon
   m_IsVariant: 0

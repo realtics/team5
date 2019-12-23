@@ -84,7 +84,7 @@ public enum State
 [System.Serializable]
 public enum SkillType
 {
-	Passive, Active, Ultimate
+	Passive, Active, Ultimate, Monster
 }
 
 [System.Serializable]

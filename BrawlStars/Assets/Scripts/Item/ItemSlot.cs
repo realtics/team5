@@ -15,16 +15,18 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     int itemIndex;
     Image itemWindow;
     Text itemText;
+	Button reinforceButton;
 
     public bool isEquippedSlot;
 	public int equippedIndex;
     bool isDragged;
 
-	public void Init(int index, Image window, Text text)
+	public void Init(int index, Image window, Text text, Button button)
 	{
 		itemIndex = index;
 		itemWindow = window;
 		itemText = text;
+		reinforceButton = button;
 	}
 
     void Start()
@@ -107,6 +109,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             itemWindow.gameObject.SetActive(true);
             itemText.text = item.GetItemExplanation();
+			if (type == Type.ETC)
+				reinforceButton.gameObject.SetActive(true);
+			else
+				reinforceButton.gameObject.SetActive(false);
         }
     }
 
