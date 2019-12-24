@@ -54,6 +54,10 @@ public class ButtonScrollRect : MonoBehaviour
 		}
 		else 
 		{
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 			scrollRect.verticalNormalizedPosition -= 0.01f;
 			if (scrollRect.verticalNormalizedPosition < 0)
 				scrollRect.verticalNormalizedPosition = 0;
@@ -69,9 +73,17 @@ public class ButtonScrollRect : MonoBehaviour
 		}
 		else
 		{
+<<<<<<< HEAD
 			scrollRect.verticalNormalizedPosition += 0.01f;
 			if (scrollRect.verticalNormalizedPosition > 1)
 				scrollRect.verticalNormalizedPosition = 1;
+=======
+
+			scrollRect.verticalNormalizedPosition += 0.01f;
+			if (scrollRect.verticalNormalizedPosition > 1)
+				scrollRect.verticalNormalizedPosition = 1;
+
+>>>>>>> master
 		}
 	}
 }

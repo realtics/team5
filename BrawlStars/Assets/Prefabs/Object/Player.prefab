@@ -188,7 +188,7 @@ MonoBehaviour:
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   state: 0
   skillCodeArray:
-  - 
-  - 
-  - 
-  - 
+  - FireBall
+  - FireBird
+  - LeafCyclone
+  - WaterGodFury

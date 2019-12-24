@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 
+//[ExecuteInEditMode]
 public class MapSpawner : MonoBehaviour
 {
     public stage[] stages;
@@ -58,33 +59,33 @@ public class MapSpawner : MonoBehaviour
 
     private void Update()
     {
-		if (NowMap[nowIndex].transform.GetComponent<Map>().IsStageFinished())
-		{
-			if (NowMap[nowIndex].transform.GetComponent<Map>().portals.Length == 0)
-			{
-				if (!BattleManager.GetInstance().IsAnyItemOnMap())
-					OnResultUI(StageResult.WIN);
-			}
-			else
-			{
-				NowMap[nowIndex].transform.GetComponent<Map>().ActivatePortals();
-			}
-		}
+        if (NowMap[nowIndex].transform.GetComponent<Map>().IsStageFinished())
+        {
+            if (NowMap[nowIndex].transform.GetComponent<Map>().portals.Length == 0)
+            {
+                if (!BattleManager.GetInstance().IsAnyItemOnMap())
+                    OnResultUI(StageResult.WIN);
+            }
+            else
+            {
+                NowMap[nowIndex].transform.GetComponent<Map>().ActivatePortals();
+            }
+        }
 
-		//if (currentMap.IsStageFinished())
-		//{
-		//	if (currentMap.portals.Length == 0)
-		//	{
-		//		if (!BattleManager.GetInstance().IsAnyItemOnMap())
-		//			OnResultUI(StageResult.WIN);
-		//	}
-		//	else
-		//	{
-		//		currentMap.ActivatePortals();
-		//	}
-		//}
+        //if (currentMap.IsStageFinished())
+        //{
+        //    if (currentMap.portals.Length == 0)
+        //    {
+        //        if (!BattleManager.GetInstance().IsAnyItemOnMap())
+        //            OnResultUI(StageResult.WIN);
+        //    }
+        //    else
+        //    {
+        //        currentMap.ActivatePortals();
+        //    }
+        //}
 
-		if (player.gameObject.activeSelf == false)
+        if (player.gameObject.activeSelf == false)
             OnResultUI(StageResult.LOSE);
     }
 
@@ -95,45 +96,45 @@ public class MapSpawner : MonoBehaviour
 		BattleManager.GetInstance().ClearAllItem();
 		StopAllCoroutines();
 
-		for (int i = 0; i < NowMap.Length; i++)
-		{
-			NowMap[i].SetActive(false);
-		}
+        for (int i = 0; i < NowMap.Length; i++)
+        {
+            NowMap[i].SetActive(false);
+        }
 
-		if (index < NowMap.Length)
-		{
-			resultUI.SetActive(false);
+        if (index < NowMap.Length)
+        {
+            resultUI.SetActive(false);
 
-			if (NowMap != null)
-				NowMap[index].SetActive(true);
+            if (NowMap != null)
+                NowMap[index].SetActive(true);
 
-			NowMap[index].transform.GetComponent<Map>().portals[0].gameObject.SetActive(false);
+            NowMap[index].transform.GetComponent<Map>().portals[0].gameObject.SetActive(false);
 
-			NowMap[index].transform.GetComponent<Map>().portals[0].player = player;
+            NowMap[index].transform.GetComponent<Map>().portals[0].player = player;
 
-			NowMap[index].transform.GetComponent<Map>().portals[0].mapSpawner = this;
+            NowMap[index].transform.GetComponent<Map>().portals[0].mapSpawner = this;
 
-			SetCharacterPosition(index);
-		}
+            SetCharacterPosition(index);
+        }
 
-		/*if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
-		{
-			resultUI.SetActive(false);
+        //if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
+        //{
+        //    resultUI.SetActive(false);
 
-			if (currentMap != null)
-				Destroy(currentMap.gameObject);
+        //    if (currentMap != null)
+        //        Destroy(currentMap.gameObject);
 
-			currentMap = Instantiate(stages[stageIndex].maps[index]);
-			player.transform.position = currentMap.startingPoint.transform.position;
-			for (int i = 0; i < currentMap.portals.Length; i++)
-			{
-				currentMap.portals[i].mapSpawner = this;
-				currentMap.portals[i].player = player;
-			}
+        //    currentMap = Instantiate(stages[stageIndex].maps[index]);
+        //    player.transform.position = currentMap.startingPoint.transform.position;
+        //    for (int i = 0; i < currentMap.portals.Length; i++)
+        //    {
+        //        currentMap.portals[i].mapSpawner = this;
+        //        currentMap.portals[i].player = player;
+        //    }
 
-			SetCharacterPosition();
-		}*/
-	}
+        //    SetCharacterPosition();
+        //}
+    }
 
     public void OnExitButtonClick(string sceneName)
     {
@@ -155,7 +156,7 @@ public class MapSpawner : MonoBehaviour
     {
 		Vector3 startingVector = NowMap[index].GetComponent<Map>().startingPoint.transform.position;//currentMap.startingPoint.transform.position;
 
-		if (startingVector == null)
+        if (startingVector == null)
         {
             player.transform.position = new Vector3(0f, 0.5f, 0f);
         }
