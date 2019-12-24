@@ -15,24 +15,19 @@ public class FileWindow : MonoBehaviour
 	private int xPos;
 	private int yPos;
 	private GameObject ButtonSlot;
-	private int ButtonSlotCnt = 0;
+
 
 	public ScrollRect fileScroll;
+
+	//int tempInt = 2;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		
-		CreateInventorySlotsInWindow();
+		//CreateFileSlotsInWindow();
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
-
-	private void CreateInventorySlotsInWindow()
+	public void CreateFileSlotsInWindow()
 	{
 		xPos = startingPosX;
 		yPos = startingPosY;
@@ -41,28 +36,31 @@ public class FileWindow : MonoBehaviour
 
 		DirectoryInfo directoryInfo = new DirectoryInfo(folderName);
 
+		//foreach (FileInfo file in directoryInfo.GetFiles(tempInt + "*.txt"))
+
 		foreach (FileInfo file in directoryInfo.GetFiles("*.txt"))
 		{
 			string FileNameOnly = file.Name.Substring(0, file.Name.Length - 4);
-			string FullName = file.FullName;
+			//string FullName = file.FullName;
 		
 			ButtonSlot = Instantiate(buttonPrefab);
 			ButtonSlot.transform.Find("Text").GetComponent<Text>().text = FileNameOnly;
 
 			ButtonSlot.transform.SetParent(content.transform);
 			ButtonSlot.GetComponent<RectTransform>().localPosition = new Vector3(xPos, yPos, 0);
-			xPos += (int)ButtonSlot.GetComponent<RectTransform>().rect.width;
-
-			ButtonSlotCnt++;
-
-			if (ButtonSlotCnt % slotCntLength == 0)
-			{
-				ButtonSlotCnt = 0;
-				yPos -= (int)ButtonSlot.GetComponent<RectTransform>().rect.height;
-				xPos = startingPosX;
-			}
+			yPos += (int)ButtonSlot.GetComponent<RectTransform>().rect.height;
 		}
 
 		fileScroll.verticalNormalizedPosition = 1;
+	}
+
+	public void DeleteFileSlotsInWindow()
+	{
+		GameObject[] buttonObject = GameObject.FindGameObjectsWithTag("Button");
+
+		for (int i = 0; i < buttonObject.Length; i++)
+		{
+			Destroy(buttonObject[i]);
+		}
 	}
 }

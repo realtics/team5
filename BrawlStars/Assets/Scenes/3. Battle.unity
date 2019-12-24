@@ -1030,6 +1030,7 @@ MonoBehaviour:
   - maps:
     - {fileID: 8039428069317739390, guid: 49e7e49ee197a5c469fa49c0b000b016, type: 3}
     - {fileID: 6548518105483266611, guid: dbc2352bdb45f504fb042229054b2d81, type: 3}
+  stageFileName: []
   stageIndex: 0
   currentMap: {fileID: 0}
   navMeshFloor: {fileID: 859794084}
@@ -1037,6 +1038,53 @@ MonoBehaviour:
   resultUI: {fileID: 539932182}
   resultText: {fileID: 1132712702}
   limitTime: 5
+  NowMap: []
+  obstaclePrefabs:
+  - {fileID: 9141929795394059307, guid: 3a2181ddd1385cc46a6fda6838eb3b03, type: 3}
+  - {fileID: 4030543472326843722, guid: 6c96ec80df35a794a9312c2b5ca99f05, type: 3}
+  - {fileID: 4767471874313612861, guid: 909589c67e119f34cad9b86758c23fdc, type: 3}
+  - {fileID: 174507680878977973, guid: 6c0c13738facc9a4b9b0aae457f7a715, type: 3}
+  - {fileID: 8364389038295804242, guid: bd1ea4fec563bb545b0f510fb1828ccd, type: 3}
+  - {fileID: 1213966092446685304, guid: efdc6e06af3a7624baba82faea019951, type: 3}
+  - {fileID: 3041026869464727266, guid: 0bcc0808883165641ae3574b47ea4eb0, type: 3}
+  - {fileID: 6905245332235454155, guid: 6be3a67673d741c4fa0afdaadefb4a00, type: 3}
+  - {fileID: 7865244161248322051, guid: c0ab0f8011e4f5044802b89179f87571, type: 3}
+  - {fileID: 2482984351487910618, guid: 512a450343760e4459b95d55ade441f8, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1257988832261693997, guid: 400cad88188088b49816ff854fd3abc8, type: 3}
+  - {fileID: 1489704820151841583, guid: 77029dcc3359e80479b7dda2b31ec37e, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  - {fileID: 6751649025187402711, guid: 7388cc83d928e0b40be2fa0e92776f08, type: 3}
+  tilePrefabs: {fileID: 4991417397179397828, guid: f0d4e991deeb6994d8fb8a9b6248e645,
+    type: 3}
+  navmeshFloor: {fileID: 859794087}
+  navmeshMaskPrefabMeshFloor: {fileID: 2302550715646157062, guid: dfe51369a12eeab46bd7928e933ab938,
+    type: 3}
 --- !u!4 &826836905
 Transform:
   m_ObjectHideFlags: 0

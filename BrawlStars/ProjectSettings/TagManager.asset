@@ -9,6 +9,7 @@ TagManager:
   - StartingPoint
   - Item
   - Obstacle
+  - Button
   layers:
   - Default
   - TransparentFX

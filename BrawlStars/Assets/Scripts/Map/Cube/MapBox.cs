@@ -41,7 +41,7 @@ public class MapBox : MonoBehaviour
 
                     Debug.Log("Destroy!!");
 
-                    mapGenerator.LoadMap();
+                    //mapGenerator.LoadMap();
                 }
             }
         }

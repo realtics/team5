@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+
+enum UISTATE
+{ 
+	UI_ON,
+	UI_OFF
+}
+
 public class MapGenerator : MonoBehaviour
 {
 	//맵 툴 UI
@@ -21,6 +28,10 @@ public class MapGenerator : MonoBehaviour
 
 	public Text CubeName;
 	public Text MapName;
+
+	FileWindow fileWindow;
+
+	//public UISTATE uiState = UISTATE.UI_END;
 
 	//맵 만드는 거
 	public Map maps;
@@ -64,9 +75,11 @@ public class MapGenerator : MonoBehaviour
 		infoUI.SetActive(false);
 
 		inputPortalIndex.text = index.ToString();
-
 		MapName.text = null;
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 		mCamera.transform.position = Camera.main.transform.position;
 	}
 
@@ -172,33 +185,54 @@ public class MapGenerator : MonoBehaviour
 		}
 	}
 
-
 	public void onOffSaveUI()
 	{
-		if (loadUI.activeSelf == true)
-			loadUI.SetActive(false);
-		
-		if (saveUI.activeSelf == false)
+		if (EventSystem.current.IsPointerOverGameObject())
 		{
-			saveUI.SetActive(true);
-			inputSaveText.text = null;
+			if (loadUI.activeSelf == true)
+			{
+				FileWindowInfo(UISTATE.UI_OFF);
+				loadUI.SetActive(false);
+			}
+
+			if (saveUI.activeSelf == false)
+			{
+				saveUI.SetActive(true);
+				inputSaveText.text = null;
+
+				FileWindowInfo(UISTATE.UI_ON);
+			}
+			else
+			{
+				FileWindowInfo(UISTATE.UI_OFF);
+				saveUI.SetActive(false);
+			}
 		}
-		else
-			saveUI.SetActive(false);
 	}
 
 	public void onOffLoadUI()
 	{
-		if (saveUI.activeSelf == true)
-			saveUI.SetActive(false);
-		
-		if (loadUI.activeSelf == false)
+		if (EventSystem.current.IsPointerOverGameObject())
 		{
-			loadUI.SetActive(true);
-			inputLoadText.text = null;
+			if (saveUI.activeSelf == true)
+			{
+				FileWindowInfo(UISTATE.UI_OFF);
+				saveUI.SetActive(false);
+			}
+
+			if (loadUI.activeSelf == false)
+			{
+				loadUI.SetActive(true);
+				inputLoadText.text = null;
+
+				FileWindowInfo(UISTATE.UI_ON);
+			}
+			else
+			{
+				FileWindowInfo(UISTATE.UI_OFF);
+				loadUI.SetActive(false);
+			}
 		}
-		else
-			loadUI.SetActive(false);
 	}
 
 	void OnChangeCube()
@@ -230,11 +264,11 @@ public class MapGenerator : MonoBehaviour
 							obstaclePrefabs[cubeIndex].transform.localScale.y * 0.5f,
 								hit.transform.gameObject.transform.position.z), Quaternion.identity);
 
-						//Debug.Log("x : " + hit.transform.gameObject.transform.position.x + " " +
-						//	"y: " + hit.transform.gameObject.transform.position.z);
+						Debug.Log("x : " + hit.transform.gameObject.transform.position.x + " " +
+							"y: " + hit.transform.gameObject.transform.position.z);
 
-						obstacleMap[(int)hit.transform.gameObject.transform.position.x,
-							(int)hit.transform.gameObject.transform.position.z] = cubeIndex;
+						obstacleMap[(int)hit.transform.gameObject.transform.position.z,
+							(int)hit.transform.gameObject.transform.position.x] = cubeIndex;
 
 						newObstacle.gameObject.transform.parent = mapHolder;
 					}
@@ -270,6 +304,16 @@ public class MapGenerator : MonoBehaviour
 		GenerateMap();
 	}
 
+	void FileWindowInfo(UISTATE UiState)
+	{
+		fileWindow = GameObject.Find("FileScrollWindow").GetComponent<FileWindow>();
+
+		if (UiState == UISTATE.UI_ON)
+			fileWindow.CreateFileSlotsInWindow();
+		else
+			fileWindow.DeleteFileSlotsInWindow();
+	}
+
 	public void GenerateMap()
     {
 		if (inputX.text != "" && inputX.text != "0")
@@ -286,7 +330,6 @@ public class MapGenerator : MonoBehaviour
 		//최대 맵은 설정한 mapSize의 값에 + 1으로 설정
 		maxMapSize.x = maps.mapSize.x + 1;
         maxMapSize.y = maps.mapSize.y + 1;
-
 
 		MapName.text = maps.MapName;
 
@@ -344,6 +387,7 @@ public class MapGenerator : MonoBehaviour
 				//해당 큐브의 위치
 				Vector3 obstaclePosition = CoordToPosition(j, i);
 				
+				//포탈의 인덱스와 포탈이 가진 TargetIndex를 처리 숫자 20은 포탈의 인덱스
 				if (obstacleMap[j, i] >= 20 && obstacleMap[j, i] < 30)
 				{
 					index = obstacleMap[j, i] - 20;
@@ -427,10 +471,13 @@ public class MapGenerator : MonoBehaviour
         }
 	}
 
-    public void LoadMap()
+    public void LoadMap(string mapName)
     {
 		if (inputLoadText.text != null && inputLoadText.text != "")
 			maps.MapName = inputLoadText.text;
+
+		if (mapName != null && mapName != "")
+			maps.MapName = mapName;
 
 		ClearMap();//기존 맵 초기화
 
@@ -462,8 +509,9 @@ public class MapGenerator : MonoBehaviour
                         obstacleMap[j, i] = int.Parse(data[i]);
                     }
                 }
-
+				
 				infoUI.SetActive(true);
+				
 			}
         }
 	}

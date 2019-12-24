@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour
 {
     public int targetIndex;
-	[HideInInspector]
+	
 	public MapSpawner mapSpawner;
-	[HideInInspector]
+	
 	public Character player;
 
 	bool isWaitingCollision = false;
