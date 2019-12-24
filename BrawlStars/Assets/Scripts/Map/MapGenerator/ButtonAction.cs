@@ -7,14 +7,18 @@ public class ButtonAction : MonoBehaviour
 {
 	public Button btn;
 
-	public InputField load;
+	public InputField Text;
+
+	public GameObject SaveUI;
+	public GameObject LoadUI;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		btn = this.transform.GetComponent<Button>();
 		btn.onClick.AddListener(SendText);
-		load = GameObject.Find("Map").GetComponent<MapGenerator>().inputLoadText;
+		SaveUI = GameObject.Find("Map").GetComponent<MapGenerator>().saveUI;
+		LoadUI = GameObject.Find("Map").GetComponent<MapGenerator>().loadUI;
 	}
 
 	// Update is called once per frame
@@ -26,6 +30,12 @@ public class ButtonAction : MonoBehaviour
 
 	void SendText()
 	{
-		load.text = this.transform.Find("Text").GetComponent<Text>().text;
+		if(SaveUI.activeSelf == true)
+			Text = GameObject.Find("Map").GetComponent<MapGenerator>().inputSaveText;
+
+		if (LoadUI.activeSelf == true)
+			Text = GameObject.Find("Map").GetComponent<MapGenerator>().inputLoadText;
+
+		Text.text = this.transform.Find("Text").GetComponent<Text>().text;
 	}
 }

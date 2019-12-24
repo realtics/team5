@@ -8,6 +8,8 @@ public class ButtonScrollRect : MonoBehaviour
 	public ScrollRect scrollRect;
 	bool mouseDown, buttonDown, buttonUp;
 
+	public float ScrollSpeed = 0.01f;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -53,7 +55,7 @@ public class ButtonScrollRect : MonoBehaviour
 		else 
 		{
 			if(scrollRect.verticalNormalizedPosition >= 0)
-				scrollRect.verticalNormalizedPosition -= 0.01f;
+				scrollRect.verticalNormalizedPosition -= ScrollSpeed;
 		}
 	}
 
@@ -67,7 +69,7 @@ public class ButtonScrollRect : MonoBehaviour
 		else
 		{
 			if (scrollRect.verticalNormalizedPosition <= 1)
-				scrollRect.verticalNormalizedPosition += 0.01f;
+				scrollRect.verticalNormalizedPosition += ScrollSpeed;
 		}
 	}
 }
