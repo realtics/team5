@@ -295,12 +295,6 @@ public class Actor : MonoBehaviour
         state = State.Idle;
     }
 
-    private void OnDestroy()
-    {
-        if (hpBar != null)
-            Destroy(hpBar.gameObject);
-    }
-
     public float GetRemainSkillCooldown(int index)
 	{
 		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);

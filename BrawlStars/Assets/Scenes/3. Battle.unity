@@ -1034,7 +1034,7 @@ MonoBehaviour:
   stageIndex: 0
   currentMap: {fileID: 0}
   navMeshFloor: {fileID: 859794084}
-  player: {fileID: 0}
+  player: {fileID: 4858412950500547585, guid: dc93099675fbbed488f19c8f6934574f, type: 3}
   resultUI: {fileID: 539932182}
   resultText: {fileID: 1132712702}
   limitTime: 5
