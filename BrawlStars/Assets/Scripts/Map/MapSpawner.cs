@@ -94,6 +94,7 @@ public class MapSpawner : MonoBehaviour
 		nowIndex = index;
 
 		BattleManager.GetInstance().ClearAllItem();
+		StopAllCoroutines();
 
         for (int i = 0; i < NowMap.Length; i++)
         {

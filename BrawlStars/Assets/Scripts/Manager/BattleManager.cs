@@ -20,6 +20,8 @@ public class BattleManager : MonoBehaviour
 	List<GameObject> droppedItemList;
 	List<Actor> actorListOnMap;
 
+	public DroppedItem droppedItem;
+
     private void Awake()
     {
         instance = this;
@@ -44,26 +46,27 @@ public class BattleManager : MonoBehaviour
         return instance;
     }
 
-	public void DropItem(string itemName, Vector3 position)
+	public void DropItem(string itemCode, Vector3 position)
 	{
 		Vector3 itemPosition = Vector3.zero;
 		itemPosition.x = position.x + Random.Range(-1f, 1f);
 		itemPosition.z = position.z + Random.Range(-1f, 1f);
 
-		Item dropItem = GameManager.GetInstance().GetItem(itemName);
-		GameObject itemObject = ObjectPool.GetInstance().GetObject(dropItem.gameObject);
-		droppedItemList.Add(itemObject);
+		DroppedItem itemObject = ObjectPool.GetInstance().GetObject(droppedItem.gameObject).GetComponent<DroppedItem>();
+		itemObject.itemCode = itemCode;
+		droppedItemList.Add(itemObject.gameObject);
 		itemObject.transform.position = itemPosition;
 	}
 
-	public void PickUpItem(Item item)
+	public void PickUpItem(DroppedItem itemForPickUp)
 	{
-		bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(item.itemCode);
+		bool canAddNewItem = GameManager.GetInstance().AddNewItemInInventory(itemForPickUp.itemCode);
 		if (canAddNewItem)
 		{
+			Item item = GameManager.GetInstance().GetItem(itemForPickUp.itemCode);
 			logView.AddItemGetLog(item.itemName);
-			droppedItemList.Remove(item.gameObject);
-			ObjectPool.GetInstance().AddNewObject(item.gameObject);
+			droppedItemList.Remove(itemForPickUp.gameObject);
+			ObjectPool.GetInstance().AddNewObject(itemForPickUp.gameObject);
 		}
 	}
 

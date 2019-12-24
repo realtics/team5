@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4090845412603057311}
   - component: {fileID: -3866498702547038473}
   - component: {fileID: -8153989580634153189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WoodCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

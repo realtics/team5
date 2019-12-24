@@ -11,7 +11,9 @@ public class RoomManager : MonoBehaviour
     int menuIndex;
     public Text menuText;
 
-    public ItemSlot[] equippedSlot;
+	public CharaterInfo infoWindow;
+
+	public ItemSlot[] equippedSlot;
 
     public GameObject stageSelecter;
 	public StageSelector[] stageArray;
@@ -23,7 +25,8 @@ public class RoomManager : MonoBehaviour
         instance = this;
 
 		GameManager.GetInstance().InitEquipSlot(equippedSlot.Length);
-	}
+		infoWindow.SetCharacterInfo();
+ 	}
 
     public static RoomManager GetInstance()
     {

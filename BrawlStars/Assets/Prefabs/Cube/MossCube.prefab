@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8151394117045849943}
   - component: {fileID: -830874640368633724}
   - component: {fileID: -4641939745128975598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MossCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

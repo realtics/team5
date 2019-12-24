@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8673350901925263059}
   - component: {fileID: -8792888440803306904}
   - component: {fileID: 7598617216138858670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SnowCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

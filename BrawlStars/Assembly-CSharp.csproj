@@ -71,10 +71,12 @@
     <Compile Include="Assets\Scripts\Contoller\SkillIcon.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />
+    <Compile Include="Assets\Scripts\Item\DroppedItem.cs" />
     <Compile Include="Assets\Scripts\Item\DropTable.cs" />
     <Compile Include="Assets\Scripts\Item\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item\Item.cs" />
     <Compile Include="Assets\Scripts\Item\ItemSlot.cs" />
+    <Compile Include="Assets\Scripts\Item\ItemTable.cs" />
     <Compile Include="Assets\Scripts\Manager\BattleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\Global.cs" />
@@ -149,6 +151,7 @@
     <None Include="Assets\StageMaps\1-5.txt" />
     <None Include="Assets\StageMaps\4-1.txt" />
     <None Include="Assets\StageMaps\1-4.txt" />
+    <None Include="Assets\Resources\Texture\UI\Reinforce\KumKangBlizzard.txt" />
     <None Include="Assets\StageMaps\2-2.txt" />
     <None Include="Assets\StageMaps\2-4.txt" />
     <None Include="Assets\StageMaps\Maze.txt" />

@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Type
-{
-    WEAPON, ARMOR, ACCESSORY, SUB, ETC
-}
-
-public class Item : MonoBehaviour
+[System.Serializable]
+public class Item
 {
     public string itemCode;
     public string itemName;
     public Sprite icon;
-    public Type type;
+    public ItemType type;
     public Status status;
+	public Status statusPerReinforce;
     public string etc;
 
-    public string GetItemExplanation()
+	int count;
+	int reinforce;
+
+	public string GetItemExplanation()
     {
         string result = itemName + "\n\n";
-        switch(type)
+		if (reinforce > 0)
+			result = "+" + reinforce + " " + result;
+
+		switch (type)
         {
-            case Type.WEAPON:
+            case ItemType.WEAPON:
                 result += "무기\n";
                 break;
-            case Type.ARMOR:
+            case ItemType.ARMOR:
                 result += "방어구\n";
                 break;
-            case Type.ACCESSORY:
+            case ItemType.ACCESSORY:
                 result += "악세사리\n";
                 break;
-            case Type.SUB:
+            case ItemType.SUB:
                 result += "보조장비\n";
                 break;
             default:
@@ -52,4 +55,26 @@ public class Item : MonoBehaviour
 
         return result;
     }
+
+	public Item(Item other)
+	{
+		count = 1;
+		reinforce = 0;
+		itemCode = other.itemCode;
+		itemName = other.itemName;
+		icon = other.icon;
+		type = other.type;
+		status = other.status;
+		etc = other.etc;
+	}
+
+	public void AddOneCount()
+	{
+		count++;
+	}
+
+	public int GetCount()
+	{
+		return count;
+	}
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1780478210000300612}
   - component: {fileID: -9188241407649868906}
   - component: {fileID: -8619996332091109621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
