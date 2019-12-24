@@ -2020,7 +2020,8 @@ MonoBehaviour:
   - {fileID: 17304690}
   - {fileID: 1146288585}
   - {fileID: 617037413}
-  droppedItemList: []
+  droppedItem: {fileID: -3162664654240143926, guid: 0b6d250296196864da7ff39d8d8e30c5,
+    type: 3}
 --- !u!4 &1460514555
 Transform:
   m_ObjectHideFlags: 0
@@ -2047,37 +2048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8f42a0795ddab42977fd97927b23f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabList:
-  - gameObject: {fileID: 923743176299164839, guid: b550efe8306983140a5e12475d8447b5,
-      type: 3}
-    count: 60
-  - gameObject: {fileID: 2046875378689174803, guid: e4d09d010ce0262429c8b9ec38a7afcf,
-      type: 3}
-    count: 10
-  - gameObject: {fileID: 923743176299164839, guid: a96432d459491b3419cdd5d0b37eac87,
-      type: 3}
-    count: 10
-  - gameObject: {fileID: 923743176299164839, guid: 4c8490e38957f83498ef85180fb6b396,
-      type: 3}
-    count: 10
-  - gameObject: {fileID: 6977513322373937792, guid: 0b6d250296196864da7ff39d8d8e30c5,
-      type: 3}
-    count: 5
-  - gameObject: {fileID: 6977513322373937792, guid: 42860a5c7fe8c2941981a324a68fbda1,
-      type: 3}
-    count: 5
-  - gameObject: {fileID: 6977513322373937792, guid: 15311abc633554446aac584f84333aa2,
-      type: 3}
-    count: 10
-  - gameObject: {fileID: 6977513322373937792, guid: 1086af85e5608bb41bd4bb39f0da36a2,
-      type: 3}
-    count: 5
-  - gameObject: {fileID: 6977513322373937792, guid: ba1b640ec3561424295afc2dd238f8c5,
-      type: 3}
-    count: 5
-  - gameObject: {fileID: 6977513322373937792, guid: 647eb7de6e85e1c4b83b9437e7aa89ad,
-      type: 3}
-    count: 5
+  prefabList: []
 --- !u!1 &1514094294
 GameObject:
   m_ObjectHideFlags: 0

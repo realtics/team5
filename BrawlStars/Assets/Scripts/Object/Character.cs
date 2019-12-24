@@ -49,7 +49,7 @@ public class Character : Actor
     {
         if (collider.gameObject.tag == "Item")
         {
-            BattleManager.GetInstance().PickUpItem(collider.GetComponent<Item>());
+            BattleManager.GetInstance().PickUpItem(collider.GetComponent<DroppedItem>());
         }
 	}
 }

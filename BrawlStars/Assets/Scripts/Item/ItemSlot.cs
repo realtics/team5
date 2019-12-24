@@ -6,13 +6,13 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public Image iconPrefab;
-    Image icon;
+    public Image icon;
 
-    public Type type;
+    public ItemType type;
     public Item item;
 
     int itemIndex;
+	public Text countText;
     Image itemWindow;
     Text itemText;
 	Button reinforceButton;
@@ -21,19 +21,16 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	public int equippedIndex;
     bool isDragged;
 
-	public void Init(int index, Image window, Text text, Button button)
+	public void Init(int index, Image window, Text _itemText, Button button)
 	{
 		itemIndex = index;
 		itemWindow = window;
-		itemText = text;
+		itemText = _itemText;
 		reinforceButton = button;
 	}
 
     void Start()
     {
-		icon = Instantiate(iconPrefab, transform.position, transform.rotation);
-		icon.transform.SetParent(transform);
-
 		Refresh();
 
 		GameManager.GetInstance().RefreshSlots += Refresh;
@@ -41,15 +38,19 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Refresh()
     {
-        if(isEquippedSlot)
-            item = GameManager.GetInstance().GetEquippedItem(equippedIndex);
-        else
-            item = GameManager.GetInstance().GetItemInInventory(itemIndex);
+		if (isEquippedSlot)
+			item = GameManager.GetInstance().GetEquippedItem(equippedIndex);
+		else
+			item = GameManager.GetInstance().GetItemInInventory(itemIndex);
 
-        if (item != null)
+		countText.text = "";
+		if (item != null)
 		{
 			icon.sprite = item.icon;
 			icon.transform.localScale = new Vector3(1, 1, 1);
+
+			if (item.GetCount() > 1)
+				countText.text = item.GetCount().ToString();
 		} else
 		{
 			icon.sprite = null;
@@ -87,9 +88,9 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (item == null)
             return;
 
-        if (isDragged)
-        {
-            ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
+		if (isDragged)
+		{
+			ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
 			if (targetSlot != null && targetSlot != this)
 			{
 				if (!targetSlot.isEquippedSlot && !isEquippedSlot)
@@ -105,16 +106,26 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			icon.transform.SetParent(transform);
 			icon.transform.position = transform.position;
 			Refresh();
-		} else if(itemWindow != null)
-        {
-            itemWindow.gameObject.SetActive(true);
-            itemText.text = item.GetItemExplanation();
-			if (type == Type.ETC)
-				reinforceButton.gameObject.SetActive(true);
-			else
+		}
+		else if (itemWindow != null)
+		{
+			itemWindow.gameObject.SetActive(true);
+			itemText.text = item.GetItemExplanation();
+			if (item.type == ItemType.ETC)
 				reinforceButton.gameObject.SetActive(false);
-        }
+			else
+			{
+				reinforceButton.gameObject.SetActive(true);
+				reinforceButton.onClick.RemoveAllListeners();
+				reinforceButton.onClick.AddListener(Reinforce);
+			}
+		}
     }
+
+	void Reinforce()
+	{
+		GameManager.GetInstance().ReinforceSuccess(item.itemCode, itemIndex);
+	}
 
 	void OnDestroy()
 	{

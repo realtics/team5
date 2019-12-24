@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -193552676990324665}
   - component: {fileID: 5608340299904711526}
   - component: {fileID: -6630734523002149906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RockCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

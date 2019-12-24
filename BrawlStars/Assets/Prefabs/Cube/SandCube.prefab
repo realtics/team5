@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1137036140305560261}
   - component: {fileID: 2846438515115816584}
   - component: {fileID: 6600586558784308871}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SandCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

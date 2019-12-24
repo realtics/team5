@@ -53,7 +53,7 @@ public struct Menu
 public struct DropItem
 {
 	public float percentage;
-	public string itemName;
+	public string itemCode;
 }
 
 [System.Serializable]
@@ -79,6 +79,11 @@ public enum Team
 public enum State
 {
     Idle, Attack, Dead
+}
+
+public enum ItemType
+{
+	WEAPON, ARMOR, ACCESSORY, SUB, ETC
 }
 
 [System.Serializable]

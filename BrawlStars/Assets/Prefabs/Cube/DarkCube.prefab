@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2801827084097873928}
   - component: {fileID: -464107169184784531}
   - component: {fileID: -8435447602651415313}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DarkCube
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

@@ -53,6 +53,7 @@ public class MapSpawner : MonoBehaviour
     public void CreateNewMap(int index)
     {
 		BattleManager.GetInstance().ClearAllItem();
+		StopAllCoroutines();
 
 		if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
 		{
