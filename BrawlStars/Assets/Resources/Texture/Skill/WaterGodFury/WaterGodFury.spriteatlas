@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterGodFury
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 25fd3ddfd819ac1429eab29d9c8804f1, type: 3}
+    - {fileID: 2800000, guid: 0723aa61adc39844eb94042a60dceb31, type: 3}
+    - {fileID: 2800000, guid: e94079e520db3b9409f0eda73533c823, type: 3}
+    - {fileID: 2800000, guid: ff77173274d7901429dcd17c52068bd6, type: 3}
+    - {fileID: 2800000, guid: 4376ae774375aa5438a34d573a4e2833, type: 3}
+    - {fileID: 2800000, guid: ba1c8bbe70944c94aae6d97fec2e4244, type: 3}
+    - {fileID: 2800000, guid: caf5258fb7401fc46972777c48ba5688, type: 3}
+    - {fileID: 2800000, guid: 2d715661c45aa28459236ce3cc9d8f6f, type: 3}
+    - {fileID: 2800000, guid: 6653a32e3c490cf4cb617ed44f1c2d83, type: 3}
+    - {fileID: 2800000, guid: 1af02b6aa6527744a92674416ea877a5, type: 3}
+    - {fileID: 2800000, guid: de5d301f004f1474d90cfd754ccb9ff8, type: 3}
+    - {fileID: 2800000, guid: ce6868ac60f5e664395dc654f57c4f8c, type: 3}
+    - {fileID: 2800000, guid: 1b1a32e2a2fcc31429e9dfe3c13833d4, type: 3}
+    - {fileID: 2800000, guid: 319942971e065194988a05b5e44e9465, type: 3}
+    - {fileID: 2800000, guid: 60a31d9402f0821498485ad977705779, type: 3}
+    - {fileID: 2800000, guid: 1557882fea0c6bb449e224c0ad7f4dee, type: 3}
+    - {fileID: 2800000, guid: 79e17cfc857bac445a6b81c4d5fd524f, type: 3}
+    - {fileID: 2800000, guid: 31605813909cddf4ab0d4d51b5dc0390, type: 3}
+    - {fileID: 2800000, guid: e9084a4a242ef3545982f38ef455092b, type: 3}
+    - {fileID: 2800000, guid: 483ba4327b6bf9b4f90ca268dec16566, type: 3}
+    - {fileID: 2800000, guid: ba6ed081b37e05c4395d5343bf097399, type: 3}
+    - {fileID: 2800000, guid: 3861aa4984fe38340b6ea1f0b26de456, type: 3}
+    - {fileID: 2800000, guid: c7fa7ee0dfd1ec546b82e1a9d3fd7472, type: 3}
+    - {fileID: 2800000, guid: 774625f0b67ea4744b9599792d3d5859, type: 3}
+    - {fileID: 2800000, guid: 361cc2d4e56d5bd42bc730432648dbf9, type: 3}
+    - {fileID: 2800000, guid: 1723766c41b5ed341ace46b4ccaa24c4, type: 3}
+    - {fileID: 2800000, guid: f2918a313f2265d4594deb4bac5b52eb, type: 3}
+    - {fileID: 2800000, guid: f8ff52e7e13432940b73a26b22db06af, type: 3}
+    - {fileID: 2800000, guid: 37545175420ce3a4d9968890047c9233, type: 3}
+    - {fileID: 2800000, guid: 2d49ede87aa550f448b0b13308a7a42c, type: 3}
+    - {fileID: 2800000, guid: 79dfdce9c6e50bd43ae142d949ac6454, type: 3}
+    - {fileID: 2800000, guid: 05a7c1a9da41ed5449aadbd34f5df0eb, type: 3}
+    - {fileID: 2800000, guid: 5f0d0ef6adacf83438d034407c3ab79d, type: 3}
+    - {fileID: 2800000, guid: 5677b896d75aa2d4b96a375dcd8a041a, type: 3}
+    - {fileID: 2800000, guid: 2dadd6bccbfb5354980529e6548505d1, type: 3}
+    - {fileID: 2800000, guid: a5da2c3cc235ba94dbbfc4d4d9fa6bb9, type: 3}
+    - {fileID: 2800000, guid: 60b37764b6c843c4dac4542eb8e4e1de, type: 3}
+    - {fileID: 2800000, guid: 1c3869790ea75284f88dc184baf82c44, type: 3}
+    - {fileID: 2800000, guid: b1da503e580afda40a3a9f99ee3b1444, type: 3}
+    - {fileID: 2800000, guid: 7f10cae7c8a6c5d4ca2502636525939a, type: 3}
+    totalSpriteSurfaceArea: 12107840
+    bindAsDefault: 1
+    storedHash:
+      serializedVersion: 2
+      Hash: 00000000000000000000000000000000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c7fa7ee0dfd1ec546b82e1a9d3fd7472, type: 3}
+  - {fileID: 21300000, guid: 774625f0b67ea4744b9599792d3d5859, type: 3}
+  - {fileID: 21300000, guid: f2918a313f2265d4594deb4bac5b52eb, type: 3}
+  - {fileID: 21300000, guid: 2d715661c45aa28459236ce3cc9d8f6f, type: 3}
+  - {fileID: 21300000, guid: 0723aa61adc39844eb94042a60dceb31, type: 3}
+  - {fileID: 21300000, guid: ba6ed081b37e05c4395d5343bf097399, type: 3}
+  - {fileID: 21300000, guid: 483ba4327b6bf9b4f90ca268dec16566, type: 3}
+  - {fileID: 21300000, guid: ff77173274d7901429dcd17c52068bd6, type: 3}
+  - {fileID: 21300000, guid: 1b1a32e2a2fcc31429e9dfe3c13833d4, type: 3}
+  - {fileID: 21300000, guid: 31605813909cddf4ab0d4d51b5dc0390, type: 3}
+  - {fileID: 21300000, guid: 60b37764b6c843c4dac4542eb8e4e1de, type: 3}
+  - {fileID: 21300000, guid: 60a31d9402f0821498485ad977705779, type: 3}
+  - {fileID: 21300000, guid: 361cc2d4e56d5bd42bc730432648dbf9, type: 3}
+  - {fileID: 21300000, guid: 37545175420ce3a4d9968890047c9233, type: 3}
+  - {fileID: 21300000, guid: e94079e520db3b9409f0eda73533c823, type: 3}
+  - {fileID: 21300000, guid: 5677b896d75aa2d4b96a375dcd8a041a, type: 3}
+  - {fileID: 21300000, guid: 5f0d0ef6adacf83438d034407c3ab79d, type: 3}
+  - {fileID: 21300000, guid: 4376ae774375aa5438a34d573a4e2833, type: 3}
+  - {fileID: 21300000, guid: 319942971e065194988a05b5e44e9465, type: 3}
+  - {fileID: 21300000, guid: f8ff52e7e13432940b73a26b22db06af, type: 3}
+  - {fileID: 21300000, guid: 7f10cae7c8a6c5d4ca2502636525939a, type: 3}
+  - {fileID: 21300000, guid: 2d49ede87aa550f448b0b13308a7a42c, type: 3}
+  - {fileID: 21300000, guid: 3861aa4984fe38340b6ea1f0b26de456, type: 3}
+  - {fileID: 21300000, guid: 1c3869790ea75284f88dc184baf82c44, type: 3}
+  - {fileID: 21300000, guid: 05a7c1a9da41ed5449aadbd34f5df0eb, type: 3}
+  - {fileID: 21300000, guid: 79dfdce9c6e50bd43ae142d949ac6454, type: 3}
+  - {fileID: 21300000, guid: e9084a4a242ef3545982f38ef455092b, type: 3}
+  - {fileID: 21300000, guid: 1af02b6aa6527744a92674416ea877a5, type: 3}
+  - {fileID: 21300000, guid: a5da2c3cc235ba94dbbfc4d4d9fa6bb9, type: 3}
+  - {fileID: 21300000, guid: 1723766c41b5ed341ace46b4ccaa24c4, type: 3}
+  - {fileID: 21300000, guid: ce6868ac60f5e664395dc654f57c4f8c, type: 3}
+  - {fileID: 21300000, guid: 2dadd6bccbfb5354980529e6548505d1, type: 3}
+  - {fileID: 21300000, guid: 79e17cfc857bac445a6b81c4d5fd524f, type: 3}
+  - {fileID: 21300000, guid: 6653a32e3c490cf4cb617ed44f1c2d83, type: 3}
+  - {fileID: 21300000, guid: b1da503e580afda40a3a9f99ee3b1444, type: 3}
+  - {fileID: 21300000, guid: ba1c8bbe70944c94aae6d97fec2e4244, type: 3}
+  - {fileID: 21300000, guid: de5d301f004f1474d90cfd754ccb9ff8, type: 3}
+  - {fileID: 21300000, guid: 1557882fea0c6bb449e224c0ad7f4dee, type: 3}
+  - {fileID: 21300000, guid: caf5258fb7401fc46972777c48ba5688, type: 3}
+  - {fileID: 21300000, guid: 25fd3ddfd819ac1429eab29d9c8804f1, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - WaterGodFury_22
+  - WaterGodFury_23
+  - WaterGodFury_26
+  - WaterGodFury_7
+  - WaterGodFury_1
+  - WaterGodFury_20
+  - WaterGodFury_19
+  - WaterGodFury_3
+  - WaterGodFury_12
+  - WaterGodFury_17
+  - WaterGodFury_36
+  - WaterGodFury_14
+  - WaterGodFury_24
+  - WaterGodFury_28
+  - WaterGodFury_2
+  - WaterGodFury_33
+  - WaterGodFury_32
+  - WaterGodFury_4
+  - WaterGodFury_13
+  - WaterGodFury_27
+  - WaterGodFury_39
+  - WaterGodFury_29
+  - WaterGodFury_21
+  - WaterGodFury_37
+  - WaterGodFury_31
+  - WaterGodFury_30
+  - WaterGodFury_18
+  - WaterGodFury_9
+  - WaterGodFury_35
+  - WaterGodFury_25
+  - WaterGodFury_11
+  - WaterGodFury_34
+  - WaterGodFury_16
+  - WaterGodFury_8
+  - WaterGodFury_38
+  - WaterGodFury_5
+  - WaterGodFury_10
+  - WaterGodFury_15
+  - WaterGodFury_6
+  - WaterGodFury_0
+  m_Tag: WaterGodFury
+  m_IsVariant: 0

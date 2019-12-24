@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d59dd0e50fbbac47a7ea1735c90f85f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCode: FireDragon
   skillName: "\uC6A9\uC758 \uBD84\uB178"
   icon: {fileID: 21300000, guid: c38827639bff22b4cbfd46a56a6611a0, type: 3}
+  type: 2
   castingDelay: 0.3
   startupTime: 0
   recoveryTime: 0.1
@@ -56,7 +58,7 @@ MonoBehaviour:
   cooldown: 1
   reach: 10
   width: 1.2
-  speed: 2.5
+  speed: 3
   spriteDirectionCount: 9
 --- !u!212 &554003018535485233
 SpriteRenderer:
@@ -75,7 +77,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a350bbed21dc1cb41a1c4c545866476b, type: 2}
+  - {fileID: 2100000, guid: f8ee617333658d34cbeaf186e6b1b993, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +98,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9f0b097048038f249a491d2f3839a85e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +106,7 @@ SpriteRenderer:
   m_Size: {x: 6.4, y: 4.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &-1117598392396190065

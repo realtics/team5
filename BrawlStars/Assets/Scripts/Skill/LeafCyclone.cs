@@ -10,7 +10,7 @@ public class LeafCyclone : Skill
 
     public override void Action(float yRotationEuler)
     {
-        transform.rotation = Quaternion.Euler(90, yRotationEuler - 90, 0);
+        transform.rotation = Quaternion.Euler(90, yRotationEuler + 90, 0);
         StartCoroutine(DamageCoroutine(yRotationEuler));
     }
 

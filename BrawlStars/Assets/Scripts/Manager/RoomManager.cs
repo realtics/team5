@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class RoomManager : MonoBehaviour
 {
     static RoomManager instance = null;
@@ -14,8 +13,10 @@ public class RoomManager : MonoBehaviour
 
     public ItemSlot[] equippedSlot;
 
-    public GameObject StageSelecter;
+    public GameObject stageSelecter;
 	public StageSelector[] stageArray;
+
+	public Image imageForDrag;
 
     private void Awake()
     {
@@ -34,9 +35,7 @@ public class RoomManager : MonoBehaviour
 	{
 		menuIndex = 0;
         SetMenuActive(0);
-        StageSelecter.SetActive(false);
-
-		stageArray[0].Select();
+		stageSelecter.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -71,13 +70,14 @@ public class RoomManager : MonoBehaviour
     }
 
     public void SelectStartBtn()
-    {
-        StageSelecter.SetActive(true);
-    }
+	{
+		stageSelecter.SetActive(true);
+		stageArray[0].Select();
+	}
 
     public void SelectCloseBtn()
     {
-        StageSelecter.SetActive(false);
+		stageSelecter.SetActive(false);
     }
 
 	public void SelectStage(int index)
@@ -91,5 +91,17 @@ public class RoomManager : MonoBehaviour
 		{
 			stageArray[i].SizeDown();
 		}
+	}
+
+	public void DragSkillImage(Sprite image, Vector2 position)
+	{
+		imageForDrag.gameObject.SetActive(true);
+		imageForDrag.sprite = image;
+		imageForDrag.transform.position = position;
+	}
+
+	public void DragFinish()
+	{
+		imageForDrag.gameObject.SetActive(false);
 	}
 }

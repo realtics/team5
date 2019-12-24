@@ -19,6 +19,7 @@ public class Inventory : MonoBehaviour
 
     public Image itemWindow;
     public Text itemText;
+	public Button reinforceButton;
 
     private void Awake()
     {
@@ -52,11 +53,11 @@ public class Inventory : MonoBehaviour
                 slot.rectTransform.anchoredPosition = position;
 
                 ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
-                slotComponent.itemIndex = i * column + j;
-                slotComponent.itemWindow = itemWindow;
-                slotComponent.itemText = itemText;
+				slotComponent.Init(i * column + j, itemWindow, itemText, reinforceButton);
             }
         }
+
+		itemWindow.gameObject.SetActive(false);
     }
 
 	public void ClearInventory()

@@ -48,11 +48,13 @@ public class ObjectPool : MonoBehaviour
 	public GameObject GetObject(GameObject gameObject)
 	{
 		PooledObject poolForAdd = GetPool(gameObject.name);
+
 		GameObject result;
 		if (poolForAdd != null)
 			result = poolForAdd.GetObject();
 		else
 			result = Instantiate(gameObject);
+
 		result.SetActive(true);
 		result.name = gameObject.name;
 		return result;

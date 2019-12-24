@@ -8,7 +8,6 @@ public class ThunderStrike : Skill
     public float radius;
 
     const int detail = 60;
-    Vector3 position;
 
     public override void Action(float yRotationEuler)
     {
@@ -64,8 +63,7 @@ public class ThunderStrike : Skill
 
     public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)
     {
-        position = new Vector3(reach * stickMove.x / maxStickMoveLength, 0.1f, reach * stickMove.y / maxStickMoveLength);
-        return position;
+        return new Vector3(reach * stickMove.x / maxStickMoveLength, 0.1f, reach * stickMove.y / maxStickMoveLength);
     }
 
     public override Quaternion GetRotation(Vector2 stickMove)

@@ -16,18 +16,6 @@ public class Item : MonoBehaviour
     public Status status;
     public string etc;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public string GetItemExplanation()
     {
         string result = itemName + "\n\n";

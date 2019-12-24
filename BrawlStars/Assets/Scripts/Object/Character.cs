@@ -19,14 +19,6 @@ public class Character : Actor
         base.Update();
     }
 
-    public Skill GetSkill(int index)
-    {
-        if (index >= skillArray.Length)
-            return null;
-        else
-            return skillArray[index];
-    }
-
 	public override void Alive()
 	{
 		base.Alive();
@@ -39,10 +31,11 @@ public class Character : Actor
 		BattleManager.GetInstance().upperHPBar.SetMaxHp(finalStatus.hp);
 		BattleManager.GetInstance().upperHPBar.SetHp(finalStatus.hp);
 
-		for (int i = 0; i < skillArray.Length; i++)
+		for (int i = 0; i < skillCodeArray.Length; i++)
 		{
-			skillArray[i].MakeTargetRangeMesh();
-			lastSkillActionTime[i] = Time.time - skillArray[i].cooldown;
+			Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[i]);
+			if(skill != null)
+				lastSkillActionTime[i] = Time.time - skill.cooldown;
 		}
 	}
 

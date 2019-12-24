@@ -76,6 +76,10 @@ public class MapGenerator : MonoBehaviour
 
 		inputPortalIndex.text = index.ToString();
 		MapName.text = null;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 		mCamera.transform.position = Camera.main.transform.position;
 	}
 
