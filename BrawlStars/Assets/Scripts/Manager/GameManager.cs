@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 	public Character player;
 	public ItemTable itemTable;
 	Dictionary<int, Item> itemDataBase;
-	int itemIndex;
 	int[] InventoryItemArray;
 	int[] equippedItemArray;
 	Status itemStatus;
@@ -27,7 +26,6 @@ public class GameManager : MonoBehaviour
 	{
 		DontDestroyOnLoad(this);
 		instance = this;
-		itemIndex = 0;
 	}
 
 	public static GameManager GetInstance()
@@ -42,13 +40,14 @@ public class GameManager : MonoBehaviour
 		dropTable.Init();
 
 		itemDataBase = new Dictionary<int, Item>();
-		for (int i = 0; ; i++)
+		int databaseIndex = 0;
+		int length = PlayerPrefs.GetInt("itemDataBaseLength", 0);
+		for (int i = 0; databaseIndex < length; i++)
 		{
-			string itemCode = PlayerPrefs.GetString("itemDataBase" + i + "name", "");
-			if (itemCode == "")
-				break;
-			itemDataBase.Add(i, itemTable.GetItem(itemCode));
-			itemIndex++;
+			string itemCode = PlayerPrefs.GetString("itemDataBase" + databaseIndex + "name", "");
+			Item item = new Item(itemTable.GetItem(itemCode), PlayerPrefs.GetInt("itemDataBase" + i + "reinforce", 1));
+			itemDataBase.Add(databaseIndex, item);
+			databaseIndex++;
 		}
 
 		skillTable = new Dictionary<string, Skill>();
@@ -110,7 +109,6 @@ public class GameManager : MonoBehaviour
 			PlayerPrefs.DeleteKey("itemDataBase" + i + "reinforce");
 		}
 		itemDataBase.Clear();
-		itemIndex = 0;
 		RefreshSlots();
 	}
 
@@ -123,14 +121,13 @@ public class GameManager : MonoBehaviour
 			if (InventoryItemArray[possibleSlotIndex] < 0)
 			{
 				Item newItem = new Item(itemTable.GetItem(itemCode));
-				SetSlot(possibleSlotIndex, itemIndex);
-				AddNewItemInDataBase(newItem);
+				AddNewItem(newItem, possibleSlotIndex);
 			}
 			else
 			{
 				Item newItem = itemDataBase[InventoryItemArray[possibleSlotIndex]];
 				newItem.AddOneCount();
-				PlayerPrefs.SetInt("itemDataBase" + itemIndex + "count", newItem.GetCount());
+				PlayerPrefs.SetInt("itemDataBase" + InventoryItemArray[possibleSlotIndex] + "count", newItem.GetCount());
 			}
 			return true;
 		}
@@ -140,12 +137,32 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void AddNewItemInDataBase(Item newItem)
+	public void AddNewItem(Item newItem, int slotIndex)
 	{
+		int itemIndex = 0;
+		while(true)
+		{
+			string itemName = PlayerPrefs.GetString("itemDataBase" + itemIndex + "name", "");
+			if (itemName == "")
+				break;
+			itemIndex++;
+		}
 		PlayerPrefs.SetString("itemDataBase" + itemIndex + "name", newItem.itemCode);
 		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "count", 1);
-		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "reinforce", 0);
-		itemDataBase.Add(itemIndex++, newItem);
+		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "reinforce", 1);
+		SetSlot(slotIndex, itemIndex);
+		itemDataBase.Add(itemIndex, newItem);
+	}
+
+	public void RemoveItem(int key)
+	{
+		if (itemDataBase.ContainsKey(key))
+		{
+			itemDataBase.Remove(key);
+			PlayerPrefs.DeleteKey("itemDataBase" + key + "name");
+			PlayerPrefs.DeleteKey("itemDataBase" + key + "count");
+			PlayerPrefs.DeleteKey("itemDataBase" + key + "reinforce");
+		}
 	}
 
 	int FindMinimumPossibleSlotIndex(string itemCode)
@@ -177,20 +194,26 @@ public class GameManager : MonoBehaviour
 			return itemDataBase[InventoryItemArray[index]];
 	}
 
-	public bool ReinforceSuccess(string itemCode, int index)
+	public bool ReinforceSuccess(string itemCode, int index, out int materialIndex)
 	{
-		for (int i = 0; i < InventoryItemArray.Length; i++)
+		for (materialIndex = 0; materialIndex < InventoryItemArray.Length; materialIndex++)
 		{
-			if (i != index && itemDataBase[InventoryItemArray[i]].itemCode == itemCode)
+			int materialKey = InventoryItemArray[materialIndex];
+			int originalKey = InventoryItemArray[index];
+
+			bool equipable = itemDataBase[originalKey].type != ItemType.ETC;
+			bool isHaveMaterial = itemDataBase.ContainsKey(materialKey) && itemDataBase[materialKey].itemCode == itemCode;
+			if (equipable && materialIndex != index && isHaveMaterial)
 			{
-				itemDataBase.Remove(InventoryItemArray[i]);
-				PlayerPrefs.DeleteKey("itemDataBase" + i + "reinforce");
-				int reinforce = PlayerPrefs.GetInt("itemDataBase" + index + "reinforce", -1);
-				if (reinforce >= 0)
-				{
-					PlayerPrefs.SetInt("itemDataBase" + index + "reinforce", reinforce + 1);
-					return true;
-				}
+				itemDataBase[originalKey].Reinforce(itemDataBase[materialKey]);
+				PlayerPrefs.SetInt("itemDataBase" + originalKey + "reinforce", itemDataBase[originalKey].GetReinforceValue());
+
+				InventoryItemArray[materialIndex] = -1;
+				SetSlot(materialIndex, -1);
+				RemoveItem(materialKey);
+
+				RefreshSlots();
+				return true;
 			}
 		}
 		return false;
@@ -234,7 +257,8 @@ public class GameManager : MonoBehaviour
 		{
 			if (equippedItemArray[i] >= 0)
 			{
-				itemStatus += itemDataBase[equippedItemArray[i]].status;
+				Item equippedItem = itemDataBase[equippedItemArray[i]];
+				itemStatus += equippedItem.GetStatusWithReinforce();
 			}
 		}
 	}
@@ -242,7 +266,10 @@ public class GameManager : MonoBehaviour
 	void SetSlot(int index, int newItemIndex)
 	{
 		InventoryItemArray[index] = newItemIndex;
-		PlayerPrefs.SetInt("inventory" + index, newItemIndex);
+		if (newItemIndex < 0)
+			PlayerPrefs.DeleteKey("inventory" + index);
+		else
+			PlayerPrefs.SetInt("inventory" + index, newItemIndex);
 	}
 
 	void SetEquipSlot(int index, int newItemIndex)

@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-	// Start is called before the first frame update
-	void Start()
-    {
-		
+	public Monster monsterPrefab;
+	Monster monster;
+
+	public void Start()
+	{
+		if(monster != null)
+			monster = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 	}
 
-	// Update is called once per frame
-	void Update()
+	public void Reset()
 	{
-
+		monster.Alive();
 	}
 }

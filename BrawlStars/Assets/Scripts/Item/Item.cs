@@ -19,7 +19,7 @@ public class Item
 	public string GetItemExplanation()
     {
         string result = itemName + "\n\n";
-		if (reinforce > 0)
+		if (reinforce > 1)
 			result = "+" + reinforce + " " + result;
 
 		switch (type)
@@ -40,31 +40,33 @@ public class Item
                 break;
         }
 
+		Status statusWithReinforce = GetStatusWithReinforce();
         if (status.attackDamage > 0)
-            result += "공격력 : " + status.attackDamage + "\n";
+            result += "공격력 : " + statusWithReinforce.attackDamage + "\n";
         if (status.armor > 0)
-            result += "방어력 : " + status.armor + "\n";
+            result += "방어력 : " + statusWithReinforce.armor + "\n";
         if (status.hp > 0)
-            result += "체력 : " + status.hp + "\n";
+            result += "체력 : " + statusWithReinforce.hp + "\n";
         if (status.hpRecovery > 0)
-            result += "체력회복 : " + status.hpRecovery + "\n";
+            result += "체력회복 : " + statusWithReinforce.hpRecovery + "\n";
         if (status.moveSpeed > 0)
-            result += "이동속도 : " + status.moveSpeed + "\n";
+            result += "이동속도 : " + statusWithReinforce.moveSpeed + "\n";
 
         result += "\n" + etc;
 
         return result;
     }
 
-	public Item(Item other)
+	public Item(Item other, int value = 1)
 	{
-		count = 1;
-		reinforce = 0;
+		count = value;
+		reinforce = value;
 		itemCode = other.itemCode;
 		itemName = other.itemName;
 		icon = other.icon;
 		type = other.type;
 		status = other.status;
+		statusPerReinforce = other.statusPerReinforce;
 		etc = other.etc;
 	}
 
@@ -76,5 +78,20 @@ public class Item
 	public int GetCount()
 	{
 		return count;
+	}
+
+	public void Reinforce(Item material)
+	{
+		reinforce += material.reinforce;
+	}
+
+	public int GetReinforceValue()
+	{
+		return reinforce;
+	}
+
+	public Status GetStatusWithReinforce()
+	{
+		return status + statusPerReinforce * (reinforce - 1);
 	}
 }

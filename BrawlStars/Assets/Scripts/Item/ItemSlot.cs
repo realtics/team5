@@ -49,7 +49,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			icon.sprite = item.icon;
 			icon.transform.localScale = new Vector3(1, 1, 1);
 
-			if (item.GetCount() > 1)
+			if (item.type == ItemType.ETC && item.GetCount() > 1)
 				countText.text = item.GetCount().ToString();
 		} else
 		{
@@ -124,7 +124,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	void Reinforce()
 	{
-		GameManager.GetInstance().ReinforceSuccess(item.itemCode, itemIndex);
+		if(GameManager.GetInstance().ReinforceSuccess(item.itemCode, itemIndex, out int materialIndex))
+		{
+			itemText.text = item.GetItemExplanation();
+		}
 	}
 
 	void OnDestroy()

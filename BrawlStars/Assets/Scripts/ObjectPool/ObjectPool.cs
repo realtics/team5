@@ -49,10 +49,10 @@ public class ObjectPool : MonoBehaviour
 	{
 		PooledObject poolForAdd = GetPool(gameObject.name);
 
-		GameObject result;
+		GameObject result = null;
 		if (poolForAdd != null)
 			result = poolForAdd.GetObject();
-		else
+		if (result == null)
 			result = Instantiate(gameObject);
 
 		result.SetActive(true);

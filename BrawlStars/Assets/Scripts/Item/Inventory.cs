@@ -39,7 +39,7 @@ public class Inventory : MonoBehaviour
         Vector2 position;
         moveItemTargetSlot = null;
 
-        for (int i = 0; i < row; i++)
+		for (int i = 0; i < row; i++)
         {
             for(int j = 0; j < column; j++)
             {
@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
 
                 slot.rectTransform.anchoredPosition = position;
 
-                ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
+				ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
 				slotComponent.Init(i * column + j, itemWindow, itemText, reinforceButton);
             }
         }

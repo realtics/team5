@@ -39,7 +39,18 @@ public struct Status
         result.hpRecovery = a.hpRecovery + b.hpRecovery;
         result.moveSpeed = a.moveSpeed + b.moveSpeed;
         return result;
-    }
+	}
+
+	public static Status operator *(Status a, int b)
+	{
+		Status result;
+		result.attackDamage = a.attackDamage * b;
+		result.armor = a.armor * b;
+		result.hp = a.hp * b;
+		result.hpRecovery = a.hpRecovery * b;
+		result.moveSpeed = a.moveSpeed * b;
+		return result;
+	}
 }
 
 [System.Serializable]
