@@ -141,7 +141,22 @@ public class MapGenerator : MonoBehaviour
 			case 34:
 				CubeName.text = "Monster4";
 				break;
-			default:
+            case 35:
+                CubeName.text = "Monster5";
+                break;
+            case 36:
+                CubeName.text = "Monster6";
+                break;
+            case 37:
+                CubeName.text = "Monster7";
+                break;
+            case 38:
+                CubeName.text = "Monster8";
+                break;
+            case 39:
+                CubeName.text = "Monster9";
+                break;
+            default:
 				CubeName.text = "Not Select";
 				break;
 		}
@@ -260,9 +275,6 @@ public class MapGenerator : MonoBehaviour
 							new Vector3(hit.transform.gameObject.transform.position.x,
 							obstaclePrefabs[cubeIndex].transform.localScale.y * 0.5f,
 								hit.transform.gameObject.transform.position.z), Quaternion.identity);
-
-						Debug.Log("x : " + hit.transform.gameObject.transform.position.x + " " +
-							"y: " + hit.transform.gameObject.transform.position.z);
 
 						obstacleMap[(int)hit.transform.gameObject.transform.position.z,
 							(int)hit.transform.gameObject.transform.position.x] = cubeIndex;
@@ -417,19 +429,19 @@ public class MapGenerator : MonoBehaviour
 		maskRight.parent = mapHolder;
 		maskRight.localScale = new Vector3((maxMapSize.x - maps.mapSize.x) * 0.5f, 1, maps.mapSize.y) * tileSize;
 
-		//필드의 앞
+		//필드의 먼 부분
 		Transform maskTop = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, maps.mapSize.y - 0.25f), Quaternion.identity) as Transform;
-		maskTop.name = "Top";
+		maskTop.name = "Back";
 		maskTop.parent = mapHolder;
 		maskTop.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
-		//필드의 뒤
+		//필드의 가까운 부분
 		Transform maskBottom = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, -0.75f), Quaternion.identity) as Transform;
-		maskBottom.name = "Bottom";
+		maskBottom.name = "Front";
 		maskBottom.parent = mapHolder;
 		maskBottom.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
-		navmeshFloor.transform.position = new Vector3(maps.mapSize.x * 0.5f - 0.5f, 0, maps.mapSize.y * 0.5f - 0.5f);
+		navmeshFloor.transform.position = new Vector3(maps.mapSize.x * 0.5f - 0.5f, 0f, maps.mapSize.y * 0.5f - 0.5f);
 		navmeshFloor.localScale = new Vector3(maxMapSize.x, maxMapSize.y) * tileSize;
     }
 
@@ -501,7 +513,7 @@ public class MapGenerator : MonoBehaviour
                     for (int i = 0; i < maps.mapSize.x; i++)
                     {
                         //메모장에서 읽어온 가로줄에서 ' '를 잘라내고 data에 넣음.
-                        string[] data = str.Split(new char[] { ' ' });
+                        string[] data = str.Split(new char[] {' '});
 
                         obstacleMap[j, i] = int.Parse(data[i]);
                     }
