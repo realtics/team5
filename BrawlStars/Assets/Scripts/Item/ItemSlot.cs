@@ -7,17 +7,17 @@ using UnityEngine.EventSystems;
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public Image icon;
+	public Text countText;
 
-    public ItemType type;
+	public ItemType itemType;
     public Item item;
 
     int itemIndex;
-	public Text countText;
     Image itemWindow;
     Text itemText;
 	Button reinforceButton;
 
-    public bool isEquippedSlot;
+	public SlotType slotType;
 	public int equippedIndex;
     bool isDragged;
 
@@ -27,6 +27,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		itemWindow = window;
 		itemText = _itemText;
 		reinforceButton = button;
+		slotType = SlotType.Normal;
+		itemType = ItemType.ETC;
 	}
 
     void Start()
@@ -38,7 +40,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Refresh()
     {
-		if (isEquippedSlot)
+		if (slotType == SlotType.Equip)
 			item = GameManager.GetInstance().GetEquippedItem(equippedIndex);
 		else
 			item = GameManager.GetInstance().GetItemInInventory(itemIndex);
@@ -49,8 +51,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			icon.sprite = item.icon;
 			icon.transform.localScale = new Vector3(1, 1, 1);
 
-			if (item.type == ItemType.ETC && item.GetCount() > 1)
-				countText.text = item.GetCount().ToString();
+			if (item.type == ItemType.ETC)
+				countText.text = item.ValueToString();
 		} else
 		{
 			icon.sprite = null;
@@ -93,11 +95,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
 			if (targetSlot != null && targetSlot != this)
 			{
-				if (!targetSlot.isEquippedSlot && !isEquippedSlot)
+				if (targetSlot.slotType == SlotType.Normal && slotType == SlotType.Normal)
 					GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
-				else if (targetSlot.isEquippedSlot && targetSlot.type == item.type)
+				else if (targetSlot.slotType == SlotType.Equip && targetSlot.itemType == item.type)
 					GameManager.GetInstance().EquipItem(targetSlot.equippedIndex, itemIndex);
-				else if (isEquippedSlot && (targetSlot.item == null || type == targetSlot.item.type))
+				else if (slotType == SlotType.Equip && (targetSlot.item == null || itemType == targetSlot.item.type))
 					GameManager.GetInstance().EquipItem(equippedIndex, targetSlot.itemIndex);
 
 				targetSlot.Refresh();

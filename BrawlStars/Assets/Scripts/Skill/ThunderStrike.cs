@@ -63,6 +63,7 @@ public class ThunderStrike : Skill
 
     public override Vector3 GetPosition(Vector2 stickMove, float maxStickMoveLength)
     {
+		if (maxStickMoveLength == 0) maxStickMoveLength = reach;
         return new Vector3(reach * stickMove.x / maxStickMoveLength, 0.1f, reach * stickMove.y / maxStickMoveLength);
     }
 
@@ -70,5 +71,11 @@ public class ThunderStrike : Skill
     {
         float angleRad = Mathf.Atan2(-stickMove.y, stickMove.x);
         return Quaternion.Euler(0, angleRad * Mathf.Rad2Deg, 0);
-    }
+	}
+
+	public override bool IsTargetInRange(Actor target, Vector3 origin)
+	{
+		Vector3 targetVector = target.transform.position - origin;
+		return targetVector.sqrMagnitude < Mathf.Pow(reach, 2);
+	}
 }

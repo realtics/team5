@@ -12,15 +12,19 @@ public class Item
     public Status status;
 	public Status statusPerReinforce;
     public string etc;
+	public float cooldown;
+	public int hpRecovery;
 
-	int count;
-	int reinforce;
+	int itemIndex;
+	int value;
 
 	public string GetItemExplanation()
     {
         string result = itemName + "\n\n";
-		if (reinforce > 1)
-			result = "+" + reinforce + " " + result;
+		if (type == ItemType.ETC)
+			etc = etc.Replace("[[HP]]", hpRecovery.ToString());
+		if (value > 1 && type != ItemType.ETC)
+			result = "+" + value + " " + result;
 
 		switch (type)
         {
@@ -57,10 +61,23 @@ public class Item
         return result;
     }
 
-	public Item(Item other, int value = 1)
+	public string ValueToString()
 	{
-		count = value;
-		reinforce = value;
+		if (value > 1)
+			return value.ToString();
+		else
+			return "";
+	}
+
+	public bool IsDeleted()
+	{
+		return value <= 0;
+	}
+
+	public Item(Item other, int index, int _value = 1)
+	{
+		itemIndex = index;
+		value = _value;
 		itemCode = other.itemCode;
 		itemName = other.itemName;
 		icon = other.icon;
@@ -68,30 +85,48 @@ public class Item
 		status = other.status;
 		statusPerReinforce = other.statusPerReinforce;
 		etc = other.etc;
+		cooldown = other.cooldown;
+		hpRecovery = other.hpRecovery;
+
+		PlayerPrefs.SetString("itemDataBase" + itemIndex + "name", itemCode);
+		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "value", value);
 	}
 
 	public void AddOneCount()
 	{
-		count++;
-	}
-
-	public int GetCount()
-	{
-		return count;
+		value++;
+		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "value", value);
 	}
 
 	public void Reinforce(Item material)
 	{
-		reinforce += material.reinforce;
+		value += material.value;
+		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "value", value);
 	}
 
 	public int GetReinforceValue()
 	{
-		return reinforce;
+		return value;
 	}
 
 	public Status GetStatusWithReinforce()
 	{
-		return status + statusPerReinforce * (reinforce - 1);
+		return status + statusPerReinforce * (value - 1);
+	}
+
+	public virtual void Activate(Character player)
+	{
+		value--;
+		player.TakeDamage(-hpRecovery);
+		if (value > 0)
+			PlayerPrefs.SetInt("itemDataBase" + itemIndex + "value", value);
+		else
+			GameManager.GetInstance().RemoveItem(itemIndex);
+	}
+
+	public void Delete()
+	{
+		PlayerPrefs.DeleteKey("itemDataBase" + itemIndex + "name");
+		PlayerPrefs.DeleteKey("itemDataBase" + itemIndex + "value");
 	}
 }

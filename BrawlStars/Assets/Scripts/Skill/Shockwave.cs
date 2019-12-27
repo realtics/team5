@@ -75,4 +75,10 @@ public class Shockwave : Skill
         Quaternion returnValue = Quaternion.Euler(0, 0, 0);
         return returnValue;
     }
+
+	public override bool IsTargetInRange(Actor target, Vector3 origin)
+	{
+		Vector3 targetVector = target.transform.position - origin;
+		return targetVector.sqrMagnitude < Mathf.Pow(radius, 2);
+	}
 }

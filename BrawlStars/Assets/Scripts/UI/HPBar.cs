@@ -25,11 +25,6 @@ public class HPBar : MonoBehaviour
     public void SetHp(int _hp)
     {
         hp = _hp;
-        if(hp > maxHp)
-        {
-            hp = maxHp;
-        }
-
         hpText.text = hp.ToString();
         hpBar.rectTransform.sizeDelta = new Vector2(hpBackground.rectTransform.sizeDelta.x * hp / maxHp, hpBackground.rectTransform.sizeDelta.y);
         hpBar.rectTransform.anchoredPosition = new Vector2(hpBar.rectTransform.sizeDelta.x / 2, hpBar.rectTransform.anchoredPosition.y);

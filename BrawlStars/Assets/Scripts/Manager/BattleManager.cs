@@ -15,12 +15,15 @@ public class BattleManager : MonoBehaviour
 
 	public Joystick moveJoystick;
     public Joystick skillJoystick;
-    public SkillIcon[] skillIcon;
+    public SkillIcon[] skillIcons;
+	public QuickSlot[] quickSlots;
 
 	List<GameObject> droppedItemList;
 	List<Actor> actorListOnMap;
 
 	public DroppedItem droppedItem;
+	public GameObject rangeObject;
+	public GameObject monsterRange;
 
     private void Awake()
     {
@@ -36,8 +39,10 @@ public class BattleManager : MonoBehaviour
 
         moveJoystick.player = player;
         skillJoystick.player = player;
-		for(int i = 0; i < skillIcon.Length; i++)
-			skillIcon[i].Init(player);
+		for(int i = 0; i < skillIcons.Length; i++)
+			skillIcons[i].Init(player);
+		for (int i = 0; i < quickSlots.Length; i++)
+			quickSlots[i].Init(player, GameManager.GetInstance().GetQuickSlotItem());
 		mapSpawner.Init(player);
     }
 

@@ -9,12 +9,18 @@ public class MonsterSpawner : MonoBehaviour
 
 	public void Start()
 	{
-		if(monster != null)
+		if(monster == null)
 			monster = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
 	}
 
-	public void Reset()
+	public void ResetState()
 	{
 		monster.Alive();
+		monster.transform.position = transform.position;
+	}
+
+	public bool IsMonsterDestroyed()
+	{
+		return !(monster != null && monster.gameObject.activeSelf);
 	}
 }

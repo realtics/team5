@@ -56,6 +56,7 @@ MonoBehaviour:
   damageCount: 1
   damageInterval: 1.4
   cooldown: 3
+  rangeMaterial: {fileID: 2100000, guid: d1b5363a3728e864fa965006855dbf3e, type: 2}
   radius: 4
   traceOwner: 0
 --- !u!95 &1632022245160118215

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Contoller\Joystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\MainCamera.cs" />
     <Compile Include="Assets\Scripts\Contoller\MoveJoystick.cs" />
+    <Compile Include="Assets\Scripts\Contoller\QuickSlot.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillIcon.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillJoystick.cs" />
     <Compile Include="Assets\Scripts\Contoller\SkillRange.cs" />

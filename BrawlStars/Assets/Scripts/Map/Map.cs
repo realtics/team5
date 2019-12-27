@@ -5,7 +5,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public Portal[] portals;
-    public GameObject[] monsters;
+    public MonsterSpawner[] monsters;
     public GameObject[] items;
     public GameObject startingPoint;
 
@@ -26,7 +26,7 @@ public class Map : MonoBehaviour
         isAllMonsterDestoyed = true;
         for (int i = 0; i < monsters.Length; i++)
         {
-            if (monsters[i].activeSelf == true)
+            if (!monsters[i].IsMonsterDestroyed())
             {
                 isAllMonsterDestoyed = false;
                 break;
@@ -34,7 +34,15 @@ public class Map : MonoBehaviour
         }
     }
 
-    public void ActivatePortals()
+	public void Reset()
+	{
+		for(int i = 0; i < monsters.Length; i++)
+		{
+			monsters[i].ResetState();
+		}
+	}
+
+	public void ActivatePortals()
     {
 		for (int i = 0; i < portals.Length; i++)
 		{

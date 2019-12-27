@@ -71,5 +71,11 @@ public class LeafCyclone : Skill
     {
         float angleRad = Mathf.Atan2(-stickMove.y, stickMove.x);
         return Quaternion.Euler(0, angleRad * Mathf.Rad2Deg, 0);
-    }
+	}
+
+	public override bool IsTargetInRange(Actor target, Vector3 origin)
+	{
+		Vector3 targetVector = target.transform.position - origin;
+		return targetVector.sqrMagnitude < Mathf.Pow(reach, 2);
+	}
 }

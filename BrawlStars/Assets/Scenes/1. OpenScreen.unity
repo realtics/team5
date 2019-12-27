@@ -621,6 +621,7 @@ MonoBehaviour:
   - {fileID: 6212605451729664309, guid: 8121bf054683c13469e72f849c0a8a56, type: 3}
   - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}
   - {fileID: 6512546390492998812, guid: 5765876c7cf6fdb4a924139f4cd9a835, type: 3}
+  - {fileID: -3261230489283482389, guid: b2be28d6ab5d8f74ea35947acfd570a3, type: 3}
   stageIndex: 0
 --- !u!4 &2122110616
 Transform:

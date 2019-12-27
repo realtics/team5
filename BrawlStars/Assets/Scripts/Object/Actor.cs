@@ -205,7 +205,10 @@ public class Actor : MonoBehaviour
         currentHp = _hp;
 		if (currentHp < 0)
 			currentHp = 0;
-        hpBar.SetHp(currentHp);
+		if (currentHp > finalStatus.hp)
+			currentHp = finalStatus.hp;
+
+		hpBar.SetHp(currentHp);
     }
 
     public void TakeDamage(int damage)
@@ -213,8 +216,9 @@ public class Actor : MonoBehaviour
         if (state == State.Dead)
             return;
 
-        DamageText damageTextObject = Instantiate(damageText, transform.position, Quaternion.identity);
-        damageTextObject.Init(transform.position, damage);
+		DamageText damageTextObject = ObjectPool.GetInstance().GetObject(damageText.gameObject).GetComponent<DamageText>();
+		damageTextObject.transform.position = transform.position;
+        damageTextObject.Init(damage);
         damageTextObject.transform.SetParent(canvas.transform);
 
         SetHp(currentHp - damage);
@@ -281,17 +285,30 @@ public class Actor : MonoBehaviour
 
             characterDirectionAngle = Global.ConvertIn2PI(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
 
-            StartCoroutine(WaitCastingDelay(index, targetPosition, yRotationEuler));
+            StartCoroutine(CastingProcess(index, targetPosition, yRotationEuler));
             lastSkillActionTime[index] = Time.time;
         }
     }
 
-    IEnumerator WaitCastingDelay(int index, Vector3 targetPosition, float yRotationEuler)
+    IEnumerator CastingProcess(int index, Vector3 targetPosition, float yRotationEuler)
     {
 		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);
+		GameObject rangeObject = null;
+		if (skill.rangeMaterial != null)
+		{
+			rangeObject = ObjectPool.GetInstance().GetObject(BattleManager.GetInstance().monsterRange.gameObject);
+			rangeObject.transform.position = targetPosition;
+			rangeObject.transform.rotation = Quaternion.Euler(0, yRotationEuler, 0);
+			MeshFilter meshFilter = rangeObject.GetComponent<MeshFilter>();
+			meshFilter.mesh = skill.GetTargetRangeMesh();
+		}
         yield return new WaitForSeconds(skill.castingDelay);
+
+		if (rangeObject != null) 
+			ObjectPool.GetInstance().AddNewObject(rangeObject);
 		skill.StartSkill(this, targetPosition, yRotationEuler);
         yield return new WaitForSeconds(skill.recoveryTime);
+
         state = State.Idle;
     }
 

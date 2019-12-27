@@ -114,7 +114,8 @@ public class MapSpawner : MonoBehaviour
 
             NowMap[index].transform.GetComponent<Map>().portals[0].mapSpawner = this;
 
-            SetCharacterPosition(index);
+
+			SetCharacterPosition(index);
         }
 
         //if (stageIndex < stages.Length && index < stages[stageIndex].maps.Length)
@@ -173,7 +174,9 @@ public class MapSpawner : MonoBehaviour
 		BattleManager.GetInstance().ClearActorList();
 
 		player.Alive();
-    }
+
+		NowMap[nowIndex].transform.GetComponent<Map>().Reset();
+	}
 
 	public void TakeStage()
 	{
@@ -287,11 +290,11 @@ public class MapSpawner : MonoBehaviour
 		//
 		GameObject[] monsterCount = GameObject.FindGameObjectsWithTag("Monster");
 
-		NowMap[nowMapIndex].transform.GetComponent<Map>().monsters = new GameObject[monsterCount.Length];
+		NowMap[nowMapIndex].transform.GetComponent<Map>().monsters = new MonsterSpawner[monsterCount.Length];
 
 		for (int i = 0; i < NowMap[nowMapIndex].transform.GetComponent<Map>().monsters.Length; i++)
 		{
-			NowMap[nowMapIndex].transform.GetComponent<Map>().monsters[i] = monsterCount[i];
+			NowMap[nowMapIndex].transform.GetComponent<Map>().monsters[i] = monsterCount[i].GetComponent<MonsterSpawner>();
 		}
 
 		//

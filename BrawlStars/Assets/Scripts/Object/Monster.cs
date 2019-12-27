@@ -46,34 +46,18 @@ public class Monster : Actor
 
     void ChasePlayerCharacter()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, sight);
-
-        Character target = null;
+        Character target = BattleManager.GetInstance().player;
         float minSqrDistance = sight * sight;
-        Vector3 moveVector;
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            moveVector = colliders[i].transform.position - transform.position;
-            if(moveVector.sqrMagnitude < minSqrDistance)
-            {
-                Character collider = colliders[i].GetComponent<Character>();
-                if (collider != null && collider.team == Team.Player)
-                {
-					minSqrDistance = moveVector.sqrMagnitude;
-                    target = collider;
-                }
-            }
-        }
 
-		if (target == null)
+		if (target == null || target.state == State.Dead)
 		{
 			Stop();
 			return;
 		}
 
-        moveVector = target.transform.position - transform.position;
+		Vector3 moveVector = target.transform.position - transform.position;
 
-        if (minSqrDistance > Mathf.Pow(mCollider.radius + attackReach, 2) && state == State.Idle)
+        if (minSqrDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
         {
             NavMeshPath path = new NavMeshPath();
             pathFinder.CalculatePath(target.transform.position, path);
@@ -87,21 +71,25 @@ public class Monster : Actor
         {
             characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
             Stop();
-			ActivatePattern();
 		}
-    }
+		ActivatePattern(target);
+	}
 
-    void ActivatePattern()
+    void ActivatePattern(Actor target)
     {
         for(int i = 0; i < skillCodeArray.Length; i++)
         {
 			Skill pattern = GameManager.GetInstance().GetSkill(skillCodeArray[i]);
-            if (Time.time - lastSkillActionTime[i] > pattern.cooldown)
+
+			bool readyToActivatePattern = Time.time - lastSkillActionTime[i] > pattern.cooldown;
+			bool playerInPatternRadius = pattern.IsTargetInRange(target, transform.position);
+			if (readyToActivatePattern && playerInPatternRadius)
             {
                 lastSkillActionTime[i] = Time.time;
-                Vector3 activatePosition = transform.position + pattern.GetPosition(new Vector2(0, 0), 1);
-                float rotationAngle = characterDirectionAngle * Mathf.Rad2Deg;
-                AttackProcess(i, activatePosition, rotationAngle);
+				Vector3 targetVector = target.transform.position - transform.position;
+				Vector3 activatePosition = transform.position + pattern.GetPosition(new Vector2(targetVector.x, targetVector.z));
+                Quaternion rotation = pattern.GetRotation(new Vector2(targetVector.x, targetVector.z));
+                AttackProcess(i, activatePosition, rotation.eulerAngles.y);
             }
         }
     }

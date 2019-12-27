@@ -26,6 +26,8 @@ public abstract class Skill : MonoBehaviour
 
     protected Status status;
 
+	public Material rangeMaterial;
+
     public void StartSkill(Actor user, Vector3 position, float yRotationEuler)
     {
 		Skill actionSkill = ObjectPool.GetInstance().GetObject(gameObject).GetComponent<Skill>();
@@ -36,10 +38,11 @@ public abstract class Skill : MonoBehaviour
 
     public abstract void Action(float yRotationEuler);
     public abstract void MakeTargetRangeMesh();
-    public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength);
+    public abstract Vector3 GetPosition(Vector2 stickMove, float maxMoveLength = 0);
     public abstract Quaternion GetRotation(Vector2 stickMove);
-    
-    public void Init(Actor user, Vector3 position)
+	public abstract bool IsTargetInRange(Actor target, Vector3 origin);
+
+	public void Init(Actor user, Vector3 position)
     {
         transform.position = position;
         owner = user;

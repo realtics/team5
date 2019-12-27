@@ -30,6 +30,8 @@ MonoBehaviour:
       hpRecovery: 0
       moveSpeed: 0
     etc: 
+    cooldown: 0
+    hpRecovery: 0
   - itemCode: weapon2
     itemName: "\uC778\uD53C\uB2C8\uD2F0 \uC18C\uB4DC"
     icon: {fileID: 21300000, guid: 2a48140ba1c976647b8fba009de2a165, type: 3}
@@ -47,6 +49,8 @@ MonoBehaviour:
       hpRecovery: 0
       moveSpeed: 0
     etc: 
+    cooldown: 0
+    hpRecovery: 0
   - itemCode: armor1
     itemName: "\uC815\uB839\uC758 \uAC11\uC8FC"
     icon: {fileID: 21300000, guid: b241a7117c8698a4bb2492f62bd047fc, type: 3}
@@ -64,6 +68,8 @@ MonoBehaviour:
       hpRecovery: 0
       moveSpeed: 0
     etc: 
+    cooldown: 0
+    hpRecovery: 0
   - itemCode: accessory1
     itemName: "\uC601\uC6D0\uC758 \uBC18\uC9C0"
     icon: {fileID: 21300000, guid: 41d9055e43d7da442847694884a7d1b5, type: 3}
@@ -81,6 +87,8 @@ MonoBehaviour:
       hpRecovery: 0
       moveSpeed: 0
     etc: 
+    cooldown: 0
+    hpRecovery: 0
   - itemCode: sub1
     itemName: "\uAE08\uC9C0\uB41C \uB9C8\uB3C4\uC11C"
     icon: {fileID: 21300000, guid: bed65e86a691eca4b9ef656c35793023, type: 3}
@@ -98,6 +106,8 @@ MonoBehaviour:
       hpRecovery: 0.1
       moveSpeed: 0
     etc: 
+    cooldown: 0
+    hpRecovery: 0
   - itemCode: potion1
     itemName: "\uCCB4\uB825 \uD3EC\uC158"
     icon: {fileID: 21300000, guid: 8c2ea1efd688a1a44aef421ccb853052, type: 3}
@@ -114,7 +124,9 @@ MonoBehaviour:
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: "\uCCB4\uB825 50 \uD68C\uBCF5"
+    etc: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
+    cooldown: 10
+    hpRecovery: 50
   - itemCode: reinforce
     itemName: "\uAC15\uD654\uC81C"
     icon: {fileID: 21300000, guid: 8c2ea1efd688a1a44aef421ccb853052, type: 3}
@@ -132,3 +144,5 @@ MonoBehaviour:
       hpRecovery: 0
       moveSpeed: 0
     etc: "\uCCB4\uB825 50 \uD68C\uBCF5"
+    cooldown: 0
+    hpRecovery: 0

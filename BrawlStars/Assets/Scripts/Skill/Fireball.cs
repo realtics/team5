@@ -78,5 +78,11 @@ public class Fireball : Skill
     {
         float degree = Mathf.Atan2(-stickMove.y, stickMove.x);
         return Quaternion.Euler(0, degree * Mathf.Rad2Deg, 0);
-    }
+	}
+
+	public override bool IsTargetInRange(Actor target, Vector3 origin)
+	{
+		Vector3 targetVector = target.transform.position - origin;
+		return targetVector.sqrMagnitude < Mathf.Pow(reach, 2);
+	}
 }

@@ -15,15 +15,15 @@ MonoBehaviour:
   dropList:
   - monsterName: Indra
     itemList:
-    - percentage: 0
+    - percentage: 10
       itemCode: weapon1
     - percentage: 0
       itemCode: weapon2
-    - percentage: 0
+    - percentage: 10
       itemCode: armor1
-    - percentage: 0
+    - percentage: 10
       itemCode: accessory1
-    - percentage: 0
+    - percentage: 10
       itemCode: sub1
     - percentage: 50
       itemCode: potion1

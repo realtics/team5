@@ -89,4 +89,10 @@ public class FireDragon : Skill
 		}
 		return spriteDirectionCount - 1;
 	}
+
+	public override bool IsTargetInRange(Actor target, Vector3 origin)
+	{
+		Vector3 targetVector = target.transform.position - origin;
+		return targetVector.sqrMagnitude < Mathf.Pow(reach, 2);
+	}
 }

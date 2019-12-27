@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 	public Character player;
 	public ItemTable itemTable;
 	Dictionary<int, Item> itemDataBase;
-	int[] InventoryItemArray;
-	int[] equippedItemArray;
+	int[] InventorySlotArray;
+	int[] equippedSlotArray;
 	Status itemStatus;
 	public DropTable dropTable = null;
 
@@ -40,14 +40,17 @@ public class GameManager : MonoBehaviour
 		dropTable.Init();
 
 		itemDataBase = new Dictionary<int, Item>();
-		int databaseIndex = 0;
-		int length = PlayerPrefs.GetInt("itemDataBaseLength", 0);
-		for (int i = 0; databaseIndex < length; i++)
+		int dataBaseLength = PlayerPrefs.GetInt("itemDataBaseLength", 0);
+		int j = 0;
+		for (int i = 0; j < dataBaseLength; i++)
 		{
-			string itemCode = PlayerPrefs.GetString("itemDataBase" + databaseIndex + "name", "");
-			Item item = new Item(itemTable.GetItem(itemCode), PlayerPrefs.GetInt("itemDataBase" + i + "reinforce", 1));
-			itemDataBase.Add(databaseIndex, item);
-			databaseIndex++;
+			string itemCode = PlayerPrefs.GetString("itemDataBase" + i + "name", "");
+			if (itemCode != "")
+			{
+				Item item = new Item(itemTable.GetItem(itemCode), i, PlayerPrefs.GetInt("itemDataBase" + i + "value", 1));
+				itemDataBase.Add(i, item);
+				j++;
+			}
 		}
 
 		skillTable = new Dictionary<string, Skill>();
@@ -73,43 +76,47 @@ public class GameManager : MonoBehaviour
 
 	public void InitInventory(int row, int column)
 	{
-		InventoryItemArray = new int[row * column];
-		for (int i = 0; i < InventoryItemArray.Length; i++)
+		InventorySlotArray = new int[row * column];
+		for (int i = 0; i < InventorySlotArray.Length; i++)
 		{
-			InventoryItemArray[i] = PlayerPrefs.GetInt("inventory" + i, -1);
+			InventorySlotArray[i] = PlayerPrefs.GetInt("inventory" + i, -1);
+			if (InventorySlotArray[i] > 0 && !itemDataBase.ContainsKey(InventorySlotArray[i]))
+				PlayerPrefs.DeleteKey("inventory" + i);
 		}
 	}
 
 	public void InitEquipSlot(int count)
 	{
-		equippedItemArray = new int[count];
+		equippedSlotArray = new int[count];
 		for (int i = 0; i < count; i++)
 		{
-			equippedItemArray[i] = PlayerPrefs.GetInt("equip" + i, -1);
+			equippedSlotArray[i] = PlayerPrefs.GetInt("equip" + i, -1);
+			if (equippedSlotArray[i] > 0 && !itemDataBase.ContainsKey(equippedSlotArray[i]))
+				PlayerPrefs.DeleteKey("equip" + i);
 		}
 		RefreshEquipStatus();
 	}
 
 	public void ClearInventory()
 	{
-		for (int i = 0; i < InventoryItemArray.Length; i++)
+		for (int i = 0; i < InventorySlotArray.Length; i++)
 		{
 			PlayerPrefs.DeleteKey("inventory" + i);
-			InventoryItemArray[i] = -1;
+			InventorySlotArray[i] = -1;
 		}
-		for (int i = 0; i < equippedItemArray.Length; i++)
+		for (int i = 0; i < equippedSlotArray.Length; i++)
 		{
 			PlayerPrefs.DeleteKey("equip" + i);
-			equippedItemArray[i] = -1;
+			equippedSlotArray[i] = -1;
 		}
 		foreach (int i in itemDataBase.Keys)
 		{
 			PlayerPrefs.DeleteKey("itemDataBase" + i + "name");
-			PlayerPrefs.DeleteKey("itemDataBase" + i + "count");
-			PlayerPrefs.DeleteKey("itemDataBase" + i + "reinforce");
+			PlayerPrefs.DeleteKey("itemDataBase" + i + "value");
 		}
 		itemDataBase.Clear();
 		RefreshSlots();
+		PlayerPrefs.SetInt("itemDataBaseLength", 0);
 	}
 
 	public bool AddNewItemInInventory(string itemCode)
@@ -118,16 +125,14 @@ public class GameManager : MonoBehaviour
 
 		if (possibleSlotIndex >= 0)
 		{
-			if (InventoryItemArray[possibleSlotIndex] < 0)
+			if (InventorySlotArray[possibleSlotIndex] < 0)
 			{
-				Item newItem = new Item(itemTable.GetItem(itemCode));
-				AddNewItem(newItem, possibleSlotIndex);
+				AddNewItem(itemCode, possibleSlotIndex);
 			}
 			else
 			{
-				Item newItem = itemDataBase[InventoryItemArray[possibleSlotIndex]];
+				Item newItem = itemDataBase[InventorySlotArray[possibleSlotIndex]];
 				newItem.AddOneCount();
-				PlayerPrefs.SetInt("itemDataBase" + InventoryItemArray[possibleSlotIndex] + "count", newItem.GetCount());
 			}
 			return true;
 		}
@@ -137,7 +142,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void AddNewItem(Item newItem, int slotIndex)
+	public void AddNewItem(string itemCode, int slotIndex)
 	{
 		int itemIndex = 0;
 		while(true)
@@ -147,21 +152,37 @@ public class GameManager : MonoBehaviour
 				break;
 			itemIndex++;
 		}
-		PlayerPrefs.SetString("itemDataBase" + itemIndex + "name", newItem.itemCode);
-		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "count", 1);
-		PlayerPrefs.SetInt("itemDataBase" + itemIndex + "reinforce", 1);
+		Item newItem = new Item(itemTable.GetItem(itemCode), itemIndex);
 		SetSlot(slotIndex, itemIndex);
 		itemDataBase.Add(itemIndex, newItem);
+		PlayerPrefs.SetInt("itemDataBaseLength", itemDataBase.Count);
 	}
 
 	public void RemoveItem(int key)
 	{
 		if (itemDataBase.ContainsKey(key))
 		{
+			itemDataBase[key].Delete();
 			itemDataBase.Remove(key);
-			PlayerPrefs.DeleteKey("itemDataBase" + key + "name");
-			PlayerPrefs.DeleteKey("itemDataBase" + key + "count");
-			PlayerPrefs.DeleteKey("itemDataBase" + key + "reinforce");
+			PlayerPrefs.SetInt("itemDataBaseLength", itemDataBase.Count);
+
+			for (int i = 0; i < InventorySlotArray.Length; i++)
+			{
+				if (InventorySlotArray[i] == key)
+				{
+					InventorySlotArray[i] = -1;
+					PlayerPrefs.DeleteKey("inventory" + i);
+				}
+			}
+
+			for (int i = 0; i < equippedSlotArray.Length; i++)
+			{
+				if (equippedSlotArray[i] == key)
+				{
+					equippedSlotArray[i] = -1;
+					PlayerPrefs.DeleteKey("equip" + i);
+				}
+			}
 		}
 	}
 
@@ -169,16 +190,16 @@ public class GameManager : MonoBehaviour
 	{
 		int sameItemSlotIndex;
 		int emptySlotIndex = -1;
-		for (sameItemSlotIndex = 0; sameItemSlotIndex < InventoryItemArray.Length; sameItemSlotIndex++)
+		for (sameItemSlotIndex = 0; sameItemSlotIndex < InventorySlotArray.Length; sameItemSlotIndex++)
 		{
-			if (InventoryItemArray[sameItemSlotIndex] < 0)
+			if (InventorySlotArray[sameItemSlotIndex] < 0)
 			{
 				if (emptySlotIndex < 0)
 					emptySlotIndex = sameItemSlotIndex;
 			}
 			else
 			{
-				Item itemInSlot = itemDataBase[InventoryItemArray[sameItemSlotIndex]];
+				Item itemInSlot = itemDataBase[InventorySlotArray[sameItemSlotIndex]];
 				if (itemInSlot.type == ItemType.ETC && itemInSlot.itemCode == itemCode)
 					return sameItemSlotIndex;
 			}
@@ -188,27 +209,26 @@ public class GameManager : MonoBehaviour
 
 	public Item GetItemInInventory(int index)
 	{
-		if (InventoryItemArray[index] < 0)
-			return null;
+		if (itemDataBase.ContainsKey(InventorySlotArray[index]))
+			return itemDataBase[InventorySlotArray[index]];
 		else
-			return itemDataBase[InventoryItemArray[index]];
+			return null;
 	}
 
 	public bool ReinforceSuccess(string itemCode, int index, out int materialIndex)
 	{
-		for (materialIndex = 0; materialIndex < InventoryItemArray.Length; materialIndex++)
+		for (materialIndex = 0; materialIndex < InventorySlotArray.Length; materialIndex++)
 		{
-			int materialKey = InventoryItemArray[materialIndex];
-			int originalKey = InventoryItemArray[index];
+			int materialKey = InventorySlotArray[materialIndex];
+			int originalKey = InventorySlotArray[index];
 
 			bool equipable = itemDataBase[originalKey].type != ItemType.ETC;
 			bool isHaveMaterial = itemDataBase.ContainsKey(materialKey) && itemDataBase[materialKey].itemCode == itemCode;
 			if (equipable && materialIndex != index && isHaveMaterial)
 			{
 				itemDataBase[originalKey].Reinforce(itemDataBase[materialKey]);
-				PlayerPrefs.SetInt("itemDataBase" + originalKey + "reinforce", itemDataBase[originalKey].GetReinforceValue());
 
-				InventoryItemArray[materialIndex] = -1;
+				InventorySlotArray[materialIndex] = -1;
 				SetSlot(materialIndex, -1);
 				RemoveItem(materialKey);
 
@@ -221,28 +241,37 @@ public class GameManager : MonoBehaviour
 
 	public Item GetEquippedItem(int index)
 	{
-		if (equippedItemArray[index] < 0)
-			return null;
+		if (itemDataBase.ContainsKey(equippedSlotArray[index]))
+			return itemDataBase[equippedSlotArray[index]];
 		else
-			return itemDataBase[equippedItemArray[index]];
+			return null;
 	}
 
 	public void SwapSlot(int index1, int index2)
 	{
-		int itemIndex1 = InventoryItemArray[index1];
-		int itemIndex2 = InventoryItemArray[index2];
+		int itemIndex1 = InventorySlotArray[index1];
+		int itemIndex2 = InventorySlotArray[index2];
 		SetSlot(index1, itemIndex2);
 		SetSlot(index2, itemIndex1);
 	}
 
 	public void EquipItem(int equippedIndex, int originalIndex)
 	{
-		int equippedItemIndex = equippedItemArray[equippedIndex];
-		int originalItemIndex = InventoryItemArray[originalIndex];
+		int equippedItemIndex = equippedSlotArray[equippedIndex];
+		int originalItemIndex = InventorySlotArray[originalIndex];
 		SetEquipSlot(equippedIndex, originalItemIndex);
 		SetSlot(originalIndex, equippedItemIndex);
 
 		RefreshEquipStatus();
+	}
+
+	public Item GetQuickSlotItem()
+	{
+		int key = equippedSlotArray[equippedSlotArray.Length - 1];
+		if (itemDataBase.ContainsKey(key))
+			return itemDataBase[key];
+		else
+			return null;
 	}
 
 	public void RefreshEquipStatus()
@@ -253,11 +282,11 @@ public class GameManager : MonoBehaviour
 		itemStatus.hpRecovery = 0;
 		itemStatus.moveSpeed = 0;
 
-		for (int i = 0; i < equippedItemArray.Length; i++)
+		for (int i = 0; i < equippedSlotArray.Length - 1; i++)
 		{
-			if (equippedItemArray[i] >= 0)
+			if (itemDataBase.ContainsKey(equippedSlotArray[i]))
 			{
-				Item equippedItem = itemDataBase[equippedItemArray[i]];
+				Item equippedItem = itemDataBase[equippedSlotArray[i]];
 				itemStatus += equippedItem.GetStatusWithReinforce();
 			}
 		}
@@ -265,7 +294,7 @@ public class GameManager : MonoBehaviour
 
 	void SetSlot(int index, int newItemIndex)
 	{
-		InventoryItemArray[index] = newItemIndex;
+		InventorySlotArray[index] = newItemIndex;
 		if (newItemIndex < 0)
 			PlayerPrefs.DeleteKey("inventory" + index);
 		else
@@ -274,7 +303,7 @@ public class GameManager : MonoBehaviour
 
 	void SetEquipSlot(int index, int newItemIndex)
 	{
-		equippedItemArray[index] = newItemIndex;
+		equippedSlotArray[index] = newItemIndex;
 		PlayerPrefs.SetInt("equip" + index, newItemIndex);
 	}
 

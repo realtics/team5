@@ -111,3 +111,8 @@ public struct SkillListElement
 	public int skillCountPerLine;
 	public int skillIndex;
 }
+
+public enum SlotType
+{
+	Normal, Equip
+}
