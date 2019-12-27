@@ -40,11 +40,12 @@ public class FileWindow : MonoBehaviour
 
 		foreach (FileInfo file in directoryInfo.GetFiles("*.txt"))
 		{
-			string FileNameOnly = file.Name.Substring(0, file.Name.Length - 4);
+			string fileNameOnly = file.Name.Substring(0, file.Name.Length - 4);
 			//string FullName = file.FullName;
 		
 			ButtonSlot = Instantiate(buttonPrefab);
-			ButtonSlot.transform.Find("Text").GetComponent<Text>().text = FileNameOnly;
+            ButtonSlot.name = fileNameOnly;
+			ButtonSlot.transform.Find("Text").GetComponent<Text>().text = fileNameOnly;
 
 			ButtonSlot.transform.SetParent(content.transform);
 			ButtonSlot.GetComponent<RectTransform>().localPosition = new Vector3(xPos, yPos, 0);

@@ -55,8 +55,8 @@ public class MapGenerator : MonoBehaviour
 	//카메라
 	public Camera mCamera;
 
-	public float xSensitivity = 20.0f;
-	public float ySensitivity = 20.0f;
+	float xSensitivity = 20.0f;
+	float ySensitivity = 20.0f;
 
 	float yPos = 0.0f;
 	float xPos = 0.0f;
@@ -142,19 +142,22 @@ public class MapGenerator : MonoBehaviour
 				CubeName.text = "Monster4";
 				break;
             case 35:
-                CubeName.text = "Monster5";
+                CubeName.text = "Monster4";
                 break;
             case 36:
-                CubeName.text = "Monster6";
+                CubeName.text = "Boss1";
                 break;
             case 37:
-                CubeName.text = "Monster7";
+                CubeName.text = "Boss2";
                 break;
             case 38:
-                CubeName.text = "Monster8";
+                CubeName.text = "Boss3";
                 break;
             case 39:
-                CubeName.text = "Monster9";
+                CubeName.text = "Boss4";
+                break;
+            case 40:
+                CubeName.text = "Boss5";
                 break;
             default:
 				CubeName.text = "Not Select";
@@ -370,6 +373,7 @@ public class MapGenerator : MonoBehaviour
             for (int x = 0; x < maps.mapSize.x; x++)
             {
                 Vector3 tilePosition = CoordToPosition(y, x);
+
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * tileSize;
                 newTile.parent = mapHolder;
@@ -591,13 +595,15 @@ public class MapGenerator : MonoBehaviour
 	{
 		infoUI.SetActive(false);
 
-		if (saveUI.activeSelf == true)
+        FileWindowInfo(UISTATE.UI_OFF);
+
+        if (saveUI.activeSelf == true)
 			saveUI.SetActive(false);
 
 		if (loadUI.activeSelf == true)
 			loadUI.SetActive(false);
 
-		GenerateMap();
+        GenerateMap();
 	}
 
 	public void PlusPortalIndex()

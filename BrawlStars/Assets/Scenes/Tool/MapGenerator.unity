@@ -827,7 +827,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Monster8
+  m_Text: 'Boss3
+
+'
 --- !u!222 &88720884
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1414,6 +1416,135 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 236701193}
+  m_CullTransparentMesh: 0
+--- !u!1 &238290456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238290457}
+  - component: {fileID: 238290460}
+  - component: {fileID: 238290459}
+  - component: {fileID: 238290458}
+  m_Layer: 5
+  m_Name: BossButton5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &238290457
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238290456}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8002945, y: 0.462268, z: 1}
+  m_Children:
+  - {fileID: 1657345105}
+  m_Father: {fileID: 1870936751}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -133}
+  m_SizeDelta: {x: 100, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &238290458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238290456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 238290459}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1437797271}
+        m_MethodName: SwithcingCube
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 40
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &238290459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238290456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &238290460
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238290456}
   m_CullTransparentMesh: 0
 --- !u!1 &252696974
 GameObject:
@@ -5561,7 +5692,7 @@ GameObject:
   - component: {fileID: 1234413606}
   - component: {fileID: 1234413605}
   m_Layer: 5
-  m_Name: MonsterButton6
+  m_Name: BossButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6132,7 +6263,7 @@ GameObject:
   - component: {fileID: 1357536718}
   - component: {fileID: 1357536717}
   m_Layer: 5
-  m_Name: MonsterButton7
+  m_Name: BossButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6316,7 +6447,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Monster9
+  m_Text: Boss4
 --- !u!222 &1369228244
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7059,12 +7190,12 @@ MonoBehaviour:
   - {fileID: 7724979333546914174, guid: d28d7de3437c07b4e83a12c5c34ee7bb, type: 3}
   - {fileID: 3793338551321226100, guid: f35d046ced5b7014f9d4f20723c6a151, type: 3}
   - {fileID: 8768990605677607867, guid: 0dbfdb3a99e84a04c9b80ceee0436044, type: 3}
+  - {fileID: 1507668307714231527, guid: 99b9236fa27d7794288af972f1d3a54b, type: 3}
   - {fileID: 8370367506311761753, guid: 6c2625758c5b4664cbbee33e2dec7a8f, type: 3}
   - {fileID: 8370367506311761753, guid: 6c2625758c5b4664cbbee33e2dec7a8f, type: 3}
   - {fileID: 8370367506311761753, guid: 6c2625758c5b4664cbbee33e2dec7a8f, type: 3}
   - {fileID: 8370367506311761753, guid: 6c2625758c5b4664cbbee33e2dec7a8f, type: 3}
   - {fileID: 8370367506311761753, guid: 6c2625758c5b4664cbbee33e2dec7a8f, type: 3}
-  - {fileID: 0}
   - {fileID: 0}
   tilePrefab: {fileID: 4991417397179397828, guid: f0d4e991deeb6994d8fb8a9b6248e645,
     type: 3}
@@ -7072,8 +7203,6 @@ MonoBehaviour:
   navmeshMaskPrefabMeshFloor: {fileID: 2302550715646157062, guid: dfe51369a12eeab46bd7928e933ab938,
     type: 3}
   mCamera: {fileID: 738420267}
-  xSensitivity: 20
-  ySensitivity: 20
 --- !u!4 &1437797272
 Transform:
   m_ObjectHideFlags: 0
@@ -8579,6 +8708,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618904962}
   m_CullTransparentMesh: 0
+--- !u!1 &1657345104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657345105}
+  - component: {fileID: 1657345107}
+  - component: {fileID: 1657345106}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1657345105
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657345104}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 238290457}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1657345106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657345104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Boss5
+--- !u!222 &1657345107
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657345104}
+  m_CullTransparentMesh: 0
 --- !u!1 &1657899365
 GameObject:
   m_ObjectHideFlags: 0
@@ -9010,7 +9216,7 @@ GameObject:
   - component: {fileID: 1778414702}
   - component: {fileID: 1778414701}
   m_Layer: 5
-  m_Name: MonsterButton9
+  m_Name: BossButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9452,7 +9658,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Monster7
+  m_Text: Boss2
 --- !u!222 &1836754249
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9628,13 +9834,14 @@ RectTransform:
   - {fileID: 1357536716}
   - {fileID: 1948816172}
   - {fileID: 1778414700}
+  - {fileID: 238290457}
   m_Father: {fileID: 1344888377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -73.7}
-  m_SizeDelta: {x: 90, y: 125}
+  m_AnchoredPosition: {x: 0, y: -0.0015055193}
+  m_SizeDelta: {x: 90, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1870936752
 MonoBehaviour:
@@ -10077,7 +10284,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Monster6
+  m_Text: Boss1
 --- !u!222 &1922991988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10099,7 +10306,7 @@ GameObject:
   - component: {fileID: 1948816174}
   - component: {fileID: 1948816173}
   m_Layer: 5
-  m_Name: MonsterButton8
+  m_Name: BossButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

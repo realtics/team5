@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\3D Map Maker\Scripts\ArtificialPosition.cs" />
+    <Compile Include="Assets\3D Map Maker\Scripts\Layer.cs" />
     <Compile Include="Assets\Scripts\Contoller\ControlUI.cs" />
     <Compile Include="Assets\Scripts\Contoller\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Contoller\Joystick.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Assets\Scripts\Map\MapGenerator\ButtonAction.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\FileWindow.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\MapGenerator\MapGenerator2.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\OnSpawner.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator\UIOnOff.cs" />
     <Compile Include="Assets\Scripts\Map\MapSpawner.cs" />
@@ -126,6 +129,7 @@
     <None Include="Assets\StageMaps\3-2.txt" />
     <None Include="Assets\Resources\Texture\Skill\BlackThunder\Strike.txt" />
     <None Include="Assets\StageMaps\qwewqe.txt" />
+    <None Include="Assets\StageMaps\4-3.txt" />
     <None Include="Assets\StageMaps\1-1.txt" />
     <None Include="Assets\StageMaps\2.txt" />
     <None Include="Assets\StageMaps\1-3.txt" />
@@ -135,8 +139,11 @@
     <None Include="Assets\StageMaps\Simple.txt" />
     <None Include="Assets\Resources\Texture\Skill\Tornado\HeavyStorm_Tornado.txt" />
     <None Include="Assets\StageMaps\1-2.txt" />
+    <None Include="Assets\StageMaps\sdfsdfsdf.txt" />
     <None Include="Assets\StageMaps\qq.txt" />
+    <None Include="Assets\StageMaps\4-2.txt" />
     <None Include="Assets\StageMaps\2-1.txt" />
+    <None Include="Assets\StageMaps\5-1.txt" />
     <None Include="Assets\Material\SkillShader.shader" />
     <None Include="Assets\StageMaps\3-1.txt" />
     <None Include="Assets\Resources\DualCorStudios\BasicUI Metal\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
@@ -146,12 +153,15 @@
     <None Include="Assets\StageMaps\1.txt" />
     <None Include="Assets\StageMaps\Neo.txt" />
     <None Include="Assets\StageMaps\Maps1.txt" />
+    <None Include="Assets\StageMaps\ww.txt" />
     <None Include="Assets\StageMaps\sdsd.txt" />
     <None Include="Assets\Resources\Texture\Skill\SwordDance\Bayu_Active.txt" />
     <None Include="Assets\StageMaps\1-5.txt" />
     <None Include="Assets\StageMaps\4-1.txt" />
     <None Include="Assets\StageMaps\1-4.txt" />
+    <None Include="Assets\StageMaps\4-4.txt" />
     <None Include="Assets\Resources\Texture\UI\Reinforce\KumKangBlizzard.txt" />
+    <None Include="Assets\StageMaps\aa.txt" />
     <None Include="Assets\StageMaps\2-2.txt" />
     <None Include="Assets\StageMaps\2-4.txt" />
     <None Include="Assets\StageMaps\Maze.txt" />
