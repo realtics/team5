@@ -55,8 +55,8 @@ public class MapGenerator : MonoBehaviour
 	//카메라
 	public Camera mCamera;
 
-	public float xSensitivity = 20.0f;
-	public float ySensitivity = 20.0f;
+	float xSensitivity = 20.0f;
+	float ySensitivity = 20.0f;
 
 	float yPos = 0.0f;
 	float xPos = 0.0f;
@@ -141,7 +141,25 @@ public class MapGenerator : MonoBehaviour
 			case 34:
 				CubeName.text = "Monster4";
 				break;
-			default:
+            case 35:
+                CubeName.text = "Monster4";
+                break;
+            case 36:
+                CubeName.text = "Boss1";
+                break;
+            case 37:
+                CubeName.text = "Boss2";
+                break;
+            case 38:
+                CubeName.text = "Boss3";
+                break;
+            case 39:
+                CubeName.text = "Boss4";
+                break;
+            case 40:
+                CubeName.text = "Boss5";
+                break;
+            default:
 				CubeName.text = "Not Select";
 				break;
 		}
@@ -261,9 +279,6 @@ public class MapGenerator : MonoBehaviour
 							obstaclePrefabs[cubeIndex].transform.localScale.y * 0.5f,
 								hit.transform.gameObject.transform.position.z), Quaternion.identity);
 
-						Debug.Log("x : " + hit.transform.gameObject.transform.position.x + " " +
-							"y: " + hit.transform.gameObject.transform.position.z);
-
 						obstacleMap[(int)hit.transform.gameObject.transform.position.z,
 							(int)hit.transform.gameObject.transform.position.x] = cubeIndex;
 
@@ -358,6 +373,7 @@ public class MapGenerator : MonoBehaviour
             for (int x = 0; x < maps.mapSize.x; x++)
             {
                 Vector3 tilePosition = CoordToPosition(y, x);
+
                 Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                 newTile.localScale = Vector3.one * tileSize;
                 newTile.parent = mapHolder;
@@ -417,19 +433,19 @@ public class MapGenerator : MonoBehaviour
 		maskRight.parent = mapHolder;
 		maskRight.localScale = new Vector3((maxMapSize.x - maps.mapSize.x) * 0.5f, 1, maps.mapSize.y) * tileSize;
 
-		//필드의 앞
+		//필드의 먼 부분
 		Transform maskTop = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, maps.mapSize.y - 0.25f), Quaternion.identity) as Transform;
-		maskTop.name = "Top";
+		maskTop.name = "Back";
 		maskTop.parent = mapHolder;
 		maskTop.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
-		//필드의 뒤
+		//필드의 가까운 부분
 		Transform maskBottom = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3((maps.mapSize.x * 0.5f) - 0.5f, 0, -0.75f), Quaternion.identity) as Transform;
-		maskBottom.name = "Bottom";
+		maskBottom.name = "Front";
 		maskBottom.parent = mapHolder;
 		maskBottom.localScale = new Vector3(maxMapSize.x, 1, (maxMapSize.y - maps.mapSize.y) * 0.5f) * tileSize;
 
-		navmeshFloor.transform.position = new Vector3(maps.mapSize.x * 0.5f - 0.5f, 0, maps.mapSize.y * 0.5f - 0.5f);
+		navmeshFloor.transform.position = new Vector3(maps.mapSize.x * 0.5f - 0.5f, 0f, maps.mapSize.y * 0.5f - 0.5f);
 		navmeshFloor.localScale = new Vector3(maxMapSize.x, maxMapSize.y) * tileSize;
     }
 
@@ -501,7 +517,7 @@ public class MapGenerator : MonoBehaviour
                     for (int i = 0; i < maps.mapSize.x; i++)
                     {
                         //메모장에서 읽어온 가로줄에서 ' '를 잘라내고 data에 넣음.
-                        string[] data = str.Split(new char[] { ' ' });
+                        string[] data = str.Split(new char[] {' '});
 
                         obstacleMap[j, i] = int.Parse(data[i]);
                     }
@@ -579,13 +595,15 @@ public class MapGenerator : MonoBehaviour
 	{
 		infoUI.SetActive(false);
 
-		if (saveUI.activeSelf == true)
+        FileWindowInfo(UISTATE.UI_OFF);
+
+        if (saveUI.activeSelf == true)
 			saveUI.SetActive(false);
 
 		if (loadUI.activeSelf == true)
 			loadUI.SetActive(false);
 
-		GenerateMap();
+        GenerateMap();
 	}
 
 	public void PlusPortalIndex()
