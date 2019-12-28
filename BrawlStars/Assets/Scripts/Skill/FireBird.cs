@@ -48,7 +48,7 @@ public class FireBird : Skill
 		yield return null;
 		while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
 			yield return null;
-		ObjectPool.GetInstance().AddNewObject(gameObject);
+		ObjectPool.GetInstance().PushObject(gameObject);
 	}
 
 	public override void MakeTargetRangeMesh()

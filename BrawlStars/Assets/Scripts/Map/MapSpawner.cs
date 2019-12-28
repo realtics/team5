@@ -14,7 +14,6 @@ public class MapSpawner : MonoBehaviour
 	Dictionary<string, string> stageIndexs;
 
 	public int stageIndex;
-    public Map currentMap;
     public GameObject navMeshFloor;
     public Character player;
 
@@ -32,12 +31,15 @@ public class MapSpawner : MonoBehaviour
 	int tileSize = 1;
 
 	public GameObject[] obstaclePrefabs;
+	public int startingPointIndex;
+	public int portalIndex;
+	public int monsterIndex;
+	public MonsterSpawner spawnerPrefab;
 	public Transform tilePrefabs;
 	public Transform navmeshFloor;
 	public Transform navmeshMaskPrefabMeshFloor;
 	Vector3 maxMapSize;
 	int nowIndex = 0;
-	int portalIndex = 0;
 	int nowMapIndex = 0;
 
 	Transform mapHolder;
@@ -108,12 +110,12 @@ public class MapSpawner : MonoBehaviour
             if (NowMap != null)
                 NowMap[index].SetActive(true);
 
-            NowMap[index].transform.GetComponent<Map>().portals[0].gameObject.SetActive(false);
-
-            NowMap[index].transform.GetComponent<Map>().portals[0].player = player;
-
-            NowMap[index].transform.GetComponent<Map>().portals[0].mapSpawner = this;
-
+			Portal[] portals = NowMap[index].transform.GetComponent<Map>().portals;
+			for (int i = 0; i < portals.Length; i++) {
+				portals[i].gameObject.SetActive(false);
+				portals[i].player = player;
+				portals[i].mapSpawner = this;
+			}
 
 			SetCharacterPosition(index);
         }
@@ -237,7 +239,7 @@ public class MapSpawner : MonoBehaviour
 
 		NowMap[nowMapIndex] = GameObject.Find(holderName);
 
-		NowMap[nowMapIndex].gameObject.AddComponent<Map>();
+		Map currentMap = NowMap[nowMapIndex].gameObject.AddComponent<Map>();
 
 		for (int y = 0; y < mapY; y++)
 		{
@@ -250,57 +252,44 @@ public class MapSpawner : MonoBehaviour
 			}
 		}
 
-		List<Coord> allOpenCoords = new List<Coord>(allTileCoords);
+		List<Portal> portalList = new List<Portal>();
+		List<MonsterSpawner> monsterList = new List<MonsterSpawner>();
 
 		for (int y = 0; y < mapY; y++)
 		{
 			for (int x = 0; x < mapX; x++)
 			{
-				Vector3 obstaclePosition = CoordToPosition(y, x);
-
-				if (obstacleMap[y, x] >= 20 && obstacleMap[y, x] < 30)
+				GameObject newObstacle;
+				if (obstacleMap[y, x] >= monsterIndex)
 				{
-
-					portalIndex = obstacleMap[y, x] - 20;
-					obstacleMap[y, x] -= portalIndex;
-
-					obstaclePrefabs[20].GetComponent<Portal>().targetIndex = portalIndex;
-					
+					MonsterSpawner spawner = Instantiate(spawnerPrefab);
+					spawner.Init(obstaclePrefabs[obstacleMap[y, x]].GetComponent<Monster>());
+					monsterList.Add(spawner);
+					newObstacle = spawner.gameObject;
 				}
-								
-				GameObject newObstacle = Instantiate(obstaclePrefabs[obstacleMap[y, x]],
-					obstaclePosition + Vector3.up * obstaclePrefabs[obstacleMap[y, x]].transform.localScale.y * 0.5f,
-					Quaternion.identity) as GameObject;
+				else if (obstacleMap[y, x] >= portalIndex)
+				{
+					Portal portal = Instantiate(obstaclePrefabs[portalIndex]).GetComponent<Portal>();
+					portal.targetIndex = obstacleMap[y, x] - portalIndex;
+					portalList.Add(portal); 
+					newObstacle = portal.gameObject;
+				}
+				else
+				{
+					newObstacle = Instantiate(obstaclePrefabs[obstacleMap[y, x]]);
+					if(obstacleMap[y, x] == startingPointIndex)
+						currentMap.startingPoint = newObstacle;
+				}
 
 				newObstacle.gameObject.transform.parent = mapHolder;
-				newObstacle.gameObject.transform.localScale = new Vector3(obstaclePrefabs[obstacleMap[y, x]].transform.localScale.x,
-					obstaclePrefabs[obstacleMap[y, x]].transform.localScale.y, obstaclePrefabs[obstacleMap[y, x]].transform.localScale.z);
+				Vector3 obstaclePosition = CoordToPosition(y, x);
+				obstaclePosition.y = newObstacle.transform.localScale.y * 0.5f;
+				newObstacle.transform.position = obstaclePosition;
 			}
 		}
 
-		GameObject[] portalCount = GameObject.FindGameObjectsWithTag("Portal");
-
-		NowMap[nowMapIndex].transform.GetComponent<Map>().portals = new Portal[portalCount.Length];
-
-		for (int i = 0; i < NowMap[nowMapIndex].transform.GetComponent<Map>().portals.Length; i++)
-		{
-			NowMap[nowMapIndex].transform.GetComponent<Map>().portals[i] = GameObject.Find("Portal(Clone)").GetComponent<Portal>();
-		}
-
-		//
-		GameObject[] monsterCount = GameObject.FindGameObjectsWithTag("Monster");
-
-		NowMap[nowMapIndex].transform.GetComponent<Map>().monsters = new MonsterSpawner[monsterCount.Length];
-
-		for (int i = 0; i < NowMap[nowMapIndex].transform.GetComponent<Map>().monsters.Length; i++)
-		{
-			NowMap[nowMapIndex].transform.GetComponent<Map>().monsters[i] = monsterCount[i].GetComponent<MonsterSpawner>();
-		}
-
-		//
-		GameObject startingPoint = GameObject.FindGameObjectWithTag("StartingPoint");
-
-		NowMap[nowMapIndex].transform.GetComponent<Map>().startingPoint = startingPoint;
+		currentMap.portals = portalList.ToArray();
+		currentMap.monsters = monsterList.ToArray();
 
 
 		Transform maskLeft = Instantiate(navmeshMaskPrefabMeshFloor, new Vector3(-0.75f, 0, (mapY * 0.5f) - 0.5f), Quaternion.identity) as Transform;

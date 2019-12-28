@@ -48,10 +48,10 @@ public class Fireball : Skill
 
         for (int i = 0; i < fireballList.Length; i++)
 		{
-			ObjectPool.GetInstance().AddNewObject(fireballList[i]);
+			ObjectPool.GetInstance().PushObject(fireballList[i]);
 		}
 
-		ObjectPool.GetInstance().AddNewObject(gameObject);
+		ObjectPool.GetInstance().PushObject(gameObject);
 	}
 
     public override void MakeTargetRangeMesh()

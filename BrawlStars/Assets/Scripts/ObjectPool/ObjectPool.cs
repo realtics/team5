@@ -32,17 +32,20 @@ public class ObjectPool : MonoBehaviour
 		return instance;
 	}
 
-	public void AddNewObject(GameObject newObject)
+	public void PushObject(GameObject newObject)
 	{
-		PooledObject poolForAdd = GetPool(newObject.name);
-		if (poolForAdd == null)
+		if (newObject != null)
 		{
-			poolForAdd = gameObject.AddComponent<PooledObject>();
-			poolForAdd.Init(newObject, 10);
-			poolList.Add(poolForAdd);
+			PooledObject poolForAdd = GetPool(newObject.name);
+			if (poolForAdd == null)
+			{
+				poolForAdd = gameObject.AddComponent<PooledObject>();
+				poolForAdd.Init(newObject, 10);
+				poolList.Add(poolForAdd);
+			}
+			newObject.SetActive(false);
+			poolForAdd.PushObject(newObject);
 		}
-		newObject.SetActive(false);
-		poolForAdd.AddNewObject(newObject);
 	}
 
 	public GameObject GetObject(GameObject gameObject)

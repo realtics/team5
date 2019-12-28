@@ -15,11 +15,11 @@ public class PooledObject : MonoBehaviour
 			GameObject firstObject = Instantiate(gameObject);
 			firstObject.name = gameObject.name;
 			firstObject.SetActive(false);
-			AddNewObject(firstObject);
+			PushObject(firstObject);
 		}
 	}
 
-	public void AddNewObject(GameObject newObject)
+	public void PushObject(GameObject newObject)
 	{
 		objectList.Add(newObject);
 	}

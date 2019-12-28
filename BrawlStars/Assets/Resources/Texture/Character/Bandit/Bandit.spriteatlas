@@ -172,7 +172,12 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 83bca5e21bd02e04487d539d1ee9e3d5, type: 3}
     - {fileID: 2800000, guid: ab7556c17ba67734c92290bef087bca8, type: 3}
     - {fileID: 2800000, guid: ce280761bc2fd794bbd8e0f24231e39a, type: 3}
-    totalSpriteSurfaceArea: 1207440
+    - {fileID: 2800000, guid: 8a62740b590508341ac0c8c17601ac3a, type: 3}
+    - {fileID: 2800000, guid: f26e1c538ad07674dad06547110ebd2e, type: 3}
+    - {fileID: 2800000, guid: f439670da74aa9b49b829753aa3c59e3, type: 3}
+    - {fileID: 2800000, guid: 8fbb0cd28ca71d241ae691610a6eab2a, type: 3}
+    - {fileID: 2800000, guid: cb734377bad1fb440b75b987dffcbbb4, type: 3}
+    totalSpriteSurfaceArea: 1253880
     bindAsDefault: 1
     storedHash:
       serializedVersion: 2
@@ -204,6 +209,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bb3ccf121ee8ff741b54b2eaf0f1914c, type: 3}
   - {fileID: 21300000, guid: f0d7207295fdf074ab9f03b177626193, type: 3}
   - {fileID: 21300000, guid: be32338286ab07d43a074bb90fea0115, type: 3}
+  - {fileID: 21300000, guid: 8fbb0cd28ca71d241ae691610a6eab2a, type: 3}
   - {fileID: 21300000, guid: 11d652e26ecacdb44851299c7157415f, type: 3}
   - {fileID: 21300000, guid: 83bca5e21bd02e04487d539d1ee9e3d5, type: 3}
   - {fileID: 21300000, guid: 736af5e2c4cded343bc7574be04368b4, type: 3}
@@ -213,6 +219,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8e9d2543860e87b42a0ccc45267434f3, type: 3}
   - {fileID: 21300000, guid: cfe75e4388b40ff41ab7169780bfceb1, type: 3}
   - {fileID: 21300000, guid: 6c0036538049502479d7624b3a20caeb, type: 3}
+  - {fileID: 21300000, guid: f26e1c538ad07674dad06547110ebd2e, type: 3}
   - {fileID: 21300000, guid: 9cd7db63fb592dd4cac9de0dc1caf1dd, type: 3}
   - {fileID: 21300000, guid: 4ad55c6302053224b9ae639c82285545, type: 3}
   - {fileID: 21300000, guid: fe998f635f9274246a318a28e9b9b5fc, type: 3}
@@ -239,6 +246,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dffa2bc64b923904fb4b8ca47fb715c5, type: 3}
   - {fileID: 21300000, guid: cdb1f3e63559d9d45a1db7a44735fab7, type: 3}
   - {fileID: 21300000, guid: e4a0bf67d2b770c479be57c4d9f0b316, type: 3}
+  - {fileID: 21300000, guid: cb734377bad1fb440b75b987dffcbbb4, type: 3}
   - {fileID: 21300000, guid: b7bc6a87eab8d924db085561e975d95e, type: 3}
   - {fileID: 21300000, guid: b66667973004a7544aaf069a4684273f, type: 3}
   - {fileID: 21300000, guid: c386e7a7c9bdd6347b485638f921f3a3, type: 3}
@@ -264,6 +272,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8f809eda9e742e0459178cf3b74aafcb, type: 3}
   - {fileID: 21300000, guid: 8abff6eae29b005408ce1eb8e28573ae, type: 3}
   - {fileID: 21300000, guid: 004b84fae144b32418fc7b2c6738a248, type: 3}
+  - {fileID: 21300000, guid: 8a62740b590508341ac0c8c17601ac3a, type: 3}
   - {fileID: 21300000, guid: 2130bb2b1cd175b4a8aa306649b847b4, type: 3}
   - {fileID: 21300000, guid: e3e3133b5f5ab324b9982809693f13c7, type: 3}
   - {fileID: 21300000, guid: 1589465b816c1fe41b8aa56161f4832d, type: 3}
@@ -280,6 +289,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7c7377bcdf9b26043a254b1422ff315b, type: 3}
   - {fileID: 21300000, guid: 323038bc2d7a645418692d1bf5713485, type: 3}
   - {fileID: 21300000, guid: eacbfefc19183e24a90a09fe9a394b0c, type: 3}
+  - {fileID: 21300000, guid: f439670da74aa9b49b829753aa3c59e3, type: 3}
   - {fileID: 21300000, guid: 19ce6e2d7ef6a0f46b5161b7e1b916cf, type: 3}
   - {fileID: 21300000, guid: d2cdf04dd4256484e8fd2005d398e0fd, type: 3}
   - {fileID: 21300000, guid: 4855695d3e1046a4784b860041d8b3e2, type: 3}
@@ -335,6 +345,7 @@ SpriteAtlas:
   - Bandit18
   - Bandit43
   - Bandit57
+  - Bandit38
   - Bandit51
   - Bandit133
   - Bandit12
@@ -344,6 +355,7 @@ SpriteAtlas:
   - Bandit56
   - Bandit104
   - Bandit23
+  - Bandit36
   - Bandit71
   - Bandit29
   - Bandit26
@@ -370,6 +382,7 @@ SpriteAtlas:
   - Bandit59
   - Bandit89
   - Bandit121
+  - Bandit39
   - Bandit62
   - Bandit120
   - Bandit2
@@ -395,6 +408,7 @@ SpriteAtlas:
   - Bandit8
   - Bandit111
   - Bandit19
+  - Bandit35
   - Bandit87
   - Bandit68
   - Bandit80
@@ -411,6 +425,7 @@ SpriteAtlas:
   - Bandit44
   - Bandit45
   - Bandit24
+  - Bandit37
   - Bandit94
   - Bandit54
   - Bandit130

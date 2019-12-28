@@ -38,7 +38,7 @@ public class SkillJoystick : Joystick
     public override void PointerUp(Vector2 position)
     {
         base.PointerUp(position);
-		ObjectPool.GetInstance().AddNewObject(rangeObject.gameObject);
+		ObjectPool.GetInstance().PushObject(rangeObject.gameObject);
 
         player.AttackProcess(skillIndex, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
     }
@@ -46,6 +46,6 @@ public class SkillJoystick : Joystick
 	public override void Cancel()
 	{
 		base.Cancel();
-		ObjectPool.GetInstance().AddNewObject(rangeObject.gameObject);
+		ObjectPool.GetInstance().PushObject(rangeObject.gameObject);
 	}
 }

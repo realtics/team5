@@ -48,7 +48,7 @@ MonoBehaviour:
   skillCode: Cresent_Monster
   skillName: "\uBC18\uC6D4\uAC80"
   icon: {fileID: 21300000, guid: bb9342838aba0fa418f0c48d8f3ec865, type: 3}
-  type: 1
+  type: 3
   castingDelay: 1
   startupTime: 0
   recoveryTime: 0.1

@@ -19,6 +19,9 @@ public class DropTable : ScriptableObject
 
 	public DropItem[] GetDropItemList(string monsterName)
 	{
-		return dropTable[monsterName];
+		if (dropTable.ContainsKey(monsterName))
+			return dropTable[monsterName];
+		else
+			return null;
 	}
 }

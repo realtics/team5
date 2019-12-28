@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : Actor
 {
-	public string monsterName;
+    public string monsterName;
 
     public float sight;
     public float attackReach;
@@ -41,7 +41,7 @@ public class Monster : Actor
     protected override void Death()
     {
         base.Death();
-		DropItem();
+        DropItem();
     }
 
     void ChasePlayerCharacter()
@@ -49,19 +49,19 @@ public class Monster : Actor
         Character target = BattleManager.GetInstance().player;
         float minSqrDistance = sight * sight;
 
-		if (target == null || target.state == State.Dead)
-		{
-			Stop();
-			return;
-		}
+        if (target == null || target.state == State.Dead)
+        {
+            Stop();
+            return;
+        }
 
-		Vector3 moveVector = target.transform.position - transform.position;
+        Vector3 moveVector = target.transform.position - transform.position;
 
         if (minSqrDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
         {
             NavMeshPath path = new NavMeshPath();
             pathFinder.CalculatePath(target.transform.position, path);
-            
+
             if (path.corners.Length > 1)
             {
                 Move(path.corners[1] - transform.position);
@@ -71,23 +71,23 @@ public class Monster : Actor
         {
             characterDirectionAngle = Mathf.Atan2(-moveVector.z, moveVector.x);
             Stop();
-		}
-		ActivatePattern(target);
-	}
+        }
+        ActivatePattern(target);
+    }
 
     void ActivatePattern(Actor target)
     {
-        for(int i = 0; i < skillCodeArray.Length; i++)
+        for (int i = 0; i < skillCodeArray.Length; i++)
         {
-			Skill pattern = GameManager.GetInstance().GetSkill(skillCodeArray[i]);
+            Skill pattern = GameManager.GetInstance().GetSkill(skillCodeArray[i]);
 
-			bool readyToActivatePattern = Time.time - lastSkillActionTime[i] > pattern.cooldown;
-			bool playerInPatternRadius = pattern.IsTargetInRange(target, transform.position);
-			if (readyToActivatePattern && playerInPatternRadius)
+            bool readyToActivatePattern = Time.time - lastSkillActionTime[i] > pattern.cooldown;
+            bool playerInPatternRadius = pattern.IsTargetInRange(target, transform.position);
+            if (readyToActivatePattern && playerInPatternRadius)
             {
                 lastSkillActionTime[i] = Time.time;
-				Vector3 targetVector = target.transform.position - transform.position;
-				Vector3 activatePosition = transform.position + pattern.GetPosition(new Vector2(targetVector.x, targetVector.z));
+                Vector3 targetVector = target.transform.position - transform.position;
+                Vector3 activatePosition = transform.position + pattern.GetPosition(new Vector2(targetVector.x, targetVector.z));
                 Quaternion rotation = pattern.GetRotation(new Vector2(targetVector.x, targetVector.z));
                 AttackProcess(i, activatePosition, rotation.eulerAngles.y);
             }
@@ -96,10 +96,11 @@ public class Monster : Actor
 
     void DropItem()
     {
-		DropItem[] dropItemList = GameManager.GetInstance().GetDropItemList(monsterName);
+        DropItem[] dropItemList = GameManager.GetInstance().GetDropItemList(monsterName);
 
-        for (int i = 0; i < dropItemList.Length; i++)
-			if (Random.Range(0, 100) < dropItemList[i].percentage)
-				BattleManager.GetInstance().DropItem(dropItemList[i].itemCode, transform.position);
+        if (dropItemList != null)
+            for (int i = 0; i < dropItemList.Length; i++)
+                if (Random.Range(0, 100) < dropItemList[i].percentage)
+                    BattleManager.GetInstance().DropItem(dropItemList[i].itemCode, transform.position);
     }
 }

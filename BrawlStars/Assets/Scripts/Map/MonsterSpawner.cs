@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
-	public Monster monsterPrefab;
 	Monster monster;
 
-	public void Start()
+	public void Init(Monster _monster)
 	{
-		if(monster == null)
-			monster = Instantiate(monsterPrefab, transform.position, Quaternion.identity);
+		monster = Instantiate(_monster, transform.position, Quaternion.identity);
+		monster.transform.parent = transform;
 	}
 
 	public void ResetState()

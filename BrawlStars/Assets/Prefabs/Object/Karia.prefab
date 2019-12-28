@@ -69,15 +69,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a3be892e563b6e74eac16484bb45e20d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 3.2}
+  m_Size: {x: 7, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6751649025187402711
@@ -145,27 +145,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   status:
-    attackDamage: 400
+    attackDamage: 1200
     armor: 10
-    hp: 600
+    hp: 6000
     hpRecovery: 0
     moveSpeed: 0.5
-  SpriteName: INDRA
+  SpriteName: KARIA
   standingSpriteIndex:
-    start: 50
-    end: 89
+    start: 100
+    end: 159
   standingSpriteInterval: 0.1
   attackSpriteIndex:
     start: 0
-    end: 39
+    end: 59
   attackSpriteInterval: 0.1
   moveSpriteIndex:
-    start: 90
-    end: 129
+    start: 60
+    end: 99
   moveSpriteInterval: 0.4
   deathSpriteIndex:
-    start: 40
-    end: 49
+    start: 160
+    end: 191
   deathSpriteInterval: 0.1
   atlas: {fileID: 4343727234628468602, guid: dedf4e3cbc362064784c5d7381e98192, type: 2}
   spriteRenderer: {fileID: 6751649024528159897}
@@ -177,7 +177,7 @@ MonoBehaviour:
   skillCodeArray:
   - ShockWave_Monster
   - Cresent_Monster
-  monsterName: Indra
+  monsterName: Karia
   sight: 20
   attackReach: 3
 --- !u!136 &6751649025187402710
@@ -191,7 +191,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1
-  m_Height: 5
+  m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &6751649025187402697

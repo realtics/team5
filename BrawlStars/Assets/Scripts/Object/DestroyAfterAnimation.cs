@@ -9,6 +9,6 @@ public class DestroyAfterAnimation : MonoBehaviour
 	void Update()
     {
         if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
-			ObjectPool.GetInstance().AddNewObject(gameObject);
+			ObjectPool.GetInstance().PushObject(gameObject);
     }
 }

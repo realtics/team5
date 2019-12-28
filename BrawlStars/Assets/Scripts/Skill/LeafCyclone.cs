@@ -29,7 +29,7 @@ public class LeafCyclone : Skill
             yield return new WaitForSeconds(damageInterval);
 		}
 
-		ObjectPool.GetInstance().AddNewObject(gameObject);
+		ObjectPool.GetInstance().PushObject(gameObject);
 	}
 
     public override void MakeTargetRangeMesh()

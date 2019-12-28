@@ -43,8 +43,9 @@ public class Actor : MonoBehaviour
 
     public string[] skillCodeArray;
     protected float[] lastSkillActionTime;
+    GameObject rangeObject;
 
-	protected virtual void Awake()
+    protected virtual void Awake()
 	{
 		lastSkillActionTime = new float[skillCodeArray.Length];
 	}
@@ -153,6 +154,7 @@ public class Actor : MonoBehaviour
             currentSpriteIndex = 0;
 
         int spriteIndex = index.start + GetDirectionIndex() * spriteLength + currentSpriteIndex;
+        Debug.Log("name = " + SpriteName + " index = " + spriteIndex + " length = " + sprites.Count);
         spriteRenderer.sprite = sprites[spriteIndex];
     }
 
@@ -264,7 +266,8 @@ public class Actor : MonoBehaviour
         mCollider.enabled = false;
 		BattleManager.GetInstance().DeleteActorFromManager(this);
 		StopAllCoroutines();
-	}
+        ObjectPool.GetInstance().PushObject(rangeObject);
+    }
 
     IEnumerator TakeDamageCoroutine()
     {
@@ -293,7 +296,6 @@ public class Actor : MonoBehaviour
     IEnumerator CastingProcess(int index, Vector3 targetPosition, float yRotationEuler)
     {
 		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);
-		GameObject rangeObject = null;
 		if (skill.rangeMaterial != null)
 		{
 			rangeObject = ObjectPool.GetInstance().GetObject(BattleManager.GetInstance().monsterRange.gameObject);
@@ -305,7 +307,7 @@ public class Actor : MonoBehaviour
         yield return new WaitForSeconds(skill.castingDelay);
 
 		if (rangeObject != null) 
-			ObjectPool.GetInstance().AddNewObject(rangeObject);
+			ObjectPool.GetInstance().PushObject(rangeObject);
 		skill.StartSkill(this, targetPosition, yRotationEuler);
         yield return new WaitForSeconds(skill.recoveryTime);
 

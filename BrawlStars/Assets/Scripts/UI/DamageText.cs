@@ -34,7 +34,7 @@ public class DamageText : MonoBehaviour
     void Update()
     {
         if (Time.time - instantiatedTime > destroyTime)
-            ObjectPool.GetInstance().AddNewObject(gameObject);
+            ObjectPool.GetInstance().PushObject(gameObject);
 
         originalPosition = new Vector3(originalPosition.x, originalPosition.y + moveSpeed * Time.deltaTime, originalPosition.z);
         transform.position = Camera.main.WorldToScreenPoint(originalPosition);

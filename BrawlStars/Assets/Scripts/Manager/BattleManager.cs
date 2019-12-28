@@ -71,7 +71,7 @@ public class BattleManager : MonoBehaviour
 			Item item = GameManager.GetInstance().GetItem(itemForPickUp.itemCode);
 			logView.AddItemGetLog(item.itemName);
 			droppedItemList.Remove(itemForPickUp.gameObject);
-			ObjectPool.GetInstance().AddNewObject(itemForPickUp.gameObject);
+			ObjectPool.GetInstance().PushObject(itemForPickUp.gameObject);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class BattleManager : MonoBehaviour
 	{
 		for(int i = 0; i < droppedItemList.Count; i++)
 		{
-			ObjectPool.GetInstance().AddNewObject(droppedItemList[i]);
+			ObjectPool.GetInstance().PushObject(droppedItemList[i]);
 		}
 		droppedItemList.Clear();
 	}

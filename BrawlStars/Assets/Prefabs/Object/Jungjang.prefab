@@ -69,15 +69,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6969101cfc2724845acc81bfd1f4f8a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 3.2}
+  m_Size: {x: 2.8, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6751649025187402711
@@ -147,25 +147,25 @@ MonoBehaviour:
   status:
     attackDamage: 400
     armor: 10
-    hp: 600
+    hp: 1200
     hpRecovery: 0
     moveSpeed: 0.5
-  SpriteName: INDRA
+  SpriteName: JUNGJANGCHUN_
   standingSpriteIndex:
-    start: 50
-    end: 89
+    start: 75
+    end: 134
   standingSpriteInterval: 0.1
   attackSpriteIndex:
     start: 0
-    end: 39
+    end: 34
   attackSpriteInterval: 0.1
   moveSpriteIndex:
-    start: 90
-    end: 129
+    start: 35
+    end: 74
   moveSpriteInterval: 0.4
   deathSpriteIndex:
-    start: 40
-    end: 49
+    start: 135
+    end: 154
   deathSpriteInterval: 0.1
   atlas: {fileID: 4343727234628468602, guid: 6f71c1284c8d4504b8646dc964191047, type: 2}
   spriteRenderer: {fileID: 6751649024528159897}
@@ -177,7 +177,7 @@ MonoBehaviour:
   skillCodeArray:
   - ShockWave_Monster
   - Cresent_Monster
-  monsterName: Indra
+  monsterName: Jungjang
   sight: 20
   attackReach: 3
 --- !u!136 &6751649025187402710
@@ -190,8 +190,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 5
+  m_Radius: 0.8
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &6751649025187402697
@@ -203,7 +203,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6751649025187402711}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.8
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50

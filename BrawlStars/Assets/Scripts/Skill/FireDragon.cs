@@ -41,7 +41,7 @@ public class FireDragon : Skill
 			yield return null;
         }
 
-        ObjectPool.GetInstance().AddNewObject(gameObject);
+        ObjectPool.GetInstance().PushObject(gameObject);
     }
 
     public override void MakeTargetRangeMesh()
