@@ -63,8 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3D Map Maker\Scripts\ArtificialPosition.cs" />
-    <Compile Include="Assets\3D Map Maker\Scripts\Layer.cs" />
     <Compile Include="Assets\Scripts\Contoller\ControlUI.cs" />
     <Compile Include="Assets\Scripts\Contoller\InputHandler.cs" />
     <Compile Include="Assets\Scripts\Contoller\Joystick.cs" />
