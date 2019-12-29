@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    static Inventory instance = null;
-
     public Image slotPrefab;
     public ItemSlot moveItemTargetSlot;
 
@@ -17,20 +15,18 @@ public class Inventory : MonoBehaviour
     public int verticalPadding;
     public int gap;
 
+    public ItemSlot[] equippedSlot;
+
     public Image itemWindow;
-    public Text itemText;
+    public Text itemNameText;
+    public Text itemTooltipText;
 	public Button reinforceButton;
+    public Button breakButton;
 
     private void Awake()
     {
-        instance = this;
-
 		GameManager.GetInstance().InitInventory(row, column);
-	}
-
-    public static Inventory GetInventory()
-    {
-        return instance;
+        GameManager.GetInstance().InitEquipSlot(equippedSlot.Length);
     }
 
     // Start is called before the first frame update
@@ -53,8 +49,13 @@ public class Inventory : MonoBehaviour
                 slot.rectTransform.anchoredPosition = position;
 
 				ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
-				slotComponent.Init(i * column + j, itemWindow, itemText, reinforceButton);
+				slotComponent.Init(this, i * column + j, itemWindow, itemNameText, itemTooltipText, reinforceButton, breakButton);
             }
+        }
+
+        for(int i = 0; i < equippedSlot.Length; i++)
+        {
+            equippedSlot[i].Init(this, i, itemWindow, itemNameText, itemTooltipText, reinforceButton, breakButton);
         }
 
 		itemWindow.gameObject.SetActive(false);

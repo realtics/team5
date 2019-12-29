@@ -43,7 +43,7 @@ public class FireBird : Skill
 		targets = BattleManager.GetInstance().FindActorsInCircle(transform.position, explosionRadius);
 		for (int j = 0; j < targets.Count; j++)
 			if (targets[j] != null && targets[j].team != owner.team)
-				targets[j].TakeDamage(damage);
+				targets[j].TakeDamage(damage, attackPercentage);
 
 		yield return null;
 		while(animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)

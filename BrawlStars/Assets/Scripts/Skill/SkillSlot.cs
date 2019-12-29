@@ -7,36 +7,38 @@ using UnityEngine.UI;
 public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
 	string skillCode;
+	Skill skill;
 	Image image;
-	public SkillSetter setter;
+	SkillSetter setter;
 
 	public SkillType type;
 	public int skillSlotIndex = -1;
+
+	bool isDragged;
+
+	Image skillWindow;
+	Text skillNameText;
+	Text skillTooltipText;
 
 	void Awake()
 	{
 		image = GetComponent<Image>();
 	}
 
-	void Start()
-    {
-		if(skillSlotIndex >= 0)
-		{
-			SetSkill(GameManager.GetInstance().GetPlayerSkillCode(skillSlotIndex));
-		}
-    }
-
-	public void Init(SkillSetter _setter, string _skillCode)
+	public void Init(SkillSetter _setter, int index, string _skillCode, Image _skillWindow, Text _skillNameText, Text _skillTooltipText)
 	{
 		setter = _setter;
-		skillSlotIndex = -1;
+		skillSlotIndex = index;
 		SetSkill(_skillCode);
+		skillWindow = _skillWindow;
+		skillNameText = _skillNameText;
+		skillTooltipText = _skillTooltipText;
 	}
 
 	void SetSkill(string _skillCode)
 	{
 		skillCode = _skillCode;
-		Skill skill = GameManager.GetInstance().GetSkill(skillCode);
+		skill = GameManager.GetInstance().GetSkill(skillCode);
 		Color color = image.color;
 		if (skill != null)
 		{
@@ -53,26 +55,35 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-
+		isDragged = false;
 	}
 
 	public void OnDrag(PointerEventData eventData)
 	{
+		isDragged = true;
 		RoomManager.GetInstance().DragSkillImage(image.sprite, eventData.position);
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		RoomManager.GetInstance().DragFinish();
-		SkillSlot targetSlot = setter.dragSkillTargetSlot;
-		Skill skill = GameManager.GetInstance().GetSkill(skillCode);
-		if (targetSlot != null && targetSlot.skillSlotIndex >= 0)
+		if (isDragged)
 		{
-			if (targetSlot.type == skill.type)
+			RoomManager.GetInstance().DragFinish();
+			SkillSlot targetSlot = setter.dragSkillTargetSlot;
+			Skill skill = GameManager.GetInstance().GetSkill(skillCode);
+			if (targetSlot != null && targetSlot.skillSlotIndex >= 0)
 			{
-				setter.dragSkillTargetSlot.SetSkill(skillCode);
-				GameManager.GetInstance().SetPlayerSkill(setter.dragSkillTargetSlot.skillSlotIndex, skillCode);
+				if (targetSlot.type == skill.type)
+				{
+					setter.dragSkillTargetSlot.SetSkill(skillCode);
+					GameManager.GetInstance().SetPlayerSkill(setter.dragSkillTargetSlot.skillSlotIndex, skillCode);
+				}
 			}
+		} else
+		{
+			skillWindow.gameObject.SetActive(true);
+			skillNameText.text = skill.skillName;
+			skillTooltipText.text = skill.GetTooltip();
 		}
 	}
 

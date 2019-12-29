@@ -8,17 +8,19 @@ public class SkillIcon : ControlUI
 {
     public SkillJoystick joystick;
     public int skillIndex;
+    Skill skill;
     public Text cooldownText;
     public Character player;
 
     bool onSkillActivate;
 
     Image iconImage;
+    MeshFilter rangeObject;
 
     void Start()
     {
 		onSkillActivate = false;
-	}
+    }
 
 	public void Init(Character player)
 	{
@@ -26,7 +28,7 @@ public class SkillIcon : ControlUI
 
 		if (skillIndex < player.skillCodeArray.Length)
 		{
-			Skill skill = GameManager.GetInstance().GetSkill(player.skillCodeArray[skillIndex]);
+			skill = GameManager.GetInstance().GetSkill(player.skillCodeArray[skillIndex]);
 			if (skill != null)
 			{
 				iconImage = GetComponent<Image>();
@@ -64,13 +66,20 @@ public class SkillIcon : ControlUI
     {
         if (ReadyToAction() && joystick.gameObject.activeSelf == false)
         {
-            joystick.gameObject.SetActive(true);
-            joystick.skillIndex = skillIndex;
-            joystick.PointerDown(position);
+            rangeObject = ObjectPool.GetInstance().GetObject(BattleManager.GetInstance().rangeObject.gameObject).GetComponent<MeshFilter>();
+            rangeObject.mesh = skill.GetTargetRangeMesh();
+            rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
 
-            Color color = iconImage.color;
-            color.a = 0f;
-			iconImage.color = color;
+            if (!skill.isActivatedInPlayerPosition)
+            {
+                joystick.gameObject.SetActive(true);
+                joystick.Init(rangeObject, skillIndex);
+                joystick.PointerDown(position);
+
+                Color color = iconImage.color;
+                color.a = 0f;
+                iconImage.color = color;
+            }
 
 			onSkillActivate = true;
 		}
@@ -88,16 +97,22 @@ public class SkillIcon : ControlUI
     {
         if (onSkillActivate)
         {
-            joystick.PointerUp(position);
-			Cancel();
+            player.AttackProcess(skillIndex, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
+            ObjectPool.GetInstance().PushObject(rangeObject.gameObject);
+            if (joystick.gameObject.activeSelf)
+                joystick.PointerUp(position);
+            Cancel();
 		}
     }
 
 	public override void Cancel()
-	{
-		joystick.Cancel();
+    {
+        if (joystick.gameObject.activeSelf)
+        {
+            joystick.Cancel();
+            joystick.gameObject.SetActive(false);
+        }
 
-		joystick.gameObject.SetActive(false);
 		Color color = iconImage.color;
 		color.a = 1f;
 		iconImage.color = color;

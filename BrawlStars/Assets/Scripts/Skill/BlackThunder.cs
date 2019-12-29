@@ -32,7 +32,7 @@ public class BlackThunder : Skill
 			List<Actor> targets = BattleManager.GetInstance().FindActorsInCircle(effectPosition, radiusPerEffect);
 			for (int j = 0; j < targets.Count; j++)
 				if (targets[j] != null && targets[j].team != owner.team)
-					targets[j].TakeDamage(damage);
+					targets[j].TakeDamage(damage, attackPercentage);
 
 			yield return new WaitForSeconds(damageInterval);
 		}

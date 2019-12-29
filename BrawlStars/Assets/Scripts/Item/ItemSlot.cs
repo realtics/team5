@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
-    public Image icon;
+	Inventory inventory;
+
+	public Image icon;
 	public Text countText;
 
 	public ItemType itemType;
@@ -14,19 +16,23 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     int itemIndex;
     Image itemWindow;
-    Text itemText;
+    Text itemNameText;
+	Text itemTooltipText;
 	Button reinforceButton;
+	Button breakButton;
 
 	public SlotType slotType;
-	public int equippedIndex;
     bool isDragged;
 
-	public void Init(int index, Image window, Text _itemText, Button button)
+	public void Init(Inventory _inventory, int index, Image window, Text _itemNameText, Text _itemTooltipText, Button _reinforceButton, Button _breakButton)
 	{
+		inventory = _inventory;
 		itemIndex = index;
 		itemWindow = window;
-		itemText = _itemText;
-		reinforceButton = button;
+		itemNameText = _itemNameText;
+		itemTooltipText = _itemTooltipText;
+		reinforceButton = _reinforceButton;
+		breakButton = _breakButton;
 		slotType = SlotType.Normal;
 		itemType = ItemType.ETC;
 	}
@@ -41,7 +47,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void Refresh()
     {
 		if (slotType == SlotType.Equip)
-			item = GameManager.GetInstance().GetEquippedItem(equippedIndex);
+			item = GameManager.GetInstance().GetEquippedItem(itemIndex);
 		else
 			item = GameManager.GetInstance().GetItemInInventory(itemIndex);
 
@@ -51,7 +57,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			icon.sprite = item.icon;
 			icon.transform.localScale = new Vector3(1, 1, 1);
 
-			if (item.type == ItemType.ETC)
+			if (item.type == ItemType.POTION || item.type == ItemType.ETC)
 				countText.text = item.ValueToString();
 		} else
 		{
@@ -62,12 +68,12 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Inventory.GetInventory().moveItemTargetSlot = this;
+        inventory.moveItemTargetSlot = this;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Inventory.GetInventory().moveItemTargetSlot = null;
+		inventory.moveItemTargetSlot = null;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -92,15 +98,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 		if (isDragged)
 		{
-			ItemSlot targetSlot = Inventory.GetInventory().moveItemTargetSlot;
+			ItemSlot targetSlot = inventory.moveItemTargetSlot;
 			if (targetSlot != null && targetSlot != this)
 			{
 				if (targetSlot.slotType == SlotType.Normal && slotType == SlotType.Normal)
 					GameManager.GetInstance().SwapSlot(targetSlot.itemIndex, itemIndex);
 				else if (targetSlot.slotType == SlotType.Equip && targetSlot.itemType == item.type)
-					GameManager.GetInstance().EquipItem(targetSlot.equippedIndex, itemIndex);
+					GameManager.GetInstance().EquipItem(targetSlot.itemIndex, itemIndex);
 				else if (slotType == SlotType.Equip && (targetSlot.item == null || itemType == targetSlot.item.type))
-					GameManager.GetInstance().EquipItem(equippedIndex, targetSlot.itemIndex);
+					GameManager.GetInstance().EquipItem(itemIndex, targetSlot.itemIndex);
 
 				targetSlot.Refresh();
 			}
@@ -112,24 +118,46 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		else if (itemWindow != null)
 		{
 			itemWindow.gameObject.SetActive(true);
-			itemText.text = item.GetItemExplanation();
-			if (item.type == ItemType.ETC)
+			SetTooltipText();
+			if (item.type == ItemType.ETC) {
 				reinforceButton.gameObject.SetActive(false);
+				breakButton.gameObject.SetActive(false);
+			}
 			else
 			{
 				reinforceButton.gameObject.SetActive(true);
 				reinforceButton.onClick.RemoveAllListeners();
 				reinforceButton.onClick.AddListener(Reinforce);
+
+				breakButton.gameObject.SetActive(true);
+				breakButton.onClick.RemoveAllListeners();
+				breakButton.onClick.AddListener(Break);
 			}
 		}
     }
 
 	void Reinforce()
 	{
-		if(GameManager.GetInstance().ReinforceSuccess(item.itemCode, itemIndex, out int materialIndex))
+		bool reinforceSuccess = GameManager.GetInstance().Reinforce(item.itemCode, itemIndex);
+		if (reinforceSuccess)
+			SetTooltipText();
+	}
+
+	void Break()
+	{
+		bool breakSuccess = GameManager.GetInstance().Break(itemIndex);
+		if (breakSuccess)
 		{
-			itemText.text = item.GetItemExplanation();
+			if (item == null)
+				itemWindow.gameObject.SetActive(false);
+			else
+				SetTooltipText();
 		}
+	}
+
+	void SetTooltipText()
+	{
+		item.GetItemExplanation(ref itemNameText, ref itemTooltipText);
 	}
 
 	void OnDestroy()

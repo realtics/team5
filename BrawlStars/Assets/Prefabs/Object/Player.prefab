@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4858412950500547585}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
@@ -138,7 +138,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4858412950500547589}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.35
   m_Height: 2
@@ -161,7 +161,7 @@ MonoBehaviour:
     attackDamage: 70
     armor: 30
     hp: 600
-    hpRecovery: 0.8
+    hpRecovery: 0.2
     moveSpeed: 4
   SpriteName: FIRE_DOCHUL_S_
   standingSpriteIndex:
@@ -188,7 +188,8 @@ MonoBehaviour:
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   state: 0
   skillCodeArray:
-  - FireBall
-  - FireBird
-  - LeafCyclone
-  - FireDragon
+  - 
+  - 
+  - 
+  - 
+  - 

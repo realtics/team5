@@ -13,17 +13,61 @@ MonoBehaviour:
   m_Name: DropTable
   m_EditorClassIdentifier: 
   dropList:
-  - monsterName: Indra
+  - monsterName: Jiguk
     itemList:
     - percentage: 10
       itemCode: weapon1
-    - percentage: 0
-      itemCode: weapon2
     - percentage: 10
       itemCode: armor1
     - percentage: 10
       itemCode: accessory1
+  - monsterName: Jungjang
+    itemList:
+    - percentage: 10
+      itemCode: weapon1
+    - percentage: 10
+      itemCode: armor1
+    - percentage: 10
+      itemCode: accessory1
+  - monsterName: Damun
+    itemList:
+    - percentage: 10
+      itemCode: boots1
+    - percentage: 10
+      itemCode: boots2
+    - percentage: 10
+      itemCode: boots3
+    - percentage: 10
+      itemCode: boots4
+  - monsterName: Snowman
+    itemList:
+    - percentage: 10
+      itemCode: weapon2
+    - percentage: 10
+      itemCode: armor2
+    - percentage: 10
+      itemCode: accessory2
     - percentage: 10
       itemCode: sub1
-    - percentage: 50
+    - percentage: 10
+      itemCode: sub2
+  - monsterName: Assassin
+    itemList:
+    - percentage: 20
+      itemCode: potion1
+  - monsterName: Bandit
+    itemList:
+    - percentage: 20
+      itemCode: potion1
+  - monsterName: Beetle
+    itemList:
+    - percentage: 20
+      itemCode: potion1
+  - monsterName: Shaman
+    itemList:
+    - percentage: 20
+      itemCode: potion1
+  - monsterName: Cat
+    itemList:
+    - percentage: 20
       itemCode: potion1

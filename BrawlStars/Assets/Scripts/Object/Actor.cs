@@ -12,6 +12,7 @@ public class Actor : MonoBehaviour
     public Status status;
     protected Status finalStatus;
     protected int currentHp;
+    float hpRecoveryAccumulation;
 
     public string SpriteName;
     public SpriteIndex standingSpriteIndex;
@@ -40,6 +41,7 @@ public class Actor : MonoBehaviour
     public HPBar hpBar;
 
     public State state;
+    bool isMoving;
 
     public string[] skillCodeArray;
     protected float[] lastSkillActionTime;
@@ -111,19 +113,28 @@ public class Actor : MonoBehaviour
             currentSpriteIndex++;
             prevSpriteTime = Time.time;
         }
-    }
 
-    protected virtual void FixedUpdate()
-    {
         if (velocity.sqrMagnitude > 0)
         {
             mRigidbody.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-			mRigidbody.MovePosition(mRigidbody.position + velocity * Time.fixedDeltaTime);
-		}
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + velocity, finalStatus.moveSpeed * Time.deltaTime);
+        }
         else
         {
             mRigidbody.constraints = mRigidbody.constraints | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
         }
+
+        if (currentHp < finalStatus.hp)
+        {
+            hpRecoveryAccumulation += finalStatus.hpRecovery * Time.deltaTime;
+            if (hpRecoveryAccumulation >= 1.0f)
+            {
+                hpRecoveryAccumulation -= 1.0f;
+                SetHp(currentHp + 1);
+            }
+        }
+        else
+            hpRecoveryAccumulation = 0;
 
         if (hpBar != null)
         {
@@ -136,12 +147,16 @@ public class Actor : MonoBehaviour
     public void Move(Vector3 direction)
     {
         if (state == State.Idle)
-            velocity = direction.normalized * status.moveSpeed;
+        {
+            velocity = direction.normalized * finalStatus.moveSpeed;
+            isMoving = true;
+        }
     }
 
     public void Stop()
     {
         velocity = new Vector3(0, 0, 0);
+        isMoving = false;
     }
 
     void SpriteUpdate(SpriteIndex index, bool isLoop, bool isDirectionFixed)
@@ -213,17 +228,21 @@ public class Actor : MonoBehaviour
 		hpBar.SetHp(currentHp);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int baseDamage, int skillPercentage = 100)
     {
         if (state == State.Dead)
             return;
 
-		DamageText damageTextObject = ObjectPool.GetInstance().GetObject(damageText.gameObject).GetComponent<DamageText>();
+        int realDamage = (baseDamage - finalStatus.armor) * skillPercentage / 100;
+        if (realDamage < 0)
+            realDamage = 0;
+
+        DamageText damageTextObject = ObjectPool.GetInstance().GetObject(damageText.gameObject).GetComponent<DamageText>();
 		damageTextObject.transform.position = transform.position;
-        damageTextObject.Init(damage);
+        damageTextObject.Init(realDamage);
         damageTextObject.transform.SetParent(canvas.transform);
 
-        SetHp(currentHp - damage);
+        SetHp(currentHp - realDamage);
 
         if (currentHp > 0)
         {
@@ -244,8 +263,8 @@ public class Actor : MonoBehaviour
         gameObject.SetActive(true);
 
         hpBar.gameObject.SetActive(true);
-        currentHp = status.hp;
-        hpBar.SetMaxHp(status.hp);
+        currentHp = finalStatus.hp;
+        hpBar.SetMaxHp(finalStatus.hp);
         hpBar.SetHp(currentHp);
 
         mCollider.enabled = true;
@@ -255,6 +274,7 @@ public class Actor : MonoBehaviour
         currentSpriteIndex = 0;
 
 		BattleManager.GetInstance().AddActorOnManager(this);
+        isMoving = false;
     }
 
     protected virtual void Death()
@@ -286,8 +306,6 @@ public class Actor : MonoBehaviour
             Stop();
             currentSpriteIndex = 0;
 
-            characterDirectionAngle = Global.ConvertIn2PI(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
-
             StartCoroutine(CastingProcess(index, targetPosition, yRotationEuler));
             lastSkillActionTime[index] = Time.time;
         }
@@ -296,7 +314,10 @@ public class Actor : MonoBehaviour
     IEnumerator CastingProcess(int index, Vector3 targetPosition, float yRotationEuler)
     {
 		Skill skill = GameManager.GetInstance().GetSkill(skillCodeArray[index]);
-		if (skill.rangeMaterial != null)
+        if(!skill.isActivatedInPlayerPosition)
+            characterDirectionAngle = Global.ConvertIn2PI(yRotationEuler * Mathf.Deg2Rad, -Mathf.PI);
+
+        if (skill.rangeMaterial != null)
 		{
 			rangeObject = ObjectPool.GetInstance().GetObject(BattleManager.GetInstance().monsterRange.gameObject);
 			rangeObject.transform.position = targetPosition;
@@ -304,6 +325,8 @@ public class Actor : MonoBehaviour
 			MeshFilter meshFilter = rangeObject.GetComponent<MeshFilter>();
 			meshFilter.mesh = skill.GetTargetRangeMesh();
 		}
+
+        attackSpriteInterval = (skill.castingDelay + skill.recoveryTime) / attackSpriteIndex.GetLength() * spriteDirectionCount;
         yield return new WaitForSeconds(skill.castingDelay);
 
 		if (rangeObject != null) 
@@ -329,4 +352,14 @@ public class Actor : MonoBehaviour
 	{
 		return mCollider.radius;
 	}
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag != "Item" && isMoving)
+        {
+            Vector3 toTargetVector = other.transform.position - transform.position;
+            toTargetVector.y = transform.position.y;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position - toTargetVector, finalStatus.moveSpeed * Time.deltaTime);
+        }
+    }
 }

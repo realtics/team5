@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class SkillJoystick : Joystick
 {
-    public int skillIndex;
+    int skillIndex;
     MeshFilter rangeObject;
 
     Skill skill;
@@ -16,13 +16,16 @@ public class SkillJoystick : Joystick
         gameObject.SetActive(false);
     }
 
+    public void Init(MeshFilter _rangeObject, int _skillIndex)
+    {
+        rangeObject = _rangeObject;
+        skillIndex = _skillIndex;
+    }
+
     public override void PointerDown(Vector2 position)
     {
         base.PointerDown(position);
         skill = GameManager.GetInstance().GetSkill(player.skillCodeArray[skillIndex]);
-		rangeObject = ObjectPool.GetInstance().GetObject(BattleManager.GetInstance().rangeObject.gameObject).GetComponent<MeshFilter>();
-        rangeObject.mesh = skill.GetTargetRangeMesh();
-        rangeObject.transform.position = new Vector3(player.transform.position.x, 0.1f, player.transform.position.z);
     }
 
     public override void Drag(Vector2 position)
@@ -38,9 +41,6 @@ public class SkillJoystick : Joystick
     public override void PointerUp(Vector2 position)
     {
         base.PointerUp(position);
-		ObjectPool.GetInstance().PushObject(rangeObject.gameObject);
-
-        player.AttackProcess(skillIndex, rangeObject.transform.position, rangeObject.transform.rotation.eulerAngles.y);
     }
 
 	public override void Cancel()

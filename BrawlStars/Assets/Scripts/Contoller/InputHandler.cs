@@ -19,7 +19,7 @@ public struct ClickedObject
 public class InputHandler : MonoBehaviour
 { 
 	GraphicRaycaster raycast;
-	public ControlUI[] controlUIobjects;
+	public ControlUI[] controlUiObjects;
 
 	PointerEventData[] eventDataArray;
 	public int maxMultiTouchCount;
@@ -136,12 +136,12 @@ public class InputHandler : MonoBehaviour
 	{
 		for (int i = 0; i < onRaycastObjects.Count; i++)
 		{
-			for (int j = 0; j < controlUIobjects.Length; j++)
+			for (int j = 0; j < controlUiObjects.Length; j++)
 			{
-				if (controlUIobjects[j] != null && onRaycastObjects[i].gameObject == controlUIobjects[j].gameObject)
+				if (controlUiObjects[j] != null && onRaycastObjects[i].gameObject == controlUiObjects[j].gameObject)
 				{
-					controlUIobjects[j].PointerDown(position);
-					clickedObjectList.Add(new ClickedObject(eventIndex, controlUIobjects[j]));
+					controlUiObjects[j].PointerDown(position);
+					clickedObjectList.Add(new ClickedObject(eventIndex, controlUiObjects[j]));
 				}
 			}
 		}

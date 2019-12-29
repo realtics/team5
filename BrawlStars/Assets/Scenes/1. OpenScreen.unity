@@ -622,7 +622,19 @@ MonoBehaviour:
   - {fileID: -989231443152205155, guid: 53cb253422d1fd941b0174072877b328, type: 3}
   - {fileID: 6512546390492998812, guid: 5765876c7cf6fdb4a924139f4cd9a835, type: 3}
   - {fileID: -3261230489283482389, guid: b2be28d6ab5d8f74ea35947acfd570a3, type: 3}
+  - {fileID: 6512546390492998812, guid: 944aea92bdcb18a468bf89491343e931, type: 3}
+  - {fileID: 3916294330767920508, guid: 8c4581ca3ad268c4fa627ad0ee28becc, type: 3}
+  - {fileID: -989231443152205155, guid: c3729eda1d3b5e54db357b4a11af3928, type: 3}
   stageIndex: 0
+  reinforceMaterial:
+  - type: 0
+    materialCode: weaponReinforce
+  - type: 1
+    materialCode: armorReinforce
+  - type: 2
+    materialCode: accessoryReinforce
+  - type: 3
+    materialCode: subReinforce
 --- !u!4 &2122110616
 Transform:
   m_ObjectHideFlags: 0

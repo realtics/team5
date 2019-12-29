@@ -56,7 +56,12 @@ MonoBehaviour:
   damageCount: 1
   damageInterval: 1.4
   cooldown: 3
+  tooltip: "\uC8FC\uBCC0 \uC6D0\uD615 \uBC94\uC704\uC5D0 [[DAMAGE]]\uC758 \uB370\uBBF8\uC9C0\uB97C
+    \uC900\uB2E4."
+  isActivatedInPlayerPosition: 1
+  rangeMaterial: {fileID: 0}
   radius: 4
+  traceOwner: 0
 --- !u!95 &1632022245160118215
 Animator:
   serializedVersion: 3

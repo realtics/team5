@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Monster
-  - Portal
-  - StartingPoint
+  - Actor
   - Item
-  - Obstacle
   - Button
+  - Obstacle
+  - Monster
   layers:
   - Default
   - TransparentFX

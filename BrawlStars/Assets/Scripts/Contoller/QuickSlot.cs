@@ -77,7 +77,13 @@ public class QuickSlot : ControlUI
 			item.Activate(player);
 			lastUseTime = Time.time;
 			if (item.IsDeleted())
+			{
 				item = null;
+
+				Color color = icon.color;
+				color.a = 0;
+				icon.color = color;
+			}
 			else
 				countText.text = item.ValueToString();
 		}

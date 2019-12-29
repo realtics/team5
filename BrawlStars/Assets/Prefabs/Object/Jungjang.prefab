@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6751649025187402697}
   m_Layer: 0
   m_Name: Jungjang
-  m_TagString: Monster
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   status:
     attackDamage: 400
     armor: 10
-    hp: 1200
+    hp: 6000
     hpRecovery: 0
     moveSpeed: 0.5
   SpriteName: JUNGJANGCHUN_

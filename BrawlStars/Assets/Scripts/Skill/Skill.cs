@@ -26,6 +26,8 @@ public abstract class Skill : MonoBehaviour
 
     protected Status status;
 
+    public string tooltip;
+    public bool isActivatedInPlayerPosition;
 	public Material rangeMaterial;
 
     public void StartSkill(Actor user, Vector3 position, float yRotationEuler)
@@ -47,11 +49,22 @@ public abstract class Skill : MonoBehaviour
         transform.position = position;
         owner = user;
         status = user.GetFinalStatus();
-        damage = attackPercentage * status.attackDamage / 100;
+        damage = status.attackDamage;
     }
 
     public Mesh GetTargetRangeMesh()
     {
         return rangeMesh;
+    }
+
+    public string GetTooltip()
+    {
+        string result = tooltip;
+        result = result.Replace("[[DAMAGE]]", attackPercentage.ToString() + "%");
+        result = result.Replace("[[COUNT]]", damageCount.ToString());
+        result = result.Replace("[[INTERVAL]]", damageInterval.ToString());
+        result = result.Replace("[[TIME]]", (damageInterval * damageCount).ToString());
+        result = result.Replace("\\n", "\n");
+        return result;
     }
 }

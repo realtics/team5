@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6751649025187402697}
   m_Layer: 0
   m_Name: Karia
-  m_TagString: Monster
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,9 +147,9 @@ MonoBehaviour:
   status:
     attackDamage: 1200
     armor: 10
-    hp: 6000
+    hp: 60000
     hpRecovery: 0
-    moveSpeed: 0.5
+    moveSpeed: 1
   SpriteName: KARIA
   standingSpriteIndex:
     start: 100
@@ -177,6 +177,7 @@ MonoBehaviour:
   skillCodeArray:
   - ShockWave_Monster
   - Cresent_Monster
+  - BlackThunder_Monster
   monsterName: Karia
   sight: 20
   attackReach: 3

@@ -259,7 +259,7 @@ public class MapSpawner : MonoBehaviour
 		{
 			for (int x = 0; x < mapX; x++)
 			{
-				GameObject newObstacle;
+				GameObject newObstacle = null;
 				if (obstacleMap[y, x] >= monsterIndex)
 				{
 					MonsterSpawner spawner = Instantiate(spawnerPrefab);
@@ -274,17 +274,20 @@ public class MapSpawner : MonoBehaviour
 					portalList.Add(portal); 
 					newObstacle = portal.gameObject;
 				}
-				else
+				else if(obstacleMap[y, x] > 0)
 				{
 					newObstacle = Instantiate(obstaclePrefabs[obstacleMap[y, x]]);
 					if(obstacleMap[y, x] == startingPointIndex)
 						currentMap.startingPoint = newObstacle;
 				}
 
-				newObstacle.gameObject.transform.parent = mapHolder;
-				Vector3 obstaclePosition = CoordToPosition(y, x);
-				obstaclePosition.y = newObstacle.transform.localScale.y * 0.5f;
-				newObstacle.transform.position = obstaclePosition;
+				if (newObstacle != null)
+				{
+					newObstacle.gameObject.transform.parent = mapHolder;
+					Vector3 obstaclePosition = CoordToPosition(y, x);
+					obstaclePosition.y = newObstacle.transform.localScale.y * 0.5f;
+					newObstacle.transform.position = obstaclePosition;
+				}
 			}
 		}
 

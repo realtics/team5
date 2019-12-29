@@ -79,6 +79,11 @@ public struct SpriteIndex
 {
     public int start;
     public int end;
+
+    public int GetLength()
+    {
+        return end - start + 1;
+    }
 }
 
 [System.Serializable]
@@ -94,13 +99,13 @@ public enum State
 
 public enum ItemType
 {
-	WEAPON, ARMOR, ACCESSORY, SUB, ETC
+	WEAPON, ARMOR, ACCESSORY, SUB, POTION, ETC
 }
 
 [System.Serializable]
 public enum SkillType
 {
-	Passive, Active, Ultimate, Monster
+	Basic, Active, Ultimate, Monster
 }
 
 [System.Serializable]
@@ -115,4 +120,11 @@ public struct SkillListElement
 public enum SlotType
 {
 	Normal, Equip
+}
+
+[System.Serializable]
+public struct ReinforceMaterial
+{
+    public ItemType type;
+    public string materialCode;
 }

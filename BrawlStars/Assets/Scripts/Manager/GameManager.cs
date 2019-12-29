@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 	public int stageIndex;
 	public Action RefreshSlots;
 
+	public ReinforceMaterial[] reinforceMaterial;
+	Dictionary<ItemType, string> reinforceTable;
+
 	private void Awake()
 	{
 		DontDestroyOnLoad(this);
@@ -64,6 +67,12 @@ public class GameManager : MonoBehaviour
 		{
 			string skillCode = PlayerPrefs.GetString("Skill" + i, "");
 			player.skillCodeArray[i] = skillCode;
+		}
+
+		reinforceTable = new Dictionary<ItemType, string>();
+		for(int i = 0; i < reinforceMaterial.Length; i++)
+		{
+			reinforceTable.Add(reinforceMaterial[i].type, reinforceMaterial[i].materialCode);
 		}
 	}
 
@@ -134,12 +143,11 @@ public class GameManager : MonoBehaviour
 				Item newItem = itemDataBase[InventorySlotArray[possibleSlotIndex]];
 				newItem.AddOneCount();
 			}
+
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	public void AddNewItem(string itemCode, int slotIndex)
@@ -200,7 +208,7 @@ public class GameManager : MonoBehaviour
 			else
 			{
 				Item itemInSlot = itemDataBase[InventorySlotArray[sameItemSlotIndex]];
-				if (itemInSlot.type == ItemType.ETC && itemInSlot.itemCode == itemCode)
+				if ((itemInSlot.type == ItemType.ETC || itemInSlot.type == ItemType.POTION) && itemInSlot.itemCode == itemCode)
 					return sameItemSlotIndex;
 			}
 		}
@@ -215,26 +223,47 @@ public class GameManager : MonoBehaviour
 			return null;
 	}
 
-	public bool ReinforceSuccess(string itemCode, int index, out int materialIndex)
+	public bool Reinforce(string itemCode, int index)
 	{
-		for (materialIndex = 0; materialIndex < InventorySlotArray.Length; materialIndex++)
+		for (int materialIndex = 0; materialIndex < InventorySlotArray.Length; materialIndex++)
 		{
 			int materialKey = InventorySlotArray[materialIndex];
 			int originalKey = InventorySlotArray[index];
 
 			bool equipable = itemDataBase[originalKey].type != ItemType.ETC;
-			bool isHaveMaterial = itemDataBase.ContainsKey(materialKey) && itemDataBase[materialKey].itemCode == itemCode;
-			if (equipable && materialIndex != index && isHaveMaterial)
+			bool isEqualItem = itemDataBase.ContainsKey(materialKey) && itemDataBase[materialKey].itemCode == itemCode;
+			bool isMaterial = itemDataBase.ContainsKey(materialKey) && itemDataBase[materialKey].itemCode == reinforceTable[itemDataBase[originalKey].type];
+			if (equipable && materialIndex != index && (isEqualItem || isMaterial))
 			{
-				itemDataBase[originalKey].Reinforce(itemDataBase[materialKey]);
 
-				InventorySlotArray[materialIndex] = -1;
-				SetSlot(materialIndex, -1);
-				RemoveItem(materialKey);
+				if (isEqualItem)
+				{
+					for (int i = 0; i < itemDataBase[materialKey].GetReinforceValue(); i++)
+						itemDataBase[originalKey].AddOneCount();
+					RemoveItem(materialKey);
+				}
+				else if (isMaterial)
+				{
+					itemDataBase[originalKey].AddOneCount();
+					itemDataBase[materialKey].SubtractOneCount();
+				}
 
 				RefreshSlots();
 				return true;
 			}
+		}
+		return false;
+	}
+
+	public bool Break(int index)
+	{
+		int key = InventorySlotArray[index];
+		bool result = AddNewItemInInventory(reinforceTable[itemDataBase[key].type]);
+		if(result)
+		{
+			itemDataBase[key].SubtractOneCount();
+			RefreshSlots();
+			return true;
 		}
 		return false;
 	}

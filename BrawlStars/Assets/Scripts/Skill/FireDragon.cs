@@ -33,7 +33,7 @@ public class FireDragon : Skill
 			for (int j = 0; j < targets.Count; j++)
 				if (!damagedTargetList.Contains(targets[j]) && targets[j].team != owner.team)
 				{
-					targets[j].TakeDamage(damage);
+					targets[j].TakeDamage(damage, attackPercentage);
 					damagedTargetList.Add(targets[j]);
 				}
 

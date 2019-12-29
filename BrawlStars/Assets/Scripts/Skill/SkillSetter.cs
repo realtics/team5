@@ -1,13 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillSetter : MonoBehaviour
 {
 	public SkillSlot slotPrefab;
 	public SkillListElement[] skillList;
+	public SkillSlot[] playerSkillSlots;
 	[HideInInspector]
 	public SkillSlot dragSkillTargetSlot;
+
+	public Image skillWindow;
+	public Text skillNameText;
+	public Text skillTooltipText;
 
 	private void Awake()
 	{
@@ -20,12 +26,19 @@ public class SkillSetter : MonoBehaviour
 
 	void Start()
 	{
+		skillWindow.gameObject.SetActive(false);
+
+		for(int i = 0; i< playerSkillSlots.Length; i++)
+		{
+			playerSkillSlots[i].Init(this, i, GameManager.GetInstance().GetPlayerSkillCode(i), skillWindow, skillNameText, skillTooltipText);
+		}
+
 		Skill[] skillArray = GameManager.GetInstance().GetSkillArray();
 		for (int i = 0; i < skillArray.Length; i++)
 		{
 			Skill skill = GameManager.GetInstance().GetSkill(skillArray[i].skillCode);
 			SkillSlot newSlot = Instantiate(slotPrefab);
-			newSlot.Init(this, skillArray[i].skillCode);
+			newSlot.Init(this, -1, skillArray[i].skillCode, skillWindow, skillNameText, skillTooltipText);
 
 			for (int j = 0; j < skillList.Length; j++)
 			{

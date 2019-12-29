@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6751649025187402697}
   m_Layer: 0
   m_Name: Bandit
-  m_TagString: Monster
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   status:
     attackDamage: 50
     armor: 10
-    hp: 100
+    hp: 600
     hpRecovery: 0
     moveSpeed: 0.5
   SpriteName: Bandit
@@ -175,7 +175,6 @@ MonoBehaviour:
   hpBar: {fileID: -35656122466655087, guid: 4d293834e0aa33f45bfc69294327a0dc, type: 3}
   state: 0
   skillCodeArray:
-  - ShockWave_Monster
   - Cresent_Monster
   monsterName: Bandit
   sight: 20

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &923743176299164839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9119778691467509924}
+  - component: {fileID: 6512546390492998812}
+  m_Layer: 0
+  m_Name: BlackThunder_Monster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9119778691467509924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923743176299164839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1952403, y: 0.2, z: -0.017113669}
+  m_LocalScale: {x: 1.2, y: 2.4, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6512546390492998812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923743176299164839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df397b6f600e18d41a6ea22ebb150bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillCode: BlackThunder_Monster
+  skillName: "\uC5B4\uB460\uC758 \uBC88\uAC1C"
+  icon: {fileID: 21300000, guid: 3afdbed2fc680b94d9c096f861043979, type: 3}
+  type: 3
+  castingDelay: 1.5
+  startupTime: 0.2
+  recoveryTime: 1.5
+  attackPercentage: 25
+  damageCount: 20
+  damageInterval: 0.2
+  cooldown: 15
+  tooltip: 
+  isActivatedInPlayerPosition: 0
+  rangeMaterial: {fileID: 2100000, guid: d1b5363a3728e864fa965006855dbf3e, type: 2}
+  reach: 7
+  radius: 3
+  radiusPerEffect: 1
+  effect: {fileID: 2046875378689174803, guid: d9bd18246ec96674ab13d51d42678c05, type: 3}

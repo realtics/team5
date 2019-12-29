@@ -29,7 +29,7 @@ MonoBehaviour:
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: 
+    tooltip: 
     cooldown: 0
     hpRecovery: 0
   - itemCode: weapon2
@@ -48,31 +48,31 @@ MonoBehaviour:
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: 
+    tooltip: 
     cooldown: 0
     hpRecovery: 0
-  - itemCode: armor1
+  - itemCode: armor2
     itemName: "\uC815\uB839\uC758 \uAC11\uC8FC"
-    icon: {fileID: 21300000, guid: b241a7117c8698a4bb2492f62bd047fc, type: 3}
+    icon: {fileID: 21300000, guid: 1df0d3402a2bb8a4e9d5c5817768ab19, type: 3}
     type: 1
     status:
       attackDamage: 0
-      armor: 10
+      armor: 25
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
     statusPerReinforce:
       attackDamage: 0
-      armor: 1
+      armor: 2
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: 
+    tooltip: 
     cooldown: 0
     hpRecovery: 0
   - itemCode: accessory1
-    itemName: "\uC601\uC6D0\uC758 \uBC18\uC9C0"
-    icon: {fileID: 21300000, guid: 41d9055e43d7da442847694884a7d1b5, type: 3}
+    itemName: "\uBD09\uC778\uB41C \uBCF4\uD654"
+    icon: {fileID: 21300000, guid: 2fe37aa4594493c489d104e22a43e54d, type: 3}
     type: 2
     status:
       attackDamage: 0
@@ -86,26 +86,26 @@ MonoBehaviour:
       hp: 10
       hpRecovery: 0
       moveSpeed: 0
-    etc: 
+    tooltip: 
     cooldown: 0
     hpRecovery: 0
   - itemCode: sub1
-    itemName: "\uAE08\uC9C0\uB41C \uB9C8\uB3C4\uC11C"
-    icon: {fileID: 21300000, guid: bed65e86a691eca4b9ef656c35793023, type: 3}
+    itemName: "\uC2E0\uC131\uD55C \uACE0\uC11C"
+    icon: {fileID: 21300000, guid: 1e29b7d31a29f014a812fe7746b2c448, type: 3}
     type: 3
     status:
-      attackDamage: 7
-      armor: 3
-      hp: 35
+      attackDamage: 0
+      armor: 10
+      hp: 150
       hpRecovery: 0.8
-      moveSpeed: 10
+      moveSpeed: 0
     statusPerReinforce:
-      attackDamage: 1
-      armor: 0
-      hp: 3
+      attackDamage: 0
+      armor: 1
+      hp: 7
       hpRecovery: 0.1
       moveSpeed: 0
-    etc: 
+    tooltip: 
     cooldown: 0
     hpRecovery: 0
   - itemCode: potion1
@@ -124,12 +124,206 @@ MonoBehaviour:
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
+    tooltip: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
     cooldown: 10
-    hpRecovery: 50
-  - itemCode: reinforce
+    hpRecovery: 0
+  - itemCode: weaponReinforce
     itemName: "\uAC15\uD654\uC81C"
-    icon: {fileID: 21300000, guid: 8c2ea1efd688a1a44aef421ccb853052, type: 3}
+    icon: {fileID: 21300000, guid: c1f694ba6eafcf240ae2889a56b59fe0, type: 3}
+    type: 5
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uBB34\uAE30\uB97C \uAC15\uD654\uD558\uB294 \uC7AC\uB8CC.\\n\uBB34\uAE30\uC758
+      \uAC15\uD654 \uC218\uCE58\uB97C 1 \uC62C\uB9B4 \uC218 \uC788\uB2E4."
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: armorReinforce
+    itemName: "\uAC15\uD654\uC81C"
+    icon: {fileID: 21300000, guid: e12b381b0358cd54098a44296e740811, type: 3}
+    type: 5
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uBC29\uC5B4\uAD6C\uB97C \uAC15\uD654\uD558\uB294 \uC7AC\uB8CC.\\n\uBC29\uC5B4\uAD6C\uC758
+      \uAC15\uD654 \uC218\uCE58\uB97C 1 \uC62C\uB9B4 \uC218 \uC788\uB2E4."
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: accessoryReinforce
+    itemName: "\uAC15\uD654\uC81C"
+    icon: {fileID: 21300000, guid: 09e331a503581984c948a402882fbd73, type: 3}
+    type: 5
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uC545\uC138\uC11C\uB9AC\uB97C \uAC15\uD654\uD558\uB294 \uC7AC\uB8CC.\\n\uC545\uC138\uC11C\uB9AC\uC758
+      \uAC15\uD654 \uC218\uCE58\uB97C 1 \uC62C\uB9B4 \uC218 \uC788\uB2E4."
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: subReinforce
+    itemName: "\uAC15\uD654\uC81C"
+    icon: {fileID: 21300000, guid: ae987dd3a437e3044bc73398df17fcab, type: 3}
+    type: 5
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uBCF4\uC870\uC7A5\uBE44\uB97C \uAC15\uD654\uD558\uB294 \uC7AC\uB8CC.\\n\uBCF4\uC870\uC7A5\uC758
+      \uAC15\uD654 \uC218\uCE58\uB97C 1 \uC62C\uB9B4 \uC218 \uC788\uB2E4."
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: boots1
+    itemName: "\uC0AC\uC2B4\uAC00\uC8FD \uC2E0\uBC1C"
+    icon: {fileID: 21300000, guid: 3dbaa5e11be91714584d6141365b3201, type: 3}
+    type: 3
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 1.2
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0.1
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: boots2
+    itemName: "\uBC14\uB78C\uC2E0\uC758 \uC2E0\uBC1C"
+    icon: {fileID: 21300000, guid: 822667fd7018f05449cd49c460002947, type: 3}
+    type: 3
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 1.6
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0.12
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: boots3
+    itemName: "\uBC88\uAC1C\uC2E0\uC758 \uC2E0\uBC1C"
+    icon: {fileID: 21300000, guid: b11f86c5fa1d6bc418b1f81e1a07872c, type: 3}
+    type: 3
+    status:
+      attackDamage: 10
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 1.2
+    statusPerReinforce:
+      attackDamage: 1
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0.1
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: boots4
+    itemName: "\uB300\uC9C0\uC2E0\uC758 \uC2E0\uBC1C"
+    icon: {fileID: 21300000, guid: 36e039f42bfa48948b90c3407ca17691, type: 3}
+    type: 3
+    status:
+      attackDamage: 0
+      armor: 7
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 1.2
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 1
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0.1
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: armor1
+    itemName: "\uCC9C\uAC11\uC637"
+    icon: {fileID: 21300000, guid: b241a7117c8698a4bb2492f62bd047fc, type: 3}
+    type: 1
+    status:
+      attackDamage: 0
+      armor: 10
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 1
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: accessory2
+    itemName: "\uD574\uBC29\uB41C \uBCF4\uD654"
+    icon: {fileID: 21300000, guid: 36e74122be12dfa4292da5c803f8207c, type: 3}
+    type: 2
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 300
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 20
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: 
+    cooldown: 0
+    hpRecovery: 0
+  - itemCode: potion2
+    itemName: "\uACE0\uAE09 \uCCB4\uB825 \uD3EC\uC158"
+    icon: {fileID: 21300000, guid: cadcd0828c1c31042aefe693f744ff7c, type: 3}
     type: 4
     status:
       attackDamage: 0
@@ -143,6 +337,44 @@ MonoBehaviour:
       hp: 0
       hpRecovery: 0
       moveSpeed: 0
-    etc: "\uCCB4\uB825 50 \uD68C\uBCF5"
+    tooltip: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
     cooldown: 0
-    hpRecovery: 0
+    hpRecovery: 150
+  - itemCode: potion3
+    itemName: "\uCD5C\uC0C1\uAE09 \uCCB4\uB825 \uD3EC\uC158"
+    icon: {fileID: 21300000, guid: f0016dc532bf64a4fa6a64335f15a42a, type: 3}
+    type: 4
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
+    cooldown: 0
+    hpRecovery: 250
+  - itemCode: potion4
+    itemName: "\uC804\uC124\uC758 \uCCB4\uB825 \uD3EC\uC158"
+    icon: {fileID: 21300000, guid: 722ff06af91292241afe0f8159abbe92, type: 3}
+    type: 4
+    status:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    statusPerReinforce:
+      attackDamage: 0
+      armor: 0
+      hp: 0
+      hpRecovery: 0
+      moveSpeed: 0
+    tooltip: "\uCCB4\uB825 [[HP]] \uD68C\uBCF5"
+    cooldown: 0
+    hpRecovery: 400

@@ -47,7 +47,6 @@ public class Monster : Actor
     void ChasePlayerCharacter()
     {
         Character target = BattleManager.GetInstance().player;
-        float minSqrDistance = sight * sight;
 
         if (target == null || target.state == State.Dead)
         {
@@ -57,7 +56,7 @@ public class Monster : Actor
 
         Vector3 moveVector = target.transform.position - transform.position;
 
-        if (minSqrDistance > Mathf.Pow(mCollider.radius + attackReach, 2))
+        if (moveVector.sqrMagnitude > Mathf.Pow(mCollider.radius + attackReach, 2))
         {
             NavMeshPath path = new NavMeshPath();
             pathFinder.CalculatePath(target.transform.position, path);

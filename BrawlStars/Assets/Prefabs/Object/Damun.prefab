@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6751649025187402697}
   m_Layer: 0
   m_Name: Damun
-  m_TagString: Monster
+  m_TagString: Actor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   status:
     attackDamage: 600
     armor: 10
-    hp: 1800
+    hp: 9000
     hpRecovery: 0
     moveSpeed: 0.5
   SpriteName: DAMUNCHUN
@@ -177,7 +177,7 @@ MonoBehaviour:
   skillCodeArray:
   - ShockWave_Monster
   - Cresent_Monster
-  monsterName: Indra
+  monsterName: Damun
   sight: 20
   attackReach: 3
 --- !u!136 &6751649025187402710

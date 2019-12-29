@@ -14,15 +14,18 @@ public class Fireball : Skill
 		transform.rotation = Quaternion.Euler(0f, yRotationEuler, 0f);
 		Vector3 normalVector = transform.rotation * new Vector3(1, 0, 0);
 
-		if(fireballList == null)
-			fireballList = new GameObject[(int)reach];
+        if (fireballObject != null)
+        {
+            if (fireballList == null)
+                fireballList = new GameObject[(int)reach];
 
-		for (int i = 1; i <= fireballList.Length; i++)
-		{
-			GameObject effect = ObjectPool.GetInstance().GetObject(fireballObject);
-			effect.transform.position = transform.position + normalVector * i;
-			fireballList[i-1] = effect;
-		}
+            for (int i = 1; i <= fireballList.Length; i++)
+            {
+                GameObject effect = ObjectPool.GetInstance().GetObject(fireballObject);
+                effect.transform.position = transform.position + normalVector * i;
+                fireballList[i - 1] = effect;
+            }
+        }
 
 		transform.position += normalVector * reach / 2;
 
@@ -41,12 +44,12 @@ public class Fireball : Skill
 			List<Actor> targets = BattleManager.GetInstance().FindActorsInRectangle(transform.position, halfExtents, rotation);
             for (int j = 0; j < targets.Count; j++)
                 if (targets[j] != null && targets[j].team != owner.team)
-                    targets[j].TakeDamage(damage);
+                    targets[j].TakeDamage(damage, attackPercentage);
 
             yield return new WaitForSeconds(damageInterval);
         }
 
-        for (int i = 0; i < fireballList.Length; i++)
+        for (int i = 0; fireballList != null && i < fireballList.Length; i++)
 		{
 			ObjectPool.GetInstance().PushObject(fireballList[i]);
 		}

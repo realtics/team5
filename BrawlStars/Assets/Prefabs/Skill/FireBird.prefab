@@ -56,6 +56,11 @@ MonoBehaviour:
   damageCount: 1
   damageInterval: 0
   cooldown: 1
+  tooltip: "\uBD88\uC0C8\uB97C \uC18C\uD658\uD558\uC5EC \uC804\uBC29\uC73C\uB85C \uBC1C\uC0AC\uD55C\uB2E4.
+    \uBD88\uC0C8\uB294 \uC801\uACFC \uC811\uCD09\uD558\uBA74 \uD3ED\uBC1C\uD558\uC5EC
+    \uBC94\uC704 \uB0B4\uC5D0 [[DAMAGE]]\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+  isActivatedInPlayerPosition: 0
+  rangeMaterial: {fileID: 0}
   reach: 10
   width: 0.7
   explosionRadius: 1

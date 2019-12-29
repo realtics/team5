@@ -56,6 +56,10 @@ MonoBehaviour:
   damageCount: 1
   damageInterval: 0
   cooldown: 1
+  tooltip: "\uAC80\uAE30\uB97C \uBC1C\uC0AC\uD558\uC5EC \uC801\uC911\uD55C \uC801\uC5D0\uAC8C
+    [[DAMAGE]]\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+  isActivatedInPlayerPosition: 0
+  rangeMaterial: {fileID: 0}
   reach: 6
   width: 0.8
   speed: 8

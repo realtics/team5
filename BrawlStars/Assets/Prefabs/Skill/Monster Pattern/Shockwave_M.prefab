@@ -49,13 +49,14 @@ MonoBehaviour:
   skillName: "\uCDA9\uACA9 \uD30C\uB3D9"
   icon: {fileID: 0}
   type: 3
-  castingDelay: 1
+  castingDelay: 1.5
   startupTime: 0.2
-  recoveryTime: 0
-  attackPercentage: 50
+  recoveryTime: 1
+  attackPercentage: 200
   damageCount: 1
   damageInterval: 1.4
-  cooldown: 3
+  cooldown: 10
+  isActivatedInPlayerPosition: 1
   rangeMaterial: {fileID: 2100000, guid: d1b5363a3728e864fa965006855dbf3e, type: 2}
   radius: 4
   traceOwner: 0

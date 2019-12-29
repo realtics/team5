@@ -51,11 +51,12 @@ MonoBehaviour:
   type: 3
   castingDelay: 1
   startupTime: 0
-  recoveryTime: 0.1
+  recoveryTime: 0.5
   attackPercentage: 100
   damageCount: 1
   damageInterval: 0
-  cooldown: 1
+  cooldown: 3
+  isActivatedInPlayerPosition: 0
   rangeMaterial: {fileID: 2100000, guid: d1b5363a3728e864fa965006855dbf3e, type: 2}
   reach: 6
   width: 0.8
