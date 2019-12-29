@@ -182,7 +182,12 @@ public class MapSpawner : MonoBehaviour
 
 	public void TakeStage()
 	{
-		string folderName = @"Assets\StageMaps\";
+#if UNITY_EDITOR
+		string folderName = @"Assets/StreamingAssets/StageMaps/";
+#elif UNITY_ANDROID
+		string folderName = "jar:file://" + Application.dataPath + "!/assets/StageMaps/";
+#endif
+		BattleManager.GetInstance().logView.AddItemGetLog(folderName);
 		string[] fileName;
 
 		fileName = Directory.GetFiles(folderName, stageIndex + "-" + "*.txt");
