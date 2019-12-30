@@ -169,7 +169,6 @@ public class Actor : MonoBehaviour
             currentSpriteIndex = 0;
 
         int spriteIndex = index.start + GetDirectionIndex() * spriteLength + currentSpriteIndex;
-        Debug.Log("name = " + SpriteName + " index = " + spriteIndex + " length = " + sprites.Count);
         spriteRenderer.sprite = sprites[spriteIndex];
     }
 
