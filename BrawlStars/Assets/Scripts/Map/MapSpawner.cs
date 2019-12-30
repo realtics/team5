@@ -26,7 +26,7 @@ public class MapSpawner : MonoBehaviour
 	float mapX;
 	float mapY;
 	int[,] obstacleMap;
-	public GameObject[] NowMap;
+	List<GameObject> NowMap;
 	List<Coord> allTileCoords;
 	int tileSize = 1;
 
@@ -49,6 +49,7 @@ public class MapSpawner : MonoBehaviour
 	void Start()
     {
 		resultUI.SetActive(false);
+		NowMap = new List<GameObject>();
 	}
 
     public void Init(Character player)
@@ -98,12 +99,12 @@ public class MapSpawner : MonoBehaviour
 		BattleManager.GetInstance().ClearAllItem();
 		StopAllCoroutines();
 
-        for (int i = 0; i < NowMap.Length; i++)
+        for (int i = 0; i < NowMap.Count; i++)
         {
             NowMap[i].SetActive(false);
         }
 
-        if (index < NowMap.Length)
+        if (index < NowMap.Count)
         {
             resultUI.SetActive(false);
 
@@ -182,43 +183,38 @@ public class MapSpawner : MonoBehaviour
 
 	public void TakeStage()
 	{
-#if UNITY_EDITOR
-		string folderName = @"Assets/StreamingAssets/StageMaps/";
-#elif UNITY_ANDROID
-		string folderName = "jar:file://" + Application.dataPath + "!/assets/StageMaps/";
-#endif
-		BattleManager.GetInstance().logView.AddItemGetLog(folderName);
-		string[] fileName;
 
-		fileName = Directory.GetFiles(folderName, stageIndex + "-" + "*.txt");
-
-		NowMap = new GameObject[fileName.Length];
-
-		for (nowMapIndex = 0; nowMapIndex < fileName.Length; nowMapIndex++)
+		for (nowMapIndex = 0; ; nowMapIndex++)
 		{
-			using (StreamReader inputFile = new StreamReader(fileName[nowMapIndex]))
+			TextAsset mapFile = Resources.Load("StageMaps/" + stageIndex + "-" + (nowMapIndex + 1)) as TextAsset;
+			if (mapFile == null)
+				break;
+
+			string mapString = mapFile.text;
+
+			mapY = int.Parse(mapString.Substring(0, mapString.IndexOf('\n')));
+			mapString = mapString.Substring(mapString.IndexOf('\n') + 1);
+			mapX = int.Parse(mapString.Substring(0, mapString.IndexOf('\n')));
+			mapString = mapString.Substring(mapString.IndexOf('\n') + 1);
+
+			obstacleMap = new int[(int)mapY, (int)mapX];
+
+			string txtElement;
+
+			for (int y = 0; y < mapY; y++)
 			{
-				mapY = int.Parse(inputFile.ReadLine());
-				mapX = int.Parse(inputFile.ReadLine());
+				txtElement = mapString.Substring(0, mapString.IndexOf('\n'));
+				mapString = mapString.Substring(mapString.IndexOf('\n') + 1);
 
-				obstacleMap = new int[(int)mapY, (int)mapX];
-
-				string txtElement;
-
-				for (int y = 0; y < mapY; y++)
+				for (int x = 0; x < mapX; x++)
 				{
-					txtElement = inputFile.ReadLine();
+					string[] data = txtElement.Split(new char[] { ' ' });
 
-					for (int x = 0; x < mapX; x++)
-					{
-						string[] data = txtElement.Split(new char[] {' '});
-
-						obstacleMap[y, x] = int.Parse(data[x]);
-					}
+					obstacleMap[y, x] = int.Parse(data[x]);
 				}
-
-				GeneratedMap();
 			}
+
+			GeneratedMap();
 		}
 	}
 
@@ -242,7 +238,7 @@ public class MapSpawner : MonoBehaviour
 		mapHolder = new GameObject(holderName).transform;
 		mapHolder.parent = transform;
 
-		NowMap[nowMapIndex] = GameObject.Find(holderName);
+		NowMap.Add(GameObject.Find(holderName));
 
 		Map currentMap = NowMap[nowMapIndex].gameObject.AddComponent<Map>();
 
