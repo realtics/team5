@@ -40,7 +40,7 @@ public class Item
 
     public virtual void GetItemExplanation(ref Text nameText, ref Text tooltipText)
     {
-        if (value > 1 && type != ItemType.ETC)
+        if (value > 1 && type != ItemType.ETC && type != ItemType.POTION)
             nameText.text = "+" + value + " " + itemName;
         else
             nameText.text = itemName;
@@ -128,7 +128,7 @@ public class Item
     public virtual void Activate(Character player)
     {
         value--;
-        player.TakeDamage(-hpRecovery);
+        player.TakeDamage(-hpRecovery, 100, true);
         if (value > 0)
             PlayerPrefs.SetInt("itemDataBase" + itemIndex + "value", value);
         else

@@ -27,7 +27,12 @@ public class Inventory : MonoBehaviour
     {
 		GameManager.GetInstance().InitInventory(row, column);
         GameManager.GetInstance().InitEquipSlot(equippedSlot.Length);
-    }
+
+		for (int i = 0; i < equippedSlot.Length; i++)
+		{
+			equippedSlot[i].Init(this, i, itemWindow, itemNameText, itemTooltipText, reinforceButton, breakButton);
+		}
+	}
 
     // Start is called before the first frame update
     void Start()
@@ -50,12 +55,8 @@ public class Inventory : MonoBehaviour
 
 				ItemSlot slotComponent = slot.GetComponent<ItemSlot>();
 				slotComponent.Init(this, i * column + j, itemWindow, itemNameText, itemTooltipText, reinforceButton, breakButton);
+				slotComponent.SetNormalSlot();
             }
-        }
-
-        for(int i = 0; i < equippedSlot.Length; i++)
-        {
-            equippedSlot[i].Init(this, i, itemWindow, itemNameText, itemTooltipText, reinforceButton, breakButton);
         }
 
 		itemWindow.gameObject.SetActive(false);

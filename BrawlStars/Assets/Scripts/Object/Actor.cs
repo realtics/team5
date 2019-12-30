@@ -227,14 +227,20 @@ public class Actor : MonoBehaviour
 		hpBar.SetHp(currentHp);
     }
 
-    public void TakeDamage(int baseDamage, int skillPercentage = 100)
+    public void TakeDamage(int baseDamage, int skillPercentage = 100, bool isTrueDamage = false)
     {
         if (state == State.Dead)
             return;
 
-        int realDamage = (baseDamage - finalStatus.armor) * skillPercentage / 100;
-        if (realDamage < 0)
-            realDamage = 0;
+		int realDamage;
+		if (isTrueDamage)
+			realDamage = baseDamage * skillPercentage / 100;
+		else
+		{
+			realDamage = (baseDamage - finalStatus.armor) * skillPercentage / 100;
+			if (realDamage < 0)
+				realDamage = 0;
+		}
 
         DamageText damageTextObject = ObjectPool.GetInstance().GetObject(damageText.gameObject).GetComponent<DamageText>();
 		damageTextObject.transform.position = transform.position;
