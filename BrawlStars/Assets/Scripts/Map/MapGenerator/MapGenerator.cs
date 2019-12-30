@@ -456,7 +456,7 @@ public class MapGenerator : MonoBehaviour
 
 		if (maps.MapName != "" || maps.MapName == null)
         {
-            using (StreamWriter outputFile = new StreamWriter(@"Assets\StreamingAssets\StageMaps\" + maps.MapName + ".txt"))
+            using (StreamWriter outputFile = new StreamWriter(@"Assets\Resources\StageMaps\" + maps.MapName + ".txt"))
             {
 				outputFile.WriteLine(maps.mapSize.y);
                 outputFile.WriteLine(maps.mapSize.x);
@@ -496,7 +496,7 @@ public class MapGenerator : MonoBehaviour
 
         if (maps.MapName != "")
         {
-            using (StreamReader inputFile = new StreamReader(@"Assets\StreamingAssets\StageMaps\" + maps.MapName + ".txt"))
+            using (StreamReader inputFile = new StreamReader(@"Assets\Resources\StageMaps\" + maps.MapName + ".txt"))
             {
 				Debug.Log(maps.MapName);
 
