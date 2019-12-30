@@ -9,6 +9,8 @@ TagManager:
   - Button
   - Obstacle
   - Monster
+  - Portal
+  - StartingPoint
   layers:
   - Default
   - TransparentFX

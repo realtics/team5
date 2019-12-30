@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2960840493192178507}
   m_Layer: 0
   m_Name: MonsterSpawner
-  m_TagString: Obstacle
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,19 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b40a1ec3151bdd4da833db7ac659567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyState: 3
-  Monster1: {fileID: 412889789564026841, guid: 0d3add451394c454f9514aa00312717f, type: 3}
-  Monster2: {fileID: 7724979333546914174, guid: d28d7de3437c07b4e83a12c5c34ee7bb,
-    type: 3}
-  Monster3: {fileID: 3793338551321226100, guid: f35d046ced5b7014f9d4f20723c6a151,
-    type: 3}
-  BossEnemy: {fileID: 8768990605677607867, guid: 0dbfdb3a99e84a04c9b80ceee0436044,
-    type: 3}
-  totalEnemy: 1
-  Spawn: 0
-  spawnType: 1
-  waveTimer: 5
-  totalWave: 3
 --- !u!65 &2960840493192178507
 BoxCollider:
   m_ObjectHideFlags: 0

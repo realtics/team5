@@ -32,7 +32,7 @@ public class FileWindow : MonoBehaviour
 		xPos = startingPosX;
 		yPos = startingPosY;
 
-		string folderName = @"Assets\StageMaps\";
+		string folderName = @"Assets\StreamingAssets\StageMaps\";
 
 		DirectoryInfo directoryInfo = new DirectoryInfo(folderName);
 
