@@ -33,6 +33,10 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		itemTooltipText = _itemTooltipText;
 		reinforceButton = _reinforceButton;
 		breakButton = _breakButton;
+	}
+
+	public void SetNormalSlot()
+	{
 		slotType = SlotType.Normal;
 		itemType = ItemType.ETC;
 	}

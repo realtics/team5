@@ -87,10 +87,14 @@ public class SkillIcon : ControlUI
 
     public override void Drag(Vector2 position)
     {
-        if (joystick.gameObject.activeSelf)
-        {
-            joystick.Drag(position);
-        }
+		if (joystick.gameObject.activeSelf)
+		{
+			joystick.Drag(position);
+		}
+		else
+		{
+			rangeObject.transform.position = player.transform.position;
+		}
     }
 
 	public override void PointerUp(Vector2 position)
